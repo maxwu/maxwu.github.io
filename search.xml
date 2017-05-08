@@ -188,9 +188,9 @@
         
         <tags>
             
-            <tag> Java </tag>
-            
             <tag> Selenium </tag>
+            
+            <tag> Java </tag>
             
             <tag> Selenide </tag>
             
@@ -714,9 +714,9 @@
         
         <tags>
             
-            <tag> Docker </tag>
-            
             <tag> CD </tag>
+            
+            <tag> Docker </tag>
             
         </tags>
         
@@ -1126,9 +1126,9 @@
         
         <tags>
             
-            <tag> Java </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Java </tag>
             
             <tag> JUnit </tag>
             
@@ -1305,9 +1305,9 @@
         
         <tags>
             
-            <tag> Java </tag>
-            
             <tag> Selenium </tag>
+            
+            <tag> Java </tag>
             
             <tag> Pageobject </tag>
             
@@ -1443,13 +1443,13 @@
         
         <tags>
             
-            <tag> Java </tag>
-            
             <tag> Cucumber </tag>
             
             <tag> Selenium </tag>
             
             <tag> Junit </tag>
+            
+            <tag> Java </tag>
             
         </tags>
         
