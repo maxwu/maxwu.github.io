@@ -93,7 +93,7 @@
 <meta property="og:image" content="http://oei21r8n1.bkt.clouddn.com/CIstat_PieCaseNum_Snip20170511_7_Med.png?imageView/2/w/400/q/100">
 <meta property="og:image" content="http://oei21r8n1.bkt.clouddn.com/cistat_passrate_Snip20170501_39.png?imageView/2/w/400/q/100">
 <meta property="og:image" content="http://oei21r8n1.bkt.clouddn.com/CIstat_ScatterROI_Snip20170512_9.png?imageView/2/w/400/q/100">
-<meta property="og:updated_time" content="2017-05-11T13:55:07.000Z">
+<meta property="og:updated_time" content="2017-05-11T22:30:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CIstat preview version released">
 <meta name="twitter:description" content="CIstat is a Python package supporting to fetch, analyze and present automation test data from common CI services as CircleCI, Travis, Bamboo and Jenkins (preview version has implemented CircleCI to ve">
@@ -425,11 +425,11 @@
       
         <p><a href="https://github.com/maxwu/cistat" target="_blank" rel="external">CIstat</a> is a Python package supporting to fetch, analyze and present automation test data from common CI services as CircleCI, <em>Travis</em>, <em>Bamboo</em> and <em>Jenkins</em> (preview version has implemented CircleCI to verify the idea)<br><img src="http://oei21r8n1.bkt.clouddn.com/CIstat_preview_ver_Snip20170512_10.png?imageView/2/w/400/q/100" alt="CIstat_preview"><br><a id="more"></a></p>
 <h1 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h1><p>CIstat with preview version could be installed with pip CVS interface from github directly.</p>
-<p>Install cistat Pypi dist with dev branch latest code from Github:</p>
+<p>Install cistat Pypi dist with <strong>dev</strong> branch latest code from Github:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install https://github.com/maxwu/cistat/archive/dev.zip</div></pre></td></tr></table></figure>
-<p>Install cistat from master (release) branch on Github:</p>
+<p>Install cistat from <strong>master</strong> (release) branch on Github:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install https://github.com/maxwu/cistat/archive/master.zip</div></pre></td></tr></table></figure>
-<h1 id="Sample-Charts"><a href="#Sample-Charts" class="headerlink" title="Sample Charts"></a>Sample Charts</h1><p><strong>Pie Chart</strong></p>
+<h1 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h1><h2 id="Sample-Charts"><a href="#Sample-Charts" class="headerlink" title="Sample Charts"></a>Sample Charts</h2><p><strong>Pie Chart</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">report.get_class_rpt().plot_piechart_casenum(project, <span class="string">"Case Num per Class"</span>)</div></pre></td></tr></table></figure>
 <p>The Pie Chart for case numbers per class level is:</p>
 <p><img src="http://oei21r8n1.bkt.clouddn.com/CIstat_PieCaseNum_Snip20170511_7_Med.png?imageView/2/w/400/q/100" alt="Pie Chart on Case Number per Class"></p>
@@ -445,9 +445,9 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">report.get_class_rpt().plot_scatter_roi(project, <span class="string">"Test ROI per Class"</span>)</div></pre></td></tr></table></figure>
 <p>The Bubble Chart to present case ROI per class as below:</p>
 <p><img src="http://oei21r8n1.bkt.clouddn.com/CIstat_ScatterROI_Snip20170512_9.png?imageView/2/w/400/q/100" alt="Bubble Chart on Test ROI"></p>
-<h1 id="Console-Entry-Point"><a href="#Console-Entry-Point" class="headerlink" title="Console Entry Point"></a>Console Entry Point</h1><p>Quick step to run above sample: <code>cistat-cli</code>. Since circleci.com has throttling limit on RESTful API, it is recommended to configure an API-Key in environmental variable or local config.yaml.</p>
+<h2 id="Console-Entry-Point"><a href="#Console-Entry-Point" class="headerlink" title="Console Entry Point"></a>Console Entry Point</h2><p>Quick step to run above sample: <code>cistat-cli</code>. Since circleci.com has throttling limit on RESTful API, it is recommended to configure an API-Key in environmental variable or local config.yaml.</p>
 <p>This console command is installed with Pypi dist. <code>cistat-cli</code> is the console entry point planted by PIP installer setup.py.</p>
-<h1 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h1><p>Configuration item preference order is:</p>
+<h2 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h2><p>Configuration item preference order is:</p>
 <p><code>Cli Options &gt;&gt; Environment Variables &gt;&gt; Local Config.yaml</code></p>
 <p>Configuration items:</p>
 <ul>
@@ -456,12 +456,12 @@
 <blockquote>
 <p>To test string length with shell, <code>printf $STR | wc -c</code></p>
 </blockquote>
-<h1 id="Data-Models"><a href="#Data-Models" class="headerlink" title="Data Models"></a>Data Models</h1><p>Now CIstat has implemented XUnit model. Which is a widely used test report XML format. CIstat wrappered it with full functional Python type with +, +=, getter/setter with [key] and len() to simplify the further applications. </p>
+<h1 id="Design"><a href="#Design" class="headerlink" title="Design"></a>Design</h1><h2 id="Data-Models"><a href="#Data-Models" class="headerlink" title="Data Models"></a>Data Models</h2><p>Now CIstat has implemented XUnit model. Which is a widely used test report XML format. CIstat wrappered it with full functional Python type with +, +=, getter/setter with [key] and len() to simplify the further applications. </p>
 <p>As a practice to prepare for future Cloud related statD thoughts (as DataDog service), XUnit is firstly picked up as XUnit has counter, scalar and ratio types of data. These data in various types can be accumulated or aggregated with +, += and speficied with [] operator.</p>
 <p>The future step on data model is to expand to white-box parts as Lint scores and code coverage.</p>
-<h1 id="Requests"><a href="#Requests" class="headerlink" title="Requests"></a>Requests</h1><p>So far only circleci RESTful interfaces are supported. TravisCI and Jenkins are on following step while the preview version is under more tests. </p>
-<p><strong>References</strong></p>
-<p>The README document with samples, <a href="https://github.com/maxwu/cistat" target="_blank" rel="external">https://github.com/maxwu/cistat</a></p>
+<h2 id="Requests"><a href="#Requests" class="headerlink" title="Requests"></a>Requests</h2><p>So far only circleci RESTful interfaces are supported. TravisCI and Jenkins are on following step while the preview version is under more tests. </p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><p>[1] The README document with samples, <a href="https://github.com/maxwu/cistat" target="_blank" rel="external">https://github.com/maxwu/cistat</a></p>
+<p>[2] My Gitbook chapter about Pip installation from Github, <a href="https://maxwu.gitbooks.io/python-tips/content/pip-supports-installation-from-github.html" target="_blank" rel="external">https://maxwu.gitbooks.io/python-tips/content/pip-supports-installation-from-github.html</a></p>
 <p><strong>Change_Log</strong></p>
 <p>May 10, 2017: Init post.</p>
 
@@ -741,7 +741,7 @@
         
         
       <br>
-      <iframe src="http://githubbadge.appspot.com/maxwu" style="border: 0;height: 142px;width: 200px;overflow: hidden;" frameBorder="0"></iframe>
+      <iframe src="https://githubbadge.appspot.com/maxwu" style="border: 0;height: 142px;width: 200px;overflow: hidden;" frameBorder="0"></iframe>
       </section>
 
       
@@ -751,13 +751,13 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Installation"><span class="nav-number">1.</span> <span class="nav-text">Installation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Sample-Charts"><span class="nav-number">2.</span> <span class="nav-text">Sample Charts</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Console-Entry-Point"><span class="nav-number">3.</span> <span class="nav-text">Console Entry Point</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Configuration"><span class="nav-number">4.</span> <span class="nav-text">Configuration</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Data-Models"><span class="nav-number">5.</span> <span class="nav-text">Data Models</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Requests"><span class="nav-number">6.</span> <span class="nav-text">Requests</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Installation"><span class="nav-number">1.</span> <span class="nav-text">Installation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Usage"><span class="nav-number">2.</span> <span class="nav-text">Usage</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Sample-Charts"><span class="nav-number">2.1.</span> <span class="nav-text">Sample Charts</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Console-Entry-Point"><span class="nav-number">2.2.</span> <span class="nav-text">Console Entry Point</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Configuration"><span class="nav-number">2.3.</span> <span class="nav-text">Configuration</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Design"><span class="nav-number">3.</span> <span class="nav-text">Design</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-Models"><span class="nav-number">3.1.</span> <span class="nav-text">Data Models</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Requests"><span class="nav-number">3.2.</span> <span class="nav-text">Requests</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#References"><span class="nav-number">4.</span> <span class="nav-text">References</span></a></li></ol></div>
             
           </div>
         </section>
       
     <br>
-    <iframe src="http://free.timeanddate.com/clock/i5orqr0e/n264/szw80/szh80/hoc000/hbw2/hfceee/cf100/hncccc/fdi76/mqc000/mql10/mqw4/mqd98/mhc000/mhl10/mhw4/mhd98/mmc000/mml10/mmw1/mmd98" frameborder="0" width="80" height="80"></iframe>
+<iframe src="https://freesecure.timeanddate.com/clock/i5pq4nvs/n264/szw110/szh110/hoc000/hbw2/hfceee/cf100/hncccc/fdi76/mqc000/mql10/mqw4/mqd98/mhc000/mhl10/mhw4/mhd98/mmc000/mml10/mmw1/mmd98" frameborder="0" width="110" height="110"></iframe>
     </div>
   </aside>
 
