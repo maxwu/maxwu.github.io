@@ -1,12 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>+U Maxout!</title>
   
+  <link href="/atom.xml" rel="self"/>
   
+  <link href="http://maxwu.me/"/>
+  <updated>2017-05-11T22:30:13.000Z</updated>
+  <id>http://maxwu.me/</id>
+  
+  <author>
+    <name>Max Wu</name>
     
-    <entry>
-      <title><![CDATA[CIstat preview version released]]></title>
-      <url>http://maxwu.me/2017/05/12/CIstat-preview-version-released/</url>
-      <content type="html"><![CDATA[<p><a href="https://github.com/maxwu/cistat" target="_blank" rel="external">CIstat</a> is a Python package supporting to fetch, analyze and present automation test data from common CI services as CircleCI, <em>Travis</em>, <em>Bamboo</em> and <em>Jenkins</em> (preview version has implemented CircleCI to verify the idea)<br><img src="http://oei21r8n1.bkt.clouddn.com/CIstat_preview_ver_Snip20170512_10.png?imageView/2/w/400/q/100" alt="CIstat_preview"><br><a id="more"></a></p>
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CIstat preview version released</title>
+    <link href="http://maxwu.me/2017/05/12/CIstat-preview-version-released/"/>
+    <id>http://maxwu.me/2017/05/12/CIstat-preview-version-released/</id>
+    <published>2017-05-11T13:28:22.000Z</published>
+    <updated>2017-05-11T22:30:13.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="https://github.com/maxwu/cistat" target="_blank" rel="external">CIstat</a> is a Python package supporting to fetch, analyze and present automation test data from common CI services as CircleCI, <em>Travis</em>, <em>Bamboo</em> and <em>Jenkins</em> (preview version has implemented CircleCI to verify the idea)<br><img src="http://oei21r8n1.bkt.clouddn.com/CIstat_preview_ver_Snip20170512_10.png?imageView/2/w/400/q/100" alt="CIstat_preview"><br><a id="more"></a></p>
 <h1 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h1><p>CIstat with preview version could be installed with pip CVS interface from github directly.</p>
 <p>Install cistat Pypi dist with <strong>dev</strong> branch latest code from Github:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install https://github.com/maxwu/cistat/archive/dev.zip</div></pre></td></tr></table></figure>
@@ -48,32 +64,34 @@
 <p><strong>Change_Log</strong></p>
 <p>May 10, 2017: Init post.</p>
 ]]></content>
-      
-        <categories>
-            
-            <category> Automation Test </category>
-            
-            <category> CI </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Python </tag>
-            
-            <tag> RESTful </tag>
-            
-            <tag> CircleCI </tag>
-            
-        </tags>
-        
-    </entry>
     
-    <entry>
-      <title><![CDATA[Recursive Depth-First-Search with a tracking Set]]></title>
-      <url>http://maxwu.me/2017/05/02/Recursive-Depth-First-Search-with-a-tracking-Set/</url>
-      <content type="html"><![CDATA[<p>Inspired by a StackOverflow(SFO) question, this post is a refreshment on DFS and key points to take care before coding a recursive DFS.<br><a id="more"></a></p>
+    <summary type="html">
+    
+      &lt;p&gt;&lt;a href=&quot;https://github.com/maxwu/cistat&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;CIstat&lt;/a&gt; is a Python package supporting to fetch, analyze and present automation test data from common CI services as CircleCI, &lt;em&gt;Travis&lt;/em&gt;, &lt;em&gt;Bamboo&lt;/em&gt; and &lt;em&gt;Jenkins&lt;/em&gt; (preview version has implemented CircleCI to verify the idea)&lt;br&gt;&lt;img src=&quot;http://oei21r8n1.bkt.clouddn.com/CIstat_preview_ver_Snip20170512_10.png?imageView/2/w/400/q/100&quot; alt=&quot;CIstat_preview&quot;&gt;&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Automation Test" scheme="http://maxwu.me/categories/Automation-Test/"/>
+    
+      <category term="CI" scheme="http://maxwu.me/categories/Automation-Test/CI/"/>
+    
+    
+      <category term="Python" scheme="http://maxwu.me/tags/Python/"/>
+    
+      <category term="RESTful" scheme="http://maxwu.me/tags/RESTful/"/>
+    
+      <category term="CircleCI" scheme="http://maxwu.me/tags/CircleCI/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Recursive Depth-First-Search with a tracking Set</title>
+    <link href="http://maxwu.me/2017/05/02/Recursive-Depth-First-Search-with-a-tracking-Set/"/>
+    <id>http://maxwu.me/2017/05/02/Recursive-Depth-First-Search-with-a-tracking-Set/</id>
+    <published>2017-05-01T13:38:10.000Z</published>
+    <updated>2017-05-03T22:25:34.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Inspired by a StackOverflow(SFO) question, this post is a refreshment on DFS and key points to take care before coding a recursive DFS.<br><a id="more"></a></p>
 <h2 id="The-Problem-Statement"><a href="#The-Problem-Statement" class="headerlink" title="The Problem Statement"></a>The Problem Statement</h2><blockquote>
 <p>I have the following lists:<br>Animals Food Cat Fish Dog Pork Beef I would like to allocate food to the animals in as many different ways as possible like:<br>Each different animal and food combination will be stored in a map.<br>(Cat eats Fish, Dog eats Pork)<br>(Cat eats Fish, Dog eats Beef)<br>(Cat eats Pork, Dog eats Fish)<br>(Cat eats Pork, Dog eats Beef)<br>(Cat eats Beef, Dog eats Fish)<br>(Cat eats Beef, Dog eats Pork)<br>Finally all the maps will be put in a set and returned.<br>I am trying to use recursive function for the same and the following is how I tried it.. but am not able to get it right it right, so please help me to make it.</p>
 </blockquote>
@@ -117,32 +135,34 @@
 </blockquote>
 <p><strong>Updated</strong>: May 03, 2017, add Python DFS example.</p>
 ]]></content>
-      
-        <categories>
-            
-            <category> Programming </category>
-            
-            <category> Java </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Java </tag>
-            
-            <tag> Algorithm </tag>
-            
-            <tag> DFS </tag>
-            
-        </tags>
-        
-    </entry>
     
-    <entry>
-      <title><![CDATA[Share a Shell Toy with Buddies]]></title>
-      <url>http://maxwu.me/2017/04/15/Share-a-Shell-Toy-with-Buddies/</url>
-      <content type="html"><![CDATA[<p>Happened to read a game from LinkedIn. An recruiter published a series words of ‘0’ and ‘1’ on my LinkedIn timeline. Which brought me back to the funny time struggling with huge logs from a large number of embedded cards. Can’t wait to decode with shell :_)<br><a id="more"></a></p>
+    <summary type="html">
+    
+      &lt;p&gt;Inspired by a StackOverflow(SFO) question, this post is a refreshment on DFS and key points to take care before coding a recursive DFS.&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Programming" scheme="http://maxwu.me/categories/Programming/"/>
+    
+      <category term="Java" scheme="http://maxwu.me/categories/Programming/Java/"/>
+    
+    
+      <category term="Java" scheme="http://maxwu.me/tags/Java/"/>
+    
+      <category term="Algorithm" scheme="http://maxwu.me/tags/Algorithm/"/>
+    
+      <category term="DFS" scheme="http://maxwu.me/tags/DFS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Share a Shell Toy with Buddies</title>
+    <link href="http://maxwu.me/2017/04/15/Share-a-Shell-Toy-with-Buddies/"/>
+    <id>http://maxwu.me/2017/04/15/Share-a-Shell-Toy-with-Buddies/</id>
+    <published>2017-04-15T10:09:02.000Z</published>
+    <updated>2017-04-15T12:31:05.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Happened to read a game from LinkedIn. An recruiter published a series words of ‘0’ and ‘1’ on my LinkedIn timeline. Which brought me back to the funny time struggling with huge logs from a large number of embedded cards. Can’t wait to decode with shell :_)<br><a id="more"></a></p>
 <h1 id="Problem-Recitation"><a href="#Problem-Recitation" class="headerlink" title="Problem Recitation"></a>Problem Recitation</h1><p>Here is the original <a href="https://www.linkedin.com/feed/update/urn:li:activity:6257861978069565441/" target="_blank" rel="external">post</a>. The contents are as below:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">01001101 01111001 00100000 01100101 01101101 01100001 01101001 01101100 00100000 01101001 01110011 00100000 01101100 01110011 01110100 01100101 01110110 01100101 01101110 01000000 01110110 01101101 01110111 01100001 01110010 01100101 00101110 01100011 01101111 01101101</div></pre></td></tr></table></figure>
 <h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><p>The problem could be quickly solved with programming language for sure. Perl will be my preference and I’d attach a Perl version in this article as well. </p>
@@ -176,30 +196,32 @@
 <p><strong>Change Logs</strong></p>
 <p>2017-04-15 |  Init the post to share a shell toy.</p>
 ]]></content>
-      
-        <categories>
-            
-            <category> Linux </category>
-            
-            <category> Shell </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Cli </tag>
-            
-            <tag> Shell </tag>
-            
-        </tags>
-        
-    </entry>
     
-    <entry>
-      <title><![CDATA[Genre-Clawer -- A Cli-App and Maven lib to fetch genres]]></title>
-      <url>http://maxwu.me/2017/03/22/Genre-Clawer-A-Cli-App-and-Maven-lib-to-fetch-genres/</url>
-      <content type="html"><![CDATA[<p>Genre-Clawer (<a href="https://github.com/maxwu/Genre-Clawer" target="_blank" rel="external">Github</a>) is a tool in both maven lib and cli-app created to verify an idea to fetch genres for given music pieces. It started with a post on Lower Hutt Countdown wall and which is a good journey as a weekend hackathon. </p>
+    <summary type="html">
+    
+      &lt;p&gt;Happened to read a game from LinkedIn. An recruiter published a series words of ‘0’ and ‘1’ on my LinkedIn timeline. Which brought me back to the funny time struggling with huge logs from a large number of embedded cards. Can’t wait to decode with shell :_)&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://maxwu.me/categories/Linux/"/>
+    
+      <category term="Shell" scheme="http://maxwu.me/categories/Linux/Shell/"/>
+    
+    
+      <category term="Cli" scheme="http://maxwu.me/tags/Cli/"/>
+    
+      <category term="Shell" scheme="http://maxwu.me/tags/Shell/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Genre-Clawer -- A Cli-App and Maven lib to fetch genres</title>
+    <link href="http://maxwu.me/2017/03/22/Genre-Clawer-A-Cli-App-and-Maven-lib-to-fetch-genres/"/>
+    <id>http://maxwu.me/2017/03/22/Genre-Clawer-A-Cli-App-and-Maven-lib-to-fetch-genres/</id>
+    <published>2017-03-22T08:49:02.000Z</published>
+    <updated>2017-03-22T10:51:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Genre-Clawer (<a href="https://github.com/maxwu/Genre-Clawer" target="_blank" rel="external">Github</a>) is a tool in both maven lib and cli-app created to verify an idea to fetch genres for given music pieces. It started with a post on Lower Hutt Countdown wall and which is a good journey as a weekend hackathon. </p>
 <p><img src="http://oei21r8n1.bkt.clouddn.com/Genre-GH-20170322_14.png?imageView/2/w/800/q/100" alt="Genre-Clawer-v1.4a1"><br><a id="more"></a></p>
 <h2 id="Backgrounds"><a href="#Backgrounds" class="headerlink" title="Backgrounds"></a>Backgrounds</h2><p>Last week, I saw a post on Lower Hutt countdown community wall. The writer shared a problem in picking songs from a genre sets with given order. I took it as an interesting topic and divided it into two steps: </p>
 <ul>
@@ -243,44 +265,47 @@
 <p>With the above constructions, generating playlist could be turned to a typical recommendation algorithm. </p>
 <h2 id="Appendix"><a href="#Appendix" class="headerlink" title="Appendix"></a>Appendix</h2><h3 id="Change-logs"><a href="#Change-logs" class="headerlink" title="Change logs:"></a>Change logs:</h3><p>2017-03-21, Initial summary for Genre-Clawer v1.4a1.</p>
 ]]></content>
-      
-        <categories>
-            
-            <category> Programming </category>
-            
-            <category> Java </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Java </tag>
-            
-            <tag> Selenium </tag>
-            
-            <tag> Selenide </tag>
-            
-            <tag> HtmlUnit </tag>
-            
-            <tag> Maven </tag>
-            
-            <tag> JitPack </tag>
-            
-            <tag> Genre </tag>
-            
-            <tag> Google </tag>
-            
-            <tag> Clawer </tag>
-            
-        </tags>
-        
-    </entry>
     
-    <entry>
-      <title><![CDATA[Setup virtualenv for Jenkins Python CI Task]]></title>
-      <url>http://maxwu.me/2017/03/09/Setup-virtualenv-for-Jenkins-Task/</url>
-      <content type="html"><![CDATA[<p>When setting up CI for python projects, virtualenv could help to separate the test/deployment environment. This post will provide a template for Jenkins to use virtualenv for Jenkins tasks with <a href="http://jenkins.maxwu.me/job/ci-stat/" target="_blank" rel="external">Jenkins example</a>.</p>
+    <summary type="html">
+    
+      &lt;p&gt;Genre-Clawer (&lt;a href=&quot;https://github.com/maxwu/Genre-Clawer&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Github&lt;/a&gt;) is a tool in both maven lib and cli-app created to verify an idea to fetch genres for given music pieces. It started with a post on Lower Hutt Countdown wall and which is a good journey as a weekend hackathon. &lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://oei21r8n1.bkt.clouddn.com/Genre-GH-20170322_14.png?imageView/2/w/800/q/100&quot; alt=&quot;Genre-Clawer-v1.4a1&quot;&gt;&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Programming" scheme="http://maxwu.me/categories/Programming/"/>
+    
+      <category term="Java" scheme="http://maxwu.me/categories/Programming/Java/"/>
+    
+    
+      <category term="Java" scheme="http://maxwu.me/tags/Java/"/>
+    
+      <category term="Selenium" scheme="http://maxwu.me/tags/Selenium/"/>
+    
+      <category term="Selenide" scheme="http://maxwu.me/tags/Selenide/"/>
+    
+      <category term="HtmlUnit" scheme="http://maxwu.me/tags/HtmlUnit/"/>
+    
+      <category term="Maven" scheme="http://maxwu.me/tags/Maven/"/>
+    
+      <category term="JitPack" scheme="http://maxwu.me/tags/JitPack/"/>
+    
+      <category term="Genre" scheme="http://maxwu.me/tags/Genre/"/>
+    
+      <category term="Google" scheme="http://maxwu.me/tags/Google/"/>
+    
+      <category term="Clawer" scheme="http://maxwu.me/tags/Clawer/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Setup virtualenv for Jenkins Python CI Task</title>
+    <link href="http://maxwu.me/2017/03/09/Setup-virtualenv-for-Jenkins-Task/"/>
+    <id>http://maxwu.me/2017/03/09/Setup-virtualenv-for-Jenkins-Task/</id>
+    <published>2017-03-09T03:53:53.000Z</published>
+    <updated>2017-03-15T07:15:33.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>When setting up CI for python projects, virtualenv could help to separate the test/deployment environment. This post will provide a template for Jenkins to use virtualenv for Jenkins tasks with <a href="http://jenkins.maxwu.me/job/ci-stat/" target="_blank" rel="external">Jenkins example</a>.</p>
 <p><img src="http://oei21r8n1.bkt.clouddn.com/Snip_ci_stat_2017-03-09.png?imageView/2/w/400/q/100" alt="ci-stat screenshot"><br><a id="more"></a></p>
 <h3 id="Common-Test-Script-Template"><a href="#Common-Test-Script-Template" class="headerlink" title="Common Test Script Template"></a>Common Test Script Template</h3><p>Here is the script I used on Jenkins</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/usr/bin/env bash</span></div><div class="line"><span class="comment">########################</span></div><div class="line"><span class="comment"># Step 1: Setup virtualenv</span></div><div class="line"><span class="comment"># This step is only for Jenkins. Travis and CircleCI will ignore this step.</span></div><div class="line"><span class="comment">########################</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> [ -n <span class="string">"<span class="variable">$&#123;WORKSPACE:+1&#125;</span>"</span> ]; <span class="keyword">then</span></div><div class="line">    <span class="comment"># Path to virtualenv cmd installed by pip</span></div><div class="line">    <span class="comment"># /usr/local/bin/virtualenv</span></div><div class="line">    PATH=<span class="variable">$WORKSPACE</span>/venv/bin:/usr/<span class="built_in">local</span>/bin:<span class="variable">$PATH</span></div><div class="line">    <span class="keyword">if</span> [ ! <span class="_">-d</span> <span class="string">"venv"</span> ]; <span class="keyword">then</span></div><div class="line">            virtualenv venv</div><div class="line">    <span class="keyword">fi</span></div><div class="line">    . venv/bin/activate</div><div class="line"><span class="keyword">else</span></div><div class="line">    <span class="comment"># Alternatively, $TRAVIS_REPO_SLUG could be utilized here to provide name.</span></div><div class="line">    <span class="built_in">export</span> JOB_NAME=<span class="string">"ci-stat"</span></div><div class="line"><span class="keyword">fi</span></div><div class="line">pip install -r requirements.txt -r <span class="built_in">test</span>/test_requirements.txt --cache-dir /tmp/<span class="variable">$JOB_NAME</span></div><div class="line"></div><div class="line"><span class="comment">########################</span></div><div class="line"><span class="comment"># Step 2: Execute Test</span></div><div class="line"><span class="comment">########################</span></div><div class="line">nosetests --with-xunit --all-modules --traverse-namespace --with-xcoverage --cover-package=me.maxwu --cover-inclusive --logging-level=INFO --debug=me.maxwu <span class="_">-s</span> -v --xunit-file ci-stat_nose_xunit.xml --cover-html ./<span class="built_in">test</span></div><div class="line"></div><div class="line"><span class="comment">########################</span></div><div class="line"><span class="comment"># Step 3: PyLint</span></div><div class="line"><span class="comment">########################</span></div><div class="line"><span class="built_in">cd</span> src</div><div class="line">pylint <span class="_">-f</span> parseable <span class="_">-d</span> I0011,R0801 me.maxwu | tee ../pylint.out</div><div class="line"><span class="built_in">cd</span> ..</div><div class="line"><span class="comment">#EOF</span></div></pre></td></tr></table></figure>
@@ -302,36 +327,39 @@
 <li><a href="http://iamnearlythere.com/jenkins-python-virtualenv/" target="_blank" rel="external">http://iamnearlythere.com/jenkins-python-virtualenv/</a></li>
 </ul>
 ]]></content>
-      
-        <categories>
-            
-            <category> Automation Test </category>
-            
-            <category> CI </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Python </tag>
-            
-            <tag> Jenkins </tag>
-            
-            <tag> Automation </tag>
-            
-            <tag> CI </tag>
-            
-            <tag> Virtualenv </tag>
-            
-        </tags>
-        
-    </entry>
     
-    <entry>
-      <title><![CDATA[A dip with performance test lib Locust]]></title>
-      <url>http://maxwu.me/2017/03/06/A-dip-with-performance-test-lib-Locust/</url>
-      <content type="html"><![CDATA[<p>Locust is a Python lib for performance test. Here is a first dip with locust with sample codes.<br><a id="more"></a></p>
+    <summary type="html">
+    
+      &lt;p&gt;When setting up CI for python projects, virtualenv could help to separate the test/deployment environment. This post will provide a template for Jenkins to use virtualenv for Jenkins tasks with &lt;a href=&quot;http://jenkins.maxwu.me/job/ci-stat/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Jenkins example&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://oei21r8n1.bkt.clouddn.com/Snip_ci_stat_2017-03-09.png?imageView/2/w/400/q/100&quot; alt=&quot;ci-stat screenshot&quot;&gt;&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Automation Test" scheme="http://maxwu.me/categories/Automation-Test/"/>
+    
+      <category term="CI" scheme="http://maxwu.me/categories/Automation-Test/CI/"/>
+    
+    
+      <category term="Python" scheme="http://maxwu.me/tags/Python/"/>
+    
+      <category term="Jenkins" scheme="http://maxwu.me/tags/Jenkins/"/>
+    
+      <category term="Automation" scheme="http://maxwu.me/tags/Automation/"/>
+    
+      <category term="CI" scheme="http://maxwu.me/tags/CI/"/>
+    
+      <category term="Virtualenv" scheme="http://maxwu.me/tags/Virtualenv/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>A dip with performance test lib Locust</title>
+    <link href="http://maxwu.me/2017/03/06/A-dip-with-performance-test-lib-Locust/"/>
+    <id>http://maxwu.me/2017/03/06/A-dip-with-performance-test-lib-Locust/</id>
+    <published>2017-03-05T12:30:29.000Z</published>
+    <updated>2017-03-15T07:29:53.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Locust is a Python lib for performance test. Here is a first dip with locust with sample codes.<br><a id="more"></a></p>
 <h3 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ⓑ&gt;pip install locust pyzmq</div></pre></td></tr></table></figure>
 <h3 id="The-Sample-Case"><a href="#The-Sample-Case" class="headerlink" title="The Sample Case"></a>The Sample Case</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">ⓑ&gt;cat http_bare_visit.py</div><div class="line"><span class="keyword">from</span> locust <span class="keyword">import</span> HttpLocust, TaskSet, task</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserBehavior</span><span class="params">(TaskSet)</span>:</span></div><div class="line"></div><div class="line"><span class="meta">    @task(1)</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">bare_visit</span><span class="params">(self)</span>:</span></div><div class="line">        self.client.get(<span class="string">"/"</span>)</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">WebsiteUser</span><span class="params">(HttpLocust)</span>:</span></div><div class="line">    task_set = UserBehavior</div><div class="line">    min_wait = <span class="number">3000</span></div><div class="line">    max_wait = <span class="number">6000</span></div><div class="line"> ⓑ&gt;</div><div class="line">``` </div><div class="line"></div><div class="line"><span class="comment">### Run A Performance Test</span></div><div class="line"></div><div class="line">```bash</div><div class="line">ⓑ&gt;locust -f ./http_bare_visit.py  --host=http://jenkins.maxwu.me</div><div class="line">[<span class="number">2017</span><span class="number">-03</span><span class="number">-06</span> <span class="number">01</span>:<span class="number">23</span>:<span class="number">44</span>,<span class="number">842</span>] MaxWudeMacBook-Pro.local/INFO/locust.main: Starting web monitor at *:<span class="number">8089</span></div><div class="line">[<span class="number">2017</span><span class="number">-03</span><span class="number">-06</span> <span class="number">01</span>:<span class="number">23</span>:<span class="number">44</span>,<span class="number">842</span>] MaxWudeMacBook-Pro.local/INFO/locust.main: Starting Locust <span class="number">0.7</span><span class="number">.5</span></div><div class="line">[<span class="number">2017</span><span class="number">-03</span><span class="number">-06</span> <span class="number">01</span>:<span class="number">24</span>:<span class="number">24</span>,<span class="number">914</span>] MaxWudeMacBook-Pro.local/INFO/locust.runners: Hatching <span class="keyword">and</span> swarming <span class="number">10</span> clients at the rate <span class="number">1</span> clients/s...</div><div class="line">[<span class="number">2017</span><span class="number">-03</span><span class="number">-06</span> <span class="number">01</span>:<span class="number">24</span>:<span class="number">34</span>,<span class="number">939</span>] MaxWudeMacBook-Pro.local/INFO/locust.runners: All locusts hatched: WebsiteUser: <span class="number">10</span></div></pre></td></tr></table></figure>
 <p>Open browser on <a href="http://localhost:8089" target="_blank" rel="external">http://localhost:8089</a> and configure the simulation size and hatch rate. When the test execution starts, the GUI will provides statistic data.</p>
@@ -339,32 +367,34 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">[2017-03-06 01:29:10,073] MaxWudeMacBook-Pro.local/ERROR/stderr: KeyboardInterrupt</div><div class="line">[2017-03-06 01:29:10,074] MaxWudeMacBook-Pro.local/INFO/locust.main: Shutting down (<span class="built_in">exit</span> code 0), bye.</div><div class="line"> Name                                                          <span class="comment"># reqs      # fails     Avg     Min     Max  |  Median   req/s</span></div><div class="line">--------------------------------------------------------------------------------------------------------------------------------------------</div><div class="line"> GET /                                                            106     1(0.93%)     346     179     501  |     350    2.00</div><div class="line">--------------------------------------------------------------------------------------------------------------------------------------------</div><div class="line"> Total                                                            106     1(0.94%)                                       2.00</div><div class="line"></div><div class="line">Percentage of the requests completed within given <span class="built_in">times</span></div><div class="line"> Name                                                           <span class="comment"># reqs    50%    66%    75%    80%    90%    95%    98%    99%   100%</span></div><div class="line">--------------------------------------------------------------------------------------------------------------------------------------------</div><div class="line"> GET /                                                             106    350    350    360    360    390    400    440    500    501</div><div class="line">--------------------------------------------------------------------------------------------------------------------------------------------</div><div class="line"></div><div class="line">Error report</div><div class="line"> <span class="comment"># occurences       Error</span></div><div class="line">--------------------------------------------------------------------------------------------------------------------------------------------</div><div class="line"> 1                  GET /: <span class="string">"ConnectionError(ProtocolError('Connection aborted.', error(54, 'Connection reset by peer')),)"</span></div><div class="line">--------------------------------------------------------------------------------------------------------------------------------------------</div><div class="line"></div><div class="line"> ⓑ&gt;</div></pre></td></tr></table></figure>
 <p>[EOF]</p>
 ]]></content>
-      
-        <categories>
-            
-            <category> Automation Test </category>
-            
-            <category> Performance Test </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Python </tag>
-            
-            <tag> Locust </tag>
-            
-            <tag> Web </tag>
-            
-        </tags>
-        
-    </entry>
     
-    <entry>
-      <title><![CDATA[why I write technical blog]]></title>
-      <url>http://maxwu.me/2017/03/02/why-I-write-technical-blog/</url>
-      <content type="html"><![CDATA[<p>This post describes the thoughts, motivation and tips on starting technical blog.<br><a id="more"></a></p>
+    <summary type="html">
+    
+      &lt;p&gt;Locust is a Python lib for performance test. Here is a first dip with locust with sample codes.&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Automation Test" scheme="http://maxwu.me/categories/Automation-Test/"/>
+    
+      <category term="Performance Test" scheme="http://maxwu.me/categories/Automation-Test/Performance-Test/"/>
+    
+    
+      <category term="Python" scheme="http://maxwu.me/tags/Python/"/>
+    
+      <category term="Locust" scheme="http://maxwu.me/tags/Locust/"/>
+    
+      <category term="Web" scheme="http://maxwu.me/tags/Web/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>why I write technical blog</title>
+    <link href="http://maxwu.me/2017/03/02/why-I-write-technical-blog/"/>
+    <id>http://maxwu.me/2017/03/02/why-I-write-technical-blog/</id>
+    <published>2017-03-01T21:29:13.000Z</published>
+    <updated>2017-03-15T12:23:29.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>This post describes the thoughts, motivation and tips on starting technical blog.<br><a id="more"></a></p>
 <h3 id="Output-is-part-of-learning"><a href="#Output-is-part-of-learning" class="headerlink" title="Output is part of learning"></a><em>Output is part of learning</em></h3><p>The first reason could be traced to a suggestion I took from my manager in Lucent Technologies company. It is as important as, or even more important to output rather than just taking inputs. In other words, the theory recommend people to organize the thoughts by making output as a part of learning phase.</p>
 <div align="center"><br><img src="https://www.brainyquote.com/photos_tr/en/e/eldoctorow/111838/eldoctorow1.jpg" width="400" height="240" alt="Writing is an exploration"><br></div>
 
@@ -376,30 +406,32 @@
 <p>[TBC]</p>
 <p>2017-03-02, Max, Initial post.</p>
 ]]></content>
-      
-        <categories>
-            
-            <category> Writing </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Blog </tag>
-            
-            <tag> Output </tag>
-            
-            <tag> Input </tag>
-            
-        </tags>
-        
-    </entry>
     
-    <entry>
-      <title><![CDATA[AWS S3 Outage]]></title>
-      <url>http://maxwu.me/2017/03/01/AWS-S3-Outage/</url>
-      <content type="html"><![CDATA[<p>Encountered an <strong>AWS S3 Outage</strong> today on <strong>Travis CI</strong>. The broadcasting message shew that some apps providers have nothing to do but just pray or twitter and expect AWS to recover the issuing region S3 service (the most failures were from <strong>North Virginia Regnion</strong>, US-East, the following number -1 depends on accounts). Quora even has core stack out so content is not accessible for a while. As a content provider, we hope at least the authentication and reading on hot/warm data shall be maintained with appropertiate techniques as staticizing and CDN, hybrid mode for warm/hot data, et. The fact is cruel. On the other hand, which brings us back to <strong>Netflix Simian Army</strong> and most people are sure Netflix will not be impacted based on the chaos weather test from public reports. </p>
+    <summary type="html">
+    
+      &lt;p&gt;This post describes the thoughts, motivation and tips on starting technical blog.&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Writing" scheme="http://maxwu.me/categories/Writing/"/>
+    
+    
+      <category term="Blog" scheme="http://maxwu.me/tags/Blog/"/>
+    
+      <category term="Output" scheme="http://maxwu.me/tags/Output/"/>
+    
+      <category term="Input" scheme="http://maxwu.me/tags/Input/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>AWS S3 Outage</title>
+    <link href="http://maxwu.me/2017/03/01/AWS-S3-Outage/"/>
+    <id>http://maxwu.me/2017/03/01/AWS-S3-Outage/</id>
+    <published>2017-03-01T00:33:05.000Z</published>
+    <updated>2017-03-15T07:31:28.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Encountered an <strong>AWS S3 Outage</strong> today on <strong>Travis CI</strong>. The broadcasting message shew that some apps providers have nothing to do but just pray or twitter and expect AWS to recover the issuing region S3 service (the most failures were from <strong>North Virginia Regnion</strong>, US-East, the following number -1 depends on accounts). Quora even has core stack out so content is not accessible for a while. As a content provider, we hope at least the authentication and reading on hot/warm data shall be maintained with appropertiate techniques as staticizing and CDN, hybrid mode for warm/hot data, et. The fact is cruel. On the other hand, which brings us back to <strong>Netflix Simian Army</strong> and most people are sure Netflix will not be impacted based on the chaos weather test from public reports. </p>
 <p>Since S3 is a storage service, moreover, it is also a base to support many other famous AWS services. Which could explain why the AWS monitoring system was still presenting a green light at first couple of hours. It is weird to build WatchDog on top of the system under watch. However, it happened. </p>
 <p><img src="http://oei21r8n1.bkt.clouddn.com/travis_s3_outage.png?imageView/2/w/300/q/100" alt="Travis Error Message on My Project"></p>
 <p>This post will share some thoughts on AWS outage.<br><a id="more"></a></p>
@@ -428,30 +460,35 @@
 <p>As applications are being migrated from business line to end-user line, from BS/CS to cloud, from cadenced CI to CD even DevOps, the overall architecture and systematic thinking as a whole system on premises mind is not popular any more. I remember the days in Lucent Technologies to write and review system specifications for a security feature to support series of following candidate features. We drafted thoughts, made prototype to test, verifying with modelling tools and took the system in a whole view top to bottom and state by state within the layer. </p>
 <p>2017-03-02, Max, added Simian Army section.</p>
 ]]></content>
-      
-        <categories>
-            
-            <category> AWS </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> AWS </tag>
-            
-            <tag> S3 </tag>
-            
-            <tag> TravisCI </tag>
-            
-        </tags>
-        
-    </entry>
     
-    <entry>
-      <title><![CDATA[domain and iptables update notes]]></title>
-      <url>http://maxwu.me/2017/02/28/domain-and-iptables-update-notes/</url>
-      <content type="html"><![CDATA[<p>An update on adding sub domain name to existing godaddy domain service, setting up nginx to forward 4096 port to 80, setting up firewall rules with iptables, iptables-persistent on Ubuntu VPS.<br><code>jenkins.maxwu.me</code> is now a sub-domain.</p>
+    <summary type="html">
+    
+      &lt;p&gt;Encountered an &lt;strong&gt;AWS S3 Outage&lt;/strong&gt; today on &lt;strong&gt;Travis CI&lt;/strong&gt;. The broadcasting message shew that some apps providers have nothing to do but just pray or twitter and expect AWS to recover the issuing region S3 service (the most failures were from &lt;strong&gt;North Virginia Regnion&lt;/strong&gt;, US-East, the following number -1 depends on accounts). Quora even has core stack out so content is not accessible for a while. As a content provider, we hope at least the authentication and reading on hot/warm data shall be maintained with appropertiate techniques as staticizing and CDN, hybrid mode for warm/hot data, et. The fact is cruel. On the other hand, which brings us back to &lt;strong&gt;Netflix Simian Army&lt;/strong&gt; and most people are sure Netflix will not be impacted based on the chaos weather test from public reports. &lt;/p&gt;
+&lt;p&gt;Since S3 is a storage service, moreover, it is also a base to support many other famous AWS services. Which could explain why the AWS monitoring system was still presenting a green light at first couple of hours. It is weird to build WatchDog on top of the system under watch. However, it happened. &lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://oei21r8n1.bkt.clouddn.com/travis_s3_outage.png?imageView/2/w/300/q/100&quot; alt=&quot;Travis Error Message on My Project&quot;&gt;&lt;/p&gt;
+&lt;p&gt;This post will share some thoughts on AWS outage.&lt;br&gt;
+    
+    </summary>
+    
+      <category term="AWS" scheme="http://maxwu.me/categories/AWS/"/>
+    
+    
+      <category term="AWS" scheme="http://maxwu.me/tags/AWS/"/>
+    
+      <category term="S3" scheme="http://maxwu.me/tags/S3/"/>
+    
+      <category term="TravisCI" scheme="http://maxwu.me/tags/TravisCI/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>domain and iptables update notes</title>
+    <link href="http://maxwu.me/2017/02/28/domain-and-iptables-update-notes/"/>
+    <id>http://maxwu.me/2017/02/28/domain-and-iptables-update-notes/</id>
+    <published>2017-02-28T04:41:47.000Z</published>
+    <updated>2017-03-22T10:46:02.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>An update on adding sub domain name to existing godaddy domain service, setting up nginx to forward 4096 port to 80, setting up firewall rules with iptables, iptables-persistent on Ubuntu VPS.<br><code>jenkins.maxwu.me</code> is now a sub-domain.</p>
 <a id="more"></a>
 <p>The previous jenkins service is running on Ubuntu VPS but I just added a 301 forwarding on Godaddy domain service. Therefore, the readers will read the real IP address in browser URL column. It has no buffering service so Jenkins has to keep the slow connections over internet. The third reason is to harden this VPS host since the service is publicly accessible globally.</p>
 <h2 id="Setting-up-Nginx"><a href="#Setting-up-Nginx" class="headerlink" title="Setting up Nginx"></a>Setting up Nginx</h2><p>From Nginx config file we can see that all files in <code>/etc/nginx/sites-enabled</code> will be included by default. We can create a site description file by copying the file <code>default</code> as a template. The simplified contents are as below:</p>
@@ -482,40 +519,42 @@
 <p><em>2017-02-28, Max, Init the notes.</em></p>
 <p>EOF</p>
 ]]></content>
-      
-        <categories>
-            
-            <category> Linux </category>
-            
-            <category> Nginx </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Ubuntu </tag>
-            
-            <tag> Linux </tag>
-            
-            <tag> VPS </tag>
-            
-            <tag> Firewall </tag>
-            
-            <tag> DNS </tag>
-            
-            <tag> Nginx </tag>
-            
-            <tag> Ipfilter </tag>
-            
-        </tags>
-        
-    </entry>
     
-    <entry>
-      <title><![CDATA[SoapUI command line]]></title>
-      <url>http://maxwu.me/2017/02/27/SoapUI-command-line/</url>
-      <content type="html"><![CDATA[<p>SoapUI is widely used in WebService functional and performance test. This post is a note on how to run SoapUI in command line with Mac environment.<br><a id="more"></a></p>
+    <summary type="html">
+    
+      &lt;p&gt;An update on adding sub domain name to existing godaddy domain service, setting up nginx to forward 4096 port to 80, setting up firewall rules with iptables, iptables-persistent on Ubuntu VPS.&lt;br&gt;&lt;code&gt;jenkins.maxwu.me&lt;/code&gt; is now a sub-domain.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://maxwu.me/categories/Linux/"/>
+    
+      <category term="Nginx" scheme="http://maxwu.me/categories/Linux/Nginx/"/>
+    
+    
+      <category term="Ubuntu" scheme="http://maxwu.me/tags/Ubuntu/"/>
+    
+      <category term="Linux" scheme="http://maxwu.me/tags/Linux/"/>
+    
+      <category term="VPS" scheme="http://maxwu.me/tags/VPS/"/>
+    
+      <category term="Firewall" scheme="http://maxwu.me/tags/Firewall/"/>
+    
+      <category term="DNS" scheme="http://maxwu.me/tags/DNS/"/>
+    
+      <category term="Nginx" scheme="http://maxwu.me/tags/Nginx/"/>
+    
+      <category term="Ipfilter" scheme="http://maxwu.me/tags/Ipfilter/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SoapUI command line</title>
+    <link href="http://maxwu.me/2017/02/27/SoapUI-command-line/"/>
+    <id>http://maxwu.me/2017/02/27/SoapUI-command-line/</id>
+    <published>2017-02-26T11:57:51.000Z</published>
+    <updated>2017-03-16T03:57:10.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>SoapUI is widely used in WebService functional and performance test. This post is a note on how to run SoapUI in command line with Mac environment.<br><a id="more"></a></p>
 <p>Environment: MBP, SoapUI 5.3 open source version, bash.</p>
 <p>By default, the testrunner.sh located at <code>Applications/SoapUI-5.3.0.app/Contents/java/app/bin</code>. Therefore, an env file with below line will add testrunner into path.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">export PATH=$PATH:/Applications/SoapUI-5.3.0.app/Contents/java/app/bin</div></pre></td></tr></table></figure>
@@ -533,30 +572,32 @@
 </ul>
 <p>Drafted Feb27.<br>EOF</p>
 ]]></content>
-      
-        <categories>
-            
-            <category> Automation Test </category>
-            
-            <category> SoapUI </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> SoapUI </tag>
-            
-            <tag> CLI </tag>
-            
-        </tags>
-        
-    </entry>
     
-    <entry>
-      <title><![CDATA[Apache ab and gnuplot to generate benchmark test chart]]></title>
-      <url>http://maxwu.me/2017/02/26/Apache-ab-and-gnuplot-to-generate-benchmark-test-chart/</url>
-      <content type="html"><![CDATA[<p>This post described a simple demo on how to use apache benchmark test to get performance test result and generate chart with gnuplot.</p>
+    <summary type="html">
+    
+      &lt;p&gt;SoapUI is widely used in WebService functional and performance test. This post is a note on how to run SoapUI in command line with Mac environment.&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Automation Test" scheme="http://maxwu.me/categories/Automation-Test/"/>
+    
+      <category term="SoapUI" scheme="http://maxwu.me/categories/Automation-Test/SoapUI/"/>
+    
+    
+      <category term="SoapUI" scheme="http://maxwu.me/tags/SoapUI/"/>
+    
+      <category term="CLI" scheme="http://maxwu.me/tags/CLI/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Apache ab and gnuplot to generate benchmark test chart</title>
+    <link href="http://maxwu.me/2017/02/26/Apache-ab-and-gnuplot-to-generate-benchmark-test-chart/"/>
+    <id>http://maxwu.me/2017/02/26/Apache-ab-and-gnuplot-to-generate-benchmark-test-chart/</id>
+    <published>2017-02-25T11:17:38.000Z</published>
+    <updated>2017-03-16T03:58:06.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>This post described a simple demo on how to use apache benchmark test to get performance test result and generate chart with gnuplot.</p>
 <p><img src="http://oei21r8n1.bkt.clouddn.com/ab_maxwu_chart.png?imageView/2/w/300/q/100" alt="benchmark performance test chart"></p>
 <a id="more"></a>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"> ⓑ maxwu &gt; ab -v  -n40 -c1 <span class="string">"http://jenkins.maxwu.me/"</span></div><div class="line">This is ApacheBench, Version 2.3 &lt;<span class="variable">$Revision</span>: 1706008 $&gt;</div><div class="line">Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/</div><div class="line">Licensed to The Apache Software Foundation, http://www.apache.org/</div><div class="line"></div><div class="line">Benchmarking jenkins.maxwu.me (be patient).....done</div><div class="line"></div><div class="line"></div><div class="line">Server Software:        Microsoft-IIS/7.5</div><div class="line">Server Hostname:        jenkins.maxwu.me</div><div class="line">Server Port:            80</div><div class="line"></div><div class="line">Document Path:          /</div><div class="line">Document Length:        0 bytes</div><div class="line"></div><div class="line">Concurrency Level:      1</div><div class="line">Time taken <span class="keyword">for</span> tests:   2.518 seconds</div><div class="line">Complete requests:      1</div><div class="line">Failed requests:        0</div><div class="line">Non-2xx responses:      1</div><div class="line">Total transferred:      268 bytes</div><div class="line">HTML transferred:       0 bytes</div><div class="line">Requests per second:    0.40 [<span class="comment">#/sec] (mean)</span></div><div class="line">Time per request:       2518.479 [ms] (mean)</div><div class="line">Time per request:       2518.479 [ms] (mean, across all concurrent requests)</div><div class="line">Transfer rate:          0.10 [Kbytes/sec] received</div><div class="line"></div><div class="line">Connection Times (ms)</div><div class="line">              min  mean[+/-sd] median   max</div><div class="line">Connect:     2289 2289   0.0   2289    2289</div><div class="line">Processing:   229  229   0.0    229     229</div><div class="line">Waiting:      229  229   0.0    229     229</div><div class="line">Total:       2518 2518   0.0   2518    2518</div><div class="line"> ⓑ maxwu &gt;</div></pre></td></tr></table></figure>
@@ -574,30 +615,33 @@
 </li>
 </ul>
 ]]></content>
-      
-        <categories>
-            
-            <category> Automation Test </category>
-            
-            <category> Performance Test </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> ab </tag>
-            
-            <tag> Benchmark </tag>
-            
-        </tags>
-        
-    </entry>
     
-    <entry>
-      <title><![CDATA[Jenkins to test Selenium 3.1.0, Chrome Driver latest version and Chromium Browser on cheap 32bit Linux]]></title>
-      <url>http://maxwu.me/2017/02/21/Jenkins-with-Selenium-3-1-0-ChromeDriver-latest-version-and-Chromium-Browser-on-32bit-Linux/</url>
-      <content type="html"><![CDATA[<p>What a lovely day it has been in Wellington. Finally there comes the summer! And I also have a lovely day to successfully make stable test results on 32bit Ubuntu Linux with Chromium Browser, latest ChromeDriver and new Selenium java 3.1.0!</p>
+    <summary type="html">
+    
+      &lt;p&gt;This post described a simple demo on how to use apache benchmark test to get performance test result and generate chart with gnuplot.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://oei21r8n1.bkt.clouddn.com/ab_maxwu_chart.png?imageView/2/w/300/q/100&quot; alt=&quot;benchmark performance test chart&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Automation Test" scheme="http://maxwu.me/categories/Automation-Test/"/>
+    
+      <category term="Performance Test" scheme="http://maxwu.me/categories/Automation-Test/Performance-Test/"/>
+    
+    
+      <category term="ab" scheme="http://maxwu.me/tags/ab/"/>
+    
+      <category term="Benchmark" scheme="http://maxwu.me/tags/Benchmark/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Jenkins to test Selenium 3.1.0, Chrome Driver latest version and Chromium Browser on cheap 32bit Linux</title>
+    <link href="http://maxwu.me/2017/02/21/Jenkins-with-Selenium-3-1-0-ChromeDriver-latest-version-and-Chromium-Browser-on-32bit-Linux/"/>
+    <id>http://maxwu.me/2017/02/21/Jenkins-with-Selenium-3-1-0-ChromeDriver-latest-version-and-Chromium-Browser-on-32bit-Linux/</id>
+    <published>2017-02-21T09:39:39.000Z</published>
+    <updated>2017-03-16T04:00:44.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>What a lovely day it has been in Wellington. Finally there comes the summer! And I also have a lovely day to successfully make stable test results on 32bit Ubuntu Linux with Chromium Browser, latest ChromeDriver and new Selenium java 3.1.0!</p>
 <p><img src="http://oei21r8n1.bkt.clouddn.com/jenkins-full-2017-02-23.png?imageView/2/w/400/q/100" alt="Jenkins on bandwagon"></p>
 <p><a href="http://jenkins.maxwu.me/job/Cucumber_Jvm_Selenium_Toy/" target="_blank" rel="external">http://jenkins.maxwu.me/job/Cucumber_Jvm_Selenium_Toy/</a></p>
 <a id="more"></a>
@@ -645,38 +689,42 @@
 <p><em>Updated Feb 23, 2017</em></p>
 <p><em>Drafted Feb 21, 2017</em></p>
 ]]></content>
-      
-        <categories>
-            
-            <category> Automation Test </category>
-            
-            <category> Selenium </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Selenium </tag>
-            
-            <tag> Jenkins </tag>
-            
-            <tag> Ubuntu </tag>
-            
-            <tag> 32bit </tag>
-            
-            <tag> ChromeDriver </tag>
-            
-            <tag> Chromium-browser </tag>
-            
-        </tags>
-        
-    </entry>
     
-    <entry>
-      <title><![CDATA[ci-stat project in progress]]></title>
-      <url>http://maxwu.me/2017/02/12/ci-stat-project-in-progress/</url>
-      <content type="html"><![CDATA[<p>ci-stat is based on circleci_stat developed in Python. The target is to provide a programming lib to fetch test artifacts and analyze the data from both public cloud CI as Travis, Circle and on-premises CI services as Bamboo, Jenkins. </p>
+    <summary type="html">
+    
+      &lt;p&gt;What a lovely day it has been in Wellington. Finally there comes the summer! And I also have a lovely day to successfully make stable test results on 32bit Ubuntu Linux with Chromium Browser, latest ChromeDriver and new Selenium java 3.1.0!&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://oei21r8n1.bkt.clouddn.com/jenkins-full-2017-02-23.png?imageView/2/w/400/q/100&quot; alt=&quot;Jenkins on bandwagon&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://jenkins.maxwu.me/job/Cucumber_Jvm_Selenium_Toy/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://jenkins.maxwu.me/job/Cucumber_Jvm_Selenium_Toy/&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Automation Test" scheme="http://maxwu.me/categories/Automation-Test/"/>
+    
+      <category term="Selenium" scheme="http://maxwu.me/categories/Automation-Test/Selenium/"/>
+    
+    
+      <category term="Selenium" scheme="http://maxwu.me/tags/Selenium/"/>
+    
+      <category term="Jenkins" scheme="http://maxwu.me/tags/Jenkins/"/>
+    
+      <category term="Ubuntu" scheme="http://maxwu.me/tags/Ubuntu/"/>
+    
+      <category term="32bit" scheme="http://maxwu.me/tags/32bit/"/>
+    
+      <category term="ChromeDriver" scheme="http://maxwu.me/tags/ChromeDriver/"/>
+    
+      <category term="Chromium-browser" scheme="http://maxwu.me/tags/Chromium-browser/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ci-stat project in progress</title>
+    <link href="http://maxwu.me/2017/02/12/ci-stat-project-in-progress/"/>
+    <id>http://maxwu.me/2017/02/12/ci-stat-project-in-progress/</id>
+    <published>2017-02-12T02:03:11.000Z</published>
+    <updated>2017-03-16T04:01:49.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>ci-stat is based on circleci_stat developed in Python. The target is to provide a programming lib to fetch test artifacts and analyze the data from both public cloud CI as Travis, Circle and on-premises CI services as Bamboo, Jenkins. </p>
 <p><a href="https://github.com/maxwu/ci-stat" target="_blank" rel="external"><img src="http://oei21r8n1.bkt.clouddn.com/Snip_ci-stat-starts.png?imageView/2/w/400/q/100" alt="Snip Screen"></a></p>
 <a id="more"></a>
 <h3 id="Targets"><a href="#Targets" class="headerlink" title="Targets"></a>Targets</h3><p>The target is to maintain a lib which could fetch CI test results from general services.</p>
@@ -702,34 +750,37 @@
 <p>Load XUnit format files to generate the statistics.<br>Another target of current lib is to quickly figure out the high runners of failure cases from the statistic results. Which requests a common XUnit format of test results. Considering the reality, each build could have multiple artifacts in XUnit XML format.</p>
 <p><a href="https://github.com/maxwu/ci-stat" target="_blank" rel="external">Github</a></p>
 ]]></content>
-      
-        <categories>
-            
-            <category> Programming </category>
-            
-            <category> Python </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Python </tag>
-            
-            <tag> CI </tag>
-            
-            <tag> Travis </tag>
-            
-            <tag> Circle </tag>
-            
-        </tags>
-        
-    </entry>
     
-    <entry>
-      <title><![CDATA[Trust all hosts in WebAPI test with OkHttp and Java SSL]]></title>
-      <url>http://maxwu.me/2017/02/03/Trust-all-hosts-in-WebAPI-test-with-OkHttp-and-Java-SSL/</url>
-      <content type="html"><![CDATA[<h3 id="Problem-description"><a href="#Problem-description" class="headerlink" title="Problem description"></a>Problem description</h3><p>This issue was first discovered with <a href="https://circelci.com" target="_blank" rel="external">circleci</a> but the <strong>SSLHandShakeException</strong> is not reproduce in dev environment with my Mac. The detail error page is <a href="https://circleci.com/gh/maxwu/cucumber-java-toy/75" target="_blank" rel="external">here</a>. This post provides a verified way to bypass all hostname verification (or you can add specified conditions inside) for non-security test case to apply on Web API testing.<a id="more"></a></p>
+    <summary type="html">
+    
+      &lt;p&gt;ci-stat is based on circleci_stat developed in Python. The target is to provide a programming lib to fetch test artifacts and analyze the data from both public cloud CI as Travis, Circle and on-premises CI services as Bamboo, Jenkins. &lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/maxwu/ci-stat&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;&lt;img src=&quot;http://oei21r8n1.bkt.clouddn.com/Snip_ci-stat-starts.png?imageView/2/w/400/q/100&quot; alt=&quot;Snip Screen&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Programming" scheme="http://maxwu.me/categories/Programming/"/>
+    
+      <category term="Python" scheme="http://maxwu.me/categories/Programming/Python/"/>
+    
+    
+      <category term="Python" scheme="http://maxwu.me/tags/Python/"/>
+    
+      <category term="CI" scheme="http://maxwu.me/tags/CI/"/>
+    
+      <category term="Travis" scheme="http://maxwu.me/tags/Travis/"/>
+    
+      <category term="Circle" scheme="http://maxwu.me/tags/Circle/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Trust all hosts in WebAPI test with OkHttp and Java SSL</title>
+    <link href="http://maxwu.me/2017/02/03/Trust-all-hosts-in-WebAPI-test-with-OkHttp-and-Java-SSL/"/>
+    <id>http://maxwu.me/2017/02/03/Trust-all-hosts-in-WebAPI-test-with-OkHttp-and-Java-SSL/</id>
+    <published>2017-02-02T11:24:01.000Z</published>
+    <updated>2017-03-16T04:05:08.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="Problem-description"><a href="#Problem-description" class="headerlink" title="Problem description"></a>Problem description</h3><p>This issue was first discovered with <a href="https://circelci.com" target="_blank" rel="external">circleci</a> but the <strong>SSLHandShakeException</strong> is not reproduce in dev environment with my Mac. The detail error page is <a href="https://circleci.com/gh/maxwu/cucumber-java-toy/75" target="_blank" rel="external">here</a>. This post provides a verified way to bypass all hostname verification (or you can add specified conditions inside) for non-security test case to apply on Web API testing.<a id="more"></a></p>
 <p><img src="http://oei21r8n1.bkt.clouddn.com/WebAPI_SSL_error_20170203_12.png?imageView/2/w/540/q/100" alt="Exception details"></p>
 <p>Above picture shows the exception details. Generally a RESTful WebAPI test could be constructed with OkHttpClient lib:</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Before</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">	client = <span class="keyword">new</span> OkHttpClient();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">httpFreegeoipJsonTest</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">	Request request = <span class="keyword">new</span> Request.Builder()</div><div class="line">		.url(Constants.Freegeoio_Url_Json)</div><div class="line">		.build();</div><div class="line">	Response response = client.newCall(request).execute();</div><div class="line">	Assert.assertEquals(<span class="number">200</span>, response.code());</div><div class="line">	Assert.assertEquals(<span class="string">"application/json"</span>, response.body().contentType().toString());</div><div class="line"></div><div class="line">	JSONObject jsonResp = <span class="keyword">new</span> JSONObject(response.body().string());</div><div class="line">	String ip = jsonResp.getString(<span class="string">"ip"</span>);</div><div class="line">	Assert.assertTrue(checkIpv4(ip));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -738,61 +789,67 @@
 <h3 id="Code-Links"><a href="#Code-Links" class="headerlink" title="Code Links"></a>Code Links</h3><p>Full code implementation could be referenced from <a href="https://github.com/maxwu/cucumber-java-toy" target="_blank" rel="external">Github Cucumber-Java-Toy Link</a> in JUnite suite <strong>org.maxwu.jrefresh.HttpApi.SourceIpApiTest</strong>.</p>
 <p>//EOF</p>
 ]]></content>
-      
-        <categories>
-            
-            <category> Programming </category>
-            
-            <category> Java </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Java </tag>
-            
-            <tag> SSL </tag>
-            
-            <tag> HttpClient </tag>
-            
-            <tag> OkHttpClient </tag>
-            
-        </tags>
-        
-    </entry>
     
-    <entry>
-      <title><![CDATA[converting to docker]]></title>
-      <url>http://maxwu.me/2017/01/30/converting-to-docker/</url>
-      <content type="html"><![CDATA[<p>After baseline v1.2 of Cucumber-Java-Toy, we already created a red-green-refactor TDD cycle, the next step is to migrate the whole automation test to docker and utilize dockerhub, CircleCI to create a DevOps cycle.</p>
+    <summary type="html">
+    
+      &lt;h3 id=&quot;Problem-description&quot;&gt;&lt;a href=&quot;#Problem-description&quot; class=&quot;headerlink&quot; title=&quot;Problem description&quot;&gt;&lt;/a&gt;Problem description&lt;/h3&gt;&lt;p&gt;This issue was first discovered with &lt;a href=&quot;https://circelci.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;circleci&lt;/a&gt; but the &lt;strong&gt;SSLHandShakeException&lt;/strong&gt; is not reproduce in dev environment with my Mac. The detail error page is &lt;a href=&quot;https://circleci.com/gh/maxwu/cucumber-java-toy/75&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;here&lt;/a&gt;. This post provides a verified way to bypass all hostname verification (or you can add specified conditions inside) for non-security test case to apply on Web API testing.
+    
+    </summary>
+    
+      <category term="Programming" scheme="http://maxwu.me/categories/Programming/"/>
+    
+      <category term="Java" scheme="http://maxwu.me/categories/Programming/Java/"/>
+    
+    
+      <category term="Java" scheme="http://maxwu.me/tags/Java/"/>
+    
+      <category term="SSL" scheme="http://maxwu.me/tags/SSL/"/>
+    
+      <category term="HttpClient" scheme="http://maxwu.me/tags/HttpClient/"/>
+    
+      <category term="OkHttpClient" scheme="http://maxwu.me/tags/OkHttpClient/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>converting to docker</title>
+    <link href="http://maxwu.me/2017/01/30/converting-to-docker/"/>
+    <id>http://maxwu.me/2017/01/30/converting-to-docker/</id>
+    <published>2017-01-30T08:18:07.000Z</published>
+    <updated>2017-03-16T04:05:51.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>After baseline v1.2 of Cucumber-Java-Toy, we already created a red-green-refactor TDD cycle, the next step is to migrate the whole automation test to docker and utilize dockerhub, CircleCI to create a DevOps cycle.</p>
 <p><img src="http://oei21r8n1.bkt.clouddn.com/DevOps-Docker-CircleCI-AWS-sample.png?imageView/2/w/400/q/100" alt="DevOps"></p>
 <p>It is still in progress by Jan30. Keeping updated.<br><a id="more"></a></p>
 ]]></content>
-      
-        <categories>
-            
-            <category> Automation Test </category>
-            
-            <category> DevOps </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Docker </tag>
-            
-            <tag> CD </tag>
-            
-        </tags>
-        
-    </entry>
     
-    <entry>
-      <title><![CDATA[cats and dogs for AWS]]></title>
-      <url>http://maxwu.me/2017/01/28/cats-and-dogs-for-AWS/</url>
-      <content type="html"><![CDATA[<p>When I worked on a wireless basestation project, there is an IPL layer to configure and manage uboot, uboot to configure and manage build images, image starts HAL, the HAL calls WatchCat, WatchCat wathes soft WatchDog, then the watchdog propagate Apps which talks via USL (Universal Software Layer). Now AWS runs in an eco as well. There are plenty of Cats and Dogs which can prepare, configure, watch(monitor) even take care your services, containers, apps, or, hosts.</p>
+    <summary type="html">
+    
+      &lt;p&gt;After baseline v1.2 of Cucumber-Java-Toy, we already created a red-green-refactor TDD cycle, the next step is to migrate the whole automation test to docker and utilize dockerhub, CircleCI to create a DevOps cycle.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://oei21r8n1.bkt.clouddn.com/DevOps-Docker-CircleCI-AWS-sample.png?imageView/2/w/400/q/100&quot; alt=&quot;DevOps&quot;&gt;&lt;/p&gt;
+&lt;p&gt;It is still in progress by Jan30. Keeping updated.&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Automation Test" scheme="http://maxwu.me/categories/Automation-Test/"/>
+    
+      <category term="DevOps" scheme="http://maxwu.me/categories/Automation-Test/DevOps/"/>
+    
+    
+      <category term="Docker" scheme="http://maxwu.me/tags/Docker/"/>
+    
+      <category term="CD" scheme="http://maxwu.me/tags/CD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>cats and dogs for AWS</title>
+    <link href="http://maxwu.me/2017/01/28/cats-and-dogs-for-AWS/"/>
+    <id>http://maxwu.me/2017/01/28/cats-and-dogs-for-AWS/</id>
+    <published>2017-01-28T09:20:16.000Z</published>
+    <updated>2017-03-16T04:07:32.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>When I worked on a wireless basestation project, there is an IPL layer to configure and manage uboot, uboot to configure and manage build images, image starts HAL, the HAL calls WatchCat, WatchCat wathes soft WatchDog, then the watchdog propagate Apps which talks via USL (Universal Software Layer). Now AWS runs in an eco as well. There are plenty of Cats and Dogs which can prepare, configure, watch(monitor) even take care your services, containers, apps, or, hosts.</p>
 <p>This post summarizes the eco services as Ansible, Datadog, CircleCI, Terraform and draws a list for further self-study.<br><a id="more"></a></p>
 <ul>
 <li><p><strong>Management</strong></p>
@@ -889,57 +946,62 @@
 <p><em>Jan 31, 2017: After an inpiring discussion with some people this afternoon, knowing more are also sufferring on cloudformation plain edition or drafting, add above thoughts and notes part.</em></p>
 <p>EOF</p>
 ]]></content>
-      
-        <categories>
-            
-            <category> AWS </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> AWS </tag>
-            
-            <tag> Ansible </tag>
-            
-            <tag> Awsacs </tag>
-            
-        </tags>
-        
-    </entry>
     
-    <entry>
-      <title><![CDATA[change default Docker Quickstart Terminal for Mac]]></title>
-      <url>http://maxwu.me/2017/01/28/change-default-Docker-Quickstart-Terminal-for-Mac/</url>
-      <content type="html"><![CDATA[<p>For some reason I’d change Docker Quickstart Terminal to Mac default Terminal instead of iTem. But it failed at first tries, even by uninstalling docker from Mac system.<br><a id="more"></a></p>
+    <summary type="html">
+    
+      &lt;p&gt;When I worked on a wireless basestation project, there is an IPL layer to configure and manage uboot, uboot to configure and manage build images, image starts HAL, the HAL calls WatchCat, WatchCat wathes soft WatchDog, then the watchdog propagate Apps which talks via USL (Universal Software Layer). Now AWS runs in an eco as well. There are plenty of Cats and Dogs which can prepare, configure, watch(monitor) even take care your services, containers, apps, or, hosts.&lt;/p&gt;
+&lt;p&gt;This post summarizes the eco services as Ansible, Datadog, CircleCI, Terraform and draws a list for further self-study.&lt;br&gt;
+    
+    </summary>
+    
+      <category term="AWS" scheme="http://maxwu.me/categories/AWS/"/>
+    
+    
+      <category term="AWS" scheme="http://maxwu.me/tags/AWS/"/>
+    
+      <category term="Ansible" scheme="http://maxwu.me/tags/Ansible/"/>
+    
+      <category term="Awsacs" scheme="http://maxwu.me/tags/Awsacs/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>change default Docker Quickstart Terminal for Mac</title>
+    <link href="http://maxwu.me/2017/01/28/change-default-Docker-Quickstart-Terminal-for-Mac/"/>
+    <id>http://maxwu.me/2017/01/28/change-default-Docker-Quickstart-Terminal-for-Mac/</id>
+    <published>2017-01-28T03:43:24.000Z</published>
+    <updated>2017-03-16T04:09:19.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>For some reason I’d change Docker Quickstart Terminal to Mac default Terminal instead of iTem. But it failed at first tries, even by uninstalling docker from Mac system.<br><a id="more"></a></p>
 <p>Searching such config file by name “default_terminal”, there is a text file to record this option. Removing this file and relaunch docker, or, just edit it directly will close this issue.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"> ⓑ maxwu  16:32  ~  devel  circleci-stat   master  sudo find / -name default_terminal</div><div class="line">Password:</div><div class="line">find: /dev/fd/3: Not a directory</div><div class="line">find: /dev/fd/4: Not a directory</div><div class="line">/Users/maxwu/Library/Application Support/DockerToolbox/default_terminal</div><div class="line"> ⓑ maxwu  16:34  ~  devel  circleci-stat   master  vim /Users/maxwu/Library/Application\ Support/DockerToolbox/default_terminal</div><div class="line"> ⓑ maxwu  16:35  ~  devel  circleci-stat   master </div></pre></td></tr></table></figure>
 ]]></content>
-      
-        <categories>
-            
-            <category> DevOps </category>
-            
-            <category> Docker </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Mac </tag>
-            
-            <tag> Docker </tag>
-            
-        </tags>
-        
-    </entry>
     
-    <entry>
-      <title><![CDATA[Happy Chinese New Year 2017]]></title>
-      <url>http://maxwu.me/2017/01/28/happy-chinese-new-year-2017/</url>
-      <content type="html"><![CDATA[<p><img src="http://oei21r8n1.bkt.clouddn.com/Rooster_Year_2017.png?imageView/2/w/600/q/100" alt="Chinese New Year Greeting"></p>
+    <summary type="html">
+    
+      &lt;p&gt;For some reason I’d change Docker Quickstart Terminal to Mac default Terminal instead of iTem. But it failed at first tries, even by uninstalling docker from Mac system.&lt;br&gt;
+    
+    </summary>
+    
+      <category term="DevOps" scheme="http://maxwu.me/categories/DevOps/"/>
+    
+      <category term="Docker" scheme="http://maxwu.me/categories/DevOps/Docker/"/>
+    
+    
+      <category term="Mac" scheme="http://maxwu.me/tags/Mac/"/>
+    
+      <category term="Docker" scheme="http://maxwu.me/tags/Docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Happy Chinese New Year 2017</title>
+    <link href="http://maxwu.me/2017/01/28/happy-chinese-new-year-2017/"/>
+    <id>http://maxwu.me/2017/01/28/happy-chinese-new-year-2017/</id>
+    <published>2017-01-28T00:54:36.000Z</published>
+    <updated>2017-03-16T04:06:21.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="http://oei21r8n1.bkt.clouddn.com/Rooster_Year_2017.png?imageView/2/w/600/q/100" alt="Chinese New Year Greeting"></p>
 <p>Happy Chinese Sprint Festival and wish you a good fortune in new Rooster Year! Here is antithetical couplet(对联) for this new Rooster Year, just inspired by dynamic programming language and serverless view points this morning. </p>
 <p>Following up, there is the sample code to play Chat Robot in WeChat, the most popular online chat service of Chinese. It is a sample to demo how to use chat lib and how to use substitution in UTF-8 cprint format strings.<br><a id="more"></a></p>
 <p>Enjoy!</p>
@@ -951,28 +1013,32 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line">__author__ = <span class="string">'maxwu'</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">import</span> sys</div><div class="line"><span class="keyword">import</span> itchat, re</div><div class="line"><span class="keyword">from</span> itchat.content <span class="keyword">import</span> *</div><div class="line"></div><div class="line">reload(sys)</div><div class="line">sys.setdefaultencoding(<span class="string">'utf-8'</span>)</div><div class="line"></div><div class="line"></div><div class="line"><span class="meta">@itchat.msg_register(TEXT)</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">text_reply</span><span class="params">(msg)</span>:</span></div><div class="line">    <span class="keyword">global</span> count</div><div class="line">    <span class="keyword">print</span> <span class="string">"Msg Received from %s: %s"</span> %(msg[<span class="string">'FromUserName'</span>], msg[<span class="string">'Text'</span>])</div><div class="line"></div><div class="line">    match = re.search(<span class="string">u'\u5e74'</span>, msg[<span class="string">'Text'</span>])</div><div class="line">    <span class="keyword">if</span> match:</div><div class="line">        count += <span class="number">1</span></div><div class="line">        <span class="keyword">print</span> <span class="string">"matched!"</span></div><div class="line">        itchat.send(<span class="string">"新春快乐,鸡年大吉,-%d-"</span> % count, msg[<span class="string">'FromUserName'</span>])</div><div class="line"></div><div class="line"></div><div class="line"><span class="meta">@itchat.msg_register([PICTURE, RECORDING, VIDEO, SHARING])</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">other_reply</span><span class="params">(msg)</span>:</span></div><div class="line">    <span class="keyword">global</span> count</div><div class="line">    count += <span class="number">1</span></div><div class="line">    itchat.send(<span class="string">"发啥都是发,鸡年大吉,-%d-"</span> % count, msg[<span class="string">'FromUserName'</span>])</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</div><div class="line">    count = <span class="number">0</span></div><div class="line">    itchat.auto_login()</div><div class="line">    itchat.run(debug=<span class="keyword">True</span>)</div></pre></td></tr></table></figure>
 <p>//EOF</p>
 ]]></content>
-      
-        <categories>
-            
-            <category> Writing </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Chinese </tag>
-            
-            <tag> New Year </tag>
-            
-        </tags>
-        
-    </entry>
     
-    <entry>
-      <title><![CDATA[Tips on Using JUnit for Testing in Java]]></title>
-      <url>http://maxwu.me/2017/01/23/JUnit-Tips/</url>
-      <content type="html"><![CDATA[<p>Recently took a short test task on a blog prototype, here are notes about tips on applying JUnit into Testing, especially Web Testing. As a new comer to advanced JUnit features, this post is also a track of learning. The current topics include tips about using @Rule, customize test strategy, to parameterize test, hints on Java Lambda, JUnit 5 new features, et.</p>
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://oei21r8n1.bkt.clouddn.com/Rooster_Year_2017.png?imageView/2/w/600/q/100&quot; alt=&quot;Chinese New Year Greeting&quot;&gt;&lt;/p&gt;
+&lt;p&gt;Happy Chinese Sprint Festival and wish you a good fortune in new Rooster Year! Here is antithetical couplet(对联) for this new Rooster Year, just inspired by dynamic programming language and serverless view points this morning. &lt;/p&gt;
+&lt;p&gt;Following up, there is the sample code to play Chat Robot in WeChat, the most popular online chat service of Chinese. It is a sample to demo how to use chat lib and how to use substitution in UTF-8 cprint format strings.&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Writing" scheme="http://maxwu.me/categories/Writing/"/>
+    
+    
+      <category term="Chinese" scheme="http://maxwu.me/tags/Chinese/"/>
+    
+      <category term="New Year" scheme="http://maxwu.me/tags/New-Year/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Tips on Using JUnit for Testing in Java</title>
+    <link href="http://maxwu.me/2017/01/23/JUnit-Tips/"/>
+    <id>http://maxwu.me/2017/01/23/JUnit-Tips/</id>
+    <published>2017-01-23T01:43:45.000Z</published>
+    <updated>2017-03-22T08:45:09.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Recently took a short test task on a blog prototype, here are notes about tips on applying JUnit into Testing, especially Web Testing. As a new comer to advanced JUnit features, this post is also a track of learning. The current topics include tips about using @Rule, customize test strategy, to parameterize test, hints on Java Lambda, JUnit 5 new features, et.</p>
 <h2 id="Structure-and-Test-Pyramid"><a href="#Structure-and-Test-Pyramid" class="headerlink" title="Structure and Test Pyramid"></a>Structure and Test Pyramid</h2><p><img src="http://oei21r8n1.bkt.clouddn.com/Test_Pyramid_v2.png?imageView/2/w/800/q/100" alt=""></p>
 <p><em>Chart drafted with sketchboard.io</em><br><a id="more"></a></p>
 <p>Above is the concept mapping from Martin Fowler <strong>Test Pyramid</strong>. There are still other verticle dimension test as performance test with JMeter (or curl, JPerf, et.), as OWASP test with ZAP. And in the time dimension, which is managed by <strong>Maven</strong> from drafting, coding, building, testing to deployment.</p>
@@ -1069,32 +1135,36 @@
 </table>
 <p>[EOF]</p>
 ]]></content>
-      
-        <categories>
-            
-            <category> Automation Test </category>
-            
-            <category> JUnit </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Java </tag>
-            
-            <tag> JUnit </tag>
-            
-            <tag> Rule </tag>
-            
-        </tags>
-        
-    </entry>
     
-    <entry>
-      <title><![CDATA[Python unittest tips from JUnit view]]></title>
-      <url>http://maxwu.me/2017/01/23/Python-unittest-tips-from-JUnit-view/</url>
-      <content type="html"><![CDATA[<p>This post is a track of tips by comparing unittest (previously named PyUnit) and JUnit. Most of the topics will also mention nose (nosetests) as the test runner and usually refer to the default or Parameterized runner of JUnit.<br><a id="more"></a></p>
+    <summary type="html">
+    
+      &lt;p&gt;Recently took a short test task on a blog prototype, here are notes about tips on applying JUnit into Testing, especially Web Testing. As a new comer to advanced JUnit features, this post is also a track of learning. The current topics include tips about using @Rule, customize test strategy, to parameterize test, hints on Java Lambda, JUnit 5 new features, et.&lt;/p&gt;
+&lt;h2 id=&quot;Structure-and-Test-Pyramid&quot;&gt;&lt;a href=&quot;#Structure-and-Test-Pyramid&quot; class=&quot;headerlink&quot; title=&quot;Structure and Test Pyramid&quot;&gt;&lt;/a&gt;Structure and Test Pyramid&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://oei21r8n1.bkt.clouddn.com/Test_Pyramid_v2.png?imageView/2/w/800/q/100&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Chart drafted with sketchboard.io&lt;/em&gt;&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Automation Test" scheme="http://maxwu.me/categories/Automation-Test/"/>
+    
+      <category term="JUnit" scheme="http://maxwu.me/categories/Automation-Test/JUnit/"/>
+    
+    
+      <category term="Java" scheme="http://maxwu.me/tags/Java/"/>
+    
+      <category term="JUnit" scheme="http://maxwu.me/tags/JUnit/"/>
+    
+      <category term="Rule" scheme="http://maxwu.me/tags/Rule/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python unittest tips from JUnit view</title>
+    <link href="http://maxwu.me/2017/01/23/Python-unittest-tips-from-JUnit-view/"/>
+    <id>http://maxwu.me/2017/01/23/Python-unittest-tips-from-JUnit-view/</id>
+    <published>2017-01-22T22:33:00.000Z</published>
+    <updated>2017-03-16T04:02:34.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>This post is a track of tips by comparing unittest (previously named PyUnit) and JUnit. Most of the topics will also mention nose (nosetests) as the test runner and usually refer to the default or Parameterized runner of JUnit.<br><a id="more"></a></p>
 <ul>
 <li><p><strong>Origination</strong>:</p>
 <ul>
@@ -1181,854 +1251,26 @@
 </code></pre><p>[Updated by Feb11, Skipped/notest]</p>
 <p>[Updated by Jan25, Initial sections]</p>
 ]]></content>
-      
-        <categories>
-            
-            <category> Automation Test </category>
-            
-            <category> JUnit </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Java </tag>
-            
-            <tag> Python </tag>
-            
-            <tag> unittest </tag>
-            
-            <tag> JUnit </tag>
-            
-        </tags>
-        
-    </entry>
     
-    <entry>
-      <title><![CDATA[Tips on Selenium PageObjects Design]]></title>
-      <url>http://maxwu.me/2017/01/21/Tips-on-Selenium-PageObject-Design/</url>
-      <content type="html"><![CDATA[<h1 id="About-PageObjects"><a href="#About-PageObjects" class="headerlink" title="About PageObjects"></a>About PageObjects</h1><p><img src="http://www.seleniumhq.org/images/selenium-logo.png" class="img-left"> The “<strong>PageObjects</strong>“ are introduced mainly to avoid duplicated codes in test and simplify the maintenance works as well. PageObject just models the WebUI under test and represent the state transition among UI(page) activities.</p>
-<p><a href="http://www.seleniumhq.org/docs/06_test_design_considerations.jsp" target="_blank" rel="external">PageObjects and Page Factory Pattern</a> are terms from Selenium documents. The concepts of PageObject and (w/ or w/o) Page Factory are also derived from general OOD. It could be regarded as a much simplified ORM or a simple DAO if we regard test cases as data, test scenario pattern as DB tables. So the methodology can apply to other tests besides web. </p>
-<ul>
-<li>PageObject is a pattern of design</li>
-<li>Selenium Java package provides a basic support on lazy init. However, it is still a wheel to build for specific test area.</li>
-</ul>
-<p>A rough mapping could describe the concept easilier:</p>
-<table>
-<thead>
-<tr>
-<th>Traditional App Dev terms</th>
-<th>Web Automation Test Concepts</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>DB drivers</strong> like mysql-connector</td>
-<td><strong>Web Drivers</strong> (take JSON call and get results from browser process)</td>
-</tr>
-<tr>
-<td><strong>DB Abstract</strong> as JDBC</td>
-<td><strong>Selenium 2</strong>(it bridge the API to JSON calls)</td>
-</tr>
-<tr>
-<td><strong>ORM</strong> as peewee or SQLAlchemy to ensure DB agnostic</td>
-<td><strong>PageObject</strong> provides agnostic on selectors and page details</td>
-</tr>
-</tbody>
-</table>
-<p>Based on project experiences, PageObjects offers below three functions to automation:</p>
-<table>
-<thead>
-<tr>
-<th>Traditional App Dev terms</th>
-<th>Selenium PageObject Sections</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>DB Table Structure</strong> as create, alter operations</td>
-<td><strong>Web Elements Encapsulation</strong> as lazy init, multiple selectors, and, retries </td>
-</tr>
-<tr>
-<td><strong>Select/View</strong> A snapshot of state</td>
-<td><strong>Pages</strong> define the states of sceanrio</td>
-</tr>
-<tr>
-<td><strong>Transaction Procedure</strong></td>
-<td><strong>Functional methods</strong> provides interaction on pages, some of them triggers state transition, either return a new object of page or change the internal states</td>
-</tr>
-</tbody>
-</table>
-<p>It can be utilized to design test suppport classes for  database, CLI (especially tree view cli), interactive shell and desktop applications. The key is to design abstract objects to represent the internal relationships between states and adjunct methods to fetch/operate the POI(points of interests, I borrowed this concept from MapSys design). </p>
-<p>Therefore, the <strong>PageObjects here formed a layer to separate test logics and supporting objects</strong>. When people are drafting tests, we don’t need to switch to OOD part to spend time “thinking” about how to implement it and finally find out we forget the original motivation or target to do. This makes a concentration.</p>
-<h2 id="PageObjects-Pattern-or-Bot-Style-Test"><a href="#PageObjects-Pattern-or-Bot-Style-Test" class="headerlink" title="PageObjects Pattern or Bot Style Test?"></a>PageObjects Pattern or Bot Style Test?</h2><blockquote>
-<p>it’s not always a pattern that teams feel comfortable following.</p>
-</blockquote>
-<p>Alternatively there is <strong>Bot Style</strong> in test and test automation. Following PageObjects style, one turns to draw a state transition map on paper or in mind, no matter it is automation or manual test.  For Bot Stylte, the test is designed against action steps (user scenarios). It is not to see which style is “better” in a quick glance. Here I am trying to provide some tips on finding the correct technique within the project characters and constrains. Usualy no matter in manual or automation, Bot Style is the first technique to utilize at beginning to get more domain knowledge while doing sanity test. <strong>Bot Style focus on the encapsulation of interactive actions</strong> so it is consistent to the test description on test plan or user manual.<br><a id="more"></a></p>
-<p>Moving on, some of the tests concepts could be abstracted with statemachine to form a pattern which is easy to extend and more robust to maintain. For example, an organization is maintaining a number of business stories composited with given common pages. To reduce time-to-market and accept new test cases without duplicated codes, PageObject might be considered an approperiate choice to study.</p>
-<blockquote>
-<p>Let’s say: If all the interactions are functional, stateless, elementary and reenterable, there is no much difference between Bot Style and PageObject Pattern. </p>
-<p>An U(topia)aaS (named after A(I)aaS, B(ackend)aaS, F(unc)aaS) with which every services are interacting with others and human beings interfaces with read-only primative types of sequence or callable. Sequneces can be a list, string (another form of list), tuple, dict, json, or any other linear things while callable is a lambda, class with “__call__“. Read-only types as list shall be copied before returning a modified version back. </p>
-</blockquote>
-<p>Bot Style, as indicated by name, is to simulate the actions as what directly seen by users. A lot of organizations drafted Bot Style tests pretty well and maintain them in a high quality. It is not a must to go PageObject or state based test design but a selection on  concept of abstract method to reflect the test purpose. </p>
-<ul>
-<li><p>A simple way of Bot Style test case is just translate every single test step to a method and assemble the steps into a class of one test case. It is useful under stressing constrains and lower down the training cost. The test review is also more smoothy to participate since the most significant checkpoints during review are domain knowledge then. </p>
-</li>
-<li><p>Some test are not easy to abstract as PageObjects, e.g. front-end test.</p>
-</li>
-<li><p>Sometimes, the ROI is not in balance to refactor steps into reusable PageObjects, e.g. the business scenarios are stable. If we are testing an desktop application and the GUI elements, logs and operation sequences are quite stable which are not changing among versions, Bot Style is good to create and maintain.</p>
-</li>
-</ul>
-<h2 id="Page-Factory-from-a-Technical-Point-of-View"><a href="#Page-Factory-from-a-Technical-Point-of-View" class="headerlink" title="Page Factory from a Technical Point of View"></a>Page Factory from a Technical Point of View</h2><p>Above section compares Bot Style and PageObject mainly from process and organization view. This section describes the detail technical benefits with Page Factory to implement PageObject.</p>
-<p>Page Factory offers proxies to access the WebElements on page. Therefore, this solution has below advantages:</p>
-<ul>
-<li><p><strong>When PageFactory is initialized with PageFactory.initElements()</strong>, the proxies are configured against the elements representing real page elements <strong>but they are not searched at the time being</strong>. The developers won’t see NoSuchElementException.  </p>
-</li>
-<li><p><strong>Each access to the element via the proxies will trigger the search and bind again</strong>, so developers won’t see StaleElementException. </p>
-<ul>
-<li>To avoid the searching every time, annotation @CacheLookup on element. It will just do the search once and keep the reference.</li>
-<li>Direct call to initElements() won’t be impacted by this annotation.  </li>
-</ul>
-</li>
-</ul>
-<p>Further more, if the PageObject actually reflects multiple but similar states, developers can combine the elememts definition together and keep the lazy initialization. Once the conditions are satisfied use an arch (method call) toward ame state and just start to access the elements right away.</p>
-<h2 id="General-PageObject-Structure"><a href="#General-PageObject-Structure" class="headerlink" title="General PageObject Structure"></a>General PageObject Structure</h2><p>Here is the general PageObject code template including 4 major parts for general purpose. If there is an arc from current page to transition to another page, even it is the same PageObject type, the actioner (method) shall return the new page object. The caller from test code, e.g. JUnit case, shall detect exceptions.</p>
-<p>The PageBase in the following sample provides an abstract of common properties and behaviors as:</p>
-<ul>
-<li>URL check against an RegExp;</li>
-<li>Page title check;</li>
-<li>Time dimension properties and actions;</li>
-<li>Cookie validation;</li>
-<li>Common test supporting as screenshot capture method;</li>
-<li>Special XML, Path, or File Format validator.  </li>
-</ul>
-<p>As mentioned above, it is a tradeoff by the test/SDET whether to implement the abstract hierarchy.</p>
-<ul>
-<li><em>Note-1: This note is about placing a hook to take screenshot on failure. Based on the practice study, it is convenient to add such a hook when @RunWith(Cucumber.class) as the runner. However, if it is the default runner, which could be planted by a customized @Rule extends TestWatcher. This way, the hook needs have an access to the screenshot method if it is carried by PageBase Object. It could be a registration slot with static properties for example.</em></li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> xxx.xxx.pageObjects</div><div class="line"><span class="comment">//import ...</span></div><div class="line"></div><div class="line"><span class="comment">//or public XxxxPage implements IPage</span></div><div class="line"><span class="comment">//if behaviors abstracted as Intf.</span></div><div class="line"><span class="keyword">public</span> XxxxPage extends PageBase&#123;</div><div class="line">   <span class="comment">//////////////////////////////// </span></div><div class="line">	<span class="comment">//***Part 1: WebDriver and remaining Constants ***</span></div><div class="line">	<span class="keyword">private</span> WebDriver driver = <span class="keyword">null</span>;</div><div class="line">	<span class="keyword">static</span> String someRegExConst = <span class="string">"$my_url_regex"</span>;</div><div class="line">		</div><div class="line">	<span class="comment">////////////////////////////////</span></div><div class="line">	<span class="comment">//***Part 2: WebElements ***</span></div><div class="line">	<span class="meta">@FindBy</span>(how = How.CSS, using = <span class="string">"input#class"</span>)</div><div class="line">	WebElement inputName;</div><div class="line">	</div><div class="line">	<span class="meta">@FindBy</span>(how = How.CSS, using = <span class="string">"body &gt; p:nth-child(2n+1)"</span>)</div><div class="line">	List&lt;WebElement&gt; pSomeParagraphList;</div><div class="line">   </div><div class="line">	<span class="comment">////////////////////////////////</span></div><div class="line">	<span class="comment">//***Part 3: Constructors ***</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">XxxxPage</span><span class="params">(WebDriver dr)</span></span>&#123;</div><div class="line">       <span class="keyword">this</span>.driver = dr;</div><div class="line">       </div><div class="line">       <span class="comment">//Transient state(s) handling if compliant to test purpose</span></div><div class="line">       <span class="comment">//E.g. an authentication transient page handling</span></div><div class="line">       authenticate(driver, $Some_Class_Variables)</div><div class="line">       </div><div class="line">       <span class="comment">//Title and/or Url check, raise RuntimeException if fails;</span></div><div class="line">       <span class="comment">//...(See notes below)</span></div><div class="line">       </div><div class="line">       PageFactory.initElements(driver, <span class="keyword">this</span>);</div><div class="line">       </div><div class="line">       <span class="comment">//Other checks after PageFactory init.</span></div><div class="line">       <span class="comment">//Not recommended to add much tests here.</span></div><div class="line">       <span class="comment">//If map, list operations are processed every time,</span></div><div class="line">       <span class="comment">//the test duration will extend.</span></div><div class="line">       <span class="comment">//However, stable tests do not need to play detail checks</span></div><div class="line">       <span class="comment">//On every construction step.</span></div><div class="line">       <span class="comment">//Tests shall be separate.</span></div><div class="line">    &#125;</div><div class="line">   </div><div class="line">	<span class="comment">////////////////////////////////</span></div><div class="line">	<span class="comment">//***Part 4: Web UI actions ***</span></div><div class="line">	<span class="comment">//Actions including getters, setters, submission, clicker, mouseMover et.</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setInputXxxYxx</span><span class="params">(String name)</span> <span class="keyword">throws</span> WrongPageException</span>&#123;</div><div class="line">   		<span class="comment">//Web Driver actions.</span></div><div class="line">    &#125;</div><div class="line">    </div><div class="line">	<span class="comment">//Some Getter/Setters return an new instance of same or other PageObject</span></div><div class="line">	<span class="comment">//The type here represnets the arc between Web UI(page)s</span></div><div class="line">	<span class="function"><span class="keyword">public</span> ZzzPageObject <span class="title">submitRegisterForm</span><span class="params">(String name)</span> <span class="keyword">throws</span> WrongPageException</span>&#123;</div><div class="line">       <span class="comment">//Setters/getters/methods calls and operations</span></div><div class="line">       <span class="keyword">return</span> <span class="keyword">new</span> ZzzPageObject(driver, someOtherParams)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li><p><em>Note-1: It is up to the test purpose whether to separate a specific state to handle transient state like authentication. In most cases, the constructor could verify the transient state via a callable design as well. However, if there is deeper abstract (for reuse or polymorphism afterwards) design, a separate PageObject or group of PageObjects shall be introduced.</em></p>
-</li>
-<li><p>_Note-2: The potential problem is to throw exception in constructor method. One thing to take care is to make sure unmanaged resources are gracefully handled if exception thrown in subclass or base class. Another issue is related to security.Ref to <a href="http://www.oracle.com/technetwork/java/seccodeguide-139067.html" target="_blank" rel="external">Secure Coding Guideline for Java SE, Oracle, Guideline-7_3 in Ch-7: Object construction</a>, parially constructed objects lead to security vulnerability. Besides, the @After and @AfterClass or @After in Cucumber shall be checked to avoid any side effects if there is state change while throwing execption in an incomplete procedure._</p>
-</li>
-<li><p><em>Note-3: In usual functional test, if the authentication is not the purpose to test against, authentication could be regarded as an arc from current state to same state. This arc of state-transition could be handled in one method called by the constructor. However, it depends on how complicated the authentication scenario is. If it branches to different situation with sophisticated processing steps, it shall be better to explicitly design a state of AuthenticationPageObject to maintain the logic and which can be a base for further security cases to grow from.</em></p>
-</li>
-</ul>
-<p>With above PageObject template, a simplified @Before hook could be designed following below template.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Before</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="comment">// Protective check.</span></div><div class="line">    <span class="keyword">if</span> (driver != <span class="keyword">null</span>)&#123;</div><div class="line">        <span class="comment">//Quit driver (see notes below)</span></div><div class="line">        <span class="comment">//DriverFactory.quitDriver(driver);</span></div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">//Init driver, browser type, timeout, et. parameters</span></div><div class="line">    driver = DriverFactory.getDriver();</div><div class="line">    driver.manage().timeouts().implicitlyWait(<span class="number">20</span>, TimeUnit.SECONDS);</div><div class="line">    driver.manage().window().maximize();</div><div class="line"></div><div class="line">    <span class="comment">// Checking ignore list.</span></div><div class="line">    String testName = name.getMethodName();</div><div class="line">    <span class="keyword">if</span> (testListByPassBeforeHook.contains(testName))&#123;</div><div class="line">        ColorPrint.println_blue(<span class="string">"Ignore PageObj NewPost setup for test: "</span> + testName);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;<span class="keyword">else</span> &#123;</div><div class="line">        <span class="comment">//From site entry, start from an object of New Post Object</span></div><div class="line">        <span class="comment">//Here getNewPostPage will return a PageObject</span></div><div class="line">        <span class="comment">//...representing the drafting post page</span></div><div class="line">        <span class="comment">//...and it will implicitly walk through</span></div><div class="line">        <span class="comment">//...a transient authentication page state</span></div><div class="line">        <span class="comment">//As mentioned above, this transient state is implicit</span></div><div class="line">        <span class="comment">//...which is verified within a method, not an object.</span></div><div class="line">        newPostPage = <span class="keyword">new</span> PageObject(driver).getNewPostPage();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>A simplified test method is convenient to expand given above PageObject and hook example.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> CommentPage <span class="title">submitAndVerifyNewPost</span><span class="params">(String title, String body, String expectedTitle, String expectedBody)</span></span>&#123;</div><div class="line">	<span class="comment">//A state transition happens here</span></div><div class="line">	CommentPage commentPage = newPostPage.publishNewPost(title, body);</div><div class="line">    Assert.assertEquals(expectedTitle, commentPage.getTitle());</div><div class="line">    Assert.assertEquals(expectedBody, commentPage.getBody());</div><div class="line">    <span class="keyword">return</span> commentPage;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">verifyPublishNewPost</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="comment">//Here a fuzzer shall be considered</span></div><div class="line">	String title = <span class="string">"One time used title "</span>;</div><div class="line">	String body = <span class="string">"One time used body "</span>;</div><div class="line">	<span class="comment">//...prepare expected values in cases of trim(), cap, et.</span></div><div class="line">	    </div><div class="line">	submitAndVerifyNewPost(title, body, expectedTitle, expectedBody);</div><div class="line">	</div><div class="line">	<span class="comment">//Check-2: Expect the new title when it turns back to Posts (view) page</span></div><div class="line">	PostsPage postsPage = <span class="keyword">new</span> PostsPage(driver);</div><div class="line">	List&lt;String&gt; titles = postsPage.getPostTitles();</div><div class="line">	Assert.assertTrue(<span class="string">"Recently added title should display in posts page"</span>, titles.contains(title));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="Page-Factory"><a href="#Page-Factory" class="headerlink" title="Page Factory"></a>Page Factory</h2><p>Refer to <a href="https://github.com/SeleniumHQ/selenium/wiki/PageFactory" target="_blank" rel="external">Page Factory Github</a>, Page Factory simplifies the work to instantiate the WebElement or List <webelement> so PageObject could be <strong>lazily</strong> initialized and keep a clean focus of codes by <strong>reducing verbosity</strong> through dynamic proxy.</webelement></p>
-<p>The sample of Page Factory Pattern could be found in “Part-2” of Page Object code example above. There are couple of tips for beginners.</p>
-<ul>
-<li><p>As a strong typing language, here WebElement is the type as returned by lazing evaluation. For example, if a special operation with HTML select element to make one option selected, you can cast it to Select type.</p>
-</li>
-<li><p>If the return value is a list, use List<webelement> as the sample code shows.</webelement></p>
-</li>
-<li><p>@FindBys vs @FindByAll: The annotation @FindBys({ @FindBy(contion1), @FindBy(condition2)}) will return an intersection of condition1 and condition2 while @FindByAll returns the union set of elements satisfy either condition.</p>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Findbys</span>(&#123;</div><div class="line">    <span class="meta">@FindBy</span>(how = How.CSS, using = <span class="string">"div.A"</span>),</div><div class="line">    <span class="meta">@FindBy</span>(how = How.CSS, using = <span class="string">"div.B"</span>)</div><div class="line">&#125;)</div><div class="line"><span class="keyword">public</span> List&lt;WebElement&gt; BinAList;</div></pre></td></tr></table></figure>
-<p>Above example will return div elements which has className “B” and(from) className “A”. </p>
-<h2 id="State-Transition"><a href="#State-Transition" class="headerlink" title="State Transition"></a>State Transition</h2><p>Theoretically Selenium is a tool for UI testing or Web testing, which focus on user scenarios instead of functions. Functional test is still covered in API level tests. Here is a chart to describe where Selenium is in the Test Pyramid. <a href="https://maxwu.github.io/2017/01/23/JUnit-Tips/" target="_blank" rel="external">Link</a></p>
-<p><img src="http://oei21r8n1.bkt.clouddn.com/Test_Pyramid_v2.png?imageView/2/w/600/q/100" alt=""></p>
-<p>Selenium is an excellent tool to support the test on user journeys acrossing views or pages. Here states represent the different views which the end users visit. A user scenario typically consists a sequence of views or pages towards a complete, incomplete, successful or failed business target. The footprints include a sequence of interactions. </p>
-<p>If the new view after a given action can still be interpreted by current PageObject to get an object level description about the set of interested points to test, we can either continuously to use the existing page object with a fresh on specific elements, or, create a new object with the same PageObject class. The construction phase will map element members to a set of interested points.</p>
-<p><img src="http://oei21r8n1.bkt.clouddn.com/pom_TransitionWithSamePageObject.png" class="img-left"></p>
-<font size="1"><em>“POM” here means page object model.</em></font>
-
-<p>Otherwise, the action method generally returns a new object which in new PageObject class type to represent a new HTML page view in browser.</p>
-<p><img src="http://oei21r8n1.bkt.clouddn.com/pom-page-transition.png" class="img-left"></p>
-<p>Here the partial refresh could be considered as a kind of arc pointing to same state. Each constructor call of PageObject classes is regarded as an arc from the action method class to the new PageObject class. </p>
-<p>For example, if an user adds a comment piece to current blog post page, the page refreshs and shows the commnet right away. It could be tested with either ways:</p>
-<ul>
-<li><p>Refresh comment list corresponding List<webelement> with a partial refreshment call. This is a state transition from the comment view state to the same state.</webelement></p>
-</li>
-<li><p>The comment adding action method could return a new instance of same PageObject class. This new instance holds the new comment WebElement thru the construction call.</p>
-</li>
-</ul>
-<p>In summary, a partial refreshment on certain WebElement(s) is regarded as a state transition to same state, while any call to a new instance of PageObject class, same class or another class, indicates a state transition from existing object class to the return value class.</p>
-<p>More about state and state transition in testing could be found at <a href="https://www.cs.helsinki.fi/u/paakki/software-testing-s05-Ch611.pdf" target="_blank" rel="external">State based Testing</a>.</p>
-<h2 id="Negative-Tests-TBC"><a href="#Negative-Tests-TBC" class="headerlink" title="Negative Tests (TBC)"></a>Negative Tests (TBC)</h2><h3 id="Timeout"><a href="#Timeout" class="headerlink" title="Timeout"></a>Timeout</h3><h3 id="Exception"><a href="#Exception" class="headerlink" title="Exception"></a>Exception</h3><h3 id="Duration-Test"><a href="#Duration-Test" class="headerlink" title="Duration Test"></a>Duration Test</h3><h2 id="Fuzzing-Test-TBC"><a href="#Fuzzing-Test-TBC" class="headerlink" title="Fuzzing Test (TBC)"></a>Fuzzing Test (TBC)</h2><h3 id="Data-Fuzzing"><a href="#Data-Fuzzing" class="headerlink" title="Data Fuzzing"></a>Data Fuzzing</h3><p>OWASP JBroFuzz is a popular Fuzzer lib to support fuzzing test.<br>It offers various fuzzer DB definition and customized features to support data fuzzing.</p>
-<h3 id="Sequence-Fuzzing"><a href="#Sequence-Fuzzing" class="headerlink" title="Sequence Fuzzing"></a>Sequence Fuzzing</h3><p>With JUnit, the execution sequence is able to customize with @Rule.</p>
-<h2 id="Further-Topics"><a href="#Further-Topics" class="headerlink" title="Further Topics"></a>Further Topics</h2><p>Classic PageObject spends too much efforts on disbaling the readability (encapslation) the action implementations to archeive the code reusing. However, most of the works could be simplified to a more friendly facade with Java features. <a href="http://selenide.org/documentation/page-objects.html" target="_blank" rel="external">selenide</a> is worthy a try to make your PageObject design works done in a graceful and faster way.  </p>
-<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><hr>
-<p>[Updated Mar30]: Add the concept mapping between DB App Dev and PageObject testing.</p>
-<p>[Updated Feb07]: Reword state transition section and publish it.</p>
-<p>[Updated Jan23]: labelled more points to complete this note.</p>
-<p>[EOF]</p>
-]]></content>
-      
-        <categories>
-            
-            <category> Automation Test </category>
-            
-            <category> Selenium </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Java </tag>
-            
-            <tag> Selenium </tag>
-            
-            <tag> Pageobject </tag>
-            
-            <tag> Web Testing </tag>
-            
-        </tags>
-        
-    </entry>
+    <summary type="html">
     
-    <entry>
-      <title><![CDATA[Cucumber-JVM+Selenium+JUnit Toy released v1.2]]></title>
-      <url>http://maxwu.me/2017/01/13/Cucumber-JVM-Selenium-JUnit-Toy-Project-baselined-to-v1-2/</url>
-      <content type="html"><![CDATA[<p>Cheers! Toy project baselined to v1.2 and all pending issues resolved.</p>
-<p><img src="http://oei21r8n1.bkt.clouddn.com/Cucumber-JVM-Gh-Snap-2017-02-23.png?imageView/2/w/400/q/100" alt="https://github.com/maxwu/cucumber-java-toy"></p>
-<p><a href="https://github.com/maxwu/cucumber-java-toy" target="_blank" rel="external">Github Link</a></p>
-<h1 id="Brief"><a href="#Brief" class="headerlink" title="Brief"></a>Brief</h1><p>The target of this demo project is to show and refresh a general approach of BDD and experience the Gherkin specs as a communication tool on story definition and how to map it to JUnit case scope. It started on Monday from scratch and baselined Friday morning on schedule. Crtitial issues resolved were recorded on Github issue board, too. I recorded hints and tips in the readme markdown page. Here is a paper of note about the thoughts captured during the fast adaption phase.</p>
-<p>There is another <a href="http://maxwu.me/2017/01/21/Tips-on-Selenium-PageObject-Design/">post</a> about tips on PageObject design in web testing. This post is on general practice with Gherkin spec and JUnit.<br><a id="more"></a></p>
-<h1 id="Tips-to-Entry-Level-Cucumber-Learners"><a href="#Tips-to-Entry-Level-Cucumber-Learners" class="headerlink" title="Tips to Entry Level Cucumber Learners"></a>Tips to Entry Level Cucumber Learners</h1><ul>
-<li><p>First of first, <strong>Cucumber is a collaboration tool</strong>, especially in the situation to cowork with people from non-technical background on drafting specifications together. Then developers and testers also work on the “glue” part to test the real things. Most of the scenarios are not purely verified with JVM (or JS, whatever Cucumebr implementation). The test still needs to work through some third party libraries to test, as what request lib for RESTful interface, and, Selenium lib for Web Interaction test. Refer to <a href="http://eamodeorubio.github.io/bdd-with-js/" target="_blank" rel="external">the slides</a>.</p>
-</li>
-<li><p>Readers migrating from Robot Framework or Junit, the suggestion is to carefully read the doc or code of @Before and @After. <strong>The test is against features instead of against implemented class</strong> (the process described as mentionnd on the six Cucumber steps). It just verifies the features by seaching for Gherkin matching (“public” for Java) functions and executing them to form a report. Therefore, no matter whether the test method is executed, the @Before annotated methods are invoked at every scenarios by default. However, test classes are instantiated <strong>right before</strong> the first step method call or the first hooked method call. In short, <strong>step definitions and hooks are global conceptually</strong>.</p>
-</li>
-</ul>
-<p>Scan and regiser the StepDefinition and hooks with below code logics:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">scan</span><span class="params">(JavaBackend javaBackend, List&lt;String&gt; gluePaths)</span> </span>&#123;</div><div class="line">    <span class="keyword">for</span> (String gluePath : gluePaths) &#123;</div><div class="line">        <span class="keyword">for</span> (Class&lt;?&gt; glueCodeClass : classFinder.getDescendants(Object.class, packageName(gluePath))) &#123;</div><div class="line">            <span class="keyword">while</span> (glueCodeClass != <span class="keyword">null</span> &amp;&amp; glueCodeClass != Object.class &amp;&amp; !Utils.isInstantiable(glueCodeClass)) &#123;</div><div class="line">                <span class="comment">// those can't be instantiated without container class present.</span></div><div class="line">                glueCodeClass = glueCodeClass.getSuperclass();</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span> (glueCodeClass != <span class="keyword">null</span>) &#123;</div><div class="line">                <span class="keyword">for</span> (Method method : glueCodeClass.getMethods()) &#123;</div><div class="line">                    scan(javaBackend, method, glueCodeClass);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>Adding hook and implictly sort the @Before hook with a customized comparator (to support Annotation parameter “order” (default to 10,000).</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">addHook</span><span class="params">(Annotation annotation, Method method)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (objectFactory.addClass(method.getDeclaringClass())) &#123;</div><div class="line">        <span class="keyword">if</span> (annotation.annotationType().equals(Before.class)) &#123;</div><div class="line">            String[] tagExpressions = ((Before) annotation).value();</div><div class="line">            <span class="keyword">long</span> timeout = ((Before) annotation).timeout();</div><div class="line">            glue.addBeforeHook(<span class="keyword">new</span> JavaHookDefinition(method, tagExpressions, ((Before) annotation).order(), timeout, objectFactory));</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="comment">// ...@After hook...</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>It is not to walk thru classes and verify the annotated methods. Actually it has nothing to do with Unit Test although it is often to see JUnit as a test suite organization framework (for Gherkin feature test).</p>
-<p>The hook execution is actually not related to how the classes are organized if default Object Factory is taken (instead of others like PicoContainer).</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">runBeforeHooks</span><span class="params">(Reporter reporter, Set&lt;Tag&gt; tags)</span> </span>&#123;</div><div class="line">    runHooks(glue.getBeforeHooks(), reporter, tags, <span class="keyword">true</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">runAfterHooks</span><span class="params">(Reporter reporter, Set&lt;Tag&gt; tags)</span> </span>&#123;</div><div class="line">    runHooks(glue.getAfterHooks(), reporter, tags, <span class="keyword">false</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>Note0: Official solution is to use @tags to separate “global” concepts of hooks and step methods.</p>
-<p>Note1: One possible way to avoid redundant is to insert a customized annotation, e.g. GreenHook on class and thru that add lazily delay the invokation of @Before hooks untill the first “declared” method (not inherited, not constructor, no matter if it is from the same instanace) is processed with AspectJ.<br>Needs to code a test to verify. </p>
-<p>Note2: AspectJ in test could be a separate topic for future.</p>
-</blockquote>
-<ul>
-<li><p>Readers new to Cucumber, the tips is to understand Gherkin is an executable spec, therefore the implict activities shall be clarified when thinking about turning to this BDD approach.</p>
-</li>
-<li><p>Moving to Travis-CI and CircleCI is pretty a happay journey. However, we shall walk thru the environmental elements first as the OS, Browser version, special variables, et. The Selenium Web Driver could be well managed with WebManagerDriver lib. </p>
-<ul>
-<li><p><strong>Travis-CI</strong>:<a href="https://travis-ci.org/maxwu/cucumber-java-toy" target="_blank" rel="external"> <img src="https://travis-ci.org/maxwu/cucumber-java-toy.svg?branch=dev" class="img-left"> </a></p>
-</li>
-<li><p><strong>Circle CI</strong>:<a href="https://circleci.com/gh/maxwu/cucumber-java-toy" target="_blank" rel="external"> <img src="https://circleci.com/gh/maxwu/cucumber-java-toy.svg?style=svg" class="img-left"> </a></p>
-</li>
-<li><p><strong>CodeCov</strong>:<a href="https://codecov.io/gh/maxwu/cucumber-java-toy" target="_blank" rel="external"> <img src="https://codecov.io/gh/maxwu/cucumber-java-toy/branch/dev/graph/badge.svg" class="img-left"> </a></p>
-</li>
-</ul>
-</li>
-<li><p>Having code coverage metrics with codecov cloud service will simply save your time.</p>
-</li>
-<li><p>Reach out to BDD life and take it as a way to keep concentrated on valuable logics. Like the way to live with MarkDown, –”less is more”. If we keep our mind focus on the valuable logics instead of being interrupted by checking those “sudden” or “interesting” things on the branch path to valuable delivery, then the productivity and consitency could have a chance to step over in a better position.</p>
-<ul>
-<li>Keep a markdown format notes, as README.md in github project;</li>
-<li>Be familiar with the format and make sure taking notes won’t disattract your mind;</li>
-<li>Google search around a technical issue is fine. However, we shall keep it fast and only for occassional and easy problems. Leave the refactor and structural issues to the notes and set a fixed time slot to process this “inbox” list. Keep only one window of browser with google/stakeoverflow, or, just search with Alfred.</li>
-</ul>
-</li>
-<li><p>Avoid (long) discussion with social network during the dedicated hour. Dedicated hour can be in the moring, or, the mid-night. It lasts for one hour and during this hour, only preplaned stories are considered.</p>
-</li>
-</ul>
-<p>The procedure with executable Gherkin specification via Cucumber:</p>
-<p><img src="http://oei21r8n1.bkt.clouddn.com/cucumber-6-steps.png?imageView/2/w/800/q/100" alt="6 Steps with Cucumber"></p>
-<p>Then the Red-Green-Refactor cycle starts to run. Cucumber provides a way to communicate between business and technologies, not propagation, not just collection, but a real communication. Executable spec means the specs are living as a guard or as rails. However, there are still pains and difficulties thought of during this practice.</p>
-<ul>
-<li>For BDD, the case design or test design is a key from beginning to the end.<ul>
-<li>The case shall represent specs as business examples.</li>
-<li>What else? the test shall also cover traditional test design chapters:<ul>
-<li>These techniques include: border identification, equivalence division, branch detection, fuzzer, Orthogonal Array, et.</li>
-</ul>
-</li>
-<li>Check: whether the test can pass only with given logics. Which means, if there is a future code change on concerned logics, the test is effecient and effective enough to detect with a signal (of failure or execution ignore).</li>
-</ul>
-</li>
-</ul>
-<p>Have fun and happy test.</p>
-<h1 id="Update-Logs"><a href="#Update-Logs" class="headerlink" title="Update Logs"></a>Update Logs</h1><p><em>[Updated Feb-23]</em>: Update snapshot with <a href="http://jenkins.maxwu.me" target="_blank" rel="external">http://jenkins.maxwu.me</a></p>
-<p><em>[Updated Feb-09]</em>: Add a missing sentence of concept description.</p>
-<p><em>[Updated Jan-30]</em>: Append a brief summary of red-green-refactor cycle.</p>
-<p><em>[Updated Jan-14]</em>: Add \<more\> mark into post source.</more\></p>
-<p><em>[Updated Jan-15]</em>: Add thoughts paragraph-1 and refer to online slides link. Quote the JaveBack</p>
-<p>[EOF]</p>
-]]></content>
-      
-        <categories>
-            
-            <category> Automation Test </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Cucumber </tag>
-            
-            <tag> Selenium </tag>
-            
-            <tag> Junit </tag>
-            
-        </tags>
-        
-    </entry>
+      &lt;p&gt;This post is a track of tips by comparing unittest (previously named PyUnit) and JUnit. Most of the topics will also mention nose (nosetests) as the test runner and usually refer to the default or Parameterized runner of JUnit.&lt;br&gt;
     
-    <entry>
-      <title><![CDATA[Cucumber-JVM Toy with Selenium]]></title>
-      <url>http://maxwu.me/2017/01/12/Cucumber-JVM-Toy-with-Selenium/</url>
-      <content type="html"><![CDATA[<p>A toy project with full practice refreshment about Cucumber-JVM, Maven, Selenium and Page Factory Pattern implemented PageObject.</p>
-<p>元旦后利用晚上时间启动一个练手项目,包含从Java Page Factory Pattern on Selenium 到Cucumber+JUnit的基于Maven构建.在做两年Python的自动化测试和开发后看看Java需要重新熟悉速度如何,加上Cucumber这种BDD的新概念能否很快落实理解到可以独立Debug的程度.在此期间遇到的一些有趣Tips也会记录下来.</p>
-<p><a href="https://github.com/maxwu/cucumber-java-toy" target="_blank" rel="external">Github Link</a></p>
-<p><img src="http://oei21r8n1.bkt.clouddn.com/2017-01-11_Cucumber-Java-Toy-Cover.png?imageView/2/w/600/q/100" alt="Github Project Page"></p>
-<a id="more"></a>
-<p>In addition, this toy project also introduced Travis as CI plugin, codecov as coverage plugin, circle-ci (in progress). </p>
-<p>Github友好的CI工具包括Travis-CI和codecov也部署在项目上.目前circleci还有一些问题. </p>
-<p>[Updated Jan 11]: 当执行到某个Scenario或Scenario Outline的实例时,该Scenario会在每个Class上都运行一次.而很多教程或书籍上都在@Before时创建测试环境/对象,在@After时候注销环境/对象(例如quit Selenium Web Driver).根据这些网上流行的例子来学习的同行显然会遇到两个问题:</p>
-<pre><code>- 测试环境多次创建,增加了无意义的运行损耗;
-- 冗余代码来检测各种注销条件,bad smell of Race Condition.
-</code></pre><p>[Updated Jan 13]: Work around is available now.</p>
-<ul>
-<li><p>采用PageObject支持Cucumber-JVM测试,其PageObject的调用不必要放到@Before内,而是可以置于@Given条件内. @Before内放置的内容会被不需要测试当前Scenario的Class调用(因为Cucumber会在每次Scenario launch时运行每一个Test Class的@Before.也就是调用Object Factory去Reflect出每个class instance再按照顺序Loop all hooks for each scenario.run() as a test suite concept).</p>
-</li>
-<li><p>选择Latest webdriver和Selenium-3.0.1, Chrome的版本需要升级&gt;=v52.  </p>
-</li>
-</ul>
-<p>这里先把札记MD放到Gitbook share出来.<br><a href="https://www.gitbook.com/book/maxwu/cucumber-java-toy/details" target="_blank" rel="external">Gitbook Link</a></p>
-<p>[以上] [EOF]</p>
-]]></content>
-      
-        <categories>
-            
-            <category> Automation Test </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Java </tag>
-            
-            <tag> Cucumber </tag>
-            
-            <tag> Selenium </tag>
-            
-            <tag> Junit </tag>
-            
-        </tags>
-        
-    </entry>
+    </summary>
     
-    <entry>
-      <title><![CDATA[(Minor)Issues with Two govt.nz website]]></title>
-      <url>http://maxwu.me/2017/01/11/Issues-with-parliament-govt-nz-website-human-interface/</url>
-      <content type="html"><![CDATA[<blockquote>
-<p>April 25, 2017: The same defect is found on Air New Zealand Career Board. With a quick study, the resources point to a company named <strong>“Snaphire”</strong> (resource name is com.snaphire.wicket.*). It seems the typo is with common template by Snaphire for both the two NZ government web sites. </p>
-</blockquote>
-<p>This post is about human interface defect instead of codes or automation as usual. Couple of real world defects are discovered on web services with local business. It might be an indicator of demand on QA engineering, both automation and manual test. At least of a pattern is discovered, for example typo, it is easy to code the pattern of spelling check and word similarity calculation with basic NLP in Python or Java.<br><a id="more"></a></p>
-<p>As a phase of test, human interface test will also consider the concrete application view from end users. Usually this is part of UAT. Therefore the criticality relates to how human actions are blocked or how good/bad the experiences is.</p>
-<p>Two Minor Level Issues with <a href="https://careers.parliament.govt.nz" target="_blank" rel="external">careers.parliament.govt.nz</a>.</p>
-<p>(1) The typo word “Gith<strong>i</strong>b”.<br>   Here is the snapshot about how to reproduce in the <em>“registration”</em> scenario.</p>
-<p>   <img src="http://oei21r8n1.bkt.clouddn.com/githib-typo-defect.png?imageView/2/w/300/q/100" class="img-left"> </p>
-<p>   I really did a Google search and it came out a high probability that it is still a typo of “Gith<strong>u</strong>b”. </p>
-<blockquote>
-<p>April 25, 2017:<br>An inference is that either the direct career board on business web site is not intensively used, or, the applicants are not Github fans. Considering IT professionals, with local work experiences, usually co-work with agents in job seeking, it is reasonable. However, it is still not a good feeling to see such a famous term in typo in multiple official web sites. </p>
-<p>Below is a screenshot of the typo.<br><img src="http://oei21r8n1.bkt.clouddn.com/AirNZ_Career_Snip20170425_20.png?imageView/2/w/300/q/100" alt="">  </p>
-</blockquote>
-<p>(2) Missing an <strong>“Other”</strong> (and a linked input element) in the source select element.</p>
-<p><img src="http://oei21r8n1.bkt.clouddn.com/missing-others-option.png?imageView/2/w/300/q/100" class="img-left"></p>
-<p>This might be turned to a spec question. However, in an Agile environment, spec is also executable scenario and spec is also a target to qualify. I got the information from <strong>recruit.net</strong> and there is no further source mentioned in recuirt.net post. Therefore an option of “Other(s)” here is a safe zone to access the true data. </p>
-<p>(3) On Career baord of Air New Zealand (by same vendor), the <strong>“contact us”</strong> link leads to 404 page.<br>The link is <a href="https://careers.airnz.co.nz/contact-us" target="_blank" rel="external">https://careers.airnz.co.nz/contact-us</a>. </p>
-<p>This kind of 404 page indicates a missing test. In fact all links are expected to be recursively checked by automation test frameworks to perform a sanity to ensuer no 404 at all.</p>
-<p>[Update Jan15, 2017]: Change style class to make image alignment on left with “Next” Theme.<br>[Update Apr25, 2017]: Air New Zealand Career website has same defect. It seems Snaphire has deployed the typoe to multiple NZ government web sites.</p>
-<p>[EOF]</p>
-]]></content>
-      
-        <categories>
-            
-            <category> Automation Test </category>
-            
-            <category> WebGUI </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Web </tag>
-            
-            <tag> Test </tag>
-            
-        </tags>
-        
-    </entry>
+      <category term="Automation Test" scheme="http://maxwu.me/categories/Automation-Test/"/>
     
-    <entry>
-      <title><![CDATA[A defect on snapfitness website leading to 404 page]]></title>
-      <url>http://maxwu.me/2017/01/10/Issue-in-RESTful-API-on-fitness-website-map-query-leading-to-404-page/</url>
-      <content type="html"><![CDATA[<p>When I was querying nearby Gym on snapfitness website, it targeted to an HTTP 404 page. As an automation test analyst, I wrote a letter to the webmaster with analysis pointing to backend RESTful API defect and hope it will help :_) </p>
-<p>Note that this defect only happens with <a href="https://www.snapfitness.com/" target="_blank" rel="external">snapfitness.com</a>, another domain <a href="https://www.snapfitness247.co.nz/" target="_blank" rel="external">snapfitness247.con.nz</a>is still working fine to return correct JSON data on POST Web API call (thru postman).</p>
-<p><img src="http://oei21r8n1.bkt.clouddn.com/SnapFitness-404.png?imageView/2/w/300/q/100" class="img-left"><br><a id="more"></a></p>
-<p>Just FYI, the defect brief description:</p>
-<h2 id="Reproduce-Steps"><a href="#Reproduce-Steps" class="headerlink" title="Reproduce Steps:"></a><u><strong><em>Reproduce Steps:</em></strong></u></h2><ol>
-<li><p>Navigate from the homepage of snapfitness to “Find A Gym”<br>The target URL is <a href="https://www.snapfitness.com/" target="_blank" rel="external">https://www.snapfitness.com/</a></p>
-</li>
-<li><p>Insert “Lower Hutt” into the blank of “city” and click the first result of “LOWER HUTT”<br>This click is redirected to <a href="https://www.snapfitness.com/lower-hutt" target="_blank" rel="external">https://www.snapfitness.com/lower-hutt</a><br>However, this URL leads to 404 page.</p>
-</li>
-<li><p>After a few seconds trying, guessing: the correct URL might be <a href="https://www.snapfitness.com/gyms/lower-hutt" target="_blank" rel="external">https://www.snapfitness.com/gyms/lower-hutt</a>. This is verified.</p>
-</li>
-</ol>
-<h2 id="Possible-cause"><a href="#Possible-cause" class="headerlink" title="Possible cause:"></a><u><strong><em>Possible cause:</em></strong></u></h2><p>It tests(looks) like a typo in the backend <strong>JSON</strong> building in the Web API. Which is verified with Postman and the <strong>“infoWindow”</strong> data field in the JSON return from POST API to <strong>“www.snapfitness.com/gyms/getLocations”</strong> contains incorrect URL (which would be utilized to composite the click link of Gym places queried from map).</p>
-<p>The test screenshot with postman to confirm above root cause guess.</p>
-<p><img src="http://oei21r8n1.bkt.clouddn.com/snapfitness-postman.png?imageView/2/w/300/q/100" class="img-left"></p>
-<p>At last, below is the raw information captured from browser during issue.</p>
-<blockquote>
-<p>The error message on this 404 page:<br>404 PAGE NOT FOUND<br>The page you’re looking for does not exist or cannot be found at this time. If you feel you reached this page in error, please contact us at webmaster@snapfitness.com. Thank you.</p>
-<p>Dev Code: objl-0bd08226-2ab2-4fa3-9473906225e76271</p>
-</blockquote>
-<p>[EOF]</p>
-]]></content>
-      
-        <categories>
-            
-            <category> Automation Test </category>
-            
-            <category> Postman </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> RESTful </tag>
-            
-            <tag> Test </tag>
-            
-            <tag> Defect </tag>
-            
-        </tags>
-        
-    </entry>
+      <category term="JUnit" scheme="http://maxwu.me/categories/Automation-Test/JUnit/"/>
     
-    <entry>
-      <title><![CDATA[flickering scenario -- terminology clarification]]></title>
-      <url>http://maxwu.me/2017/01/08/flickering-scenario-terminology-clarification/</url>
-      <content type="html"><![CDATA[<p>A scenario which is in sunny day for a while but turns to rainy day in another while or another day. This scenario is also called blinking story/test. A more formal term, occassional failure. They all refer to this kind of issue. </p>
-<p>It is quite important to resolve blinking scenarios because the issue is destorying the trust in automation. Without a full trust on automation, CI and further migration is still a dream.</p>
-<p>Here are several hints to resolve flickering/blinking/Occassional-failing stories:</p>
-<ul>
-<li>Environmental reasons, perticuplarly the shared elements;</li>
-<li>Leakage of resource, fd, memory, defragmented buddy pool, combined ID space, et;</li>
-<li>Race condition, it is more difficult to find and usually lead to a hidden problem in products;</li>
-</ul>
-<p>Yes, we are talking about the three dimensions again. <strong>Logic</strong>(scope/concept/recognition), <strong>Space</strong> (leak/id/dirty/init/clean/oversize) and <strong>Time</strong> (racing/history/cache/lifetime/frequency/multithreading) are still the three friends for software engineers to think about in typical tough moment. </p>
-<p>Good luck, testers.</p>
-<p>[EOF]</p>
-]]></content>
-      
-        <categories>
-            
-            <category> Automation Test </category>
-            
-            <category> Terminology </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Cucumber </tag>
-            
-            <tag> Flickering Scenario </tag>
-            
-        </tags>
-        
-    </entry>
     
-    <entry>
-      <title><![CDATA[Available Shadowsocks]]></title>
-      <url>http://maxwu.me/2017/01/08/Available-Shadow-Socks/</url>
-      <content type="html"><![CDATA[<p><em>“我的征途是星辰大海”–《银河英雄传》</em></p>
-<p>刚刚过去的假期读罢&lt;北京折叠&gt;.其实类似的反乌托邦题材并不罕见,然而数天后仍然能感觉到作者在字里行间中透出的压抑下的无力和自嘲 – 本贴长期更新,记录访问Internet和从Internet访问世界上最大的局域网科学方法和最佳实践.<br><a id="more"></a></p>
-<p>第一次具体的感受Beijing是2000年的除夕,和厦门大学的另一位毛老师一起走路到国旗广场.后来只是去美国每次转机会路过首都机场,坐在玻璃幕墙内,躲避着午后倦倦的困意.再后来就是2008年出差去印度Banglore,国师的团体操给公司同事都留下了深刻印象,我记得第二天几乎每个人都在向我们祝贺Beijing的成功.一句老话,No free lunch,当付出和收益的主体不统一时,不在同一个空间位置甚至也不是同一个时间标度时,就像一只大手从一堆砝码里拿出一些,端到另一堆,只不过有时候是看不见的手(经济)有时候是看得见的手(政治)…”科学”获取信息的途径也经由”科学”而来.这里Shared的Shadow Socks代理包括了从科学上网和海外转国内方式都是日常使用或验证能够工作正常的方法.</p>
-<ul>
-<li><u>购买VPS部署SS</u>:<ul>
-<li>最传统的方式,也比较容易上手.建议Deploy一个实例平时做其他用途,当做Back up;</li>
-<li>VPS提供商建议选择<a href="https://bandwagonhost.com/aff.php?aff=12795" target="_blank" rel="external">搬瓦工-www.bandwagonhost.com</a>.感恩节和圣诞会有大促.两年前9.9刀一年的最低配置一直很稳定.这个链接点进去包含了我的推荐码.以后我会更新更多Promotion信息.</li>
-<li>选择VPS需要看机房配置和迁移方便程度.搬瓦工上在不同机房比如LA迁移到Arizona非常方便.近期搬瓦工推出日本机房,访问速度应该能够更快.</li>
-</ul>
-</li>
-<li><u>AWS EC2 配置SS</u>:<ul>
-<li>类似传统方法,AWS提供一年期免费体验计划Free Tier.其中包含EC2最多两个T2类型实例. 配置方法和上面一样,搜索Shadowsocks的RPM安装方式,注意配置自动启动即可.</li>
-<li>AWS的Autoscaling可以配置为一个组最多1,最少也是1.然后再Cloud Format加入RPM安装配置的步骤就可以完成HA.</li>
-<li>EC2作为非托管服务,其上运行的服务需要用户自己配置Monitor.</li>
-<li>最后需要注意AWS有些服务不在免费范围内,最好配置账单提醒,阈值设置为0,这样只要有Charge就可以及时收到邮件,可以第一时间查看并Escalate取消. 比如CloudFormation,如果Stack启动超过1hr应该就已经开始对特定个tsmall instance计费,及时查看计价方法.</li>
-</ul>
-</li>
-<li><u>Docker Service</u>:<ul>
-<li>樱花是日本一家Docker DevOps服务商,目前在试用期提供免费的Docker 实例服务.配置Shadow Socks的Docker Image并设置好环境变量即可.Docker服务的好处是启动关闭速度很快,修改后重新Launch只需要一分钟时间.很符合云计算的口号,Hurry Up, Go die,用过就回收,需要的时候临时起一份,负载增加的时候直接Scale out.</li>
-<li>可以采用AWS ECS(EC2 Container Service).</li>
-<li>类似的Docker服务DevOps提供商还很多,即使收费也基本上按需(运行时间)定价策略为主,适合只是偶尔用ShadowSocks的轻度用户或经常更换Service的用户.</li>
-<li><a href="https://arukas.io/en/" target="_blank" rel="external">樱花链接</a>, 记得选En语言,否则都是霓虹文字.目前樱花还在Beta阶段,每账号10个免费实例.</li>
-<li>验证过的Image: “mritd/shadowsocks”,加密方式和密码配置在环境变量内.<ul>
-<li>需要注意,环境变量配置给Shadowsocks的port number需要在容器的配置上打开同样的端口;</li>
-<li>这个映像已经做了自启动,启动脚本可以留空.</li>
-</ul>
-</li>
-<li>其实AWS也开始提供Docker Cloud,因为樱花云已经很方便了所以AWS的Docker尚未验证过. 估计优势之一是应用Cloud Format统一描述.</li>
-</ul>
-</li>
-<li><p><u>命令行环境以及局域网内共享代理</u>:</p>
-<ul>
-<li>命令行环境可以通过Privoxy来实现,将本地localhost:port设置为HTTP代理并Capture到本地的Socks代理内;</li>
-<li><p>通过Privoxy也可以把HTTP Proxy端口开放出来给同一个Wi-Fi SSID的其他用户同时使用;</p>
-<ul>
-<li><p>To have launchd start privoxy now and restart at login, use below command:</p>
-<blockquote>
-<p>brew services start privoxy</p>
-</blockquote>
-</li>
-<li><p>Or, if you don’t want/need a background service you can just run:</p>
-<blockquote>
-<p>privoxy /usr/local/etc/privoxy/config</p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>Windows版的Shadowsocks客户端有RR Load Balance功能,而Mac版已经很不会更新也不具备这个功能;</p>
-</li>
-<li>使用Mac版需要注意SS-NG还在开放中,有一些问题,不过SS-NG内置了一个Privoxy的Binary环境.因为和本机自己的privoxy出现不一致所以SS-NG这个版本笔者这里就不验证了.</li>
-</ul>
-</li>
-<li><p><u>反向穿梭</u>:</p>
-<ul>
-<li><p>反向穿梭后可以提升访问媒体网站的(ting)速(yin)度(yue).</p>
-<ul>
-<li><p>简单的方法: </p>
-<ul>
-<li>DNS改为: 45.32.72.192, 158.69.209.100</li>
-</ul>
-</li>
-<li><p>Android设备: </p>
-<ul>
-<li>Proxy设置为手动,PAC地址是<a href="http://pac.uku.im/pac.pac" target="_blank" rel="external">http://pac.uku.im/pac.pac</a></li>
-</ul>
-</li>
-<li><p>Mac和Linux, set different DNS for different domains:</p>
-<ul>
-<li>在Mac下DNS信息存储于/etc/resolv.conf</li>
-<li><p>如果处于安全或访问时间考虑希望上面Ublock志愿提供的DNS仅供访问网易云音乐,可以建立目录/etc/resolver/163.com并写入如下内容:</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">nameserver 158.69.209.100</div><div class="line">nameserver 45.32.72.192</div></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<pre><code>- 体验反向Shadowsocks代理可以试用下面这个:
-    信息来自Mitbbs,工程团队公开出来做压力测试用端口,验证可用.
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Server_IP：182.92.156.212</div><div class="line">server_port : 10062</div><div class="line">local_port : 1080,</div><div class="line">password : 61203456</div><div class="line">method : aes-256-cfb</div></pre></td></tr></table></figure>
-</code></pre><p>以上.</p>
-]]></content>
-      
-        <categories>
-            
-            <category> Writing </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Shadowsocks </tag>
-            
-        </tags>
-        
-    </entry>
+      <category term="Java" scheme="http://maxwu.me/tags/Java/"/>
     
-    <entry>
-      <title><![CDATA[Corrigendum for AWS Chinese learners]]></title>
-      <url>http://maxwu.me/2017/01/07/Corrigendum-for-AWS-Chinese-learners/</url>
-      <content type="html"><![CDATA[<p>It is a corrigendum on AWS official online documents in mainly for the translated documents in Chinese language. The list was firstly collected when I was quickly searching for some information during AWS studying but found the information was obsoleted. Would keep it updated and maintained lively.</p>
-<ol>
-<li><p>RDS DB size threshold is wrong in Chinese version;</p>
-</li>
-<li><p>Days between two certificate tests one candidate shall spend; The number is incorrect according to global AWS policy;</p>
-</li>
-<li><p>Private IP is only returned after stop and “restart”.<br><a href="https://aws.amazon.com/ec2/faqs/" target="_blank" rel="external">https://aws.amazon.com/ec2/faqs/</a> </p>
-</li>
-<li><p>The bottom part, the words shall be “&lt;5MB”<br><a href="http://docs.aws.amazon.com/AmazonS3/latest/dev/qfacts.html" target="_blank" rel="external">http://docs.aws.amazon.com/AmazonS3/latest/dev/qfacts.html</a></p>
-</li>
-<li><p>“评估逻辑”—&gt;”求值逻辑” This a better translation on term.<br><a href="http://docs.aws.amazon.com/zh_cn/sns/latest/dg/AccessPolicyLanguage_EvaluationLogic.html" target="_blank" rel="external">http://docs.aws.amazon.com/zh_cn/sns/latest/dg/AccessPolicyLanguage_EvaluationLogic.html</a></p>
-</li>
-<li><p>S3 Doc translation:将VisibilityTimeout设置为0秒不会导致将消息移动到死信 队列。”=&gt; “设置为0秒则消息不会移动到死信队列”<br><a href="http://docs.aws.amazon.com/zh_cn/AWSSimpleQueueService/latest/SQSDeveloperGuide/AboutVT.html?shortFooter=true" target="_blank" rel="external">http://docs.aws.amazon.com/zh_cn/AWSSimpleQueueService/latest/SQSDeveloperGuide/AboutVT.html?shortFooter=true</a>  “</p>
-</li>
-</ol>
-<p>[EOF]</p>
-]]></content>
-      
-        <categories>
-            
-            <category> AWS </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> AWS </tag>
-            
-            <tag> Tips </tag>
-            
-        </tags>
-        
-    </entry>
+      <category term="Python" scheme="http://maxwu.me/tags/Python/"/>
     
-    <entry>
-      <title><![CDATA[get-aws-cda-certificate]]></title>
-      <url>http://maxwu.me/2017/01/07/get-aws-cda-certificate/</url>
-      <content type="html"><![CDATA[<h2 id="追加–AWS-Developer-Associate"><a href="#追加–AWS-Developer-Associate" class="headerlink" title="追加–AWS Developer Associate"></a>追加–AWS Developer Associate</h2><p>在去年(2016)10月考过SAA(Solution Architect Associate)后发现原来考试的顺序并非→_→最优. Developer的Certificate最简单,其次Sys-Admin,而SAA反而在入门级里面有一些难度.应当感谢一下南京考点的涂老师,在距离飞新西兰只有不到两周的时间很顺利的订上了时间段.</p>
-<p>现在有很多回忆已经不太清晰了,当时的感觉就是CDA比SAA要容易的多,大约有一半左右内容或知识点重复覆盖.有些个别的场景就要stand in my shoes,从提问者的角度来思考哪个方案更合理. 既然网速和上次一样仍然比较慢,可以采取的策略就是也不用理会题目上打得星标记号.时间总是双倍的够,所以做一遍然后再从头到尾都看一遍即可.多上网找找讲座可以赚考试券补贴20USD,拿来兑一次模拟考培养战力,推荐上微信搜云果儿.云果公司在深圳,服务很快速,微信或者淘宝上付款后考试卷两天内就可以发到邮箱或微信.拿到考试券就可以去官网上Redeem.虽然是Developer的认证,对开发这部分几乎没有什么涉及,所以平时Practice的Lambda, serverless等对这个考试本身没有直接帮助.但是如果能够很好的理解dev/ops框架,这个考试基本上不会有难度.</p>
-<p><img src="http://oei21r8n1.bkt.clouddn.com/AWS-CDA-Score.png?imageView/2/w/400/q/100" class="img-left"> </p>
-<p><img src="http://oei21r8n1.bkt.clouddn.com/AWS-CDA-Cert.png?imageView/2/w/400/q/100" class="img-left"></p>
-]]></content>
-      
-        <categories>
-            
-            <category> AWS </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> AWS </tag>
-            
-            <tag> CDA </tag>
-            
-        </tags>
-        
-    </entry>
+      <category term="unittest" scheme="http://maxwu.me/tags/unittest/"/>
     
-    <entry>
-      <title><![CDATA[Issues on Test Automation]]></title>
-      <url>http://maxwu.me/2016/12/31/Issues-on-Test-Automation/</url>
-      <content type="html"><![CDATA[<blockquote>
-<p>This post is based on the original Chinese blog articles, rephrased in English, removed some obsoleted points and added topics in recent months.</p>
-</blockquote>
-<p><img src="http://oei21r8n1.bkt.clouddn.com/Zixia_Lake.png?imageView/2/w/800/q/100" alt=""></p>
-<a id="more"></a>
-<p>A better title could be “Myths in Test Automation – a view from engineer”. However, not to scare readers, we just keep it lively maintained as issue list with contourmeasures and thoughts.</p>
-<h3 id="Tree-vs-Forest-–-“独木难成林”"><a href="#Tree-vs-Forest-–-“独木难成林”" class="headerlink" title="Tree vs. Forest – “独木难成林”"></a>Tree vs. Forest – “独木难成林”</h3><p>As a software engineer, I do have happy jouneys with occassional automation test. Which are also called one time tools. The utilities were created to resolve a certain type of testings in such situations:</p>
-<ul>
-<li><p>Some tests are not able to complete manually. Constrains on space and time might be not easily to satisfy with manual actions.</p>
-<ul>
-<li><p>One example is burst Wi-Fi connection and disconnection to a home gateway. </p>
-<p>  When I first realized an issue was with memory fragmentation, the test case in my mind is to call volunteers from my team together with all Android tablets, mobiles, laptops we can borrow and carry to lab and make a series of burst join/quit. It is true and I really did it once .I still keep the photo that a group of people are doing Wi-Fi connecting test together, for memory, for the sweats and cheers). </p>
-<p>  But after we reproduced the issue and successfully match the symptom as filed team suffered, it was not feasible to stay with the so called crowd action to qualify the patch-up component integration. Therefore an urgent request of tool to stably reproduce this issue is created. An one time tool could turn the unknown uncertaincy to known uncertaincy and release efforts.</p>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>Some test case request special skill to reproduce.</p>
-<ul>
-<li>It is like that some piano songs can only play with computer because the pace is too quick human fingers can hardly move this way.<ul>
-<li>An example is a race condition with home gateway GUI, TR69 management interface. It exhausts patience to reproduce it and record every execution sequences to table. Some of the pattern is sophisticated and ambiguous if we only tell from the text description. </li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>To explore more during the test. </p>
-<ul>
-<li>Tools like JBroFuzz provides precompiled fuzzers to offer randomization for different purpose. If the exploring is only on the space dimension of data feeding, as changing from a ascii-lower set to base64 set, or explore SQL-injection set for MySQL DB, it is time to introduce one time tools.</li>
-<li>Knowing there is an issue, but not sure how big the impacted scope is, or, what exact the trigger threshold is.</li>
-</ul>
-</li>
-</ul>
-<p>One-time automation test is like trees. This is an utilization of tools to achieve above expectations. It is happy and cheerful. However, this is not the same concept of test automation. </p>
-<p>(TBD)</p>
-<h3 id="Mixed-Coding-and-Test-Logics-–-“工欲善其事-必先利其器”"><a href="#Mixed-Coding-and-Test-Logics-–-“工欲善其事-必先利其器”" class="headerlink" title="Mixed Coding and Test Logics – “工欲善其事,必先利其器”"></a>Mixed Coding and Test Logics – “工欲善其事,必先利其器”</h3><p>This topic is still debating upon situations. Well this is the mostly heard challenge when we do SWOT analysis towards test automation. However, the observation is that interruption matters more. Below is based on the close observation and discussions with test professionals.</p>
-<p>When I am doing a manual test to GA a SW release, I don’t expect an out-of-observation-scope interruption to system which drive me have to start over. It costs energy for human beings to concentrate for a while no matter what we are doing. Testing is somehow a lonely work without in-time feedbacks as in games. To predict the logic branches and weak points consume more than it looks like.  </p>
-<p>(TBD)</p>
-<p>[draft-1, 2017-01-25,tbc]</p>
-<blockquote>
-<p>Some of the drafts are not on original Chinese version post, so a special date 12/31 will be used to track the global version.</p>
-</blockquote>
-<p>[EOF]</p>
-]]></content>
-      
-        <categories>
-            
-            <category> Automation Test </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Improvements </tag>
-            
-        </tags>
-        
-    </entry>
+      <category term="JUnit" scheme="http://maxwu.me/tags/JUnit/"/>
     
-    <entry>
-      <title><![CDATA[Job-Seeking in Wellington]]></title>
-      <url>http://maxwu.me/2016/12/09/Start-Job-Seeking-in-Wellington/</url>
-      <content type="html"><![CDATA[<h1 id="Seeking-a-Software-Job-in-Wellington-Region"><a href="#Seeking-a-Software-Job-in-Wellington-Region" class="headerlink" title="Seeking a Software Job in Wellington Region"></a>Seeking a Software Job in Wellington Region</h1><p>LinkedIn and Github links are available on this blog left navigation bar.</p>
-<ul>
-<li><a href="http://www.maxwu.me" target="_blank" rel="external">http://www.maxwu.me</a></li>
-<li><a href="http://stackoverflow.com/story/maxwu" target="_blank" rel="external">http://stackoverflow.com/story/maxwu</a></li>
-<li><a href="http://stackoverflow.com/cv/maxwu" target="_blank" rel="external">http://stackoverflow.com/cv/maxwu</a></li>
-<li><a href="https://github.com/maxwu" target="_blank" rel="external">https://github.com/maxwu</a> </li>
-</ul>
-<h1 id="Brief-Introduction"><a href="#Brief-Introduction" class="headerlink" title="Brief Introduction"></a>Brief Introduction</h1><p>Max is a software engineer in automation test area with development background, especially on Linux platform.</p>
-<p>As an automation test engineer, I have worked with Cucumber-JVM + JUnit + Selenium in Java and Robot Framework + Selenium + customized keyword lib in Python.<br>In those projects, I participated System Integration Test and Third Party Acceptance Test over several interfaces as CLI, Web Driver, RESTful and proprietary device protocols. As for Web testing, I have designed Page Objects and also Bot Style automation libraries to support the different test strategies. I also got Java programming and SQL experiences from the previous development work on security message gateway products. I set up the first Jenkins node to support building CI infrastructure for our team. The automation test cluster was built with vSphere environment. Meanwhile, my personal open source projects are migrated to Travis and Circle with Maven and JUnit. I keep the self-learning on test theories, programming skills and AWS technologies in off hours.</p>
-<p>In summary, I would like to highlight three points: the hands on skills on test automation, proven fast learning record and strong problem resolving ability.</p>
-<h1 id="Resume"><a href="#Resume" class="headerlink" title="Resume"></a>Resume</h1><ul>
-<li><p>Automation Test: <a href="http://resume.maxwu.me/" target="_blank" rel="external">http://resume.maxwu.me/</a></p>
-</li>
-<li><p>Developer/DevOps: <a href="http://cv.maxwu.me/" target="_blank" rel="external">http://cv.maxwu.me/</a></p>
-</li>
-</ul>
-<h1 id="Lessons"><a href="#Lessons" class="headerlink" title="Lessons"></a>Lessons</h1><ul>
-<li>The remarkable number.</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ⓑ maxwu  16:53  ~  4WLG  find ./ -name &quot;*.docx&quot; |grep -i ps |wc -l</div><div class="line">      88</div><div class="line">ⓑ maxwu  16:54  ~  4WLG</div></pre></td></tr></table></figure>
-<p><em>Updated Feb 16, 2017</em></p>
-<p>[EOF]</p>
-]]></content>
-      
-        <categories>
-            
-            <category> Writing </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Job </tag>
-            
-            <tag> Resume </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[get-aws-saa-on-monday]]></title>
-      <url>http://maxwu.me/2016/10/30/get-aws-saa-on-monday/</url>
-      <content type="html"><![CDATA[<h2 id="先完成一个小目标–AWS-Architect-Associate"><a href="#先完成一个小目标–AWS-Architect-Associate" class="headerlink" title="先完成一个小目标–AWS Architect Associate"></a>先完成一个小目标–AWS Architect Associate</h2><p><img src="http://oei21r8n1.bkt.clouddn.com/AWS_Office_20160923_135324.jpg?imageView/2/w/400/q/100" alt="AWS-Office"><br><a id="more"></a></p>
-<p>寒雨面前,南京的秋天就像小花猫一样不堪一击,乖乖的让位于霸气的冬雨.<br>上周Max急急忙忙通过云果购买了考试券并且很顺利注册到考试时间.周末用听讲座赚来的考试券(20USD)在考试网站上兑了第二次模拟考,都考了95%的好分数.其实同一个账号不管考几次模拟考都是只有20道题(正式考试60道)而且不会变化,但是同样的20道题可以大致上衡量出过去的一周进步是否稳固足够.周一(10/24)继续这个好兆头,顺利考了一个92%回来.遇到的问题是考试系统的网络延迟很大,每一题的刷新超过1min,而即使是英语考,每道题大概也只需要20~30s就可以完成.大量的时间其实花在等待考试系统页面刷新.</p>
-<p>根据研读的经验,AWS很多中文内容大约是采用了机器翻译和人工审核结合的方式,难免有一些不准确甚至数值或用语错误.为了和网上大家在Forum和Guru讨论的tips建立很好的知识关联,这里建议有兴趣的童鞋都直接报考英语版本,某些时候可以把AWS的资料中英对照着看来提高回顾的速度,毕竟资料内容比较多浏览理解几遍其实很花时间. 这门考试的范围很大而Associate对每个点的要求并不都是非常深入,不过涵盖的知识点比较多而散落在各个部分.因此大量的阅读和相互参照的学习是个好方法. </p>
-<p><img src="http://oei21r8n1.bkt.clouddn.com/AWS-SAA-Score.png?imageView/2/w/400/q/100" class="img-left"> </p>
-<p><img src="http://oei21r8n1.bkt.clouddn.com/AWS-ASS-Cert-v2.png?imageView/2/w/400/q/100" class="img-left"></p>
-]]></content>
-      
-        <categories>
-            
-            <category> AWS </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> AWS </tag>
-            
-            <tag> SAA </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Git command hanging up on Mac]]></title>
-      <url>http://maxwu.me/2016/10/03/Git-command-hanging-up-on-Mac/</url>
-      <content type="html"><![CDATA[<h2 id="解决Mac上git命令失去响应步骤"><a href="#解决Mac上git命令失去响应步骤" class="headerlink" title="解决Mac上git命令失去响应步骤"></a>解决Mac上git命令失去响应步骤</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">brew uninstall git</div><div class="line">brew uninstall curl</div><div class="line">brew install curl --with-openssl</div><div class="line">brew install git —with-brewed-curl —with-brewed-openssl</div></pre></td></tr></table></figure>
-<p>SS梯子可以参照proxychains-ng应用到cli.</p>
-]]></content>
-      
-        <categories>
-            
-            <category> Mac </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Mac </tag>
-            
-            <tag> git </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[dropme]]></title>
-      <url>http://maxwu.me/2016/10/02/dropme/</url>
-      <content type="html"><![CDATA[<h2 id="Dropme"><a href="#Dropme" class="headerlink" title="Dropme"></a>Dropme</h2><blockquote>
-<p>回归hexo,测试页面.</p>
-</blockquote>
-<p>English posts will be published on this site.</p>
-]]></content>
-      
-        <categories>
-            
-            <category> Writing </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Test </tag>
-            
-            <tag> Blog </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Hello World]]></title>
-      <url>http://maxwu.me/2016/10/02/hello-world/</url>
-      <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-]]></content>
-      
-        <categories>
-            
-            <category> Writing </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> bash </tag>
-            
-        </tags>
-        
-    </entry>
-    
+  </entry>
   
-  
-</search>
+</feed>
