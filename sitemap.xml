@@ -2,9 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://maxwu.me/2017/05/02/Recursive-Depth-First-Search-with-a-tracking-Set/</loc>
+    
+    <lastmod>2017-05-18T12:49:29.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://maxwu.me/about/index.html</loc>
+    
+    <lastmod>2017-05-18T12:34:48.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://maxwu.me/2017/05/16/BFS-solution-of-power-sum-challenge/</loc>
     
-    <lastmod>2017-05-18T03:20:20.000Z</lastmod>
+    <lastmod>2017-05-18T12:24:52.000Z</lastmod>
     
   </url>
   
@@ -12,20 +26,6 @@
     <loc>http://maxwu.me/2017/05/12/CIstat-preview-version-released/</loc>
     
     <lastmod>2017-05-16T12:07:35.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://maxwu.me/about/index.html</loc>
-    
-    <lastmod>2017-05-16T05:01:15.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://maxwu.me/2017/05/02/Recursive-Depth-First-Search-with-a-tracking-Set/</loc>
-    
-    <lastmod>2017-05-03T22:25:34.000Z</lastmod>
     
   </url>
   
