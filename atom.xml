@@ -232,9 +232,9 @@ ss = bfs(lmt, x, n)
       <category term="Java" scheme="http://maxwu.me/categories/Programming/Java/"/>
     
     
-      <category term="Algorithm" scheme="http://maxwu.me/tags/Algorithm/"/>
-    
       <category term="Java" scheme="http://maxwu.me/tags/Java/"/>
+    
+      <category term="Algorithm" scheme="http://maxwu.me/tags/Algorithm/"/>
     
       <category term="DFS" scheme="http://maxwu.me/tags/DFS/"/>
     
@@ -363,9 +363,9 @@ ss = bfs(lmt, x, n)
       <category term="Java" scheme="http://maxwu.me/categories/Programming/Java/"/>
     
     
-      <category term="Selenium" scheme="http://maxwu.me/tags/Selenium/"/>
-    
       <category term="Java" scheme="http://maxwu.me/tags/Java/"/>
+    
+      <category term="Selenium" scheme="http://maxwu.me/tags/Selenium/"/>
     
       <category term="Selenide" scheme="http://maxwu.me/tags/Selenide/"/>
     

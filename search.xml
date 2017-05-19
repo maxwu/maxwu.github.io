@@ -212,9 +212,9 @@ ss = bfs(lmt, x, n)
         
         <tags>
             
-            <tag> Algorithm </tag>
-            
             <tag> Java </tag>
+            
+            <tag> Algorithm </tag>
             
             <tag> DFS </tag>
             
@@ -338,9 +338,9 @@ ss = bfs(lmt, x, n)
         
         <tags>
             
-            <tag> Selenium </tag>
-            
             <tag> Java </tag>
+            
+            <tag> Selenium </tag>
             
             <tag> Selenide </tag>
             
@@ -1276,9 +1276,9 @@ ss = bfs(lmt, x, n)
         
         <tags>
             
-            <tag> Python </tag>
-            
             <tag> Java </tag>
+            
+            <tag> Python </tag>
             
             <tag> unittest </tag>
             
@@ -1455,9 +1455,9 @@ ss = bfs(lmt, x, n)
         
         <tags>
             
-            <tag> Selenium </tag>
-            
             <tag> Java </tag>
+            
+            <tag> Selenium </tag>
             
             <tag> Pageobject </tag>
             
@@ -1593,11 +1593,11 @@ ss = bfs(lmt, x, n)
         
         <tags>
             
+            <tag> Java </tag>
+            
             <tag> Cucumber </tag>
             
             <tag> Selenium </tag>
-            
-            <tag> Java </tag>
             
             <tag> Junit </tag>
             
