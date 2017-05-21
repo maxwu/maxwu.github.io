@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://maxwu.me/2017/05/20/Checking-RESTful-APIs/</loc>
+    
+    <lastmod>2017-05-21T12:32:58.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://maxwu.me/about/index.html</loc>
     
     <lastmod>2017-05-19T01:50:39.000Z</lastmod>
