@@ -99,7 +99,15 @@
 </table>
 <p><em><em>Notes:</em></em></p>
 <blockquote>
-<p><strong>PATCH</strong>: Unlike PUT, PATCH is not idempotent, both are not safe. Which is to say, PATCH is not required to be idempotent as I updates selected properties. Client shall not assume PATCH as idempotent operation. However, in purticular context, PATCH can be idempotent with headers “If-Match” or “If-Unmodified-Since”.<br>Another point, PATCH is not natively defined by HTTP specification. Which is introduced by RFC 5789, 2010 as an extension for Web APIs.<br><strong>GET</strong>: Safe and Idempotent. It is a hint to test cache via proxy or packet analyzer.<br><strong>POST</strong>: Two cases for POST method: Post-to-append (appending POST) and Post-to-overloaded (overloading POST). Post-to-append is the HTTP request to create a new resource beneath another resource.<br><strong>HEAD</strong>: Similar to GET but only has HTTP headers.<br><strong>OPTIONS</strong>: It is an HTTP native exploring verb. The return result holds a header of <http allow=""> which defines all methods current resource supports.<br><strong>LINK/UNLINK</strong>: It is not recommended to adapt LINK/UNLINK so far since it is not popular. The LINK/UNLINK are proposed in an IETF draft.</http></p>
+<p><strong>PATCH</strong>: Unlike PUT, PATCH is not idempotent, both are not safe. Which is to say, PATCH is not required to be idempotent as I updates selected properties. Client shall not assume PATCH as idempotent operation. However, in purticular context, PATCH can be idempotent with headers “If-Match” or “If-Unmodified-Since”. </p>
+<p>Another point, PATCH is not natively defined by HTTP specification. Which is introduced by RFC 5789, 2010 as an extension for Web APIs.</p>
+<p><strong>GET</strong>: Safe and Idempotent. It is a hint to test cache via proxy or packet analyzer.</p>
+<p><strong>POST</strong>: Two cases for POST method: Post-to-append (appending POST) and Post-to-overloaded (overloading POST). Post-to-append is the HTTP request to create a new resource beneath another resource. </p>
+<p><strong>POST_and_PUT</strong>: POST regards the URI as resource “acceptor”, not the resource itself to create. <code>POST https://api.forum.com/articles</code> is to create an article “for” articles resource, or, owned by articles. In the return result links to the new resource shall be indicated. The 2nd POST request will create another URI for articles. Therefore POST is not safe, non-idempotent. </p>
+<p>PUT is idempotent. <code>PUT https://api.forum.com/articles/101</code> is to update or create the resource “in” 101 URI. Multiple POST actions make no difference here. Hence PUT is idempotent method by definition. </p>
+<p><strong>HEAD</strong>: Similar to GET but only has HTTP headers.</p>
+<p><strong>OPTIONS</strong>: It is an HTTP native exploring verb. The return result holds a header of <http allow=""> which defines all methods current resource supports.</http></p>
+<p><strong>LINK/UNLINK</strong>: It is not recommended to adapt LINK/UNLINK so far since it is not popular. The LINK/UNLINK are proposed in an IETF draft.</p>
 </blockquote>
 <h3 id="1-4-HTTP-Status-Code"><a href="#1-4-HTTP-Status-Code" class="headerlink" title="1.4 HTTP Status Code"></a>1.4 HTTP Status Code</h3><table>
 <thead>
