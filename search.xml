@@ -39,6 +39,11 @@
 <p>Examples: GET and HEAD are safe methods. POST is not safe.</p>
 <p>$\mathsf{\color{olive}{✐ Idempotence}}$: The operation on resource(s) by making one request is the same as making a series of <em>identical</em> requests. This concept is from Maths. When an operation has same effect whether it is applied once or more than once. For example,$4\times0\times0 == 4\times0$. </p>
 <p>Examples: GET, PUT and DELETE are idempotent. POST is not idempotent, neither.</p>
+<p>HTTP v1.1 defines idempotence as:</p>
+<blockquote>
+<p>Methods can also have the property of “idempotence” in that (aside from error or expiration issues) the side-effects of N &gt; 0 identical requests is the same as for a single request.</p>
+</blockquote>
+<p>In distributed systems, idempotence is a key feature to decouple systems  to eliminate strong constrains. For example, withdraw money from a deposit</p>
 <p>Safety and idempotency allow clients to make reliable request over unreliable network environment. If the operation is safe, it can be cached and mutiplied without worry about side effects. If it is idempotent, the request can be replayed in unreliable environment.</p>
 <p>$\color{brown}{✓\ Misusing\ GET\ for\ Unsafe\ Operations}$<br>There is a common checkpoints for testing team to pay attention if safe metod as “GET” is misused to expose unsafe interfaces. </p>
 <h4 id="1-3-2-Summary-of-HTTP-Methods"><a href="#1-3-2-Summary-of-HTTP-Methods" class="headerlink" title="1.3.2 Summary of HTTP Methods"></a>1.3.2 Summary of HTTP Methods</h4><table>
