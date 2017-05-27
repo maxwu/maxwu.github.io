@@ -8,7 +8,7 @@
       <url>http://maxwu.me/2017/05/28/Greeting-Shell-script-with-Picture-show-and-Weathre-Forecast/</url>
       <content type="html"><![CDATA[<p>“<strong>iterm2 greeting with weather and image</strong>“ is a short shell made for bash_profil invoke to weather forecast based on GeoIP, a quote of greeting, and, show a random picture from given folder.<br><a id="more"></a></p>
 <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>It is created to make use of Friday evening and show my daughter’s random picture each time a terminal window is created. After a quick family demo show, I added cli arguments support the next day ㋡</p>
-<h2 id="Features"><a href="#Features" class="headerlink" title="Features"></a>Features</h2><div align="center"><br><a href="http://oei21r8n1.bkt.clouddn.com/img_greeting_2_20170528_8.png" id="id" target="_blank" rel="external"><br>     <img src="http://oei21r8n1.bkt.clouddn.com/img_greeting_2_20170528_8.png?imageView2/2/w/600"><br></a><br></div>
+<h2 id="Features"><a href="#Features" class="headerlink" title="Features"></a>Features</h2><div align="center"><br><a href="http://oei21r8n1.bkt.clouddn.com/img_greeting_2_20170528_8.png" id="id" target="_blank" rel="external"><br>     <img src="http://oei21r8n1.bkt.clouddn.com/img_greeting_2_20170528_8.png?imageView2/2/w/700"><br></a><br></div>
 
 <ul>
 <li>Show randmo picture from folder. <ul>
