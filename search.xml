@@ -26,20 +26,20 @@
       
         <categories>
             
-            <category> First Level Category </category>
+            <category> Programming </category>
             
-            <category> Second Level Sub Category </category>
+            <category> Shell </category>
             
         </categories>
         
         
         <tags>
             
-            <tag> First-level-tag </tag>
+            <tag> iterm2 </tag>
             
-            <tag> Second-level-tag </tag>
+            <tag> shell </tag>
             
-            <tag> Concrete-level-tag </tag>
+            <tag> imgcat </tag>
             
         </tags>
         

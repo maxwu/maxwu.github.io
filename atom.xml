@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://maxwu.me/"/>
-  <updated>2017-05-27T14:04:06.000Z</updated>
+  <updated>2017-05-27T14:05:25.000Z</updated>
   <id>http://maxwu.me/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://maxwu.me/2017/05/28/Greeting-Shell-script-with-Picture-show-and-Weathre-Forecast/"/>
     <id>http://maxwu.me/2017/05/28/Greeting-Shell-script-with-Picture-show-and-Weathre-Forecast/</id>
     <published>2017-05-27T13:53:18.000Z</published>
-    <updated>2017-05-27T14:04:06.000Z</updated>
+    <updated>2017-05-27T14:05:25.000Z</updated>
     
     <content type="html"><![CDATA[<p>“<strong>iterm2 greeting with weather and image</strong>“ is a short shell made for bash_profil invoke to weather forecast based on GeoIP, a quote of greeting, and, show a random picture from given folder.<br><a id="more"></a></p>
 <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>It is created to make use of Friday evening and show my daughter’s random picture each time a terminal window is created. After a quick family demo show, I added cli arguments support the next day ㋡</p>
@@ -46,16 +46,16 @@
     
     </summary>
     
-      <category term="First Level Category" scheme="http://maxwu.me/categories/First-Level-Category/"/>
+      <category term="Programming" scheme="http://maxwu.me/categories/Programming/"/>
     
-      <category term="Second Level Sub Category" scheme="http://maxwu.me/categories/First-Level-Category/Second-Level-Sub-Category/"/>
+      <category term="Shell" scheme="http://maxwu.me/categories/Programming/Shell/"/>
     
     
-      <category term="First-level-tag" scheme="http://maxwu.me/tags/First-level-tag/"/>
+      <category term="iterm2" scheme="http://maxwu.me/tags/iterm2/"/>
     
-      <category term="Second-level-tag" scheme="http://maxwu.me/tags/Second-level-tag/"/>
+      <category term="shell" scheme="http://maxwu.me/tags/shell/"/>
     
-      <category term="Concrete-level-tag" scheme="http://maxwu.me/tags/Concrete-level-tag/"/>
+      <category term="imgcat" scheme="http://maxwu.me/tags/imgcat/"/>
     
   </entry>
   
