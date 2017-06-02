@@ -92,7 +92,8 @@
 <meta property="og:site_name" content="+U Maxout!">
 <meta property="og:description" content="This post is based on the original Chinese blog articles, rephrased in English, removed some obsoleted points and added topics in recent months.">
 <meta property="og:image" content="http://oei21r8n1.bkt.clouddn.com/Zixia_Lake.png?imageView/2/w/800/q/100">
-<meta property="og:updated_time" content="2017-06-02T11:11:33.000Z">
+<meta property="og:image" content="https://martinfowler.com/bliki/images/testPyramid/test-pyramid.png">
+<meta property="og:updated_time" content="2017-06-02T12:17:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Issues on Test Automation">
 <meta name="twitter:description" content="This post is based on the original Chinese blog articles, rephrased in English, removed some obsoleted points and added topics in recent months.">
@@ -417,7 +418,12 @@
 <a id="more"></a>
 <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>A better title could be “Myths in Test Automation – a view from engineer”. However, not to scare readers, we just keep it lively maintained as issue list with contourmeasures and thoughts.</p>
 <h2 id="Where-we-are-–-The-shape-of-test-automation"><a href="#Where-we-are-–-The-shape-of-test-automation" class="headerlink" title="Where we are – The shape of test automation"></a>Where we are – The shape of test automation</h2><p>At first, this section describes from a high level view on how to reinforce test automation. </p>
-<h3 id="Test-Pyramid-–-The-ideal-position"><a href="#Test-Pyramid-–-The-ideal-position" class="headerlink" title="Test Pyramid – The ideal position?"></a>Test Pyramid – The ideal position?</h3><p>(TBD)</p>
+<h3 id="Test-Pyramid-–-The-ideal-position"><a href="#Test-Pyramid-–-The-ideal-position" class="headerlink" title="Test Pyramid – The ideal position?"></a>Test Pyramid – The ideal position?</h3><p>The chart of Pyramid model is from <a href="https://martinfowler.com/bliki/TestPyramid.html" target="_blank" rel="external">Martin Fowler</a>. Test Pyramid is from <a href="http://www.mountaingoatsoftware.com/" target="_blank" rel="external">Mkie Cohn</a>. </p>
+<blockquote>
+<p>The test pyramid is a concept developed by Mike Cohn, described in his book Succeeding with Agile. Its essential point is that you should have many more low-level unit tests than high level end-to-end tests running through a GUI.</p>
+<p><a href="https://martinfowler.com/bliki/TestPyramid.html" id="richardson_restful_maturity_mdel" align="center" target="_blank" rel="external"><br>     <img src="https://martinfowler.com/bliki/images/testPyramid/test-pyramid.png"><br></a></p>
+</blockquote>
+<p>Like bringing data as close to code as possible, the test shall be as close to code as possible. The distance of data and code increases the cost to warm data and rotate memory pages with cache line. The distance between test and code, in both space and time dimensions, could be regarded as a sign of cost of organization focus switch. </p>
 <h3 id="Cupcake-Anti-Pattern-–-Where-most-organizations-are"><a href="#Cupcake-Anti-Pattern-–-Where-most-organizations-are" class="headerlink" title="Cupcake Anti-Pattern – Where most organizations are"></a>Cupcake Anti-Pattern – Where most organizations are</h3><p>(TBD)</p>
 <h3 id="Rugby-Model-–-It-is-my-turn-to-go"><a href="#Rugby-Model-–-It-is-my-turn-to-go" class="headerlink" title="Rugby Model – It is my turn to go"></a>Rugby Model – It is my turn to go</h3><p>(TBD)</p>
 <h2 id="Clarifications-on-common-practice-issues-in-Automation-Test"><a href="#Clarifications-on-common-practice-issues-in-Automation-Test" class="headerlink" title="Clarifications on common practice issues in Automation Test"></a>Clarifications on common practice issues in Automation Test</h2><h3 id="Tree-vs-Forest-–-“独木难成林”"><a href="#Tree-vs-Forest-–-“独木难成林”" class="headerlink" title="Tree vs. Forest – “独木难成林”"></a>Tree vs. Forest – “独木难成林”</h3><p>As a software engineer, I do have happy jouneys with occassional automation test. Which are also called one time tools. The utilities were created to resolve a certain type of testings in such situations:</p>
