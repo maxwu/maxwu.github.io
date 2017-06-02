@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://maxwu.me/2016/12/31/Issues-on-Test-Automation/</loc>
+    
+    <lastmod>2017-06-02T11:11:33.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://maxwu.me/2017/01/23/Python-unittest-tips-from-JUnit-view/</loc>
+    
+    <lastmod>2017-05-29T21:24:56.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://maxwu.me/2017/01/23/JUnit-Tips/</loc>
+    
+    <lastmod>2017-05-29T21:14:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://maxwu.me/2017/05/20/Checking-RESTful-APIs/</loc>
     
     <lastmod>2017-05-29T04:24:10.000Z</lastmod>
@@ -100,13 +121,6 @@
   </url>
   
   <url>
-    <loc>http://maxwu.me/2017/01/23/JUnit-Tips/</loc>
-    
-    <lastmod>2017-03-22T08:45:09.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://maxwu.me/2016/10/02/dropme/</loc>
     
     <lastmod>2017-03-16T04:14:47.000Z</lastmod>
@@ -156,13 +170,6 @@
   </url>
   
   <url>
-    <loc>http://maxwu.me/2016/12/31/Issues-on-Test-Automation/</loc>
-    
-    <lastmod>2017-03-16T04:10:00.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://maxwu.me/2017/01/28/change-default-Docker-Quickstart-Terminal-for-Mac/</loc>
     
     <lastmod>2017-03-16T04:09:19.000Z</lastmod>
@@ -208,13 +215,6 @@
     <loc>http://maxwu.me/2017/01/10/Issue-in-RESTful-API-on-fitness-website-map-query-leading-to-404-page/</loc>
     
     <lastmod>2017-03-16T04:04:05.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://maxwu.me/2017/01/23/Python-unittest-tips-from-JUnit-view/</loc>
-    
-    <lastmod>2017-03-16T04:02:34.000Z</lastmod>
     
   </url>
   

@@ -97,7 +97,7 @@
 <meta property="og:image" content="http://junit.org/junit4/images/junit-logo.png">
 <meta property="og:image" content="http://www.seleniumhq.org/images/selenium-logo.png">
 <meta property="og:image" content="https://maven.apache.org/images/logos/maven-feather.png">
-<meta property="og:updated_time" content="2017-03-22T08:45:09.000Z">
+<meta property="og:updated_time" content="2017-05-29T21:14:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Tips on Using JUnit for Testing in Java">
 <meta name="twitter:description" content="Recently took a short test task on a blog prototype, here are notes about tips on applying JUnit into Testing, especially Web Testing. As a new comer to advanced JUnit features, this post is also a tr">
@@ -433,6 +433,7 @@
 <p>Above is the concept mapping from Martin Fowler <strong>Test Pyramid</strong>. There are still other verticle dimension test as performance test with JMeter (or curl, JPerf, et.), as OWASP test with ZAP. And in the time dimension, which is managed by <strong>Maven</strong> from drafting, coding, building, testing to deployment.</p>
 <p>Therefore the three dimenssions could be measured:</p>
 <p><img src="http://oei21r8n1.bkt.clouddn.com/ThreeDimenssions.png?imageView/2/w/400/q/100" class="img-left"></p>
+<p><em>Chart drafted with draw.io</em></p>
 <ul>
 <li><p><strong>Space dimession</strong>: Tests happen in different levels with different parameter scopes, exploring depth (test strength):</p>
 <ul>
@@ -457,7 +458,6 @@
 </ul>
 </li>
 </ul>
-<p><em>Chart drafted with draw.io</em></p>
 <p>Typically JUnit is not recognized as Integration or Performance testing tool. However, JUnit could be utilized as a test suite management/report tool in scenario or integration test as well. </p>
 <p>Following sections track the tips and hints for applying JUnit and following sections are updated lively with corrections, new findings, or, thoughts.</p>
 <h2 id="1-Applying-Rule"><a href="#1-Applying-Rule" class="headerlink" title="1. Applying @Rule"></a>1. Applying @Rule</h2><p>Annotation Rule is introduced with several builtin samples with JUnit4. </p>
