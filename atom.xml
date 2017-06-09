@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://maxwu.me/"/>
-  <updated>2017-05-27T14:06:41.000Z</updated>
+  <updated>2017-06-09T11:38:11.000Z</updated>
   <id>http://maxwu.me/</id>
   
   <author>
@@ -14,6 +14,114 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Notes on Agile and Test Automation Approaches</title>
+    <link href="http://maxwu.me/2017/06/09/Issues-on-Test-Automation/"/>
+    <id>http://maxwu.me/2017/06/09/Issues-on-Test-Automation/</id>
+    <published>2017-06-09T04:45:23.000Z</published>
+    <updated>2017-06-09T11:38:11.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="http://oei21r8n1.bkt.clouddn.com/Zixia_Lake.png?imageView/2/w/800/q/100" alt=""> </p>
+<p>The picture was taken for Zixia (Purple Light) Lake in famous Mt. Zijin of Nanjing (Nanking) city by my previous colleague. When we talk about migration to agile and automation test, it is rather to create a harmony with history assets and moderm methodology like to vitalize traditional building in morden metropolis with inner high-tech structural works, rather than a revolution on exteriority. <a id="more"></a></p>
+<p>($\color{blue}{Lively\ Updating}$) This post is based on the original Chinese blog articles and most parts are rewritten. I would keep on retrospectives and update it with new ideas periodically.</p>
+<h2 id="Brief"><a href="#Brief" class="headerlink" title="Brief"></a>Brief</h2><p>A better title could be “Myths in Test Automation – a view from engineer”. However, not to scare readers, we just keep it lively maintained as issue list with contourmeasures and thoughts.</p>
+<h2 id="4-versions-of-engineering-team-with-in-testing"><a href="#4-versions-of-engineering-team-with-in-testing" class="headerlink" title="4 versions of engineering team with/in testing"></a>4 versions of engineering team with/in testing</h2><p><strong>Version 1: Streamline Workers in Testing</strong></p>
+<p><strong>Version 2: Agile Testing</strong></p>
+<p><strong>Version 3: Role changed from tester to QA</strong></p>
+<p><strong>Version 4: Full Stack Testing Team</strong></p>
+<p>Here Full Stack is a term to reflect an end-to-end view from QA perspective rather than just testing.</p>
+<h2 id="Where-we-are-–-The-shape-of-test-automation"><a href="#Where-we-are-–-The-shape-of-test-automation" class="headerlink" title="Where we are – The shape of test automation"></a>Where we are – The shape of test automation</h2><p>At first, this section describes from a high level view on how to reinforce test automation. </p>
+<h3 id="Test-Pyramid-–-Ideal-Agile-Testing"><a href="#Test-Pyramid-–-Ideal-Agile-Testing" class="headerlink" title="Test Pyramid – Ideal Agile Testing"></a>Test Pyramid – Ideal Agile Testing</h3><p>The chart of Pyramid model is from <a href="https://martinfowler.com/bliki/TestPyramid.html" target="_blank" rel="external">Martin Fowler</a>. Test Pyramid is from <a href="http://www.mountaingoatsoftware.com/" target="_blank" rel="external">Mkie Cohn</a>. </p>
+<blockquote>
+<p>The test pyramid is a concept developed by Mike Cohn, described in his book Succeeding with Agile. Its essential point is that you should have many more low-level unit tests than high level end-to-end tests running through a GUI.</p>
+<div><a href="https://martinfowler.com/bliki/TestPyramid.html" id="richardson_restful_maturity_mdel" align="left" target="_blank" rel="external"><br>     <img src="https://martinfowler.com/bliki/images/testPyramid/test-pyramid.png" width="240"><br></a><br><a href="https://watirmelon.blog/2012/01/31/introducing-the-software-testing-ice-cream-cone/" id="richardson_restful_maturity_mdel" align="center" target="_blank" rel="external"><br>     <img src="https://watirmelon.files.wordpress.com/2012/01/idealautomatedtestingpyramid.png" width="240"><br></a><br></div>
+
+</blockquote>
+<p>Like bringing data as close to code as possible, the test shall be as close to code as possible. The distance of data and code increases the cost to warm data and rotate memory pages with cache line. The distance between test and code, in both space and time dimensions, could be regarded as a sign of cost of organization focus switch. </p>
+<p><a href="https://watirmelon.blog/2012/01/31/introducing-the-software-testing-ice-cream-cone/" target="_blank" rel="external">Alister Scott</a> added manual test on top of the pyramid. </p>
+<ul>
+<li><p>Fast iteration does not offer testing team a long time to perform more manual tests and the automated CI/CD becomes the fundamentals of agile to shorten the feedback cycle towards an autonomous learning organization. Even though, there are spaces for manual scenario based testing and exploring as an indispensable part of Agile Development cycle. It is true that the manual test sessions are a bit further to codes and extend a feedback cycle, but it is important to inspect from user scenario view and utilze human initiatives to qualify the software crafts and process.</p>
+</li>
+<li><p>Another take-away is the ability of test works to be <strong>reused</strong>. The lower it shows in above chart, the better adaptability it could have. </p>
+<ul>
+<li><p>UT is closest to code and will be maintained with code changes together with CI protection. The gap is counted by minutes. With <strong>Lava Light</strong> and CI, UT is consistent with code within 20min for most cases.</p>
+</li>
+<li><p>API and component interfaces have a middle level re-useability. Most of the test works are stable by a well reganized design style. If there are issues that APIs change frequently according to busniess, it is a smell of Architecture Refactor. The original design does not expect the busniess evolution model.</p>
+</li>
+<li><p>For UI layer and manual scenario tests, it is costing to maintain through releases because there are presentation of business and expected to change accordingly. With technologies like Page Object and a good automation framework, the costs could be mitigated sometimes. </p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Icecream-Cone-Anti-Pattern-–-The-Reality"><a href="#Icecream-Cone-Anti-Pattern-–-The-Reality" class="headerlink" title="Icecream Cone Anti-Pattern – The Reality"></a>Icecream Cone Anti-Pattern – The Reality</h3><p><a href="https://watirmelon.blog/2012/01/31/introducing-the-software-testing-ice-cream-cone/" target="_blank" rel="external">Alister Scott</a> also pointed an <strong>“Icecream Cone Anti-Pattern”</strong> to describe the reality of testing industry.  </p>
+<p><a href="https://watirmelon.blog/2012/01/31/introducing-the-software-testing-ice-cream-cone/" id="richardson_restful_maturity_mdel" align="left" target="_blank" rel="external"><br>     <img src="https://watirmelon.files.wordpress.com/2012/01/softwaretestingicecreamconeantipattern.png" width="220"><br></a></p>
+<p>Where the organizations have history assets or in an intermedium position to grow skilled engineers in testing, the most evident activities are still manual tests. </p>
+<p>One possible reason is with culture building, as <strong><a href="https://en.wikipedia.org/wiki/Conway%27s_law" target="_blank" rel="external">Conway’s Law</a></strong> points out, the organization way of evaluating co-workers will come out with the output of software processes. If engineers work in an atmosphere that the bug numbers are a key to evaluate themselves, the manual test, with its time and resource consumption will be an asset, or, a debt, of the orgnazation. </p>
+<p>Another possible reason is also on culture that developers don’t have enough encourage or time to protect works with Unit Test. On the contrast, writing unit tests will influence developers to think about how peers are using that part of code and the structure will be designed to adapt a better decoupling philosophy and a better testability (the level of how the program is friendly to test, and then friendly to refactor).</p>
+<h3 id="Cupcake-Anti-Pattern-–-Reality-of-Agile-Testing"><a href="#Cupcake-Anti-Pattern-–-Reality-of-Agile-Testing" class="headerlink" title="Cupcake Anti-Pattern – Reality of Agile Testing"></a>Cupcake Anti-Pattern – Reality of Agile Testing</h3><p>Software Testing <strong>Cupcafe Anti-Pattern</strong> is a model by <a href="https://www.thoughtworks.com/profiles/fabio-pereira" target="_blank" rel="external">Fabio Pereira, Thoughworks</a> to describe what agile turns out to be in most organizations.</p>
+<p><a href="https://www.thoughtworks.com/insights/blog/introducing-software-testing-cupcake-anti-pattern" align="left" target="_blank" rel="external"><br>     <img src="https://insights-images.thoughtworks.com/fabiocupcakenew1_0_04444aff9e8be210d16a68f29a20fe7a.png" width="300"><br></a></p>
+<p>The most siganificant take-away from this model is the isolation smell. It works partially as a mini-waterfall model that groups of team members make duplicated coverage. It usually happens when there is a separate automation testing team and an existing asset of “manual” test group to keep current business running.</p>
+<h3 id="Rugby-Model-–-Time-to-propose-a-theory-to-experiment"><a href="#Rugby-Model-–-Time-to-propose-a-theory-to-experiment" class="headerlink" title="Rugby Model – Time to propose a theory to experiment"></a>Rugby Model – Time to propose a theory to experiment</h3><p><img src="http://oei21r8n1.bkt.clouddn.com/Rugby_20170609_12.png" alt=""></p>
+<p>Focus on the middle layer instead of Unit Test. During the Agile Migration, pay most attention on API testing. For example, RESTful API testing can be extended to scenario test and create conditions and checkpoints for sceanrio level inspection. The RESTful API level automation testing can also provide a primary data analysis on which part is the most urgent section to protect with Unit Test.</p>
+<p>It is not a fresh new concept. The term <a href="https://martinfowler.com/bliki/SubcutaneousTest.html" target="_blank" rel="external">Subcutaneous Test</a> covers the similar way on a pseudo end-to-end test but avoid the UI complexity (complexity is usually a singal of heavy design and indicator of high risk on test maintenance).</p>
+<h2 id="Thoughts-on-common-practice-issues-in-Automation-Test"><a href="#Thoughts-on-common-practice-issues-in-Automation-Test" class="headerlink" title="Thoughts on common practice issues in Automation Test"></a>Thoughts on common practice issues in Automation Test</h2><h3 id="Tools-matter-–-Yes"><a href="#Tools-matter-–-Yes" class="headerlink" title="Tools matter – Yes"></a>Tools matter – Yes</h3><p>Tools are not only tools in a transverse movement, but also a way of cultrual idea exchange and influence on way of works.</p>
+<p>Language is a tool in communication, it impacts our culture.<br>SW Dev Frameworks are tools, it influence people indeed.ROR almost defined it as a standard for a narrowed scope of RESTful. Without JUnit, XUnit, the basic Unit Test concepts would be as popular as they are now.</p>
+<p>A home-made or customized toolbox is a way to exchange ideas with whole team on objectives, process, learning topics. As an old saying in Lucent, tools are ways to train people.</p>
+<h3 id="Mixed-Coding-and-Test-Skills-–-Yes"><a href="#Mixed-Coding-and-Test-Skills-–-Yes" class="headerlink" title="Mixed Coding and Test Skills – Yes"></a>Mixed Coding and Test Skills – Yes</h3><p>This topic is still debating upon situations. Well this is the mostly heard challenge when we do SWOT analysis towards test automation. However, the observation is that interruption matters more. Below is based on the close observation and discussions with test professionals.</p>
+<p>When I am doing a manual test to GA a SW release, I don’t expect an out-of-observation-scope interruption to system which drive me have to start over. It costs energy for human beings to concentrate for a while no matter what we are doing. Testing is somehow a lonely work without in-time feedbacks as in games. To predict the logic branches and weak points consume more than it looks like.</p>
+<h3 id="Tree-vs-Forest-–-Both"><a href="#Tree-vs-Forest-–-Both" class="headerlink" title="Tree vs. Forest – Both"></a>Tree vs. Forest – Both</h3><p>As a software engineer, I do have happy jouneys with occassional automation test. Which are also called one time tools. The utilities were created to resolve a certain type of testings in such situations:</p>
+<ul>
+<li><p>Some tests are not able to complete manually. Constrains on space and time might be not easily to satisfy with manual actions.</p>
+<ul>
+<li><p>One example is burst Wi-Fi connection and disconnection to a home gateway. </p>
+<p>  When I first realized an issue was with memory fragmentation, the test case in my mind is to call volunteers from my team together with all Android tablets, mobiles, laptops we can borrow and carry to lab and make a series of burst join/quit. It is true and I really did it once .I still keep the photo that a group of people are doing Wi-Fi connecting test together, for memory, for the sweats and cheers). </p>
+<p>  But after we reproduced the issue and successfully match the symptom as filed team suffered, it was not feasible to stay with the so called crowd action to qualify the patch-up component integration. Therefore an urgent request of tool to stably reproduce this issue is created. An one time tool could turn the unknown uncertaincy to known uncertaincy and release efforts.</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>Some test case request special skill to reproduce.</p>
+<ul>
+<li>It is like that some piano songs can only play with computer because the pace is too quick human fingers can hardly move this way.<ul>
+<li>An example is a race condition with home gateway GUI, TR69 management interface. It exhausts patience to reproduce it and record every execution sequences to table. Some of the pattern is sophisticated and ambiguous if we only tell from the text description. </li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>To explore more during the test. </p>
+<ul>
+<li>Tools like JBroFuzz provides precompiled fuzzers to offer randomization for different purpose. If the exploring is only on the space dimension of data feeding, as changing from a ascii-lower set to base64 set, or explore SQL-injection set for MySQL DB, it is time to introduce one time tools.</li>
+<li>Knowing there is an issue, but not sure how big the impacted scope is, or, what exact the trigger threshold is.</li>
+</ul>
+</li>
+</ul>
+<p>One-time automation test is like trees. This is an utilization of tools to achieve above expectations. It is happy and cheerful. However, this is not the same concept of test automation.   </p>
+<p>[Pub-1, 2017-06-09]: Since most parts are rewritten or revised, the release date of this post is changed to recent day]<br>[draft-2, 2017-06-02]: Add agile test models, bring up Rugby model]<br>[draft-1, 2017-01-25]: Initial draft.</p>
+<blockquote>
+<p>Some of the drafts are not on original Chinese version post, so a special date 12/31 will be used to track the global version.</p>
+</blockquote>
+<p>[EOF]</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://oei21r8n1.bkt.clouddn.com/Zixia_Lake.png?imageView/2/w/800/q/100&quot; alt=&quot;&quot;&gt; &lt;/p&gt;
+&lt;p&gt;The picture was taken for Zixia (Purple Light) Lake in famous Mt. Zijin of Nanjing (Nanking) city by my previous colleague. When we talk about migration to agile and automation test, it is rather to create a harmony with history assets and moderm methodology like to vitalize traditional building in morden metropolis with inner high-tech structural works, rather than a revolution on exteriority.
+    
+    </summary>
+    
+      <category term="Automation Test" scheme="http://maxwu.me/categories/Automation-Test/"/>
+    
+      <category term="Agile" scheme="http://maxwu.me/categories/Automation-Test/Agile/"/>
+    
+    
+      <category term="Agile" scheme="http://maxwu.me/tags/Agile/"/>
+    
+      <category term="Test Automation" scheme="http://maxwu.me/tags/Test-Automation/"/>
+    
+  </entry>
   
   <entry>
     <title>Greeting Shell script with Picture show and Weathre Forecast</title>
@@ -1330,35 +1438,6 @@ ss = bfs(lmt, x, n)
       <category term="Ansible" scheme="http://maxwu.me/tags/Ansible/"/>
     
       <category term="Awsacs" scheme="http://maxwu.me/tags/Awsacs/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>change default Docker Quickstart Terminal for Mac</title>
-    <link href="http://maxwu.me/2017/01/28/change-default-Docker-Quickstart-Terminal-for-Mac/"/>
-    <id>http://maxwu.me/2017/01/28/change-default-Docker-Quickstart-Terminal-for-Mac/</id>
-    <published>2017-01-28T03:43:24.000Z</published>
-    <updated>2017-03-16T04:09:19.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>For some reason I’d change Docker Quickstart Terminal to Mac default Terminal instead of iTem. But it failed at first tries, even by uninstalling docker from Mac system.<br><a id="more"></a></p>
-<p>Searching such config file by name “default_terminal”, there is a text file to record this option. Removing this file and relaunch docker, or, just edit it directly will close this issue.</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"> ⓑ maxwu  16:32  ~  devel  circleci-stat   master  sudo find / -name default_terminal</div><div class="line">Password:</div><div class="line">find: /dev/fd/3: Not a directory</div><div class="line">find: /dev/fd/4: Not a directory</div><div class="line">/Users/maxwu/Library/Application Support/DockerToolbox/default_terminal</div><div class="line"> ⓑ maxwu  16:34  ~  devel  circleci-stat   master  vim /Users/maxwu/Library/Application\ Support/DockerToolbox/default_terminal</div><div class="line"> ⓑ maxwu  16:35  ~  devel  circleci-stat   master </div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;For some reason I’d change Docker Quickstart Terminal to Mac default Terminal instead of iTem. But it failed at first tries, even by uninstalling docker from Mac system.&lt;br&gt;
-    
-    </summary>
-    
-      <category term="DevOps" scheme="http://maxwu.me/categories/DevOps/"/>
-    
-      <category term="Docker" scheme="http://maxwu.me/categories/DevOps/Docker/"/>
-    
-    
-      <category term="Mac" scheme="http://maxwu.me/tags/Mac/"/>
-    
-      <category term="Docker" scheme="http://maxwu.me/tags/Docker/"/>
     
   </entry>
   
