@@ -173,7 +173,7 @@
     <link href="http://maxwu.me/2017/05/20/Thoughts-on-RESTful-API-Design-and-Testing/"/>
     <id>http://maxwu.me/2017/05/20/Thoughts-on-RESTful-API-Design-and-Testing/</id>
     <published>2017-05-20T09:27:33.000Z</published>
-    <updated>2017-06-20T10:37:25.000Z</updated>
+    <updated>2017-06-20T10:47:07.000Z</updated>
     
     <content type="html"><![CDATA[<p>($\color{blue}{This\ Post\ is\ in\ progress}$) My plan is to take 3 timeslots among weekends to complete this post. It is inspired by another post described the disapproving on current common misunderstanding among concepts of RESTful, CRUD, Safety, Security and Idempotency.<br><img src="http://oei21r8n1.bkt.clouddn.com/RESTful_img_20170527_6.png" alt="RESTful Img"><br>This post targets to rephase RESTful concept and describes common check points against RESTful API architecture test during Software Design Review.As practical samples, Jenkins API and CircleCI/TravisCI API will be analyzed, tested and evaluated.<br><a id="more"></a></p>
 <h2 id="1-RESTful-Style-Design"><a href="#1-RESTful-Style-Design" class="headerlink" title="1 RESTful Style Design"></a>1 RESTful Style Design</h2><h3 id="1-1-RESTful-Maturity-Model-and-the-Background"><a href="#1-1-RESTful-Maturity-Model-and-the-Background" class="headerlink" title="1.1 RESTful Maturity Model and the Background"></a>1.1 RESTful Maturity Model and the Background</h3><p>$\mathsf{\color{olive}{✐\ RESTful}}$: <strong>REpresentational State Transfer</strong>, by Roy Thomas Fielding <a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm" title="Architectural Styles and the Design of Network-based Software Architectures" target="_blank" rel="external">Phd Dessertation</a>, 2000.</p>
@@ -316,11 +316,11 @@
 <tr>
 <td style="text-align:left">5XX</td>
 <td style="text-align:center"><span style="color: red">Server Error</span></td>
-<td style="text-align:center"><span style="color: red">501 - Not Implemented</span></td>
+<td style="text-align:center"><span style="color: red">501 - Not Implemented <br> 505 - HTTP Version Not Supported</span></td>
 </tr>
 </tbody>
 </table>
-<p><em><em>Notes:</em></em><br>Here is a <a href="https://i.stack.imgur.com/whhD1.png" target="_blank" rel="external">complete decision diagram</a> on HTTP status code.</p>
+<p><em><em>Notes:</em></em><br>Here is a <a href="https://i.stack.imgur.com/whhD1.png" target="_blank" rel="external">complete decision diagram</a> on HTTP status code.<br>For a quick reference on HTTP status code, readers are recommended to visit <a href="https://httpstatuses.com/" target="_blank" rel="external">httpstatuses.com</a></p>
 <h2 id="2-Check-Points-in-RESTful-API-review"><a href="#2-Check-Points-in-RESTful-API-review" class="headerlink" title="2 Check Points in RESTful API review"></a>2 Check Points in RESTful API review</h2><p>In current section, the check points list is shared. It will be maintained lively. The list shall be able to apply in architecture review and testing works directly. I would try to add more concrete examples in following days.</p>
 <p><strong>✓ HTTPs protocol always</strong></p>
 <p>As common practice, CircleCI, travis-ci and Github are on HTTPs. However there are still couple of issues to pay special attention on security (refer to previous tips section in this post on safety vs security).</p>
