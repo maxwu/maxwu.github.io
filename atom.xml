@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://maxwu.me/"/>
-  <updated>2017-06-11T08:53:18.000Z</updated>
+  <updated>2017-06-20T10:39:43.000Z</updated>
   <id>http://maxwu.me/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Notes on Agile and Test Automation Approaches</title>
-    <link href="http://maxwu.me/2017/06/09/Issues-on-Test-Automation/"/>
-    <id>http://maxwu.me/2017/06/09/Issues-on-Test-Automation/</id>
+    <title>Lessons and Thoughts on Agile and Test Automation Approaches</title>
+    <link href="http://maxwu.me/2017/06/09/Lessons-and-Thoughts-on-Agile-and-Test-Automation-Approaches/"/>
+    <id>http://maxwu.me/2017/06/09/Lessons-and-Thoughts-on-Agile-and-Test-Automation-Approaches/</id>
     <published>2017-06-09T04:45:23.000Z</published>
-    <updated>2017-06-11T08:53:18.000Z</updated>
+    <updated>2017-06-20T10:39:43.000Z</updated>
     
     <content type="html"><![CDATA[<p><img src="http://oei21r8n1.bkt.clouddn.com/Zixia_Lake.png?imageView/2/w/500/q/70" alt=""> </p>
 <p>The picture was taken for Zixia (Purple Light) Lake in famous Mt. Zijin of Nanjing (Nanking) city by my previous colleague. When we talk about migration to agile and automation test, it is rather to create a harmony with history assets and moderm methodology like to vitalize traditional building in morden metropolis with inner high-tech structural works, rather than a revolution on exteriority. <a id="more"></a></p>
