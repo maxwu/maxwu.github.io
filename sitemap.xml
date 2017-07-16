@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://maxwu.me/about/index.html</loc>
+    
+    <lastmod>2017-07-16T09:48:36.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://maxwu.me/2017/05/20/Thoughts-on-RESTful-API-Design-and-Testing/</loc>
     
     <lastmod>2017-07-06T10:54:01.000Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>http://maxwu.me/2017/06/09/Lessons-and-Thoughts-on-Agile-and-Test-Automation-Approaches/</loc>
     
     <lastmod>2017-06-20T11:09:00.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://maxwu.me/about/index.html</loc>
-    
-    <lastmod>2017-06-10T00:21:43.000Z</lastmod>
     
   </url>
   
