@@ -19,7 +19,18 @@
 <p>Another example is to generate 8 TCP streams with IPerf tool and test if the system can still holds the acceptance success rate. </p>
 <p>Innovation of testing methodologies could save the cost and time by introducing new techniques to stress system. One case is that I used to set Linux IP Filter to drop 50% packets from some source and verify if the fault handling is still correct. </p>
 <h2 id="Toolkits-and-Tips-to-Implement-Performance-Testing"><a href="#Toolkits-and-Tips-to-Implement-Performance-Testing" class="headerlink" title="Toolkits and Tips to Implement Performance Testing"></a>Toolkits and Tips to Implement Performance Testing</h2><h3 id="Simulate-the-Background-Load"><a href="#Simulate-the-Background-Load" class="headerlink" title="Simulate the Background Load"></a>Simulate the Background Load</h3><p>Background load here refers to the prerequisites to kick off stressing test. It usually includes one of below item or a combination of picked up factors.</p>
-<h4 id="CPU-load-per-core-or-for-specific-cores"><a href="#CPU-load-per-core-or-for-specific-cores" class="headerlink" title="CPU load (per core or for specific cores)"></a>CPU load (per core or for specific cores)</h4><h4 id="Memory-Pressure"><a href="#Memory-Pressure" class="headerlink" title="Memory Pressure,"></a>Memory Pressure,</h4><h4 id="Traffics-w-or-w-o-stream-packet-dropping-rate"><a href="#Traffics-w-or-w-o-stream-packet-dropping-rate" class="headerlink" title="Traffics (w/ or w/o stream/packet dropping rate),"></a>Traffics (w/ or w/o stream/packet dropping rate),</h4><h4 id="Persistance-status-disk-occupation-rate-disk-IO-pressure"><a href="#Persistance-status-disk-occupation-rate-disk-IO-pressure" class="headerlink" title="Persistance status (disk occupation rate, disk IO pressure)."></a>Persistance status (disk occupation rate, disk IO pressure).</h4><p>(TBC)</p>
+<h4 id="CPU-load"><a href="#CPU-load" class="headerlink" title="CPU load"></a>CPU load</h4><p>(per core or for specific cores)</p>
+<h4 id="Memory-Pressure"><a href="#Memory-Pressure" class="headerlink" title="Memory Pressure"></a>Memory Pressure</h4><p>(Pay attention to libc-rt malloc and overcommitment.)</p>
+<h4 id="Traffics-w-or-w-o-stream-packet-dropping-rate"><a href="#Traffics-w-or-w-o-stream-packet-dropping-rate" class="headerlink" title="Traffics (w/ or w/o stream/packet dropping rate)"></a>Traffics (w/ or w/o stream/packet dropping rate)</h4><p>(Stream: shape, rate, ToS/QoS, Jumbo packets, Back-to-back)</p>
+<p>(IP Filter based packet drop rate)</p>
+<p>(SQL transaction drop rate)</p>
+<p>(Load Balance Policy based failure rate)</p>
+<p>(Other failure rate)</p>
+<p>(TBC)</p>
+<h4 id="Persistance-status-disk-occupation-rate-disk-IO-pressure"><a href="#Persistance-status-disk-occupation-rate-disk-IO-pressure" class="headerlink" title="Persistance status (disk occupation rate, disk IO pressure)"></a>Persistance status (disk occupation rate, disk IO pressure)</h4><p>(IOwait measurement, simulation)</p>
+<p>(TBC)</p>
+<h2 id="Performance-Issues-Sharing"><a href="#Performance-Issues-Sharing" class="headerlink" title="Performance Issues Sharing"></a>Performance Issues Sharing</h2><p>(Experiences of solving performance issues)</p>
+<p>(TBC)</p>
 <h2 id="Change-Log"><a href="#Change-Log" class="headerlink" title="Change Log"></a>Change Log</h2><p>Jul26, 2017: Initial post draft.</p>
 ]]></content>
       
