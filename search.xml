@@ -1775,9 +1775,9 @@ self.assertTrue(<span class="string">"exception message"</span> <span class="key
             
             <tag> Java </tag>
             
-            <tag> unittest </tag>
-            
             <tag> JUnit </tag>
+            
+            <tag> unittest </tag>
             
         </tags>
         
@@ -2090,11 +2090,11 @@ self.assertTrue(<span class="string">"exception message"</span> <span class="key
             
             <tag> Selenium </tag>
             
-            <tag> Java </tag>
-            
             <tag> Cucumber </tag>
             
             <tag> Junit </tag>
+            
+            <tag> Java </tag>
             
         </tags>
         
@@ -2183,9 +2183,9 @@ self.assertTrue(<span class="string">"exception message"</span> <span class="key
             
             <tag> RESTful </tag>
             
-            <tag> Test </tag>
-            
             <tag> Defect </tag>
+            
+            <tag> Test </tag>
             
         </tags>
         
