@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://maxwu.me/"/>
-  <updated>2017-07-26T11:21:05.000Z</updated>
+  <updated>2017-08-06T11:57:36.000Z</updated>
   <id>http://maxwu.me/</id>
   
   <author>
@@ -14,6 +14,60 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Capture Existing Selenium WebDriver Session</title>
+    <link href="http://maxwu.me/2017/08/06/Capture-Existing-Selenium-WebDriver-Session/"/>
+    <id>http://maxwu.me/2017/08/06/Capture-Existing-Selenium-WebDriver-Session/</id>
+    <published>2017-08-06T10:43:07.000Z</published>
+    <updated>2017-08-06T11:57:36.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Notes on how to intervene an existing selenium web driver session with impelementation and tests.</p>
+<a id="more"></a>
+<h2 id="Problem-to-Solve"><a href="#Problem-to-Solve" class="headerlink" title="Problem to Solve"></a>Problem to Solve</h2><p>As a software engineer in automation test, sometimes it is the most reasonable method to capture the existing selenium web driver session and intervene with customized action steps. Especially with the commercial toolkit or homemade testing utility but source is not open at the meantime. </p>
+<p>In my case, the toolkit is not able to fill up one of the authentication page. However, it offers a keyword to pause until a manual action to input user crediential. Current solution is to monitor the stdout with bash shell, when the typical log of “<a href="http://localhost:XXXX" target="_blank" rel="external">http://localhost:XXXX</a>“ shows up, use the selenium commander URL to capture the existing selenium session. There is still a parameter of session ID missing. This can be solved by an JSON wired protocol end point, “/sessions”. Usually toolkit implements singleton on seleenium driver language binding. Query the end point of “/sessions” will return the session ID between web driver executable and the browser.</p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><h3 id="Find-Existing-Session-ID"><a href="#Find-Existing-Session-ID" class="headerlink" title="Find Existing Session ID"></a>Find Existing Session ID</h3><p>As mentioned in above, the communication between Selenium Development Language bindings and WebDriver executables is the JSON wired protocol. </p>
+<p><a href="https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessions" target="_blank" rel="external">https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessions</a></p>
+<p>Unfortunately this end point is not implemented with Selenium Java or Python binding. It could be soloved by a new created wrapper function to query existing sessions.</p>
+<p>Generally automation test toolkit desktop version implements singleton on selenium binding instance and keep one session. So the query above will return one session in JSON. The solution is to add code parsing the return value and extract the session ID.</p>
+<p>For example, if the selenium based toolkit generates stdout or logs as below:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">http://localhost:6064 </div><div class="line">``` </div><div class="line"></div><div class="line">The session can be queried by URL in browser:</div></pre></td></tr></table></figure>
+<p><a href="http://localhost:6064/sessions" target="_blank" rel="external">http://localhost:6064/sessions</a><br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"></div><div class="line">![](http://oei21r8n1.bkt.clouddn.com/Query_Selenium_Sessions.png?imageView/2/w/300/q/200)</div><div class="line"></div><div class="line"></div><div class="line">### Capture Existing Selenium Session</div><div class="line"></div><div class="line">With an effective session ID and executing commander URL, the captured web driver class overwrites start_session method. Property &quot;w3c&quot; is assigned for Web Element Find method groups.</div><div class="line"></div><div class="line">```python</div><div class="line">class CapturedDriver(WebDriver):</div><div class="line">    &quot;&quot;&quot;</div><div class="line">    &gt;&gt;&gt; CapturedDriver.doctest_visit_github()</div><div class="line">    PASS</div><div class="line">    &quot;&quot;&quot;</div><div class="line">    def __init__(self,</div><div class="line">                 command_executor=None,</div><div class="line">                 desired_capabilities=&#123;&#125;,</div><div class="line">                 browser_profile=None,</div><div class="line">                 proxy=None,</div><div class="line">                 keep_alive=False,</div><div class="line">                 session_id=None,</div><div class="line">                 w3c=True):</div><div class="line">        super(CapturedDriver, self).__init__(command_executor, desired_capabilities, browser_profile, proxy, keep_alive)</div><div class="line">        self.session_id = session_id</div><div class="line">        self.w3c = w3c</div><div class="line"></div><div class="line">    def start_session(self, desired_capabilities, browser_profile):</div><div class="line">        self.capabilities = &#123;&#125;</div><div class="line"></div><div class="line">    @staticmethod</div><div class="line">    def doctest_visit_github():</div><div class="line">        d = wd.Firefox()</div><div class="line">        d.get(&apos;http://github.com&apos;)</div><div class="line">        # &quot;The world&apos;s leading software development platform · GitHub&quot;</div><div class="line">        title1 = d.title</div><div class="line">        d2 = CapturedDriver(command_executor=d.command_executor, session_id=d.session_id, w3c=d.w3c)</div><div class="line">        title2 = d2.title</div><div class="line">        if title1 == title2:</div><div class="line">            print &quot;PASS&quot;</div><div class="line">        else:</div><div class="line">            print &quot;driver title is %s, captured driver title is %s&quot; % (title1, title2)</div><div class="line">        d.quit()</div><div class="line"></div><div class="line">if __name__ == &quot;__main__&quot;:</div><div class="line">    import doctest</div><div class="line">    doctest.testmod()</div></pre></td></tr></table></figure></p>
+<p>The unit test is implemented with doctest as a fast way for experiment codes.</p>
+<p>The source code is shared at <a href="https://github.com/maxwu/selenium-behave-box/blob/master/src/captured_driver/captured_driver.py" target="_blank" rel="external">Github Folder</a> now. Java binding solution is still under construction. After that, a separate Github project will be created to maintain this solution together with monitoring bash shell. </p>
+<h2 id="Test-The-Solution"><a href="#Test-The-Solution" class="headerlink" title="Test The Solution"></a>Test The Solution</h2><p>To tes the solution, open a selenium session and extract the session ID and commander URL. For a quick test, the existing github project <a href="https://github.com/maxwu/cucumber-java-toy" target="_blank" rel="external">cucumber-java-toy</a> is used. The code is as below:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">webDriver1</span><span class="params">()</span></span>&#123;</div><div class="line">    githubPage = <span class="keyword">new</span> GithubPage(driver, <span class="string">"maxwu"</span>);</div><div class="line">    List&lt;String&gt; followings = githubPage.getFollowingList();</div><div class="line">    followings.stream().forEach(System.out::println);</div><div class="line"></div><div class="line">    URL driverUrl = ((HttpCommandExecutor)(((RemoteWebDriver) driver).getCommandExecutor())).getAddressOfRemoteServer();</div><div class="line">    String sessionId = ((RemoteWebDriver) driver).getSessionId().toString();</div><div class="line">    System.out.println(<span class="string">"URL="</span> + driverUrl + <span class="string">" ID="</span> + sessionId);</div><div class="line"></div><div class="line">    System.out.println(<span class="string">"Old Title="</span> + driver.getTitle());</div><div class="line"></div><div class="line">    pause();</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>When the commander URL and session ID are available, the quick test could be performed with below Python snap.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="keyword">from</span> captured_driver.captured_driver <span class="keyword">import</span> CapturedDriver</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</div><div class="line">    <span class="comment"># For temp test</span></div><div class="line">    <span class="comment"># d = CapturedDriver(command_executor='http://127.0.0.1:4444/wd/hub', session_id='')</span></div><div class="line">    d = CapturedDriver(command_executor=<span class="string">'http://localhost:6064 '</span>, session_id=<span class="string">'49075f494d1add687ab74f1cb95f0314'</span>)</div><div class="line">    <span class="keyword">print</span> <span class="string">"Captured Session Title is %s"</span> % d.title</div><div class="line">    explore = d.find_element_by_link_text(<span class="string">"Explore"</span>)</div><div class="line">    explore.click()</div><div class="line">    <span class="keyword">print</span> <span class="string">"Captured Session Title changes to %s"</span> % d.title</div><div class="line">    d.back()</div></pre></td></tr></table></figure>
+<p>Successful output of test code shall be:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Captured Session Title is maxwu (Max WU) / Following · GitHub</div><div class="line">Captured Session Title changes to Explore · GitHub</div></pre></td></tr></table></figure>
+<h2 id="Future-Works"><a href="#Future-Works" class="headerlink" title="Future Works"></a>Future Works</h2><ul>
+<li><p>Add query on “/sessions” end point for Selenium Java Binding.</p>
+</li>
+<li><p>Implement Captured Web Driver with Selenium Java Binding.</p>
+</li>
+</ul>
+<h2 id="Change-Log"><a href="#Change-Log" class="headerlink" title="Change Log"></a>Change Log</h2><p>Aug 06, 2017: Initial post as a quick note on captured session with selenium web driver.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Notes on how to intervene an existing selenium web driver session with impelementation and tests.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Automation Test" scheme="http://maxwu.me/categories/Automation-Test/"/>
+    
+      <category term="Selenium" scheme="http://maxwu.me/categories/Automation-Test/Selenium/"/>
+    
+    
+      <category term="Automation Test" scheme="http://maxwu.me/tags/Automation-Test/"/>
+    
+      <category term="Selenium" scheme="http://maxwu.me/tags/Selenium/"/>
+    
+      <category term="Concrete-level-tag" scheme="http://maxwu.me/tags/Concrete-level-tag/"/>
+    
+  </entry>
   
   <entry>
     <title>Briefing on Performance Testing</title>
@@ -680,9 +734,9 @@ ss = bfs(lmt, x, n)
       <category term="Java" scheme="http://maxwu.me/categories/Programming/Java/"/>
     
     
-      <category term="Java" scheme="http://maxwu.me/tags/Java/"/>
-    
       <category term="Algorithm" scheme="http://maxwu.me/tags/Algorithm/"/>
+    
+      <category term="Java" scheme="http://maxwu.me/tags/Java/"/>
     
       <category term="DFS" scheme="http://maxwu.me/tags/DFS/"/>
     
@@ -811,9 +865,9 @@ ss = bfs(lmt, x, n)
       <category term="Java" scheme="http://maxwu.me/categories/Programming/Java/"/>
     
     
-      <category term="Java" scheme="http://maxwu.me/tags/Java/"/>
-    
       <category term="Selenium" scheme="http://maxwu.me/tags/Selenium/"/>
+    
+      <category term="Java" scheme="http://maxwu.me/tags/Java/"/>
     
       <category term="Selenide" scheme="http://maxwu.me/tags/Selenide/"/>
     
@@ -873,13 +927,13 @@ ss = bfs(lmt, x, n)
       <category term="CI" scheme="http://maxwu.me/categories/Automation-Test/CI/"/>
     
     
-      <category term="CI" scheme="http://maxwu.me/tags/CI/"/>
+      <category term="Python" scheme="http://maxwu.me/tags/Python/"/>
     
       <category term="Jenkins" scheme="http://maxwu.me/tags/Jenkins/"/>
     
-      <category term="Python" scheme="http://maxwu.me/tags/Python/"/>
-    
       <category term="Automation" scheme="http://maxwu.me/tags/Automation/"/>
+    
+      <category term="CI" scheme="http://maxwu.me/tags/CI/"/>
     
       <category term="Virtualenv" scheme="http://maxwu.me/tags/Virtualenv/"/>
     
@@ -1236,11 +1290,11 @@ ss = bfs(lmt, x, n)
       <category term="Selenium" scheme="http://maxwu.me/categories/Automation-Test/Selenium/"/>
     
     
-      <category term="Ubuntu" scheme="http://maxwu.me/tags/Ubuntu/"/>
+      <category term="Selenium" scheme="http://maxwu.me/tags/Selenium/"/>
     
       <category term="Jenkins" scheme="http://maxwu.me/tags/Jenkins/"/>
     
-      <category term="Selenium" scheme="http://maxwu.me/tags/Selenium/"/>
+      <category term="Ubuntu" scheme="http://maxwu.me/tags/Ubuntu/"/>
     
       <category term="32bit" scheme="http://maxwu.me/tags/32bit/"/>
     
@@ -1296,9 +1350,9 @@ ss = bfs(lmt, x, n)
       <category term="Python" scheme="http://maxwu.me/categories/Programming/Python/"/>
     
     
-      <category term="CI" scheme="http://maxwu.me/tags/CI/"/>
-    
       <category term="Python" scheme="http://maxwu.me/tags/Python/"/>
+    
+      <category term="CI" scheme="http://maxwu.me/tags/CI/"/>
     
       <category term="Travis" scheme="http://maxwu.me/tags/Travis/"/>
     
@@ -1341,37 +1395,6 @@ ss = bfs(lmt, x, n)
       <category term="HttpClient" scheme="http://maxwu.me/tags/HttpClient/"/>
     
       <category term="OkHttpClient" scheme="http://maxwu.me/tags/OkHttpClient/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>converting to docker</title>
-    <link href="http://maxwu.me/2017/01/30/converting-to-docker/"/>
-    <id>http://maxwu.me/2017/01/30/converting-to-docker/</id>
-    <published>2017-01-30T08:18:07.000Z</published>
-    <updated>2017-03-16T04:05:51.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>After baseline v1.2 of Cucumber-Java-Toy, we already created a red-green-refactor TDD cycle, the next step is to migrate the whole automation test to docker and utilize dockerhub, CircleCI to create a DevOps cycle.</p>
-<p><img src="http://oei21r8n1.bkt.clouddn.com/DevOps-Docker-CircleCI-AWS-sample.png?imageView/2/w/400/q/100" alt="DevOps"></p>
-<p>It is still in progress by Jan30. Keeping updated.<br><a id="more"></a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;After baseline v1.2 of Cucumber-Java-Toy, we already created a red-green-refactor TDD cycle, the next step is to migrate the whole automation test to docker and utilize dockerhub, CircleCI to create a DevOps cycle.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://oei21r8n1.bkt.clouddn.com/DevOps-Docker-CircleCI-AWS-sample.png?imageView/2/w/400/q/100&quot; alt=&quot;DevOps&quot;&gt;&lt;/p&gt;
-&lt;p&gt;It is still in progress by Jan30. Keeping updated.&lt;br&gt;
-    
-    </summary>
-    
-      <category term="Automation Test" scheme="http://maxwu.me/categories/Automation-Test/"/>
-    
-      <category term="DevOps" scheme="http://maxwu.me/categories/Automation-Test/DevOps/"/>
-    
-    
-      <category term="Docker" scheme="http://maxwu.me/tags/Docker/"/>
-    
-      <category term="CD" scheme="http://maxwu.me/tags/CD/"/>
     
   </entry>
   
