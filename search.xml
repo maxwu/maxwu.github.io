@@ -43,11 +43,13 @@
 </tr>
 </tbody>
 </table>
+<p>Since phantomjs steps down as maintainer by version 2.1.1, there are other lightweight webkit or other engine based headless browser to choose. Visit <a href="https://github.com/dhamaniasad/HeadlessBrowsers" target="_blank" rel="external">headless browsers</a> for more solutions.</p>
 <h2 id="Selenium-2"><a href="#Selenium-2" class="headerlink" title="Selenium 2"></a>Selenium 2</h2><p>Selenium 2 is the history version to offer a common interface over <a href="https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol" target="_blank" rel="external">JSON wired protocol</a> to interact with web driver executables and through them to browsers. The communication scenario is:</p>
 <p>For IE and Chrome:</p>
 <p>Selenium Language Binding ⇆  Web Driver Executable ⇆  Browser</p>
 <p>For FF without Gecko (without Marionette flavor), headless Phantomjs and HtmlUnit:</p>
 <p>Selenium Language Binding ⇆ Browser</p>
+<p>Since new Firefox utilizes Gecko driver, Selenium 2 works with Firefox version &lt;=47 in stright direct interaction way.</p>
 <p>From Selenium 2, it is called Selenium Web Driver instead of RC.</p>
 <h2 id="Selenium-RC"><a href="#Selenium-RC" class="headerlink" title="Selenium RC"></a>Selenium RC</h2><p>Selenium Remote Control (RC) is history version which interacts with browsers by inject javascript and works as an HTTP proxy. Which requests preconfiguration on security checks for most of modern browsers but provides wide supports with language bindings and most of browsers.</p>
 <p>Selenium Client Driver (with most languages) ⇆ Selenium Server (Jar file) ⇆ Browsers</p>
