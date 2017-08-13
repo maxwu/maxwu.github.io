@@ -95,7 +95,7 @@
 <meta property="og:image" content="http://oei21r8n1.bkt.clouddn.com/Test_Pyramid_v2.png?imageView/2/w/600/q/100">
 <meta property="og:image" content="http://oei21r8n1.bkt.clouddn.com/pom_TransitionWithSamePageObject.png">
 <meta property="og:image" content="http://oei21r8n1.bkt.clouddn.com/pom-page-transition.png">
-<meta property="og:updated_time" content="2017-04-12T12:48:15.000Z">
+<meta property="og:updated_time" content="2017-08-13T11:18:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Tips on Selenium PageObjects Design">
 <meta name="twitter:description" content="About PageObjects The “PageObjects“ are introduced mainly to avoid duplicated codes in test and simplify the maintenance works as well. PageObject just models the WebUI under test and represent the st">
@@ -511,13 +511,18 @@
 </ul>
 <p>Further more, if the PageObject actually reflects multiple but similar states, developers can combine the elememts definition together and keep the lazy initialization. Once the conditions are satisfied use an arch (method call) toward ame state and just start to access the elements right away.</p>
 <h2 id="General-PageObject-Structure"><a href="#General-PageObject-Structure" class="headerlink" title="General PageObject Structure"></a>General PageObject Structure</h2><p>Here is the general PageObject code template including 4 major parts for general purpose. If there is an arc from current page to transition to another page, even it is the same PageObject type, the actioner (method) shall return the new page object. The caller from test code, e.g. JUnit case, shall detect exceptions.</p>
-<p>The PageBase in the following sample provides an abstract of common properties and behaviors as:</p>
+<p>The <strong>PageBase</strong> in the following sample provides an abstract of common properties and behaviors as:</p>
 <ul>
-<li>URL check against an RegExp;</li>
-<li>Page title check;</li>
-<li>Time dimension properties and actions;</li>
+<li>URL check against an RegExp.</li>
+<li>Page title check.</li>
 <li>Cookie validation;</li>
-<li>Common test supporting as screenshot capture method;</li>
+<li>Common test supporting:<ul>
+<li>Screenshot;</li>
+<li>Color contrast ratio;</li>
+<li>Timing and waiting methods.</li>
+</ul>
+</li>
+<li>Common Data generator or loading supports.</li>
 <li>Special XML, Path, or File Format validator.  </li>
 </ul>
 <p>As mentioned above, it is a tradeoff by the test/SDET whether to implement the abstract hierarchy.</p>
@@ -568,10 +573,17 @@
 </ul>
 <p>In summary, a partial refreshment on certain WebElement(s) is regarded as a state transition to same state, while any call to a new instance of PageObject class, same class or another class, indicates a state transition from existing object class to the return value class.</p>
 <p>More about state and state transition in testing could be found at <a href="https://www.cs.helsinki.fi/u/paakki/software-testing-s05-Ch611.pdf" target="_blank" rel="external">State based Testing</a>.</p>
-<h2 id="Negative-Tests-TBC"><a href="#Negative-Tests-TBC" class="headerlink" title="Negative Tests (TBC)"></a>Negative Tests (TBC)</h2><h3 id="Timeout"><a href="#Timeout" class="headerlink" title="Timeout"></a>Timeout</h3><h3 id="Exception"><a href="#Exception" class="headerlink" title="Exception"></a>Exception</h3><h3 id="Duration-Test"><a href="#Duration-Test" class="headerlink" title="Duration Test"></a>Duration Test</h3><h2 id="Fuzzing-Test-TBC"><a href="#Fuzzing-Test-TBC" class="headerlink" title="Fuzzing Test (TBC)"></a>Fuzzing Test (TBC)</h2><h3 id="Data-Fuzzing"><a href="#Data-Fuzzing" class="headerlink" title="Data Fuzzing"></a>Data Fuzzing</h3><p>OWASP JBroFuzz is a popular Fuzzer lib to support fuzzing test.<br>It offers various fuzzer DB definition and customized features to support data fuzzing.</p>
+<h2 id="Smart-Pages-and-Page-Theme"><a href="#Smart-Pages-and-Page-Theme" class="headerlink" title="Smart Pages and Page Theme"></a>Smart Pages and Page Theme</h2><p>The above PageBase and PageObjects are straight through samples for simple scenarios. For sophesticated E2E (end-to-end) acceptance testing, sometimes the applicaiton engine is more complicated that we can hardly predict the targeted page from current state.</p>
+<p>Based on practices and technical discussion with buddies recently, two techniques could be introduced to support such “smart” acceptance test.</p>
+<p><strong>Smart Pages</strong>: Smart pages do not define which exact page the application engine will run to next step but just offer loose check points as excluding list and accepted list, or, nothing. The transitioned page will be recognized smartly by PageObject.</p>
+<p>For example, if P1 can lead to P2 or P3 and both are accepted scenarios, PageObject will detect which page it is on after execution P1. It could be from title, URL, or, a CSS selector condition. When it detects current page is P2 and P2 is accepted, it will load the page definition from prepared data files to offer a map of wrappered elemenets with actions as input, text extraction, regular expression check, variable get/set, mouse events, et.</p>
+<p><strong>Page Theme</strong>: Themes are predefined states for current page. For example, if current Page is an interactive page, the PageObject will first check theme before searching on element map. Which could be a chained map with precedences.</p>
+<h2 id="Fuzzing-Test-Data-Factory"><a href="#Fuzzing-Test-Data-Factory" class="headerlink" title="Fuzzing Test (Data Factory)"></a>Fuzzing Test (Data Factory)</h2><p>Another approach to “Smart” Test is fuzzing test. The PageObject is created with a set of fuzzing rules instead of a data set loaded from persistence. (TBC)</p>
+<h3 id="Data-Fuzzing"><a href="#Data-Fuzzing" class="headerlink" title="Data Fuzzing"></a>Data Fuzzing</h3><p>OWASP JBroFuzz is a popular Fuzzer lib to support fuzzing test.<br>It offers various fuzzer DB definition and customized features to support data fuzzing.</p>
 <h3 id="Sequence-Fuzzing"><a href="#Sequence-Fuzzing" class="headerlink" title="Sequence Fuzzing"></a>Sequence Fuzzing</h3><p>With JUnit, the execution sequence is able to customize with @Rule.</p>
 <h2 id="Further-Topics"><a href="#Further-Topics" class="headerlink" title="Further Topics"></a>Further Topics</h2><p>Classic PageObject spends too much efforts on disbaling the readability (encapslation) the action implementations to archeive the code reusing. However, most of the works could be simplified to a more friendly facade with Java features. <a href="http://selenide.org/documentation/page-objects.html" target="_blank" rel="external">selenide</a> is worthy a try to make your PageObject design works done in a graceful and faster way.  </p>
 <h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><hr>
+<p>[Updated Aug13, 2017]: Update with smart pages practice tips.</p>
 <p>[Updated Mar30]: Add the concept mapping between DB App Dev and PageObject testing.</p>
 <p>[Updated Feb07]: Reword state transition section and publish it.</p>
 <p>[Updated Jan23]: labelled more points to complete this note.</p>
@@ -743,7 +755,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-count">41</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -760,7 +772,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">87</span>
+                <span class="site-state-item-count">90</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -880,7 +892,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#About-PageObjects"><span class="nav-number">1.</span> <span class="nav-text">About PageObjects</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#PageObjects-Pattern-or-Bot-Style-Test"><span class="nav-number">1.1.</span> <span class="nav-text">PageObjects Pattern or Bot Style Test?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Page-Factory-from-a-Technical-Point-of-View"><span class="nav-number">1.2.</span> <span class="nav-text">Page Factory from a Technical Point of View</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#General-PageObject-Structure"><span class="nav-number">1.3.</span> <span class="nav-text">General PageObject Structure</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Page-Factory"><span class="nav-number">1.4.</span> <span class="nav-text">Page Factory</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#State-Transition"><span class="nav-number">1.5.</span> <span class="nav-text">State Transition</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Negative-Tests-TBC"><span class="nav-number">1.6.</span> <span class="nav-text">Negative Tests (TBC)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Timeout"><span class="nav-number">1.6.1.</span> <span class="nav-text">Timeout</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exception"><span class="nav-number">1.6.2.</span> <span class="nav-text">Exception</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Duration-Test"><span class="nav-number">1.6.3.</span> <span class="nav-text">Duration Test</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fuzzing-Test-TBC"><span class="nav-number">1.7.</span> <span class="nav-text">Fuzzing Test (TBC)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-Fuzzing"><span class="nav-number">1.7.1.</span> <span class="nav-text">Data Fuzzing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sequence-Fuzzing"><span class="nav-number">1.7.2.</span> <span class="nav-text">Sequence Fuzzing</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Further-Topics"><span class="nav-number">1.8.</span> <span class="nav-text">Further Topics</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#References"><span class="nav-number">1.9.</span> <span class="nav-text">References</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#About-PageObjects"><span class="nav-number">1.</span> <span class="nav-text">About PageObjects</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#PageObjects-Pattern-or-Bot-Style-Test"><span class="nav-number">1.1.</span> <span class="nav-text">PageObjects Pattern or Bot Style Test?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Page-Factory-from-a-Technical-Point-of-View"><span class="nav-number">1.2.</span> <span class="nav-text">Page Factory from a Technical Point of View</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#General-PageObject-Structure"><span class="nav-number">1.3.</span> <span class="nav-text">General PageObject Structure</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Page-Factory"><span class="nav-number">1.4.</span> <span class="nav-text">Page Factory</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#State-Transition"><span class="nav-number">1.5.</span> <span class="nav-text">State Transition</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Smart-Pages-and-Page-Theme"><span class="nav-number">1.6.</span> <span class="nav-text">Smart Pages and Page Theme</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fuzzing-Test-Data-Factory"><span class="nav-number">1.7.</span> <span class="nav-text">Fuzzing Test (Data Factory)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-Fuzzing"><span class="nav-number">1.7.1.</span> <span class="nav-text">Data Fuzzing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sequence-Fuzzing"><span class="nav-number">1.7.2.</span> <span class="nav-text">Sequence Fuzzing</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Further-Topics"><span class="nav-number">1.8.</span> <span class="nav-text">Further Topics</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#References"><span class="nav-number">1.9.</span> <span class="nav-text">References</span></a></li></ol></li></ol></div>
             
           </div>
         </section>

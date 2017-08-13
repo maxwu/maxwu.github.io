@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://maxwu.me/"/>
-  <updated>2017-08-08T12:50:47.000Z</updated>
+  <updated>2017-08-13T12:05:38.000Z</updated>
   <id>http://maxwu.me/</id>
   
   <author>
@@ -14,6 +14,84 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Selenium and WebDriver Version Selection</title>
+    <link href="http://maxwu.me/2017/08/13/Selenium-and-WebDriver-Version-Selection/"/>
+    <id>http://maxwu.me/2017/08/13/Selenium-and-WebDriver-Version-Selection/</id>
+    <published>2017-08-12T22:19:09.000Z</published>
+    <updated>2017-08-13T12:05:38.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>This post summarized the versions of browsers and seleniums as well as the dependencies for automation test especially for headless testing.<br><a id="more"></a></p>
+<h2 id="Selenium-3"><a href="#Selenium-3" class="headerlink" title="Selenium 3"></a>Selenium 3</h2><p>Current stable version of selenium. From Selenium 3:</p>
+<ul>
+<li>Interacts with Firefox through Mozzila’s Gecko Driver.</li>
+<li>Requests Firefox 47.1.0+ version if choosing Firefox to test (FF v47.0 is not supported).</li>
+<li>Requests Java 8 (which is the oldest official Oracle Java version)</li>
+<li>Works with Edge through EdgeDriver</li>
+<li>Works with IE 9+ through IEDriverServer</li>
+</ul>
+<p>Selenium 3 development plan was announced from 2013. However, the available beta was released by July 2016 and stable Selenium 3 was finally released Oct 2016. Google java lib Guava is also requested. A standalone selenium jar lib is offered from this release.</p>
+<p>Headless browsers:</p>
+<p>The classic way to run selenium based web automation test with browsers will launch browsers GUI windows. Which is slow and requests display settings (on Linux). Webkit based headless browser as Phaontomjs is a better choice when the test is table, or, executed on cloud. </p>
+<p>Recent Firefox and Chrome releases offer headless mode which can fasten the test with less computation cost.</p>
+<table>
+<thead>
+<tr>
+<th>Browser</th>
+<th>Current versions</th>
+<th>with headless support</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Firefox</td>
+<td>stable:55, beta:56b, dev:57dev</td>
+<td>56</td>
+<td>Need FF beta version 56b to support headless mode by set MOZ_HEADLESS=1</td>
+</tr>
+<tr>
+<td>Chrome</td>
+<td>stable:61</td>
+<td>Mac and Linux: 59, Windows: 60</td>
+<td>Cli option “”–headless” to run chrome in headless mode (–disable-gpu might be requested on early builds)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Selenium-2"><a href="#Selenium-2" class="headerlink" title="Selenium 2"></a>Selenium 2</h2><p>Selenium 2 is the history version to offer a common interface over <a href="https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol" target="_blank" rel="external">JSON wired protocol</a> to interact with web driver executables and through them to browsers. The communication scenario is:</p>
+<p>For IE and Chrome:</p>
+<p>Selenium Language Binding ⇆  Web Driver Executable ⇆  Browser</p>
+<p>For FF without Gecko (without Marionette flavor), headless Phantomjs and HtmlUnit:</p>
+<p>Selenium Language Binding ⇆ Browser</p>
+<p>From Selenium 2, it is called Selenium Web Driver instead of RC.</p>
+<h2 id="Selenium-RC"><a href="#Selenium-RC" class="headerlink" title="Selenium RC"></a>Selenium RC</h2><p>Selenium Remote Control (RC) is history version which interacts with browsers by inject javascript and works as an HTTP proxy. Which requests preconfiguration on security checks for most of modern browsers but provides wide supports with language bindings and most of browsers.</p>
+<p>Selenium Client Driver (with most languages) ⇆ Selenium Server (Jar file) ⇆ Browsers</p>
+<h2 id="Change-Log"><a href="#Change-Log" class="headerlink" title="Change Log"></a>Change Log</h2><p>Aug13, 2017: Initial post draft.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;This post summarized the versions of browsers and seleniums as well as the dependencies for automation test especially for headless testing.&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Automation Test" scheme="http://maxwu.me/categories/Automation-Test/"/>
+    
+      <category term="Selenium" scheme="http://maxwu.me/categories/Automation-Test/Selenium/"/>
+    
+    
+      <category term="Selenium" scheme="http://maxwu.me/tags/Selenium/"/>
+    
+      <category term="Automation Test" scheme="http://maxwu.me/tags/Automation-Test/"/>
+    
+      <category term="Headless" scheme="http://maxwu.me/tags/Headless/"/>
+    
+      <category term="Firefox" scheme="http://maxwu.me/tags/Firefox/"/>
+    
+      <category term="Chrome" scheme="http://maxwu.me/tags/Chrome/"/>
+    
+  </entry>
   
   <entry>
     <title>Capture Existing Selenium WebDriver Session</title>
@@ -72,9 +150,9 @@
       <category term="Selenium" scheme="http://maxwu.me/categories/Automation-Test/Selenium/"/>
     
     
-      <category term="Automation Test" scheme="http://maxwu.me/tags/Automation-Test/"/>
-    
       <category term="Selenium" scheme="http://maxwu.me/tags/Selenium/"/>
+    
+      <category term="Automation Test" scheme="http://maxwu.me/tags/Automation-Test/"/>
     
       <category term="Concrete-level-tag" scheme="http://maxwu.me/tags/Concrete-level-tag/"/>
     
@@ -603,11 +681,11 @@ ss = bfs(lmt, x, n)
       <category term="Python" scheme="http://maxwu.me/categories/Programming/Python/"/>
     
     
-      <category term="Python" scheme="http://maxwu.me/tags/Python/"/>
-    
       <category term="Algorithm" scheme="http://maxwu.me/tags/Algorithm/"/>
     
       <category term="BFS" scheme="http://maxwu.me/tags/BFS/"/>
+    
+      <category term="Python" scheme="http://maxwu.me/tags/Python/"/>
     
   </entry>
   
@@ -1233,11 +1311,11 @@ ss = bfs(lmt, x, n)
   </entry>
   
   <entry>
-    <title>Jenkins to test Selenium 3.1.0, Chrome Driver latest version and Chromium Browser on cheap 32bit Linux</title>
+    <title>Jenkins with Selenium 3, Chrome Driver latest version and Chromium Browser on cheap 32bit Linux</title>
     <link href="http://maxwu.me/2017/02/21/Jenkins-with-Selenium-3-1-0-ChromeDriver-latest-version-and-Chromium-Browser-on-32bit-Linux/"/>
     <id>http://maxwu.me/2017/02/21/Jenkins-with-Selenium-3-1-0-ChromeDriver-latest-version-and-Chromium-Browser-on-32bit-Linux/</id>
     <published>2017-02-21T09:39:39.000Z</published>
-    <updated>2017-03-16T04:00:44.000Z</updated>
+    <updated>2017-08-13T12:05:50.000Z</updated>
     
     <content type="html"><![CDATA[<p>What a lovely day it has been in Wellington. Finally there comes the summer! And I also have a lovely day to successfully make stable test results on 32bit Ubuntu Linux with Chromium Browser, latest ChromeDriver and new Selenium java 3.1.0!</p>
 <p><img src="http://oei21r8n1.bkt.clouddn.com/jenkins-full-2017-02-23.png?imageView/2/w/400/q/100" alt="Jenkins on bandwagon"></p>
@@ -1281,7 +1359,22 @@ ss = bfs(lmt, x, n)
 <p>On private Jenkins we could read the log that browser hanging-up for a long time. On travis-CI, if the building execution has no output in 10 minutes, the docker monitor will shut down the task and lable a failure (terminated) on records. </p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">org.openqa.selenium.TimeoutException: timeout: cannot determine loading status</div><div class="line">from timeout: Timed out receiving message from renderer: -600.008</div><div class="line">  (Session info: chrome=55.0.2883.11)</div><div class="line">  (Driver info: chromedriver=2.25.426927 (d0803376130bda68eb594d02ebaca4609e3f899e),platform=Linux 2.6.32-042stab120.18 x86) (WARNING: The server did not provide any stacktrace information)</div><div class="line">Command duration or timeout: 900.74 seconds</div><div class="line">Build info: version: &apos;3.1.0&apos;, revision: &apos;b94c902&apos;, time: &apos;2017-02-16 12:21:31 -0800&apos;</div><div class="line">System info: host: &apos;jenkins&apos;, ip: &apos;104.224.136.48&apos;, os.name: &apos;Linux&apos;, os.arch: &apos;i386&apos;, os.version: &apos;2.6.32-042stab120.18&apos;, java.version: &apos;1.8.0_121&apos;</div><div class="line">Driver info: org.openqa.selenium.chrome.ChromeDriver</div><div class="line">Capabilities [&#123;applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome=&#123;chromedriverVersion=2.25.426927 (d0803376130bda68eb594d02ebaca4609e3f899e), userDataDir=/tmp/.org.chromium.Chromium.auFTt4&#125;, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=55.0.2883.11, platform=LINUX, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true&#125;]</div><div class="line">Session ID: 64463c793b65a1f95383edd756abda17</div></pre></td></tr></table></figure>
 <p>There are multiple possible triggers to cause a stuck, loading some plugin, flash content streaming, waiting for some default AD scripts, DNS prefetching (TTL), security check on plugins, … Here the working solution plan just mitigate as many as it can and it brings the CI back to healthy status. Once there is a new unstable element being introduced, the recommendation is to do a preliminary check if the action or configuration can be done by Options object instead of any direction action through ChromeDriver.</p>
-<figure class="highlight"><table><tr><td class="code"><pre><div class="line">options = new ChromeOptions();</div><div class="line">// ..</div><div class="line">// To fix browser hanging-up issue</div><div class="line">options.addArguments("--dns-prefetch-disable");</div><div class="line">options.addArguments("--always-authorize-plugins");</div><div class="line">ChromeDriverManager.getInstance().setup();</div><div class="line">WebDriver driver = new ChromeDriver(options);</div><div class="line">``` </div><div class="line"></div><div class="line">[This Issue Link](https://github.com/maxwu/cucumber-java-toy/issues/8)</div><div class="line"></div><div class="line">TODO: fetch statistic data with new lib [ci-stat](https://github.com/maxwu/ci-stat)</div><div class="line"></div><div class="line"></div><div class="line">## Embedded Status Badge from Jenkins </div><div class="line"></div><div class="line">This step is simple. From the Jenkins console, install embedded jenkins status and place the links into README.md on github master branch. The status badge in third line of below snapshot is Jenkins status icon from the private jenkins on [http://jenkins.maxwu.me](http://jenkins.maxwu.me)</div><div class="line"></div><div class="line">![Jenkins Status Badge](http://oei21r8n1.bkt.clouddn.com/Cucumber-JVM-Gh-Snap-2017-02-23.png?imageView/2/w/400/q/100)</div><div class="line"></div><div class="line">## Setup xvfb for Jenkins</div><div class="line"></div><div class="line">Either vncserver or xvfb works here to initialize the x-window display for browser. If headless browsers are utilized, this step is not necessary. </div><div class="line"></div><div class="line">Install the xvfb plugin for Jenkins. There is a special hint:</div><div class="line">	</div><div class="line">-  xvfb needs at least a manual configuration step on Jenkins before working. This step will create the necessary configuration records for Jenkins to start before each CI task and end after it.</div><div class="line"></div><div class="line">-  The menu path is `Manage Jenkins -&gt; Global Tool Configuration -&gt; XvFb`, not on Jenkins Configuration.  </div><div class="line"></div><div class="line"></div><div class="line">## Jenkins on Mac</div><div class="line"></div><div class="line">It is convenient to install Jenkins on Mac. `brew install jenkins` will install and setup Jenkins quickly. The jenkins was installed as a service with brew. </div><div class="line"> </div><div class="line">```bash</div><div class="line">&gt;brew services start jenkins</div><div class="line">&gt;brew services stop jenkins</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line">options = <span class="keyword">new</span> ChromeOptions();</div><div class="line"><span class="comment">// ..</span></div><div class="line"><span class="comment">// To fix browser hanging-up issue</span></div><div class="line">options.addArguments(<span class="string">"--dns-prefetch-disable"</span>);</div><div class="line">options.addArguments(<span class="string">"--always-authorize-plugins"</span>);</div><div class="line">ChromeDriverManager.getInstance().setup();</div><div class="line">WebDriver driver = <span class="keyword">new</span> ChromeDriver(options);</div></pre></td></tr></table></figure>
+<p><a href="https://github.com/maxwu/cucumber-java-toy/issues/8" target="_blank" rel="external">This Issue Link</a></p>
+<p>TODO: fetch statistic data with new lib <a href="https://github.com/maxwu/ci-stat" target="_blank" rel="external">ci-stat</a></p>
+<h2 id="Embedded-Status-Badge-from-Jenkins"><a href="#Embedded-Status-Badge-from-Jenkins" class="headerlink" title="Embedded Status Badge from Jenkins"></a>Embedded Status Badge from Jenkins</h2><p>This step is simple. From the Jenkins console, install embedded jenkins status and place the links into README.md on github master branch. The status badge in third line of below snapshot is Jenkins status icon from the private jenkins on <a href="http://jenkins.maxwu.me" target="_blank" rel="external">http://jenkins.maxwu.me</a></p>
+<p><img src="http://oei21r8n1.bkt.clouddn.com/Cucumber-JVM-Gh-Snap-2017-02-23.png?imageView/2/w/400/q/100" alt="Jenkins Status Badge"></p>
+<h2 id="Setup-xvfb-for-Jenkins"><a href="#Setup-xvfb-for-Jenkins" class="headerlink" title="Setup xvfb for Jenkins"></a>Setup xvfb for Jenkins</h2><p>Either vncserver or xvfb works here to initialize the x-window display for browser. If headless browsers are utilized, this step is not necessary. </p>
+<p>Install the xvfb plugin for Jenkins. There is a special hint:</p>
+<ul>
+<li><p>xvfb needs at least a manual configuration step on Jenkins before working. This step will create the necessary configuration records for Jenkins to start before each CI task and end after it.</p>
+</li>
+<li><p>The menu path is <code>Manage Jenkins -&gt; Global Tool Configuration -&gt; XvFb</code>, not on Jenkins Configuration.  </p>
+</li>
+</ul>
+<p><em>Notes: Recent Firefox and Chrome offers headless mode. Which is faster and XWin display or xvfb is no longer needed. Firefox starts to support headless mode from version 56 on Mac. Current stable version on Mac is v55 but beta version is 56b. New developer version is based on v57.</em></p>
+<h2 id="Jenkins-on-Mac"><a href="#Jenkins-on-Mac" class="headerlink" title="Jenkins on Mac"></a>Jenkins on Mac</h2><p>It is convenient to install Jenkins on Mac. <code>brew install jenkins</code> will install and setup Jenkins quickly. The jenkins was installed as a service with brew. </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">&gt;brew services start jenkins</div><div class="line">&gt;brew services stop jenkins</div></pre></td></tr></table></figure>
 <p><img src="http://oei21r8n1.bkt.clouddn.com/Jenkins-MBP-full.png?imageView/2/w/400/q/100" alt="Jenkins on MacBookPro"></p>
 <p>Other setup actions as coverage status with </p>
 <p><em>Updated Feb 23, 2017</em></p>
@@ -1368,44 +1461,6 @@ ss = bfs(lmt, x, n)
       <category term="Travis" scheme="http://maxwu.me/tags/Travis/"/>
     
       <category term="Circle" scheme="http://maxwu.me/tags/Circle/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Trust all hosts in WebAPI test with OkHttp and Java SSL</title>
-    <link href="http://maxwu.me/2017/02/03/Trust-all-hosts-in-WebAPI-test-with-OkHttp-and-Java-SSL/"/>
-    <id>http://maxwu.me/2017/02/03/Trust-all-hosts-in-WebAPI-test-with-OkHttp-and-Java-SSL/</id>
-    <published>2017-02-02T11:24:01.000Z</published>
-    <updated>2017-03-16T04:05:08.000Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="Problem-description"><a href="#Problem-description" class="headerlink" title="Problem description"></a>Problem description</h3><p>This issue was first discovered with <a href="https://circelci.com" target="_blank" rel="external">circleci</a> but the <strong>SSLHandShakeException</strong> is not reproduce in dev environment with my Mac. The detail error page is <a href="https://circleci.com/gh/maxwu/cucumber-java-toy/75" target="_blank" rel="external">here</a>. This post provides a verified way to bypass all hostname verification (or you can add specified conditions inside) for non-security test case to apply on Web API testing.<a id="more"></a></p>
-<p><img src="http://oei21r8n1.bkt.clouddn.com/WebAPI_SSL_error_20170203_12.png?imageView/2/w/540/q/100" alt="Exception details"></p>
-<p>Above picture shows the exception details. Generally a RESTful WebAPI test could be constructed with OkHttpClient lib:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="meta">@Before</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">	client = <span class="keyword">new</span> OkHttpClient();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">httpFreegeoipJsonTest</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">	Request request = <span class="keyword">new</span> Request.Builder()</div><div class="line">		.url(Constants.Freegeoio_Url_Json)</div><div class="line">		.build();</div><div class="line">	Response response = client.newCall(request).execute();</div><div class="line">	Assert.assertEquals(<span class="number">200</span>, response.code());</div><div class="line">	Assert.assertEquals(<span class="string">"application/json"</span>, response.body().contentType().toString());</div><div class="line"></div><div class="line">	JSONObject jsonResp = <span class="keyword">new</span> JSONObject(response.body().string());</div><div class="line">	String ip = jsonResp.getString(<span class="string">"ip"</span>);</div><div class="line">	Assert.assertTrue(checkIpv4(ip));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>It is usually caused by a self-signed certificate or an unknown certificate signer. The official solution plan is to download the SSL certificate and install it to Java SSL keystore. However, for a quick fix to test environment only concerning about the function instead of security perspective here (suggest to keep security part in a seperate test set). If we would like to bypass all hostname verification, here is the solution with a customized hostverifier. With Java8 we can use lambda to replace anonymous class when the interface is a functional one. </p>
-<figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="meta">@Before</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">    <span class="comment">//Changed to customized SSL context and hostVerifier.</span></div><div class="line">    OkHttpClient.Builder clientBuilder = <span class="keyword">new</span> OkHttpClient().newBuilder();</div><div class="line">    X509TrustManager trustManager = <span class="keyword">new</span> X509TrustManager() &#123;</div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="keyword">public</span> X509Certificate[] getAcceptedIssuers() &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">new</span> X509Certificate[<span class="number">0</span>];</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">checkServerTrusted</span><span class="params">(<span class="keyword">final</span> X509Certificate[] chain,</span></span></div><div class="line">                                       <span class="keyword">final</span> String authType) <span class="keyword">throws</span> CertificateException &#123;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">checkClientTrusted</span><span class="params">(<span class="keyword">final</span> X509Certificate[] chain,</span></span></div><div class="line">                                       <span class="keyword">final</span> String authType) <span class="keyword">throws</span> CertificateException &#123;</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line">    <span class="keyword">final</span> TrustManager[] trustAllCerts = <span class="keyword">new</span> TrustManager[]&#123; trustManager &#125;;</div><div class="line"></div><div class="line">    SSLContext sslContext = SSLContext.getInstance(<span class="string">"SSL"</span>);</div><div class="line"></div><div class="line">    sslContext.init(<span class="keyword">null</span>, trustAllCerts, <span class="keyword">new</span> java.security.SecureRandom());</div><div class="line">    clientBuilder.sslSocketFactory(sslContext.getSocketFactory(), trustManager);</div><div class="line"></div><div class="line">    clientBuilder.hostnameVerifier((String hostname, SSLSession session) -&gt; &#123;</div><div class="line">                ColorPrint.println_red(<span class="string">"Trusts Host "</span> + hostname + <span class="string">"in session "</span> + session);</div><div class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;);</div><div class="line">    client = clientBuilder.build();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="Code-Links"><a href="#Code-Links" class="headerlink" title="Code Links"></a>Code Links</h3><p>Full code implementation could be referenced from <a href="https://github.com/maxwu/cucumber-java-toy" target="_blank" rel="external">Github Cucumber-Java-Toy Link</a> in JUnite suite <strong>org.maxwu.jrefresh.HttpApi.SourceIpApiTest</strong>.</p>
-<p>//EOF</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;Problem-description&quot;&gt;&lt;a href=&quot;#Problem-description&quot; class=&quot;headerlink&quot; title=&quot;Problem description&quot;&gt;&lt;/a&gt;Problem description&lt;/h3&gt;&lt;p&gt;This issue was first discovered with &lt;a href=&quot;https://circelci.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;circleci&lt;/a&gt; but the &lt;strong&gt;SSLHandShakeException&lt;/strong&gt; is not reproduce in dev environment with my Mac. The detail error page is &lt;a href=&quot;https://circleci.com/gh/maxwu/cucumber-java-toy/75&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;here&lt;/a&gt;. This post provides a verified way to bypass all hostname verification (or you can add specified conditions inside) for non-security test case to apply on Web API testing.
-    
-    </summary>
-    
-      <category term="Programming" scheme="http://maxwu.me/categories/Programming/"/>
-    
-      <category term="Java" scheme="http://maxwu.me/categories/Programming/Java/"/>
-    
-    
-      <category term="Java" scheme="http://maxwu.me/tags/Java/"/>
-    
-      <category term="SSL" scheme="http://maxwu.me/tags/SSL/"/>
-    
-      <category term="HttpClient" scheme="http://maxwu.me/tags/HttpClient/"/>
-    
-      <category term="OkHttpClient" scheme="http://maxwu.me/tags/OkHttpClient/"/>
     
   </entry>
   
