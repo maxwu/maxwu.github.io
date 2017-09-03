@@ -83,9 +83,9 @@
       <category term="Selenium" scheme="http://maxwu.me/categories/Automation-Test/Selenium/"/>
     
     
-      <category term="Selenium" scheme="http://maxwu.me/tags/Selenium/"/>
-    
       <category term="Automation Test" scheme="http://maxwu.me/tags/Automation-Test/"/>
+    
+      <category term="Selenium" scheme="http://maxwu.me/tags/Selenium/"/>
     
       <category term="Headless" scheme="http://maxwu.me/tags/Headless/"/>
     
@@ -152,9 +152,9 @@
       <category term="Selenium" scheme="http://maxwu.me/categories/Automation-Test/Selenium/"/>
     
     
-      <category term="Selenium" scheme="http://maxwu.me/tags/Selenium/"/>
-    
       <category term="Automation Test" scheme="http://maxwu.me/tags/Automation-Test/"/>
+    
+      <category term="Selenium" scheme="http://maxwu.me/tags/Selenium/"/>
     
       <category term="Concrete-level-tag" scheme="http://maxwu.me/tags/Concrete-level-tag/"/>
     
@@ -683,11 +683,11 @@ ss = bfs(lmt, x, n)
       <category term="Python" scheme="http://maxwu.me/categories/Programming/Python/"/>
     
     
+      <category term="Python" scheme="http://maxwu.me/tags/Python/"/>
+    
       <category term="Algorithm" scheme="http://maxwu.me/tags/Algorithm/"/>
     
       <category term="BFS" scheme="http://maxwu.me/tags/BFS/"/>
-    
-      <category term="Python" scheme="http://maxwu.me/tags/Python/"/>
     
   </entry>
   
@@ -825,9 +825,9 @@ ss = bfs(lmt, x, n)
       <category term="Java" scheme="http://maxwu.me/categories/Programming/Java/"/>
     
     
-      <category term="Algorithm" scheme="http://maxwu.me/tags/Algorithm/"/>
-    
       <category term="Java" scheme="http://maxwu.me/tags/Java/"/>
+    
+      <category term="Algorithm" scheme="http://maxwu.me/tags/Algorithm/"/>
     
       <category term="DFS" scheme="http://maxwu.me/tags/DFS/"/>
     
@@ -1020,11 +1020,11 @@ ss = bfs(lmt, x, n)
     
       <category term="Python" scheme="http://maxwu.me/tags/Python/"/>
     
-      <category term="Jenkins" scheme="http://maxwu.me/tags/Jenkins/"/>
-    
       <category term="Automation" scheme="http://maxwu.me/tags/Automation/"/>
     
       <category term="CI" scheme="http://maxwu.me/tags/CI/"/>
+    
+      <category term="Jenkins" scheme="http://maxwu.me/tags/Jenkins/"/>
     
       <category term="Virtualenv" scheme="http://maxwu.me/tags/Virtualenv/"/>
     
