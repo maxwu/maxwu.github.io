@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title><![CDATA[Stanford A-NG Machine Learning Certificate Achieved]]></title>
+      <url>http://maxwu.me/2017/11/12/Stanford-A-NG-Machine-Learning-Certificate-Achieved/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<p>Completed the first machine learning course and achieved the certificate on coursera!</p>
+<p><img src="http://oei21r8n1.bkt.clouddn.com/ANG_ML_Cert.png?imageView/2/w/700/q/100" alt="Chinese New Year Greeting"></p>
+]]></content>
+      
+        <categories>
+            
+            <category> Machine larning </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Andrew-Ng </tag>
+            
+            <tag> Stanford </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Selenium and WebDriver Version Selection]]></title>
       <url>http://maxwu.me/2017/08/13/Selenium-and-WebDriver-Version-Selection/</url>
       <content type="html"><![CDATA[<p>This post summarized the versions of browsers and seleniums as well as the dependencies for automation test especially for headless testing.<br><a id="more"></a></p>
@@ -67,9 +92,9 @@
         
         <tags>
             
-            <tag> Automation Test </tag>
-            
             <tag> Selenium </tag>
+            
+            <tag> Automation Test </tag>
             
             <tag> Headless </tag>
             
@@ -134,11 +159,11 @@
         
         <tags>
             
-            <tag> Automation Test </tag>
+            <tag> Concrete-level-tag </tag>
             
             <tag> Selenium </tag>
             
-            <tag> Concrete-level-tag </tag>
+            <tag> Automation Test </tag>
             
         </tags>
         
@@ -918,9 +943,9 @@ ss = bfs(lmt, x, n)
         
         <tags>
             
-            <tag> Selenium </tag>
-            
             <tag> Java </tag>
+            
+            <tag> Selenium </tag>
             
             <tag> Selenide </tag>
             
@@ -977,13 +1002,13 @@ ss = bfs(lmt, x, n)
         
         <tags>
             
-            <tag> Python </tag>
-            
-            <tag> Automation </tag>
-            
             <tag> CI </tag>
             
             <tag> Jenkins </tag>
+            
+            <tag> Python </tag>
+            
+            <tag> Automation </tag>
             
             <tag> Virtualenv </tag>
             
@@ -1335,11 +1360,11 @@ ss = bfs(lmt, x, n)
         
         <tags>
             
-            <tag> Selenium </tag>
+            <tag> Ubuntu </tag>
             
             <tag> Jenkins </tag>
             
-            <tag> Ubuntu </tag>
+            <tag> Selenium </tag>
             
             <tag> 32bit </tag>
             
@@ -1392,9 +1417,9 @@ ss = bfs(lmt, x, n)
         
         <tags>
             
-            <tag> Python </tag>
-            
             <tag> CI </tag>
+            
+            <tag> Python </tag>
             
             <tag> Travis </tag>
             
@@ -1459,9 +1484,9 @@ ss = bfs(lmt, x, n)
         
         <tags>
             
-            <tag> CD </tag>
-            
             <tag> Docker </tag>
+            
+            <tag> CD </tag>
             
         </tags>
         
@@ -1871,13 +1896,13 @@ self.assertTrue(<span class="string">"exception message"</span> <span class="key
         
         <tags>
             
-            <tag> Python </tag>
-            
             <tag> Java </tag>
             
-            <tag> unittest </tag>
+            <tag> Python </tag>
             
             <tag> JUnit </tag>
+            
+            <tag> unittest </tag>
             
         </tags>
         
@@ -2062,9 +2087,9 @@ self.assertTrue(<span class="string">"exception message"</span> <span class="key
         
         <tags>
             
-            <tag> Selenium </tag>
-            
             <tag> Java </tag>
+            
+            <tag> Selenium </tag>
             
             <tag> Pageobject </tag>
             
@@ -2157,9 +2182,9 @@ self.assertTrue(<span class="string">"exception message"</span> <span class="key
         
         <tags>
             
-            <tag> Selenium </tag>
-            
             <tag> Cucumber </tag>
+            
+            <tag> Selenium </tag>
             
             <tag> Junit </tag>
             
@@ -2200,11 +2225,11 @@ self.assertTrue(<span class="string">"exception message"</span> <span class="key
         
         <tags>
             
-            <tag> Selenium </tag>
+            <tag> Java </tag>
             
             <tag> Cucumber </tag>
             
-            <tag> Java </tag>
+            <tag> Selenium </tag>
             
             <tag> Junit </tag>
             
@@ -2295,9 +2320,9 @@ self.assertTrue(<span class="string">"exception message"</span> <span class="key
             
             <tag> RESTful </tag>
             
-            <tag> Defect </tag>
-            
             <tag> Test </tag>
+            
+            <tag> Defect </tag>
             
         </tags>
         

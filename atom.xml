@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://maxwu.me/"/>
-  <updated>2017-08-13T12:19:12.000Z</updated>
+  <updated>2017-11-12T09:55:34.000Z</updated>
   <id>http://maxwu.me/</id>
   
   <author>
@@ -14,6 +14,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Stanford A-NG Machine Learning Certificate Achieved</title>
+    <link href="http://maxwu.me/2017/11/12/Stanford-A-NG-Machine-Learning-Certificate-Achieved/"/>
+    <id>http://maxwu.me/2017/11/12/Stanford-A-NG-Machine-Learning-Certificate-Achieved/</id>
+    <published>2017-11-12T09:37:15.000Z</published>
+    <updated>2017-11-12T09:55:34.000Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a>
+<p>Completed the first machine learning course and achieved the certificate on coursera!</p>
+<p><img src="http://oei21r8n1.bkt.clouddn.com/ANG_ML_Cert.png?imageView/2/w/700/q/100" alt="Chinese New Year Greeting"></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;Completed the first machine learning course and achieved the certificate on coursera!&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://oei21r8n1
+    
+    </summary>
+    
+      <category term="Machine larning" scheme="http://maxwu.me/categories/Machine-larning/"/>
+    
+    
+      <category term="Andrew-Ng" scheme="http://maxwu.me/tags/Andrew-Ng/"/>
+    
+      <category term="Stanford" scheme="http://maxwu.me/tags/Stanford/"/>
+    
+  </entry>
   
   <entry>
     <title>Selenium and WebDriver Version Selection</title>
@@ -83,9 +112,9 @@
       <category term="Selenium" scheme="http://maxwu.me/categories/Automation-Test/Selenium/"/>
     
     
-      <category term="Automation Test" scheme="http://maxwu.me/tags/Automation-Test/"/>
-    
       <category term="Selenium" scheme="http://maxwu.me/tags/Selenium/"/>
+    
+      <category term="Automation Test" scheme="http://maxwu.me/tags/Automation-Test/"/>
     
       <category term="Headless" scheme="http://maxwu.me/tags/Headless/"/>
     
@@ -152,11 +181,11 @@
       <category term="Selenium" scheme="http://maxwu.me/categories/Automation-Test/Selenium/"/>
     
     
-      <category term="Automation Test" scheme="http://maxwu.me/tags/Automation-Test/"/>
+      <category term="Concrete-level-tag" scheme="http://maxwu.me/tags/Concrete-level-tag/"/>
     
       <category term="Selenium" scheme="http://maxwu.me/tags/Selenium/"/>
     
-      <category term="Concrete-level-tag" scheme="http://maxwu.me/tags/Concrete-level-tag/"/>
+      <category term="Automation Test" scheme="http://maxwu.me/tags/Automation-Test/"/>
     
   </entry>
   
@@ -956,9 +985,9 @@ ss = bfs(lmt, x, n)
       <category term="Java" scheme="http://maxwu.me/categories/Programming/Java/"/>
     
     
-      <category term="Selenium" scheme="http://maxwu.me/tags/Selenium/"/>
-    
       <category term="Java" scheme="http://maxwu.me/tags/Java/"/>
+    
+      <category term="Selenium" scheme="http://maxwu.me/tags/Selenium/"/>
     
       <category term="Selenide" scheme="http://maxwu.me/tags/Selenide/"/>
     
@@ -1018,13 +1047,13 @@ ss = bfs(lmt, x, n)
       <category term="CI" scheme="http://maxwu.me/categories/Automation-Test/CI/"/>
     
     
-      <category term="Python" scheme="http://maxwu.me/tags/Python/"/>
-    
-      <category term="Automation" scheme="http://maxwu.me/tags/Automation/"/>
-    
       <category term="CI" scheme="http://maxwu.me/tags/CI/"/>
     
       <category term="Jenkins" scheme="http://maxwu.me/tags/Jenkins/"/>
+    
+      <category term="Python" scheme="http://maxwu.me/tags/Python/"/>
+    
+      <category term="Automation" scheme="http://maxwu.me/tags/Automation/"/>
     
       <category term="Virtualenv" scheme="http://maxwu.me/tags/Virtualenv/"/>
     
@@ -1396,73 +1425,17 @@ ss = bfs(lmt, x, n)
       <category term="Selenium" scheme="http://maxwu.me/categories/Automation-Test/Selenium/"/>
     
     
-      <category term="Selenium" scheme="http://maxwu.me/tags/Selenium/"/>
+      <category term="Ubuntu" scheme="http://maxwu.me/tags/Ubuntu/"/>
     
       <category term="Jenkins" scheme="http://maxwu.me/tags/Jenkins/"/>
     
-      <category term="Ubuntu" scheme="http://maxwu.me/tags/Ubuntu/"/>
+      <category term="Selenium" scheme="http://maxwu.me/tags/Selenium/"/>
     
       <category term="32bit" scheme="http://maxwu.me/tags/32bit/"/>
     
       <category term="ChromeDriver" scheme="http://maxwu.me/tags/ChromeDriver/"/>
     
       <category term="Chromium-browser" scheme="http://maxwu.me/tags/Chromium-browser/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ci-stat project in progress</title>
-    <link href="http://maxwu.me/2017/02/12/ci-stat-project-in-progress/"/>
-    <id>http://maxwu.me/2017/02/12/ci-stat-project-in-progress/</id>
-    <published>2017-02-12T02:03:11.000Z</published>
-    <updated>2017-03-16T04:01:49.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>ci-stat is based on circleci_stat developed in Python. The target is to provide a programming lib to fetch test artifacts and analyze the data from both public cloud CI as Travis, Circle and on-premises CI services as Bamboo, Jenkins. </p>
-<p><a href="https://github.com/maxwu/ci-stat" target="_blank" rel="external"><img src="http://oei21r8n1.bkt.clouddn.com/Snip_ci-stat-starts.png?imageView/2/w/400/q/100" alt="Snip Screen"></a></p>
-<a id="more"></a>
-<h3 id="Targets"><a href="#Targets" class="headerlink" title="Targets"></a>Targets</h3><p>The target is to maintain a lib which could fetch CI test results from general services.</p>
-<ul>
-<li><p>Cloud CI Services:</p>
-<ul>
-<li>circle (in progress);</li>
-<li>travis;</li>
-</ul>
-</li>
-<li><p>On-Premise CI Services:</p>
-<ul>
-<li>Jenkins;</li>
-<li>Bamboo;</li>
-</ul>
-</li>
-<li><p>Local CI files:</p>
-<ul>
-<li>Local XUnit file list.</li>
-</ul>
-</li>
-</ul>
-<p>Load XUnit format files to generate the statistics.<br>Another target of current lib is to quickly figure out the high runners of failure cases from the statistic results. Which requests a common XUnit format of test results. Considering the reality, each build could have multiple artifacts in XUnit XML format.</p>
-<p><a href="https://github.com/maxwu/ci-stat" target="_blank" rel="external">Github</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;ci-stat is based on circleci_stat developed in Python. The target is to provide a programming lib to fetch test artifacts and analyze the data from both public cloud CI as Travis, Circle and on-premises CI services as Bamboo, Jenkins. &lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/maxwu/ci-stat&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;&lt;img src=&quot;http://oei21r8n1.bkt.clouddn.com/Snip_ci-stat-starts.png?imageView/2/w/400/q/100&quot; alt=&quot;Snip Screen&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Programming" scheme="http://maxwu.me/categories/Programming/"/>
-    
-      <category term="Python" scheme="http://maxwu.me/categories/Programming/Python/"/>
-    
-    
-      <category term="Python" scheme="http://maxwu.me/tags/Python/"/>
-    
-      <category term="CI" scheme="http://maxwu.me/tags/CI/"/>
-    
-      <category term="Travis" scheme="http://maxwu.me/tags/Travis/"/>
-    
-      <category term="Circle" scheme="http://maxwu.me/tags/Circle/"/>
     
   </entry>
   
