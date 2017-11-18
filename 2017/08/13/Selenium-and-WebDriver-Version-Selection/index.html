@@ -91,7 +91,7 @@
 <meta property="og:url" content="http://maxwu.me/2017/08/13/Selenium-and-WebDriver-Version-Selection/index.html">
 <meta property="og:site_name" content="+U Maxout!">
 <meta property="og:description" content="This post summarized the versions of browsers and seleniums as well as the dependencies for automation test especially for headless testing.">
-<meta property="og:updated_time" content="2017-08-13T12:19:12.000Z">
+<meta property="og:updated_time" content="2017-11-18T10:15:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Selenium and WebDriver Version Selection">
 <meta name="twitter:description" content="This post summarized the versions of browsers and seleniums as well as the dependencies for automation test especially for headless testing.">
@@ -438,7 +438,7 @@
 <tr>
 <th>Browser</th>
 <th>Current versions</th>
-<th>with headless support</th>
+<th>Browser version with headless support</th>
 <th>Notes</th>
 </tr>
 </thead>
@@ -446,17 +446,18 @@
 <tr>
 <td>Firefox</td>
 <td>stable:55, beta:56b, dev:57dev</td>
-<td>56</td>
+<td>From v56</td>
 <td>Need FF beta version 56b to support headless mode by set MOZ_HEADLESS=1</td>
 </tr>
 <tr>
 <td>Chrome</td>
 <td>stable:61</td>
-<td>Mac and Linux: 59, Windows: 60</td>
+<td>Mac and Linux: from 59, Windows: from 60</td>
 <td>Cli option “”–headless” to run chrome in headless mode (–disable-gpu might be requested on early builds)</td>
 </tr>
 </tbody>
 </table>
+<p>Chrome browser headless mode requests chromedriver version newer than 2.29 due to known update. Current stable chromedriver version is 2.33. For GeckoDriver, v0.19.0 works fine with headless mode firefox.</p>
 <p>Since phantomjs steps down as maintainer by version 2.1.1, there are other lightweight webkit or other engine based headless browser to choose. Visit <a href="https://github.com/dhamaniasad/HeadlessBrowsers" target="_blank" rel="external">headless browsers</a> for more solutions.</p>
 <h2 id="Selenium-2"><a href="#Selenium-2" class="headerlink" title="Selenium 2"></a>Selenium 2</h2><p>Selenium 2 is the history version to offer a common interface over <a href="https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol" target="_blank" rel="external">JSON wired protocol</a> to interact with web driver executables and through them to browsers. The communication scenario is:</p>
 <p>For IE and Chrome:</p>
@@ -467,7 +468,7 @@
 <p>From Selenium 2, it is called Selenium Web Driver instead of RC.</p>
 <h2 id="Selenium-RC"><a href="#Selenium-RC" class="headerlink" title="Selenium RC"></a>Selenium RC</h2><p>Selenium Remote Control (RC) is history version which interacts with browsers by inject javascript and works as an HTTP proxy. Which requests preconfiguration on security checks for most of modern browsers but provides wide supports with language bindings and most of browsers.</p>
 <p>Selenium Client Driver (with most languages) ⇆ Selenium Server (Jar file) ⇆ Browsers</p>
-<h2 id="Change-Log"><a href="#Change-Log" class="headerlink" title="Change Log"></a>Change Log</h2><p>Aug13, 2017: Initial post draft.</p>
+<h2 id="Change-Log"><a href="#Change-Log" class="headerlink" title="Change Log"></a>Change Log</h2><p>Nov18, 2017: Add notes on chromedriver version.<br>Aug13, 2017: Initial post draft.</p>
 
       
     </div>
