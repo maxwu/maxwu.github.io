@@ -66,7 +66,7 @@
 <link href="/css/main.css?v=5.0.1g2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Cucumber,Selenium,Junit," />
+  <meta name="keywords" content="Selenium,Cucumber,Junit," />
 
 
 
@@ -85,12 +85,13 @@
 
 
 <meta name="description" content="Cheers! Toy project baselined to v1.2 and all pending issues resolved.  Github Link BriefThe target of this demo project is to show and refresh a general approach of BDD and experience the Gherkin spe">
-<meta name="keywords" content="Cucumber,Selenium,Junit">
+<meta name="keywords" content="Selenium,Cucumber,Junit">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Cucumber-JVM+Selenium+JUnit Toy released v1.2">
 <meta property="og:url" content="http://maxwu.me/2017/01/13/Cucumber-JVM-Selenium-JUnit-Toy-Project-baselined-to-v1-2/index.html">
 <meta property="og:site_name" content="+U Maxout!">
 <meta property="og:description" content="Cheers! Toy project baselined to v1.2 and all pending issues resolved.  Github Link BriefThe target of this demo project is to show and refresh a general approach of BDD and experience the Gherkin spe">
+<meta property="og:locale" content="en">
 <meta property="og:image" content="http://oei21r8n1.bkt.clouddn.com/Cucumber-JVM-Gh-Snap-2017-02-23.png?imageView/2/w/400/q/100">
 <meta property="og:image" content="https://travis-ci.org/maxwu/cucumber-java-toy.svg?branch=dev">
 <meta property="og:image" content="https://circleci.com/gh/maxwu/cucumber-java-toy.svg?style=svg">
@@ -416,11 +417,11 @@
       
         <p>Cheers! Toy project baselined to v1.2 and all pending issues resolved.</p>
 <p><img src="http://oei21r8n1.bkt.clouddn.com/Cucumber-JVM-Gh-Snap-2017-02-23.png?imageView/2/w/400/q/100" alt="https://github.com/maxwu/cucumber-java-toy"></p>
-<p><a href="https://github.com/maxwu/cucumber-java-toy" target="_blank" rel="external">Github Link</a></p>
+<p><a href="https://github.com/maxwu/cucumber-java-toy" target="_blank" rel="noopener">Github Link</a></p>
 <h1 id="Brief"><a href="#Brief" class="headerlink" title="Brief"></a>Brief</h1><p>The target of this demo project is to show and refresh a general approach of BDD and experience the Gherkin specs as a communication tool on story definition and how to map it to JUnit case scope. It started on Monday from scratch and baselined Friday morning on schedule. Crtitial issues resolved were recorded on Github issue board, too. I recorded hints and tips in the readme markdown page. Here is a paper of note about the thoughts captured during the fast adaption phase.</p>
 <p>There is another <a href="http://maxwu.me/2017/01/21/Tips-on-Selenium-PageObject-Design/">post</a> about tips on PageObject design in web testing. This post is on general practice with Gherkin spec and JUnit.<br><a id="more"></a></p>
 <h1 id="Tips-to-Entry-Level-Cucumber-Learners"><a href="#Tips-to-Entry-Level-Cucumber-Learners" class="headerlink" title="Tips to Entry Level Cucumber Learners"></a>Tips to Entry Level Cucumber Learners</h1><ul>
-<li><p>First of first, <strong>Cucumber is a collaboration tool</strong>, especially in the situation to cowork with people from non-technical background on drafting specifications together. Then developers and testers also work on the “glue” part to test the real things. Most of the scenarios are not purely verified with JVM (or JS, whatever Cucumebr implementation). The test still needs to work through some third party libraries to test, as what request lib for RESTful interface, and, Selenium lib for Web Interaction test. Refer to <a href="http://eamodeorubio.github.io/bdd-with-js/" target="_blank" rel="external">the slides</a>.</p>
+<li><p>First of first, <strong>Cucumber is a collaboration tool</strong>, especially in the situation to cowork with people from non-technical background on drafting specifications together. Then developers and testers also work on the “glue” part to test the real things. Most of the scenarios are not purely verified with JVM (or JS, whatever Cucumebr implementation). The test still needs to work through some third party libraries to test, as what request lib for RESTful interface, and, Selenium lib for Web Interaction test. Refer to <a href="http://eamodeorubio.github.io/bdd-with-js/" target="_blank" rel="noopener">the slides</a>.</p>
 </li>
 <li><p>Readers migrating from Robot Framework or Junit, the suggestion is to carefully read the doc or code of @Before and @After. <strong>The test is against features instead of against implemented class</strong> (the process described as mentionnd on the six Cucumber steps). It just verifies the features by seaching for Gherkin matching (“public” for Java) functions and executing them to form a report. Therefore, no matter whether the test method is executed, the @Before annotated methods are invoked at every scenarios by default. However, test classes are instantiated <strong>right before</strong> the first step method call or the first hooked method call. In short, <strong>step definitions and hooks are global conceptually</strong>.</p>
 </li>
@@ -442,11 +443,11 @@
 </li>
 <li><p>Moving to Travis-CI and CircleCI is pretty a happay journey. However, we shall walk thru the environmental elements first as the OS, Browser version, special variables, et. The Selenium Web Driver could be well managed with WebManagerDriver lib. </p>
 <ul>
-<li><p><strong>Travis-CI</strong>:<a href="https://travis-ci.org/maxwu/cucumber-java-toy" target="_blank" rel="external"> <img src="https://travis-ci.org/maxwu/cucumber-java-toy.svg?branch=dev" class="img-left"> </a></p>
+<li><p><strong>Travis-CI</strong>:<a href="https://travis-ci.org/maxwu/cucumber-java-toy" target="_blank" rel="noopener"> <img src="https://travis-ci.org/maxwu/cucumber-java-toy.svg?branch=dev" class="img-left"> </a></p>
 </li>
-<li><p><strong>Circle CI</strong>:<a href="https://circleci.com/gh/maxwu/cucumber-java-toy" target="_blank" rel="external"> <img src="https://circleci.com/gh/maxwu/cucumber-java-toy.svg?style=svg" class="img-left"> </a></p>
+<li><p><strong>Circle CI</strong>:<a href="https://circleci.com/gh/maxwu/cucumber-java-toy" target="_blank" rel="noopener"> <img src="https://circleci.com/gh/maxwu/cucumber-java-toy.svg?style=svg" class="img-left"> </a></p>
 </li>
-<li><p><strong>CodeCov</strong>:<a href="https://codecov.io/gh/maxwu/cucumber-java-toy" target="_blank" rel="external"> <img src="https://codecov.io/gh/maxwu/cucumber-java-toy/branch/dev/graph/badge.svg" class="img-left"> </a></p>
+<li><p><strong>CodeCov</strong>:<a href="https://codecov.io/gh/maxwu/cucumber-java-toy" target="_blank" rel="noopener"> <img src="https://codecov.io/gh/maxwu/cucumber-java-toy/branch/dev/graph/badge.svg" class="img-left"> </a></p>
 </li>
 </ul>
 </li>
@@ -477,7 +478,7 @@
 </li>
 </ul>
 <p>Have fun and happy test.</p>
-<h1 id="Update-Logs"><a href="#Update-Logs" class="headerlink" title="Update Logs"></a>Update Logs</h1><p><em>[Updated Feb-23]</em>: Update snapshot with <a href="http://jenkins.maxwu.me" target="_blank" rel="external">http://jenkins.maxwu.me</a></p>
+<h1 id="Update-Logs"><a href="#Update-Logs" class="headerlink" title="Update Logs"></a>Update Logs</h1><p><em>[Updated Feb-23]</em>: Update snapshot with <a href="http://jenkins.maxwu.me" target="_blank" rel="noopener">http://jenkins.maxwu.me</a></p>
 <p><em>[Updated Feb-09]</em>: Add a missing sentence of concept description.</p>
 <p><em>[Updated Jan-30]</em>: Append a brief summary of red-green-refactor cycle.</p>
 <p><em>[Updated Jan-14]</em>: Add \<more\> mark into post source.</more\></p>
@@ -545,9 +546,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Cucumber/" rel="tag">#Cucumber</a>
-          
             <a href="/tags/Selenium/" rel="tag">#Selenium</a>
+          
+            <a href="/tags/Cucumber/" rel="tag">#Cucumber</a>
           
             <a href="/tags/Junit/" rel="tag">#Junit</a>
           
@@ -805,7 +806,7 @@
         <div class="copyright" >
   
   &copy;  2016 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

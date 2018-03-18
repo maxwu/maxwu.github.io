@@ -91,6 +91,7 @@
 <meta property="og:url" content="http://maxwu.me/2017/03/09/Setup-virtualenv-for-Jenkins-Task/index.html">
 <meta property="og:site_name" content="+U Maxout!">
 <meta property="og:description" content="When setting up CI for python projects, virtualenv could help to separate the test/deployment environment. This post will provide a template for Jenkins to use virtualenv for Jenkins tasks with Jenkin">
+<meta property="og:locale" content="en">
 <meta property="og:image" content="http://oei21r8n1.bkt.clouddn.com/Snip_ci_stat_2017-03-09.png?imageView/2/w/400/q/100">
 <meta property="og:updated_time" content="2017-03-15T07:15:33.000Z">
 <meta name="twitter:card" content="summary">
@@ -422,7 +423,7 @@
       
 
       
-        <p>When setting up CI for python projects, virtualenv could help to separate the test/deployment environment. This post will provide a template for Jenkins to use virtualenv for Jenkins tasks with <a href="http://jenkins.maxwu.me/job/ci-stat/" target="_blank" rel="external">Jenkins example</a>.</p>
+        <p>When setting up CI for python projects, virtualenv could help to separate the test/deployment environment. This post will provide a template for Jenkins to use virtualenv for Jenkins tasks with <a href="http://jenkins.maxwu.me/job/ci-stat/" target="_blank" rel="noopener">Jenkins example</a>.</p>
 <p><img src="http://oei21r8n1.bkt.clouddn.com/Snip_ci_stat_2017-03-09.png?imageView/2/w/400/q/100" alt="ci-stat screenshot"><br><a id="more"></a></p>
 <h3 id="Common-Test-Script-Template"><a href="#Common-Test-Script-Template" class="headerlink" title="Common Test Script Template"></a>Common Test Script Template</h3><p>Here is the script I used on Jenkins</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="meta">#!/usr/bin/env bash</span></div><div class="line"><span class="comment">########################</span></div><div class="line"><span class="comment"># Step 1: Setup virtualenv</span></div><div class="line"><span class="comment"># This step is only for Jenkins. Travis and CircleCI will ignore this step.</span></div><div class="line"><span class="comment">########################</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> [ -n <span class="string">"<span class="variable">$&#123;WORKSPACE:+1&#125;</span>"</span> ]; <span class="keyword">then</span></div><div class="line">    <span class="comment"># Path to virtualenv cmd installed by pip</span></div><div class="line">    <span class="comment"># /usr/local/bin/virtualenv</span></div><div class="line">    PATH=<span class="variable">$WORKSPACE</span>/venv/bin:/usr/<span class="built_in">local</span>/bin:<span class="variable">$PATH</span></div><div class="line">    <span class="keyword">if</span> [ ! <span class="_">-d</span> <span class="string">"venv"</span> ]; <span class="keyword">then</span></div><div class="line">            virtualenv venv</div><div class="line">    <span class="keyword">fi</span></div><div class="line">    . venv/bin/activate</div><div class="line"><span class="keyword">else</span></div><div class="line">    <span class="comment"># Alternatively, $TRAVIS_REPO_SLUG could be utilized here to provide name.</span></div><div class="line">    <span class="built_in">export</span> JOB_NAME=<span class="string">"ci-stat"</span></div><div class="line"><span class="keyword">fi</span></div><div class="line">pip install -r requirements.txt -r <span class="built_in">test</span>/test_requirements.txt --cache-dir /tmp/<span class="variable">$JOB_NAME</span></div><div class="line"></div><div class="line"><span class="comment">########################</span></div><div class="line"><span class="comment"># Step 2: Execute Test</span></div><div class="line"><span class="comment">########################</span></div><div class="line">nosetests --with-xunit --all-modules --traverse-namespace --with-xcoverage --cover-package=me.maxwu --cover-inclusive --logging-level=INFO --debug=me.maxwu <span class="_">-s</span> -v --xunit-file ci-stat_nose_xunit.xml --cover-html ./<span class="built_in">test</span></div><div class="line"></div><div class="line"><span class="comment">########################</span></div><div class="line"><span class="comment"># Step 3: PyLint</span></div><div class="line"><span class="comment">########################</span></div><div class="line"><span class="built_in">cd</span> src</div><div class="line">pylint <span class="_">-f</span> parseable <span class="_">-d</span> I0011,R0801 me.maxwu | tee ../pylint.out</div><div class="line"><span class="built_in">cd</span> ..</div><div class="line"><span class="comment">#EOF</span></div></pre></td></tr></table></figure>
@@ -440,8 +441,8 @@
 - Violation Report: The lint scan results. 
 - Cobertura Coverage Report: the coverage data (for given Python package). 
 </code></pre><h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><ul>
-<li><a href="http://jenkins.maxwu.me/job/ci-stat/" target="_blank" rel="external">http://jenkins.maxwu.me/job/ci-stat/</a></li>
-<li><a href="http://iamnearlythere.com/jenkins-python-virtualenv/" target="_blank" rel="external">http://iamnearlythere.com/jenkins-python-virtualenv/</a></li>
+<li><a href="http://jenkins.maxwu.me/job/ci-stat/" target="_blank" rel="noopener">http://jenkins.maxwu.me/job/ci-stat/</a></li>
+<li><a href="http://iamnearlythere.com/jenkins-python-virtualenv/" target="_blank" rel="noopener">http://iamnearlythere.com/jenkins-python-virtualenv/</a></li>
 </ul>
 
       
@@ -769,7 +770,7 @@
         <div class="copyright" >
   
   &copy;  2016 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

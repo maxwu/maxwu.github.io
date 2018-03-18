@@ -91,6 +91,7 @@
 <meta property="og:url" content="http://maxwu.me/2017/03/22/Genre-Clawer-A-Cli-App-and-Maven-lib-to-fetch-genres/index.html">
 <meta property="og:site_name" content="+U Maxout!">
 <meta property="og:description" content="Genre-Clawer (Github) is a tool in both maven lib and cli-app created to verify an idea to fetch genres for given music pieces. It started with a post on Lower Hutt Countdown wall and which is a good">
+<meta property="og:locale" content="en">
 <meta property="og:image" content="http://oei21r8n1.bkt.clouddn.com/Genre-GH-20170322_14.png?imageView/2/w/800/q/100">
 <meta property="og:image" content="https://asciinema.org/a/b0n59hqlnjjqte4es7e9wg96f.png">
 <meta property="og:updated_time" content="2017-03-22T10:51:37.000Z">
@@ -423,7 +424,7 @@
       
 
       
-        <p>Genre-Clawer (<a href="https://github.com/maxwu/Genre-Clawer" target="_blank" rel="external">Github</a>) is a tool in both maven lib and cli-app created to verify an idea to fetch genres for given music pieces. It started with a post on Lower Hutt Countdown wall and which is a good journey as a weekend hackathon. </p>
+        <p>Genre-Clawer (<a href="https://github.com/maxwu/Genre-Clawer" target="_blank" rel="noopener">Github</a>) is a tool in both maven lib and cli-app created to verify an idea to fetch genres for given music pieces. It started with a post on Lower Hutt Countdown wall and which is a good journey as a weekend hackathon. </p>
 <p><img src="http://oei21r8n1.bkt.clouddn.com/Genre-GH-20170322_14.png?imageView/2/w/800/q/100" alt="Genre-Clawer-v1.4a1"><br><a id="more"></a></p>
 <h2 id="Backgrounds"><a href="#Backgrounds" class="headerlink" title="Backgrounds"></a>Backgrounds</h2><p>Last week, I saw a post on Lower Hutt countdown community wall. The writer shared a problem in picking songs from a genre sets with given order. I took it as an interesting topic and divided it into two steps: </p>
 <ul>
@@ -454,10 +455,10 @@
 <h4 id="Example-1-Fetch-billboard-top-5-songs-genres"><a href="#Example-1-Fetch-billboard-top-5-songs-genres" class="headerlink" title="Example 1: Fetch billboard top 5 songs genres"></a>Example 1: Fetch billboard top 5 songs genres</h4><p>By default, HtmlUnit headless browser is used in this example.</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># To fetch billboard top5 songs genres:</div><div class="line">&gt;java -jar ./target/Genre-Clawer-1.3.jar -n5</div><div class="line">Got total 5 songs</div><div class="line">1:</div><div class="line">  song: Shape Of You</div><div class="line">  artist: Ed Sheeran</div><div class="line">  genres: [Pop]</div><div class="line">2:</div><div class="line">  song: Bad And Boujee</div><div class="line">  artist: Migos Featuring Lil Uzi Vert</div><div class="line">  genres: [Hip-hop, rap]</div><div class="line">3:</div><div class="line">  song: That&apos;s What I Like</div><div class="line">  artist: Bruno Mars</div><div class="line">  genres: [Pop]</div><div class="line">4:</div><div class="line">  song: I Don&apos;t Wanna Live Forever (Fifty Shades Darker)</div><div class="line">  artist: Zayn / Taylor Swift</div><div class="line">  genres: [Pop]</div><div class="line">5:</div><div class="line">  song: Love On The Brain</div><div class="line">  artist: Rihanna</div><div class="line">  genres: [Contemporary R&amp;B, Pop]</div><div class="line"></div><div class="line">Success rate = 100.00%</div></pre></td></tr></table></figure>
 <h4 id="Example-2-Fetch-genres-for-song-name-“Love-On-The-Brain”-and-artist-name-“Rihanna”"><a href="#Example-2-Fetch-genres-for-song-name-“Love-On-The-Brain”-and-artist-name-“Rihanna”" class="headerlink" title="Example 2: Fetch genres for song name “Love On The Brain” and artist name “Rihanna”"></a>Example 2: Fetch genres for song name “Love On The Brain” and artist name “Rihanna”</h4><p>Obviously, this example will utilize default HtmlUnit headless browser.</p>
-<p><a href="https://asciinema.org/a/b0n59hqlnjjqte4es7e9wg96f" target="_blank" rel="external"><img src="https://asciinema.org/a/b0n59hqlnjjqte4es7e9wg96f.png" alt="asciicast"></a></p>
+<p><a href="https://asciinema.org/a/b0n59hqlnjjqte4es7e9wg96f" target="_blank" rel="noopener"><img src="https://asciinema.org/a/b0n59hqlnjjqte4es7e9wg96f.png" alt="asciicast"></a></p>
 <h2 id="Further-works"><a href="#Further-works" class="headerlink" title="Further works"></a>Further works</h2><p>For the second sub-problem, some additional glue works shall be adapted in between as:</p>
 <ul>
-<li><p>Regulating genre and mapping to dimensions, e.g. with <a href="http://id3.org/id3v2.3.0#Appendix_A_-_Genre_List_from_ID3v1" target="_blank" rel="external">ID3v1</a></p>
+<li><p>Regulating genre and mapping to dimensions, e.g. with <a href="http://id3.org/id3v2.3.0#Appendix_A_-_Genre_List_from_ID3v1" target="_blank" rel="noopener">ID3v1</a></p>
 </li>
 <li><p>Cached persistence and realistic storage</p>
 </li>
@@ -800,7 +801,7 @@
         <div class="copyright" >
   
   &copy;  2016 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
