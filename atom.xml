@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://maxwu.me/"/>
-  <updated>2018-04-01T11:13:52.566Z</updated>
+  <updated>2018-04-01T12:13:02.303Z</updated>
   <id>http://maxwu.me/</id>
   
   <author>
@@ -20,13 +20,13 @@
     <link href="http://maxwu.me/2018/03/19/Update-Anaconda-Navigator-thru-command-line/"/>
     <id>http://maxwu.me/2018/03/19/Update-Anaconda-Navigator-thru-command-line/</id>
     <published>2018-03-18T20:23:35.000Z</published>
-    <updated>2018-04-01T11:13:52.566Z</updated>
+    <updated>2018-04-01T12:13:02.303Z</updated>
     
     <content type="html"><![CDATA[<p><img src="http://oei21r8n1.bkt.clouddn.com/Anaconda_Navigator_scr.png?imageView/2/w/440/q/100" alt="Anaconda-Navigator"></p>
 <a id="more"></a>
 <h2 id="Update-Anaconda-Navigator"><a href="#Update-Anaconda-Navigator" class="headerlink" title="Update Anaconda-Navigator"></a>Update Anaconda-Navigator</h2><p>After the Machine Learning course, I registered Data Science Introduction course (Michigan Univ.) to refresh Python hands. When the pop-up asking about updating anaconda navigator to a new version, I selected “yes” and it just quit current anaconda navigaotr window on Mac. However, Anaconda-Navigator only shut down without any updates. It might be due some permission issue. </p>
 <p>Here is the command line to update Anaconda-Navigator:<br><code>conda update anaconda-navigator</code>.<br>To execute the correct command in cases of pyenv installed to wrap multiple python contexts, you need to select the anaconda pyenv profile and set it to local (or global if intent to). </p>
-<h2 id="Update-Anaconda-Environment"><a href="#Update-Anaconda-Environment" class="headerlink" title="Update Anaconda Environment"></a>Update Anaconda Environment</h2><p>To update anaconda current environment to the latest packages unless dependencies preserve some package versions, the command line is<br><code>conda -n root update conda</code><br>Another way to launch the terminal is to click Anaconda GUI environment column and select “Open Terminal” from the small triangle.</p>
+<h2 id="Update-Anaconda-Environment"><a href="#Update-Anaconda-Environment" class="headerlink" title="Update Anaconda Environment"></a>Update Anaconda Environment</h2><p>To update anaconda current environment to the latest packages unless dependencies preserve some package versions, the command line is<br><code>conda update conda</code><br>Another way to launch the terminal is to click Anaconda GUI environment column and select “Open Terminal” from the small triangle.</p>
 ]]></content>
     
     <summary type="html">
