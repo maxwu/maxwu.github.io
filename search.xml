@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title><![CDATA[Michigan Data Science with Python Course Achieved]]></title>
+      <url>http://maxwu.me/2018/04/09/Michigan-Data-Science-with-Python-Course-Achieved/</url>
+      <content type="html"><![CDATA[<p>Completed the 2nd data science course and achieved the certificate on coursera!</p>
+<a id="more"></a>
+<p><img src="http://oei21r8n1.bkt.clouddn.com/michigan_data_science_w_python_cert.png?imageView2/2/w/600"><br></p>
+]]></content>
+      
+        <categories>
+            
+            <category> Machine Learning </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Python </tag>
+            
+            <tag> Michigan Data Science </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Update Anaconda-Navigator thru command line]]></title>
       <url>http://maxwu.me/2018/03/19/Update-Anaconda-Navigator-thru-command-line/</url>
       <content type="html"><![CDATA[<p><img src="http://oei21r8n1.bkt.clouddn.com/Anaconda_Navigator_scr.png?imageView/2/w/440/q/100" alt="Anaconda-Navigator"></p>
@@ -43,7 +68,7 @@
       
         <categories>
             
-            <category> Machine larning </category>
+            <category> Machine Learning </category>
             
         </categories>
         
@@ -1515,9 +1540,9 @@ ss = bfs(lmt, x, n)
         
         <tags>
             
-            <tag> Docker </tag>
-            
             <tag> CD </tag>
+            
+            <tag> Docker </tag>
             
         </tags>
         

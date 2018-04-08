@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://maxwu.me/"/>
-  <updated>2018-04-01T12:13:02.303Z</updated>
+  <updated>2018-04-08T12:16:56.068Z</updated>
   <id>http://maxwu.me/</id>
   
   <author>
@@ -14,6 +14,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Michigan Data Science with Python Course Achieved</title>
+    <link href="http://maxwu.me/2018/04/09/Michigan-Data-Science-with-Python-Course-Achieved/"/>
+    <id>http://maxwu.me/2018/04/09/Michigan-Data-Science-with-Python-Course-Achieved/</id>
+    <published>2018-04-08T12:04:50.000Z</published>
+    <updated>2018-04-08T12:16:56.068Z</updated>
+    
+    <content type="html"><![CDATA[<p>Completed the 2nd data science course and achieved the certificate on coursera!</p>
+<a id="more"></a>
+<p><img src="http://oei21r8n1.bkt.clouddn.com/michigan_data_science_w_python_cert.png?imageView2/2/w/600"><br></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Completed the 2nd data science course and achieved the certificate on coursera!&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Machine Learning" scheme="http://maxwu.me/categories/Machine-Learning/"/>
+    
+    
+      <category term="Python" scheme="http://maxwu.me/tags/Python/"/>
+    
+      <category term="Michigan Data Science" scheme="http://maxwu.me/tags/Michigan-Data-Science/"/>
+    
+  </entry>
   
   <entry>
     <title>Update Anaconda-Navigator thru command line</title>
@@ -51,7 +78,7 @@
     <link href="http://maxwu.me/2017/11/12/Stanford-A-NG-Machine-Learning-Certificate-Achieved/"/>
     <id>http://maxwu.me/2017/11/12/Stanford-A-NG-Machine-Learning-Certificate-Achieved/</id>
     <published>2017-11-12T09:37:15.000Z</published>
-    <updated>2017-11-18T21:59:45.000Z</updated>
+    <updated>2018-04-08T12:17:05.955Z</updated>
     
     <content type="html"><![CDATA[<a id="more"></a>
 <p>Completed the first machine learning course and achieved the certificate on coursera!</p>
@@ -67,7 +94,7 @@
     
     </summary>
     
-      <category term="Machine larning" scheme="http://maxwu.me/categories/Machine-larning/"/>
+      <category term="Machine Learning" scheme="http://maxwu.me/categories/Machine-Learning/"/>
     
     
       <category term="Andrew-Ng" scheme="http://maxwu.me/tags/Andrew-Ng/"/>
@@ -1327,50 +1354,6 @@ ss = bfs(lmt, x, n)
       <category term="SoapUI" scheme="http://maxwu.me/tags/SoapUI/"/>
     
       <category term="CLI" scheme="http://maxwu.me/tags/CLI/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Apache ab and gnuplot to generate benchmark test chart</title>
-    <link href="http://maxwu.me/2017/02/26/Apache-ab-and-gnuplot-to-generate-benchmark-test-chart/"/>
-    <id>http://maxwu.me/2017/02/26/Apache-ab-and-gnuplot-to-generate-benchmark-test-chart/</id>
-    <published>2017-02-25T11:17:38.000Z</published>
-    <updated>2017-03-16T03:58:06.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>This post described a simple demo on how to use apache benchmark test to get performance test result and generate chart with gnuplot.</p>
-<p><img src="http://oei21r8n1.bkt.clouddn.com/ab_maxwu_chart.png?imageView/2/w/300/q/100" alt="benchmark performance test chart"></p>
-<a id="more"></a>
-<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"> ⓑ maxwu &gt; ab -v  -n40 -c1 <span class="string">"http://jenkins.maxwu.me/"</span></div><div class="line">This is ApacheBench, Version 2.3 &lt;<span class="variable">$Revision</span>: 1706008 $&gt;</div><div class="line">Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/</div><div class="line">Licensed to The Apache Software Foundation, http://www.apache.org/</div><div class="line"></div><div class="line">Benchmarking jenkins.maxwu.me (be patient).....done</div><div class="line"></div><div class="line"></div><div class="line">Server Software:        Microsoft-IIS/7.5</div><div class="line">Server Hostname:        jenkins.maxwu.me</div><div class="line">Server Port:            80</div><div class="line"></div><div class="line">Document Path:          /</div><div class="line">Document Length:        0 bytes</div><div class="line"></div><div class="line">Concurrency Level:      1</div><div class="line">Time taken <span class="keyword">for</span> tests:   2.518 seconds</div><div class="line">Complete requests:      1</div><div class="line">Failed requests:        0</div><div class="line">Non-2xx responses:      1</div><div class="line">Total transferred:      268 bytes</div><div class="line">HTML transferred:       0 bytes</div><div class="line">Requests per second:    0.40 [<span class="comment">#/sec] (mean)</span></div><div class="line">Time per request:       2518.479 [ms] (mean)</div><div class="line">Time per request:       2518.479 [ms] (mean, across all concurrent requests)</div><div class="line">Transfer rate:          0.10 [Kbytes/sec] received</div><div class="line"></div><div class="line">Connection Times (ms)</div><div class="line">              min  mean[+/-sd] median   max</div><div class="line">Connect:     2289 2289   0.0   2289    2289</div><div class="line">Processing:   229  229   0.0    229     229</div><div class="line">Waiting:      229  229   0.0    229     229</div><div class="line">Total:       2518 2518   0.0   2518    2518</div><div class="line"> ⓑ maxwu &gt;</div></pre></td></tr></table></figure>
-<p>The detection on Web Server type is incorrect. The data could be dumpped in gnuplot data format with <code>-g filename</code>.</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">gnuplot&gt; <span class="built_in">set</span> output <span class="string">"http_benchmark.png"</span></div><div class="line">gnuplot&gt; <span class="built_in">set</span> xlabel <span class="string">"request"</span></div><div class="line">gnuplot&gt; <span class="built_in">set</span> ylabel <span class="string">"ms"</span></div><div class="line">gnuplot&gt;plot <span class="string">"plot.dat"</span> using 7 with lines title <span class="string">"ctime"</span>, \</div><div class="line"><span class="string">"plot.dat"</span> using 8 with lines title <span class="string">"dtime"</span>, \</div><div class="line"><span class="string">"plot.dat"</span> using 9  with lines title <span class="string">"ttime"</span>, \</div><div class="line"><span class="string">"plot.dat"</span> using 10 with lines title <span class="string">"wait"</span></div></pre></td></tr></table></figure>
-<p>The benchmark test chart is generated as the chart in beginning of this post.</p>
-<ul>
-<li><p>ctime: Connection Time</p>
-</li>
-<li><p>dtime: Processing Time</p>
-</li>
-<li><p>ttime: Total Time</p>
-</li>
-<li><p>wait: Waiting Time</p>
-</li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;This post described a simple demo on how to use apache benchmark test to get performance test result and generate chart with gnuplot.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://oei21r8n1.bkt.clouddn.com/ab_maxwu_chart.png?imageView/2/w/300/q/100&quot; alt=&quot;benchmark performance test chart&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Automation Test" scheme="http://maxwu.me/categories/Automation-Test/"/>
-    
-      <category term="Performance Test" scheme="http://maxwu.me/categories/Automation-Test/Performance-Test/"/>
-    
-    
-      <category term="ab" scheme="http://maxwu.me/tags/ab/"/>
-    
-      <category term="Benchmark" scheme="http://maxwu.me/tags/Benchmark/"/>
     
   </entry>
   
