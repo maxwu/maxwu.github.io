@@ -96,7 +96,7 @@
 <meta property="og:image" content="http://oei21r8n1.bkt.clouddn.com/Test_Pyramid_v2.png?imageView/2/w/600/q/100">
 <meta property="og:image" content="http://oei21r8n1.bkt.clouddn.com/pom_TransitionWithSamePageObject.png">
 <meta property="og:image" content="http://oei21r8n1.bkt.clouddn.com/pom-page-transition.png">
-<meta property="og:updated_time" content="2017-09-03T12:14:54.000Z">
+<meta property="og:updated_time" content="2018-08-28T11:00:47.810Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Tips on Selenium PageObjects Design">
 <meta name="twitter:description" content="About PageObjects The “PageObjects“ are introduced mainly to avoid duplicated codes in test and simplify the maintenance works as well. PageObject just models the WebUI under test and represent the st">
@@ -151,7 +151,7 @@
   <title> Tips on Selenium PageObjects Design | +U Maxout!  -  </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope itemtype="https://schema.org/WebPage" lang="en">
 
   
 
@@ -190,7 +190,7 @@
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="https://schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
@@ -427,7 +427,7 @@
 
       
         <h1 id="About-PageObjects"><a href="#About-PageObjects" class="headerlink" title="About PageObjects"></a>About PageObjects</h1><p><img src="http://www.seleniumhq.org/images/selenium-logo.png" class="img-left"> The “<strong>PageObjects</strong>“ are introduced mainly to avoid duplicated codes in test and simplify the maintenance works as well. PageObject just models the WebUI under test and represent the state transition among UI(page) activities.</p>
-<p><a href="http://www.seleniumhq.org/docs/06_test_design_considerations.jsp" target="_blank" rel="noopener">PageObjects and Page Factory Pattern</a> are terms from Selenium documents. The concepts of PageObject and (w/ or w/o) Page Factory are also derived from general OOD. It could be regarded as a much simplified ORM or a simple DAO if we regard test cases as data, test scenario pattern as DB tables. So the methodology can apply to other tests besides web. </p>
+<p><a href="https://www.seleniumhq.org/docs/06_test_design_considerations.jsp" target="_blank" rel="noopener">PageObjects and Page Factory Pattern</a> are terms from Selenium documents. The concepts of PageObject and (w/ or w/o) Page Factory are also derived from general OOD. It could be regarded as a much simplified ORM or a simple DAO if we regard test cases as data, test scenario pattern as DB tables. So the methodology can apply to other tests besides web. </p>
 <ul>
 <li>PageObject is a pattern of design</li>
 <li>Selenium Java package provides a basic support on lazy init. However, it is still a wheel to build for specific test area.</li>
@@ -534,7 +534,7 @@
 <ul>
 <li><p><em>Note-1: It is up to the test purpose whether to separate a specific state to handle transient state like authentication. In most cases, the constructor could verify the transient state via a callable design as well. However, if there is deeper abstract (for reuse or polymorphism afterwards) design, a separate PageObject or group of PageObjects shall be introduced.</em></p>
 </li>
-<li><p>_Note-2: The potential problem is to throw exception in constructor method. One thing to take care is to make sure unmanaged resources are gracefully handled if exception thrown in subclass or base class. Another issue is related to security.Ref to <a href="http://www.oracle.com/technetwork/java/seccodeguide-139067.html" target="_blank" rel="noopener">Secure Coding Guideline for Java SE, Oracle, Guideline-7_3 in Ch-7: Object construction</a>, parially constructed objects lead to security vulnerability. Besides, the @After and @AfterClass or @After in Cucumber shall be checked to avoid any side effects if there is state change while throwing execption in an incomplete procedure._</p>
+<li><p>_Note-2: The potential problem is to throw exception in constructor method. One thing to take care is to make sure unmanaged resources are gracefully handled if exception thrown in subclass or base class. Another issue is related to security.Ref to <a href="https://www.oracle.com/technetwork/java/seccodeguide-139067.html" target="_blank" rel="noopener">Secure Coding Guideline for Java SE, Oracle, Guideline-7_3 in Ch-7: Object construction</a>, parially constructed objects lead to security vulnerability. Besides, the @After and @AfterClass or @After in Cucumber shall be checked to avoid any side effects if there is state change while throwing execption in an incomplete procedure._</p>
 </li>
 <li><p><em>Note-3: In usual functional test, if the authentication is not the purpose to test against, authentication could be regarded as an arc from current state to same state. This arc of state-transition could be handled in one method called by the constructor. However, it depends on how complicated the authentication scenario is. If it branches to different situation with sophisticated processing steps, it shall be better to explicitly design a state of AuthenticationPageObject to maintain the logic and which can be a base for further security cases to grow from.</em></p>
 </li>
@@ -622,7 +622,7 @@
       
         
 <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
-    <img id="wechat_subscriber_qcode" src="http://oei21r8n1.bkt.clouddn.com/maxwunj.png" alt="Max Wu wechat" style="width: 200px; max-width: 100%;"/>
+    <img id="wechat_subscriber_qcode" src="https://i.imgur.com/HcTdNJlm.png" alt="Max Wu wechat" style="width: 200px; max-width: 100%;"/>
     <div>微信 WeiXin</div>
 </div>
 
@@ -748,7 +748,7 @@
       <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="http://0.gravatar.com/avatar/4a3ccf96788c0264158cce73dec64369"
+               src="https://0.gravatar.com/avatar/4a3ccf96788c0264158cce73dec64369"
                alt="Max Wu" />
           <p class="site-author-name" itemprop="name">Max Wu</p>
           <p class="site-description motion-element" itemprop="description">Software Crafter/Ready for hire</p>
@@ -803,7 +803,7 @@
               </span>
             
               <span class="links-of-author-item">
-                <a href="http://www.linkedin.com/in/maxwu" target="_blank" title="Linkedin">
+                <a href="https://www.linkedin.com/in/maxwu" target="_blank" title="Linkedin">
                   
                     <i class="fa fa-fw fa-linkedin"></i>
                   
@@ -812,7 +812,7 @@
               </span>
             
               <span class="links-of-author-item">
-                <a href="http://stackoverflow.com/users/230100/maxwu" target="_blank" title="Stackoverflow">
+                <a href="https://stackoverflow.com/users/230100/maxwu" target="_blank" title="Stackoverflow">
                   
                     <i class="fa fa-fw fa-stack-overflow"></i>
                   
@@ -830,16 +830,7 @@
               </span>
             
               <span class="links-of-author-item">
-                <a href="http://cv.maxwu.me" target="_blank" title="Resume">
-                  
-                    <i class="fa fa-fw fa-file-text-o"></i>
-                  
-                  Resume
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://weibo.com/maxwunj" target="_blank" title="Weibo">
+                <a href="https://weibo.com/maxwunj" target="_blank" title="Weibo">
                   
                     <i class="fa fa-fw fa-weibo"></i>
                   
@@ -857,7 +848,7 @@
               </span>
             
               <span class="links-of-author-item">
-                <a href="http://www.zhihu.com/people/maxwunj" target="_blank" title="Zhihu">
+                <a href="https://www.zhihu.com/people/maxwunj" target="_blank" title="Zhihu">
                   
                     <i class="fa fa-fw fa-lightbulb-o"></i>
                   
