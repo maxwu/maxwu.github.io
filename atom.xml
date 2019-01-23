@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://maxwu.me/"/>
-  <updated>2018-08-26T10:44:00.198Z</updated>
+  <updated>2019-01-23T11:25:51.856Z</updated>
   <id>http://maxwu.me/</id>
   
   <author>
@@ -21,13 +21,18 @@
     <link href="http://maxwu.me/2018/04/09/Michigan-Data-Science-with-Python-Course-Achieved/"/>
     <id>http://maxwu.me/2018/04/09/Michigan-Data-Science-with-Python-Course-Achieved/</id>
     <published>2018-04-08T12:04:50.000Z</published>
-    <updated>2018-08-26T10:44:00.198Z</updated>
+    <updated>2019-01-23T11:25:51.856Z</updated>
     
-    <content type="html"><![CDATA[<p>Completed the 2nd data science course and achieved the certificate on coursera!</p><a id="more"></a><p><img src="https://i.imgur.com/gE39kX4m.png" alt="Imgur Michigan Data Science with Python Course Cert"></p>]]></content>
+    <content type="html"><![CDATA[<a id="more"></a><p>Completed the 2nd data science course and achieved the certificate on coursera!</p><p><img src="https://i.imgur.com/gE39kX4m.png" alt="Imgur Michigan Data Science with Python Course Cert"></p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;Completed the 2nd data science course and achieved the certificate on coursera!&lt;/p&gt;
+      
+      
+        &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;Completed the 2nd data science course and achieved the certificate on coursera!&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/gE
+      
     
     </summary>
     
@@ -36,7 +41,7 @@
     
       <category term="Python" scheme="http://maxwu.me/tags/Python/"/>
     
-      <category term="Michigan Data Science" scheme="http://maxwu.me/tags/Michigan-Data-Science/"/>
+      <category term="Data Science" scheme="http://maxwu.me/tags/Data-Science/"/>
     
   </entry>
   
@@ -71,7 +76,7 @@
     <link href="http://maxwu.me/2017/11/12/Stanford-A-NG-Machine-Learning-Certificate-Achieved/"/>
     <id>http://maxwu.me/2017/11/12/Stanford-A-NG-Machine-Learning-Certificate-Achieved/</id>
     <published>2017-11-12T09:37:15.000Z</published>
-    <updated>2018-08-26T10:54:42.411Z</updated>
+    <updated>2019-01-23T11:25:21.840Z</updated>
     
     <content type="html"><![CDATA[<a id="more"></a><p>Completed the first machine learning course and achieved the certificate on coursera!</p><p>Rather than warming up mathematics and scripting with new toy of octave(and matlab), it was an experience to enhance time management :_) </p><p><img src="https://i.imgur.com/6WmFoUsm.png" alt="Stanford-Andrew-Ng-ML-Course-Cert"></p>]]></content>
     
@@ -92,6 +97,8 @@
       <category term="Andrew-Ng" scheme="http://maxwu.me/tags/Andrew-Ng/"/>
     
       <category term="Stanford" scheme="http://maxwu.me/tags/Stanford/"/>
+    
+      <category term="Machine Learning" scheme="http://maxwu.me/tags/Machine-Learning/"/>
     
   </entry>
   

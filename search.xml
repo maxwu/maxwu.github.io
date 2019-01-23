@@ -6,8 +6,8 @@
     <entry>
       <title><![CDATA[Michigan Data Science with Python Course Achieved]]></title>
       <url>http://maxwu.me/2018/04/09/Michigan-Data-Science-with-Python-Course-Achieved/</url>
-      <content type="html"><![CDATA[<p>Completed the 2nd data science course and achieved the certificate on coursera!</p>
-<a id="more"></a>
+      <content type="html"><![CDATA[<a id="more"></a>
+<p>Completed the 2nd data science course and achieved the certificate on coursera!</p>
 <p><img src="https://i.imgur.com/gE39kX4m.png" alt="Imgur Michigan Data Science with Python Course Cert"></p>
 ]]></content>
       
@@ -22,7 +22,7 @@
             
             <tag> Python </tag>
             
-            <tag> Michigan Data Science </tag>
+            <tag> Data Science </tag>
             
         </tags>
         
@@ -78,6 +78,8 @@
             <tag> Andrew-Ng </tag>
             
             <tag> Stanford </tag>
+            
+            <tag> Machine Learning </tag>
             
         </tags>
         

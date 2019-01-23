@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://maxwu.me/2018/04/09/Michigan-Data-Science-with-Python-Course-Achieved/</loc>
+    
+    <lastmod>2019-01-23T11:25:51.856Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://maxwu.me/2017/11/12/Stanford-A-NG-Machine-Learning-Certificate-Achieved/</loc>
+    
+    <lastmod>2019-01-23T11:25:21.840Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://maxwu.me/2017/02/21/Jenkins-with-Selenium-3-1-0-ChromeDriver-latest-version-and-Chromium-Browser-on-32bit-Linux/</loc>
     
     <lastmod>2019-01-23T11:10:45.072Z</lastmod>
@@ -19,20 +33,6 @@
     <loc>http://maxwu.me/2018/03/19/Update-Anaconda-Navigator-thru-command-line/</loc>
     
     <lastmod>2018-08-27T11:49:15.075Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://maxwu.me/2017/11/12/Stanford-A-NG-Machine-Learning-Certificate-Achieved/</loc>
-    
-    <lastmod>2018-08-26T10:54:42.411Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://maxwu.me/2018/04/09/Michigan-Data-Science-with-Python-Course-Achieved/</loc>
-    
-    <lastmod>2018-08-26T10:44:00.198Z</lastmod>
     
   </url>
   
