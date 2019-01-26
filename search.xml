@@ -88,7 +88,9 @@
     <entry>
       <title><![CDATA[Selenium and WebDriver Version Selection]]></title>
       <url>http://maxwu.me/2017/08/13/Selenium-and-WebDriver-Version-Selection/</url>
-      <content type="html"><![CDATA[<p>This post summarized the versions of browsers and seleniums as well as the dependencies for automation test especially for headless testing.<br><a id="more"></a></p>
+      <content type="html"><![CDATA[<p>This post summarized the versions of browsers and seleniums as well as the dependencies for automation test especially for headless testing. </p>
+<p><a href="https://i.imgur.com/xXsIDBC.png" target="_blank" rel="noopener">Selenium Pill</a></p>
+<a id="more"></a>
 <h2 id="Selenium-3"><a href="#Selenium-3" class="headerlink" title="Selenium 3"></a>Selenium 3</h2><p>Current stable version of selenium. From Selenium 3:</p>
 <ul>
 <li>Interacts with Firefox through Mozzila’s Gecko Driver.</li>
