@@ -75,11 +75,11 @@
         
         <tags>
             
+            <tag> Machine Learning </tag>
+            
             <tag> Andrew-Ng </tag>
             
             <tag> Stanford </tag>
-            
-            <tag> Machine Learning </tag>
             
         </tags>
         
@@ -2383,9 +2383,9 @@ self.assertTrue(<span class="string">"exception message"</span> <span class="key
             
             <tag> RESTful </tag>
             
-            <tag> Defect </tag>
-            
             <tag> Test </tag>
+            
+            <tag> Defect </tag>
             
         </tags>
         
