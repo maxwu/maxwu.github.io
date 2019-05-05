@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://maxwu.me/"/>
-  <updated>2019-01-23T11:25:51.856Z</updated>
+  <updated>2019-05-05T12:17:14.364Z</updated>
   <id>http://maxwu.me/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Completed Deeplearning.ai TensorFlow Introdution Course</title>
+    <link href="http://maxwu.me/2019/05/05/Completed-Deeplearning-ai-TensorFlow-Introdution-Course/"/>
+    <id>http://maxwu.me/2019/05/05/Completed-Deeplearning-ai-TensorFlow-Introdution-Course/</id>
+    <published>2019-05-05T11:37:15.000Z</published>
+    <updated>2019-05-05T12:17:14.364Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><p>Hurray! Completed the Deeplearning.ai course <strong>Introduction to TensorFlow for Artificial Intelligence, Machine Learning, and Deep Learning</strong> and achieved the certificate on coursera!</p><p><img src="https://i.imgur.com/Gqldzu2.png" alt="Deeplearning-ai-cert-tensorflow-intro"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;Hurray! Completed the Deeplearning.ai course &lt;strong&gt;Introduction to TensorFlow for Artificial Intelligence, Machine Le
+      
+    
+    </summary>
+    
+      <category term="Machine Learning" scheme="http://maxwu.me/categories/Machine-Learning/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Michigan Data Science with Python Course Achieved</title>
@@ -68,30 +92,6 @@
       <category term="Python" scheme="http://maxwu.me/tags/Python/"/>
     
       <category term="Anaconda" scheme="http://maxwu.me/tags/Anaconda/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Completed Deeplearning.ai TensorFlow Introdution Course</title>
-    <link href="http://maxwu.me/2017/11/12/Completed-Deeplearning-ai-TensorFlow-Introdution-Course/"/>
-    <id>http://maxwu.me/2017/11/12/Completed-Deeplearning-ai-TensorFlow-Introdution-Course/</id>
-    <published>2017-11-12T09:37:15.000Z</published>
-    <updated>2019-05-05T12:13:32.171Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a><p>Hurray! Completed the Deeplearning.ai course <strong>Introduction to TensorFlow for Artificial Intelligence, Machine Learning, and Deep Learning</strong> and achieved the certificate on coursera!</p><p><img src="https://i.imgur.com/Gqldzu2.png" alt="Deeplearning-ai-cert-tensorflow-intro"></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;Hurray! Completed the Deeplearning.ai course &lt;strong&gt;Introduction to TensorFlow for Artificial Intelligence, Machine Le
-      
-    
-    </summary>
-    
-      <category term="Machine Learning" scheme="http://maxwu.me/categories/Machine-Learning/"/>
-    
     
   </entry>
   
