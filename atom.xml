@@ -72,6 +72,30 @@
   </entry>
   
   <entry>
+    <title>Completed Deeplearning.ai TensorFlow Introdution Course</title>
+    <link href="http://maxwu.me/2017/11/12/Completed-Deeplearning-ai-TensorFlow-Introdution-Course/"/>
+    <id>http://maxwu.me/2017/11/12/Completed-Deeplearning-ai-TensorFlow-Introdution-Course/</id>
+    <published>2017-11-12T09:37:15.000Z</published>
+    <updated>2019-05-05T12:13:32.171Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><p>Hurray! Completed the Deeplearning.ai course <strong>Introduction to TensorFlow for Artificial Intelligence, Machine Learning, and Deep Learning</strong> and achieved the certificate on coursera!</p><p><img src="https://i.imgur.com/Gqldzu2.png" alt="Deeplearning-ai-cert-tensorflow-intro"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;Hurray! Completed the Deeplearning.ai course &lt;strong&gt;Introduction to TensorFlow for Artificial Intelligence, Machine Le
+      
+    
+    </summary>
+    
+      <category term="Machine Learning" scheme="http://maxwu.me/categories/Machine-Learning/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>Stanford A-NG Machine Learning Certificate Achieved</title>
     <link href="http://maxwu.me/2017/11/12/Stanford-A-NG-Machine-Learning-Certificate-Achieved/"/>
     <id>http://maxwu.me/2017/11/12/Stanford-A-NG-Machine-Learning-Certificate-Achieved/</id>
@@ -570,32 +594,6 @@
       <category term="Nginx" scheme="http://maxwu.me/tags/Nginx/"/>
     
       <category term="Ipfilter" scheme="http://maxwu.me/tags/Ipfilter/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SoapUI command line</title>
-    <link href="http://maxwu.me/2017/02/27/SoapUI-command-line/"/>
-    <id>http://maxwu.me/2017/02/27/SoapUI-command-line/</id>
-    <published>2017-02-26T11:57:51.000Z</published>
-    <updated>2017-03-16T03:57:10.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>SoapUI is widely used in WebService functional and performance test. This post is a note on how to run SoapUI in command line with Mac environment.<br><a id="more"></a></p><p>Environment: MBP, SoapUI 5.3 open source version, bash.</p><p>By default, the testrunner.sh located at <code>Applications/SoapUI-5.3.0.app/Contents/java/app/bin</code>. Therefore, an env file with below line will add testrunner into path.</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">export PATH=$PATH:/Applications/SoapUI-5.3.0.app/Contents/java/app/bin</span><br></pre></td></tr></table></figure><p>To run test suite “Suite-Pub-1” in project “GettingStarted-soapui-project.xml” and dump XUnit format report to specified folder, below bash shell command is verified.</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt;cat test_Suite-Pub-1_in_Getting-Started.sh</span><br><span class="line">testrunner.sh -Dfile.encoding=UTF-8-I -r -j -s Suite-Pub-1 GettingStarted-soapui-project.xml -f ./reports/$(date &quot;+%Y-%m-%d-%H-%M-%S-Proj-GettingStarted&quot;)</span><br></pre></td></tr></table></figure><p>There is an error with soapUI 5.3 open source version on class reflection (loading) step. </p><p>Running logs:</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ⓑ maxwu  01:03  ~  devel  toy-box  soapUI   master  ./test_Suite-Pub-1_in_Getting-Started.sh</span><br><span class="line">================================</span><br><span class="line">=</span><br><span class="line">= SOAPUI_HOME = /Applications/SoapUI-5.3.0.app/Contents/java/app</span><br><span class="line">=</span><br><span class="line">================================</span><br><span class="line">SoapUI 5.3.0 TestCase Runner</span><br><span class="line">01:04:34,315 INFO  [DefaultSoapUICore] initialized soapui-settings from [/Users/maxwu/soapui-settings.xml]</span><br><span class="line">SLF4J: Failed to load class &quot;org.slf4j.impl.StaticLoggerBinder&quot;.</span><br><span class="line">SLF4J: Defaulting to no-operation (NOP) logger implementation</span><br><span class="line">SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.</span><br><span class="line">01:04:35,133 INFO  [PluginManager] 0 plugins loaded in 1 ms</span><br><span class="line">01:04:35,133 INFO  [DefaultSoapUICore] All plugins loaded</span><br><span class="line">01:04:37,319 INFO  [WsdlProject] Loaded project from [file:/Users/maxwu/devel/toy-box/soapUI/GettingStarted-soapui-project.xml]</span><br><span class="line">01:04:37,326 INFO  [SoapUITestCaseRunner] Running SoapUI tests in project [Soap Test Project]</span><br><span class="line">01:04:37,327 INFO  [SoapUITestCaseRunner] Running TestSuite [Suite-Pub-1], runType = SEQUENTIAL</span><br><span class="line">01:04:37,349 INFO  [SoapUITestCaseRunner] Running SoapUI testcase [TC-Soap-CurrencyRate]</span><br><span class="line">01:04:37,354 INFO  [SoapUITestCaseRunner] running step [ConversionRate-req]</span><br><span class="line">01:04:38,475 DEBUG [HttpClientSupport$SoapUIHttpClient] Attempt 1 to execute request</span><br><span class="line">01:04:38,475 DEBUG [SoapUIMultiThreadedHttpConnectionManager$SoapUIDefaultClientConnection] Sending request: POST /currencyconvertor.asmx HTTP/1.1</span><br><span class="line">01:04:38,843 DEBUG [SoapUIMultiThreadedHttpConnectionManager$SoapUIDefaultClientConnection] Receiving response: HTTP/1.1 200 OK</span><br><span class="line">01:04:38,846 DEBUG [HttpClientSupport$SoapUIHttpClient] Connection can be kept alive indefinitely</span><br><span class="line">01:04:38,942 INFO  [SoapUITestCaseRunner] Assertion [SOAP Response] has status VALID</span><br><span class="line">01:04:38,942 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status VALID</span><br><span class="line">01:04:38,946 INFO  [SoapUITestCaseRunner] Finished running SoapUI testcase [TC-Soap-CurrencyRate], time taken: 1583ms, status: FINISHED</span><br><span class="line">01:04:38,947 INFO  [SoapUITestCaseRunner] Running SoapUI testcase [TC-Soap-Translator12]</span><br><span class="line">01:04:38,947 INFO  [SoapUITestCaseRunner] running step [SOAP Req En-Ch 1.2]</span><br><span class="line">01:04:40,080 DEBUG [HttpClientSupport$SoapUIHttpClient] Attempt 1 to execute request</span><br><span class="line">01:04:40,080 DEBUG [SoapUIMultiThreadedHttpConnectionManager$SoapUIDefaultClientConnection] Sending request: POST /webservices/EnglishChinese.asmx HTTP/1.1</span><br><span class="line">01:04:41,486 DEBUG [SoapUIMultiThreadedHttpConnectionManager$SoapUIDefaultClientConnection] Receiving response: HTTP/1.1 200 OK</span><br><span class="line">01:04:41,486 DEBUG [HttpClientSupport$SoapUIHttpClient] Connection can be kept alive indefinitely</span><br><span class="line">01:04:41,856 INFO  [SoapUITestCaseRunner] Assertion [SOAP Response] has status VALID</span><br><span class="line">01:04:41,856 INFO  [SoapUITestCaseRunner] Assertion [Schema Compliance] has status UNKNOWN</span><br><span class="line">01:04:41,856 INFO  [SoapUITestCaseRunner] Assertion [Not SOAP Fault] has status VALID</span><br><span class="line">01:04:41,856 INFO  [SoapUITestCaseRunner] Assertion [XPath Match Translation Result] has status VALID</span><br><span class="line">01:04:41,857 INFO  [SoapUITestCaseRunner] Finished running SoapUI testcase [TC-Soap-Translator12], time taken: 2908ms, status: FINISHED</span><br><span class="line">01:04:41,857 INFO  [SoapUITestCaseRunner] Running SoapUI testcase [TC-Get-Translator]</span><br><span class="line">01:04:41,858 INFO  [SoapUITestCaseRunner] running step [HTTP Req Get Translator]</span><br><span class="line">01:04:41,871 DEBUG [HttpClientSupport$SoapUIHttpClient] Stale connection check</span><br><span class="line">01:04:41,873 DEBUG [HttpClientSupport$SoapUIHttpClient] Attempt 1 to execute request</span><br><span class="line">01:04:41,873 DEBUG [SoapUIMultiThreadedHttpConnectionManager$SoapUIDefaultClientConnection] Sending request: GET /webservices/EnglishChinese.asmx/Translator?wordKey=string HTTP/1.1</span><br><span class="line">01:04:42,350 DEBUG [SoapUIMultiThreadedHttpConnectionManager$SoapUIDefaultClientConnection] Receiving response: HTTP/1.1 200 OK</span><br><span class="line">01:04:42,351 DEBUG [HttpClientSupport$SoapUIHttpClient] Connection can be kept alive indefinitely</span><br><span class="line">01:04:42,380 INFO  [SoapUITestCaseRunner] Assertion [XPath Match] has status VALID</span><br><span class="line">01:04:42,381 INFO  [SoapUITestCaseRunner] Finished running SoapUI testcase [TC-Get-Translator], time taken: 480ms, status: FINISHED</span><br><span class="line">01:04:42,381 INFO  [SoapUITestCaseRunner] Running SoapUI testcase [TC-Post-Translator]</span><br><span class="line">01:04:42,382 INFO  [SoapUITestCaseRunner] running step [HTTP Req Get Translator]</span><br><span class="line">01:04:42,384 DEBUG [HttpClientSupport$SoapUIHttpClient] Stale connection check</span><br><span class="line">01:04:42,386 DEBUG [HttpClientSupport$SoapUIHttpClient] Attempt 1 to execute request</span><br><span class="line">01:04:42,386 DEBUG [SoapUIMultiThreadedHttpConnectionManager$SoapUIDefaultClientConnection] Sending request: POST /webservices/EnglishChinese.asmx/Translator HTTP/1.1</span><br><span class="line">01:04:42,974 DEBUG [SoapUIMultiThreadedHttpConnectionManager$SoapUIDefaultClientConnection] Receiving response: HTTP/1.1 200 OK</span><br><span class="line">01:04:42,975 DEBUG [HttpClientSupport$SoapUIHttpClient] Connection can be kept alive indefinitely</span><br><span class="line">01:04:42,987 INFO  [SoapUITestCaseRunner] Assertion [XPath Match] has status VALID</span><br><span class="line">01:04:42,988 INFO  [SoapUITestCaseRunner] Finished running SoapUI testcase [TC-Post-Translator], time taken: 591ms, status: FINISHED</span><br><span class="line">01:04:42,992 INFO  [SoapUITestCaseRunner] Running SoapUI testcase [TC-Casual]</span><br><span class="line">01:04:42,992 INFO  [SoapUITestCaseRunner] running step [Groovy Script1]</span><br><span class="line">Hello Max!</span><br><span class="line">01:04:43,362 INFO  [SoapUITestCaseRunner] Finished running SoapUI testcase [TC-Casual], time taken: 369ms, status: FINISHED</span><br><span class="line">01:04:43,362 INFO  [SoapUITestCaseRunner] TestSuite [Suite-Pub-1] finished with status [FINISHED] in 6031ms</span><br><span class="line"></span><br><span class="line">SoapUI 5.3.0 TestCaseRunner Summary</span><br><span class="line">-----------------------------</span><br><span class="line">Time Taken: 6036ms</span><br><span class="line">Total TestSuites: 1</span><br><span class="line">Total TestCases: 5 (0 failed)</span><br><span class="line">Total TestSteps: 5</span><br><span class="line">Total Request Assertions: 8</span><br><span class="line">Total Failed Assertions: 0</span><br><span class="line">Total Exported Results: 0</span><br><span class="line"> ⓑ maxwu  01:04  ~  devel  toy-box  soapUI   master </span><br></pre></td></tr></table></figure><p>TODO:</p><ul><li>Groovy scripting with Java.</li><li>Check performance test chart.</li><li>Sharing the free SOAP Web Interface for test practices.</li><li>Construct local RESTful interface with Python Django and test with Groovy suites.</li></ul><p>Drafted Feb27.<br>EOF</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;SoapUI is widely used in WebService functional and performance test. This post is a note on how to run SoapUI in command line with Mac environment.&lt;br&gt;
-    
-    </summary>
-    
-      <category term="Automation Test" scheme="http://maxwu.me/categories/Automation-Test/"/>
-    
-      <category term="SoapUI" scheme="http://maxwu.me/categories/Automation-Test/SoapUI/"/>
-    
-    
-      <category term="SoapUI" scheme="http://maxwu.me/tags/SoapUI/"/>
-    
-      <category term="CLI" scheme="http://maxwu.me/tags/CLI/"/>
     
   </entry>
   
