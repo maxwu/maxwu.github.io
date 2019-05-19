@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://maxwu.me/2017/06/09/Lessons-and-Thoughts-on-Agile-and-Test-Automation-Approaches/</loc>
+    
+    <lastmod>2019-05-19T08:07:28.626Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://maxwu.me/2019/05/05/Completed-Deeplearning-ai-TensorFlow-Introdution-Course/</loc>
     
-    <lastmod>2019-05-10T11:51:23.990Z</lastmod>
+    <lastmod>2019-05-10T12:37:39.627Z</lastmod>
     
   </url>
   
@@ -75,13 +82,6 @@
     <loc>http://maxwu.me/2017/05/20/Thoughts-on-RESTful-API-Design-and-Testing/</loc>
     
     <lastmod>2017-07-06T10:54:01.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://maxwu.me/2017/06/09/Lessons-and-Thoughts-on-Agile-and-Test-Automation-Approaches/</loc>
-    
-    <lastmod>2017-06-20T11:09:00.000Z</lastmod>
     
   </url>
   
