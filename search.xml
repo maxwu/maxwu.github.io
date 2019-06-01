@@ -1034,9 +1034,9 @@ ss = bfs(lmt, x, n)
             
             <tag> Java </tag>
             
-            <tag> Selenide </tag>
-            
             <tag> Selenium </tag>
+            
+            <tag> Selenide </tag>
             
             <tag> HtmlUnit </tag>
             
@@ -2271,9 +2271,9 @@ self.assertTrue(<span class="string">"exception message"</span> <span class="key
         
         <tags>
             
-            <tag> Selenium </tag>
-            
             <tag> Cucumber </tag>
+            
+            <tag> Selenium </tag>
             
             <tag> Junit </tag>
             
@@ -2316,9 +2316,9 @@ self.assertTrue(<span class="string">"exception message"</span> <span class="key
             
             <tag> Java </tag>
             
-            <tag> Selenium </tag>
-            
             <tag> Cucumber </tag>
+            
+            <tag> Selenium </tag>
             
             <tag> Junit </tag>
             
@@ -2409,9 +2409,9 @@ self.assertTrue(<span class="string">"exception message"</span> <span class="key
             
             <tag> RESTful </tag>
             
-            <tag> Test </tag>
-            
             <tag> Defect </tag>
+            
+            <tag> Test </tag>
             
         </tags>
         

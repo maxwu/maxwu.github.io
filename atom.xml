@@ -428,9 +428,9 @@
     
       <category term="Java" scheme="http://maxwu.me/tags/Java/"/>
     
-      <category term="Selenide" scheme="http://maxwu.me/tags/Selenide/"/>
-    
       <category term="Selenium" scheme="http://maxwu.me/tags/Selenium/"/>
+    
+      <category term="Selenide" scheme="http://maxwu.me/tags/Selenide/"/>
     
       <category term="HtmlUnit" scheme="http://maxwu.me/tags/HtmlUnit/"/>
     

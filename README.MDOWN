@@ -2,10 +2,10 @@
 
 This repository is for technical blog "+U Max!". The English blog strarted from Dec 2016 when moving to New Zealand. Couple of posts are translated from original blogs but it is mostly for new technical articles and sharing.
 
-![](http://oei21r8n1.bkt.clouddn.com/Zixia_Lake.png)
+![Lake Zixia](https://i.imgur.com/c30BjQG.png)
 
-The tech blog is hosted on www.maxwu.me. Which is based on npm lib Hexo with customized NeXT theme and plugins.
+The tech blog is hosted on https://maxwu.me. Which is based on npm lib Hexo with customized NeXT theme and plugins.
 
 Topics around Python and Java development for automation test, web scrapy, algorithms and data processing including machine learning will be considered for a long term.
 
---[Max](http://maxwu.me)
+--[Max](https://maxwu.me)
