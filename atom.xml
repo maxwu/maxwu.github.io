@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://maxwu.me/"/>
-  <updated>2019-05-10T12:37:39.627Z</updated>
+  <updated>2019-06-02T22:44:12.746Z</updated>
   <id>http://maxwu.me/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Convolutional Neural Networks in TensorFlow</title>
+    <link href="http://maxwu.me/2019/06/02/Completed-Deeplearning-ai-CNN-in-TensorFlow-A-retro-on-roadmap/"/>
+    <id>http://maxwu.me/2019/06/02/Completed-Deeplearning-ai-CNN-in-TensorFlow-A-retro-on-roadmap/</id>
+    <published>2019-06-02T02:36:23.000Z</published>
+    <updated>2019-06-02T22:44:12.746Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><p>Cheers! Completed the Deeplearning.ai course <strong>Convolutional Neural Networks in TensorFlow</strong>.</p><p><a href="https://imgur.com/Gqldzu2" target="_blank" rel="noopener"><img src="https://i.imgur.com/Gqldzu2m.png" alt="Deeplearning-ai-cert-tensorflow-ai-ml-dl"></a></p><p>Following the roadmap, this is the 4th certificates on <a href="https://www.coursera.org" target="_blank" rel="noopener">Coursera.org</a> on the Machine Learning path.</p><p>Two big application areas are ready to commercialize Machine Learning with more powerful modern CPU or clouds, the computer visioning and NLP. Images and literal words are two main sources to extract features in our minds and so does the ML. </p><table><thead><tr><th>Course</th><th>Keywords</th><th>Completion Date</th><th>School</th></tr></thead><tbody><tr><td><em><strong>Machine Learning</strong></em></td><td>Andrew Ng course as ML 101</td><td>Completed by <code>2017-11-05</code></td><td>Standford University</td></tr><tr><td><em><strong>Introduction to Data Science in Python</strong></em></td><td>An intro to PyNum and Pandas in Data Science</td><td>4 weeks, Completed by <code>2018-04-08</code></td><td>University of Michigan</td></tr><tr><td><em><strong>Convolutional Neural Networks in TensorFlow</strong></em></td><td>Applying CNN with Tensorflow and techniques avoiding overfitting and Transferred learning</td><td>4 weeks, Completed by <code>2019-05-31</code></td><td>deeplearning.ai/coursera</td></tr><tr><td><em><strong>Introduction to TensorFlow for Artificial Intelligence, Machine Learning, and Deep Learning</strong></em></td><td>TansorFlow and Typical ML technoiques and structures for Images</td><td>4 weeks, Completed by <code>2019-05-04</code></td><td>deeplearning.ai/coursera</td></tr><tr><td><strong>Course TBD, Machine Learing in NLP</strong></td><td>Applying ML to NLP, chatbots</td><td>TODO: next step</td><td>TBD</td></tr></tbody></table><p>As on above table, the next bite will be NLP. Let’s move up, buddies!</p><p><a href="https://imgur.com/g9mL59p" target="_blank" rel="noopener"><img src="https://i.imgur.com/g9mL59pm.png" alt="ML_Roadmap_draft_1"></a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;Cheers! Completed the Deeplearning.ai course &lt;strong&gt;Convolutional Neural Networks in TensorFlow&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a hr
+      
+    
+    </summary>
+    
+      <category term="Machine Learning" scheme="http://maxwu.me/categories/Machine-Learning/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Completed Deeplearning.ai TensorFlow Introdution Course</title>
@@ -147,9 +172,9 @@
       <category term="Selenium" scheme="http://maxwu.me/categories/Automation-Test/Selenium/"/>
     
     
-      <category term="Selenium" scheme="http://maxwu.me/tags/Selenium/"/>
-    
       <category term="Automation Test" scheme="http://maxwu.me/tags/Automation-Test/"/>
+    
+      <category term="Selenium" scheme="http://maxwu.me/tags/Selenium/"/>
     
       <category term="Headless" scheme="http://maxwu.me/tags/Headless/"/>
     
@@ -181,9 +206,9 @@
     
       <category term="Concrete-level-tag" scheme="http://maxwu.me/tags/Concrete-level-tag/"/>
     
-      <category term="Selenium" scheme="http://maxwu.me/tags/Selenium/"/>
-    
       <category term="Automation Test" scheme="http://maxwu.me/tags/Automation-Test/"/>
+    
+      <category term="Selenium" scheme="http://maxwu.me/tags/Selenium/"/>
     
   </entry>
   
@@ -559,42 +584,6 @@
       <category term="S3" scheme="http://maxwu.me/tags/S3/"/>
     
       <category term="TravisCI" scheme="http://maxwu.me/tags/TravisCI/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>domain and iptables update notes</title>
-    <link href="http://maxwu.me/2017/02/28/domain-and-iptables-update-notes/"/>
-    <id>http://maxwu.me/2017/02/28/domain-and-iptables-update-notes/</id>
-    <published>2017-02-28T04:41:47.000Z</published>
-    <updated>2017-03-22T10:46:02.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>An update on adding sub domain name to existing godaddy domain service, setting up nginx to forward 4096 port to 80, setting up firewall rules with iptables, iptables-persistent on Ubuntu VPS.<br><code>jenkins.maxwu.me</code> is now a sub-domain.</p><a id="more"></a><p>The previous jenkins service is running on Ubuntu VPS but I just added a 301 forwarding on Godaddy domain service. Therefore, the readers will read the real IP address in browser URL column. It has no buffering service so Jenkins has to keep the slow connections over internet. The third reason is to harden this VPS host since the service is publicly accessible globally.</p><h2 id="Setting-up-Nginx"><a href="#Setting-up-Nginx" class="headerlink" title="Setting up Nginx"></a>Setting up Nginx</h2><p>From Nginx config file we can see that all files in <code>/etc/nginx/sites-enabled</code> will be included by default. We can create a site description file by copying the file <code>default</code> as a template. The simplified contents are as below:</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt;cat jenkins</span><br><span class="line">server &#123;</span><br><span class="line">  listen 80;</span><br><span class="line">  root /var/run/jenkins/war/;</span><br><span class="line">  server_name jenkins.maxwu.me;</span><br><span class="line"></span><br><span class="line">  access_log      /var/log/nginx/jenkins/access.log;</span><br><span class="line">  error_log       /var/log/nginx/jenkins/error.log;</span><br><span class="line">  ignore_invalid_headers off; #pass through headers from Jenkins which are considered invalid by Nginx server.</span><br><span class="line">  location ~ &quot;^/static/[0-9a-fA-F]&#123;8&#125;\/(.*)$&quot; &#123;</span><br><span class="line">    rewrite &quot;^/static/[0-9a-fA-F]&#123;8&#125;\/(.*)&quot; /$1 last;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  location /userContent &#123;</span><br><span class="line">root /var/lib/jenkins/;</span><br><span class="line">        if (!-f $request_filename)&#123;</span><br><span class="line">           #this file does not exist, might be a directory or a /**view** url</span><br><span class="line">           rewrite (.*) /$1 last;</span><br><span class="line">   break;</span><br><span class="line">        &#125;</span><br><span class="line">sendfile on;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  location @jenkins &#123;</span><br><span class="line">      sendfile off;</span><br><span class="line">      proxy_pass         http://127.0.0.1:4096;</span><br><span class="line">      proxy_redirect     default;</span><br><span class="line"></span><br><span class="line">      proxy_set_header   Host             $host;</span><br><span class="line">      proxy_set_header   X-Real-IP        $remote_addr;</span><br><span class="line">      proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;</span><br><span class="line">      proxy_max_temp_file_size 0;</span><br><span class="line"></span><br><span class="line">      #this is the maximum upload size</span><br><span class="line">      client_max_body_size       10m;</span><br><span class="line">      client_body_buffer_size    128k;</span><br><span class="line"></span><br><span class="line">      proxy_connect_timeout      90;</span><br><span class="line">      proxy_send_timeout         90;</span><br><span class="line">      proxy_read_timeout         90;</span><br><span class="line"></span><br><span class="line">      proxy_buffer_size          4k;</span><br><span class="line">      proxy_buffers              4 32k;</span><br><span class="line">      proxy_busy_buffers_size    64k;</span><br><span class="line">      proxy_temp_file_write_size 64k;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">  location / &#123;</span><br><span class="line"></span><br><span class="line">     # Optional configuration to detect and redirect iPhones</span><br><span class="line">      if ($http_user_agent ~* &apos;(iPhone|iPod)&apos;) &#123;</span><br><span class="line">          rewrite ^/$ /view/iphone/ redirect;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      try_files $uri @jenkins;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>Further reference could be found <a href="https://wiki.jenkins-ci.org/display/JENKINS/Running+Jenkins+behind+Nginx" target="_blank" rel="noopener">Jenkins Doc</a>.</p><h2 id="Add-Sub-Domain"><a href="#Add-Sub-Domain" class="headerlink" title="Add Sub Domain"></a>Add Sub Domain</h2><p>This step with Godaddy is convenient. Click the domain management function and add an A-Record to existing domain:</p><p>Host -&gt; Input your sub-domain name, here is “jenkins”;<br>Target -&gt; Input IP to reolve with;<br>TTL -&gt; By default, keep 60min.</p><p>After a while, nslookup jenkins.maxwu.me could return new results:</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ⓑ maxwu&gt; nslookup jenkins.maxwu.me</span><br><span class="line">Server:8.8.8.8</span><br><span class="line">Address:8.8.8.8<span class="comment">#53</span></span><br><span class="line"></span><br><span class="line">Non-authoritative answer:</span><br><span class="line">Name:jenkins.maxwu.me</span><br><span class="line">Address: 104.224.136.48</span><br></pre></td></tr></table></figure><h2 id="Harden-host-with-firewall"><a href="#Harden-host-with-firewall" class="headerlink" title="Harden host with firewall"></a>Harden host with firewall</h2><p>To check existing rules, <code>iptables -L -n</code>. Ubuntu has a good utility to save and reload iptables rules, –  “iptables-persistent”.  Install iptables-persistent with apt-get, <code>service iptables-persistent save|reload</code> could save your time to add network interface up/down scripts. The rules file by default locates at <code>/etc/iptables.ipv4</code>.</p><p>Here are my iptables rules for references. I added general notes.</p><h3 id="Allow-Specified-Inputs"><a href="#Allow-Specified-Inputs" class="headerlink" title="Allow Specified Inputs"></a>Allow Specified Inputs</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Replace 22 with your customized SSH port</span></span><br><span class="line">iptables -A INPUT -p tcp --dport 22 -j ACCEPT</span><br><span class="line">iptables -A OUTPUT -p tcp --sport 22 -j ACCEPT</span><br><span class="line">iptables -A INPUT -p tcp --dport 80 -j ACCEPT</span><br><span class="line">iptables -A OUTPUT -p tcp --sport 80 -j ACCEPT</span><br><span class="line"><span class="comment"># Allow Ping request</span></span><br><span class="line">iptables -A OUTPUT -p icmp -j ACCEPT</span><br><span class="line">iptables -A INPUT -p icmp -j ACCEPT</span><br><span class="line"><span class="comment"># Allow loopback</span></span><br><span class="line">iptables -A INPUT <span class="_">-s</span> 127.0.0.1 <span class="_">-d</span> 127.0.0.1 -j ACCEPT</span><br></pre></td></tr></table></figure><blockquote><p>The pervious version introduces an issue to block 127.0.0.1 loopback connection other than 80/22 ${ssh} /4096 ${actual_service_port_behind_nginx}</p><p>It causes selenium tests fail with Jenkins. After adding loopback acceptance rule into INPUT chain, this issue is resolved. This issue costs an hour tonight. At first, I thought it is a memory issue since the VPS only has 512MB shared RAM. However, a detailed check shew that Cucumber-Selenium only spent around 200MB memory during the test with default GC. So adding MAVEN_OPT with JVM parameters won’t resolve it.</p><p>By the way, if there is concern on Jenkins JVM parameters, readers can find them at /etc/default/jenkins file. Variable name is <code>JAVA_ARGS</code>.</p><p>Besides, to limit the maven job JVM memory, it could be specified within MAVEN_OPTS environmental variables. </p><p>[2017-03-01]</p></blockquote><h3 id="Allow-Established-Sessions"><a href="#Allow-Established-Sessions" class="headerlink" title="Allow Established Sessions"></a>Allow Established Sessions</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT</span><br></pre></td></tr></table></figure><h3 id="Log-Dropped-Packets"><a href="#Log-Dropped-Packets" class="headerlink" title="Log Dropped Packets"></a>Log Dropped Packets</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">iptables -I INPUT 5 -m <span class="built_in">limit</span> --limit 5/min -j LOG --log-prefix <span class="string">"iptables denied: "</span> --log-level 7</span><br></pre></td></tr></table></figure><h3 id="Set-Policy-Rule-default-rule"><a href="#Set-Policy-Rule-default-rule" class="headerlink" title="Set Policy Rule (default rule)"></a>Set Policy Rule (default rule)</h3><p>If you are operating remotely, make sure this step executed at last.</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">iptables -P INPUT DROP</span><br><span class="line">iptables -P OUTPUT ACCEPT</span><br><span class="line">iptables -P FORWARD DROP</span><br></pre></td></tr></table></figure><p>Have fun!</p><p>###<em>–Change Log–</em></p><p><em>2017-03-01, Max, Fix an issue with iptables loopback.</em></p><p><em>2017-03-01, Max, Update nginx config with Jenkins reverse proxy documentation.</em></p><p><em>2017-02-28, Max, Init the notes.</em></p><p>EOF</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;An update on adding sub domain name to existing godaddy domain service, setting up nginx to forward 4096 port to 80, setting up firewall rules with iptables, iptables-persistent on Ubuntu VPS.&lt;br&gt;&lt;code&gt;jenkins.maxwu.me&lt;/code&gt; is now a sub-domain.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Linux" scheme="http://maxwu.me/categories/Linux/"/>
-    
-      <category term="Nginx" scheme="http://maxwu.me/categories/Linux/Nginx/"/>
-    
-    
-      <category term="Ubuntu" scheme="http://maxwu.me/tags/Ubuntu/"/>
-    
-      <category term="Linux" scheme="http://maxwu.me/tags/Linux/"/>
-    
-      <category term="VPS" scheme="http://maxwu.me/tags/VPS/"/>
-    
-      <category term="Firewall" scheme="http://maxwu.me/tags/Firewall/"/>
-    
-      <category term="DNS" scheme="http://maxwu.me/tags/DNS/"/>
-    
-      <category term="Nginx" scheme="http://maxwu.me/tags/Nginx/"/>
-    
-      <category term="Ipfilter" scheme="http://maxwu.me/tags/Ipfilter/"/>
     
   </entry>
   
