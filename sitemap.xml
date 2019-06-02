@@ -2,16 +2,93 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://maxwu.me/2019/06/02/Completed-Deeplearning-ai-CNN-in-TensorFlow-A-retro-on-roadmap/</loc>
+    <loc>http://maxwu.me/2017/05/02/Recursive-Depth-First-Search-with-a-tracking-Set/</loc>
     
-    <lastmod>2019-06-02T22:44:12.746Z</lastmod>
+    <lastmod>2019-06-02T23:15:37.363Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://maxwu.me/2017/03/09/Setup-virtualenv-for-Jenkins-Task/</loc>
+    
+    <lastmod>2019-06-02T23:15:01.367Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://maxwu.me/2017/05/20/Thoughts-on-RESTful-API-Design-and-Testing/</loc>
     
-    <lastmod>2019-06-01T23:10:50.912Z</lastmod>
+    <lastmod>2019-06-02T23:13:48.567Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://maxwu.me/2017/03/22/Genre-Clawer-A-Cli-App-and-Maven-lib-to-fetch-genres/</loc>
+    
+    <lastmod>2019-06-02T23:10:54.782Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://maxwu.me/2017/01/12/Cucumber-JVM-Toy-with-Selenium/</loc>
+    
+    <lastmod>2019-06-02T23:10:05.752Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://maxwu.me/2017/01/13/Cucumber-JVM-Selenium-JUnit-Toy-Project-baselined-to-v1-2/</loc>
+    
+    <lastmod>2019-06-02T23:09:14.484Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://maxwu.me/2017/01/30/converting-to-docker/</loc>
+    
+    <lastmod>2019-06-02T23:07:33.644Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://maxwu.me/2017/05/12/CIstat-preview-version-released/</loc>
+    
+    <lastmod>2019-06-02T23:06:52.653Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://maxwu.me/2017/02/12/ci-stat-project-in-progress/</loc>
+    
+    <lastmod>2019-06-02T23:02:42.369Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://maxwu.me/2017/05/16/BFS-solution-of-power-sum-challenge/</loc>
+    
+    <lastmod>2019-06-02T23:01:35.274Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://maxwu.me/2017/07/25/Briefing-on-Performance-Testing/</loc>
+    
+    <lastmod>2019-06-02T23:01:12.300Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://maxwu.me/2017/08/13/Selenium-and-WebDriver-Version-Selection/</loc>
+    
+    <lastmod>2019-06-02T22:58:21.375Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://maxwu.me/2019/06/02/Completed-Deeplearning-ai-CNN-in-TensorFlow-A-retro-on-roadmap/</loc>
+    
+    <lastmod>2019-06-02T22:44:12.746Z</lastmod>
     
   </url>
   
@@ -33,13 +110,6 @@
     <loc>http://maxwu.me/2017/08/06/Capture-Existing-Selenium-WebDriver-Session/</loc>
     
     <lastmod>2019-01-27T04:05:16.707Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://maxwu.me/2017/08/13/Selenium-and-WebDriver-Version-Selection/</loc>
-    
-    <lastmod>2019-01-26T21:55:54.313Z</lastmod>
     
   </url>
   
@@ -79,13 +149,6 @@
   </url>
   
   <url>
-    <loc>http://maxwu.me/2017/07/25/Briefing-on-Performance-Testing/</loc>
-    
-    <lastmod>2017-08-06T12:12:15.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://maxwu.me/about/index.html</loc>
     
     <lastmod>2017-07-16T09:48:36.000Z</lastmod>
@@ -114,27 +177,6 @@
   </url>
   
   <url>
-    <loc>http://maxwu.me/2017/05/02/Recursive-Depth-First-Search-with-a-tracking-Set/</loc>
-    
-    <lastmod>2017-05-18T12:49:29.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://maxwu.me/2017/05/16/BFS-solution-of-power-sum-challenge/</loc>
-    
-    <lastmod>2017-05-18T12:24:52.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://maxwu.me/2017/05/12/CIstat-preview-version-released/</loc>
-    
-    <lastmod>2017-05-16T12:07:35.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://maxwu.me/2017/01/11/Issues-with-parliament-govt-nz-website-human-interface/</loc>
     
     <lastmod>2017-04-25T12:02:18.000Z</lastmod>
@@ -149,13 +191,6 @@
   </url>
   
   <url>
-    <loc>http://maxwu.me/2017/01/13/Cucumber-JVM-Selenium-JUnit-Toy-Project-baselined-to-v1-2/</loc>
-    
-    <lastmod>2017-04-12T12:54:58.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://maxwu.me/2016/12/09/Start-Job-Seeking-in-Wellington/</loc>
     
     <lastmod>2017-03-28T10:14:14.000Z</lastmod>
@@ -166,13 +201,6 @@
     <loc>http://maxwu.me/2016/10/30/get-aws-saa-on-monday/</loc>
     
     <lastmod>2017-03-23T09:09:24.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://maxwu.me/2017/03/22/Genre-Clawer-A-Cli-App-and-Maven-lib-to-fetch-genres/</loc>
-    
-    <lastmod>2017-03-22T10:51:37.000Z</lastmod>
     
   </url>
   
@@ -226,13 +254,6 @@
   </url>
   
   <url>
-    <loc>http://maxwu.me/2017/01/12/Cucumber-JVM-Toy-with-Selenium/</loc>
-    
-    <lastmod>2017-03-16T04:10:32.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://maxwu.me/2017/01/28/change-default-Docker-Quickstart-Terminal-for-Mac/</loc>
     
     <lastmod>2017-03-16T04:09:19.000Z</lastmod>
@@ -261,13 +282,6 @@
   </url>
   
   <url>
-    <loc>http://maxwu.me/2017/01/30/converting-to-docker/</loc>
-    
-    <lastmod>2017-03-16T04:05:51.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://maxwu.me/2017/02/03/Trust-all-hosts-in-WebAPI-test-with-OkHttp-and-Java-SSL/</loc>
     
     <lastmod>2017-03-16T04:05:08.000Z</lastmod>
@@ -278,13 +292,6 @@
     <loc>http://maxwu.me/2017/01/10/Issue-in-RESTful-API-on-fitness-website-map-query-leading-to-404-page/</loc>
     
     <lastmod>2017-03-16T04:04:05.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://maxwu.me/2017/02/12/ci-stat-project-in-progress/</loc>
-    
-    <lastmod>2017-03-16T04:01:49.000Z</lastmod>
     
   </url>
   
@@ -320,13 +327,6 @@
     <loc>http://maxwu.me/2017/03/06/A-dip-with-performance-test-lib-Locust/</loc>
     
     <lastmod>2017-03-15T07:29:53.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://maxwu.me/2017/03/09/Setup-virtualenv-for-Jenkins-Task/</loc>
-    
-    <lastmod>2017-03-15T07:15:33.000Z</lastmod>
     
   </url>
   

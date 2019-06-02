@@ -92,15 +92,15 @@
 <meta property="og:site_name" content="+U Maxout!">
 <meta property="og:description" content="CIstat is a Python package supporting to fetch, analyze and present automation test data from common CI services as CircleCI, Travis, Bamboo and Jenkins (preview version has implemented CircleCI to ve">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://oei21r8n1.bkt.clouddn.com/CIstat_preview_ver_Snip20170512_10.png?imageView/2/w/400/q/100">
-<meta property="og:image" content="http://oei21r8n1.bkt.clouddn.com/CIstat_PieCaseNum_Snip20170511_7_Med.png?imageView/2/w/400/q/100">
-<meta property="og:image" content="http://oei21r8n1.bkt.clouddn.com/cistat_passrate_Snip20170501_39.png?imageView/2/w/400/q/100">
-<meta property="og:image" content="http://oei21r8n1.bkt.clouddn.com/CIstat_ScatterROI_Snip20170512_9.png?imageView/2/w/400/q/100">
-<meta property="og:updated_time" content="2017-05-16T12:07:35.000Z">
+<meta property="og:image" content="https://i.imgur.com/gtm74Prm.png">
+<meta property="og:image" content="https://i.imgur.com/vlPfImUm.png">
+<meta property="og:image" content="https://i.imgur.com/vUhu4B9m.png">
+<meta property="og:image" content="https://i.imgur.com/R2NmQMjm.png">
+<meta property="og:updated_time" content="2019-06-02T23:06:52.653Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CIstat preview version released">
 <meta name="twitter:description" content="CIstat is a Python package supporting to fetch, analyze and present automation test data from common CI services as CircleCI, Travis, Bamboo and Jenkins (preview version has implemented CircleCI to ve">
-<meta name="twitter:image" content="http://oei21r8n1.bkt.clouddn.com/CIstat_preview_ver_Snip20170512_10.png?imageView/2/w/400/q/100">
+<meta name="twitter:image" content="https://i.imgur.com/gtm74Prm.png">
 
 
 
@@ -416,7 +416,9 @@
       
 
       
-        <p><a href="https://github.com/maxwu/cistat" target="_blank" rel="noopener">CIstat</a> is a Python package supporting to fetch, analyze and present automation test data from common CI services as CircleCI, <em>Travis</em>, <em>Bamboo</em> and <em>Jenkins</em> (preview version has implemented CircleCI to verify the idea)<br><img src="http://oei21r8n1.bkt.clouddn.com/CIstat_preview_ver_Snip20170512_10.png?imageView/2/w/400/q/100" alt="CIstat_preview"><br><a id="more"></a></p>
+        <p><a href="https://github.com/maxwu/cistat" target="_blank" rel="noopener">CIstat</a> is a Python package supporting to fetch, analyze and present automation test data from common CI services as CircleCI, <em>Travis</em>, <em>Bamboo</em> and <em>Jenkins</em> (preview version has implemented CircleCI to verify the idea)</p>
+<p><img src="https://i.imgur.com/gtm74Prm.png" alt="CIstat_preview"></p>
+<a id="more"></a>
 <h1 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h1><p>CIstat with preview version could be installed with pip CVS interface from github directly.</p>
 <p>Install cistat Pypi dist with <strong>dev</strong> branch latest code from Github:</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pip install https://github.com/maxwu/cistat/archive/dev.zip</span><br></pre></td></tr></table></figure>
@@ -425,11 +427,11 @@
 <h1 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h1><h2 id="Sample-Charts"><a href="#Sample-Charts" class="headerlink" title="Sample Charts"></a>Sample Charts</h2><p><strong>Pie Chart</strong></p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">report.get_class_rpt().plot_piechart_casenum(project, <span class="string">"Case Num per Class"</span>)</span><br></pre></td></tr></table></figure>
 <p>The Pie Chart for case numbers per class level is:</p>
-<p><img src="http://oei21r8n1.bkt.clouddn.com/CIstat_PieCaseNum_Snip20170511_7_Med.png?imageView/2/w/400/q/100" alt="Pie Chart on Case Number per Class"></p>
+<p><img src="https://i.imgur.com/vlPfImUm.png" alt="Pie Chart on Case Number per Class"></p>
 <p><strong>Bar Chart</strong></p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">report.plot_barchart_rate(project, <span class="string">"Pass Rate per case"</span>)</span><br></pre></td></tr></table></figure>
 <p>The Bar Chart of Pass Rate for cistat project is:</p>
-<p><img src="http://oei21r8n1.bkt.clouddn.com/cistat_passrate_Snip20170501_39.png?imageView/2/w/400/q/100" alt="Bar Chart on Pass Rate"></p>
+<p><img src="https://i.imgur.com/vUhu4B9m.png" alt="Bar Chart on Pass Rate"></p>
 <p><strong>Bubble Chart</strong></p>
 <blockquote>
 <p>The ROI chart is more considerable for nightly build result analysis in a testing project within XUnit test framework to control the resources as case, docker/cpu, feature integration.</p>
@@ -437,7 +439,7 @@
 </blockquote>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">report.get_class_rpt().plot_scatter_roi(project, <span class="string">"Test ROI per Class"</span>)</span><br></pre></td></tr></table></figure>
 <p>The Bubble Chart to present case ROI per class as below:</p>
-<p><img src="http://oei21r8n1.bkt.clouddn.com/CIstat_ScatterROI_Snip20170512_9.png?imageView/2/w/400/q/100" alt="Bubble Chart on Test ROI"></p>
+<p><img src="https://i.imgur.com/R2NmQMjm.png" alt="Bubble Chart on Test ROI"></p>
 <h2 id="Console-Entry-Point"><a href="#Console-Entry-Point" class="headerlink" title="Console Entry Point"></a>Console Entry Point</h2><p>Quick step to run above sample: <code>cistat-cli</code>. Since circleci.com has throttling limit on RESTful API, it is recommended to configure an API-Key in environmental variable or local config.yaml.</p>
 <p>This console command is installed with Pypi dist. <code>cistat-cli</code> is the console entry point planted by PIP installer setup.py.</p>
 <h2 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h2><p>Configuration item preference order is:</p>
