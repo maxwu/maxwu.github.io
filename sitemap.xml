@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://maxwu.me/about/index.html</loc>
+    
+    <lastmod>2019-06-03T10:23:58.207Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://maxwu.me/2019/05/01/Customized-domain-for-github-page-with-hexo/</loc>
     
     <lastmod>2019-06-03T10:11:05.980Z</lastmod>
@@ -159,13 +166,6 @@
     <loc>http://maxwu.me/2018/03/19/Update-Anaconda-Navigator-thru-command-line/</loc>
     
     <lastmod>2018-08-27T11:49:15.075Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://maxwu.me/about/index.html</loc>
-    
-    <lastmod>2017-07-16T09:48:36.000Z</lastmod>
     
   </url>
   
