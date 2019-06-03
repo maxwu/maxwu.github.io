@@ -4,31 +4,6 @@
   
     
     <entry>
-      <title><![CDATA[Customized domain for github page with hexo]]></title>
-      <url>http://maxwu.me/2019/06/03/Customized-domain-for-github-page-with-hexo/</url>
-      <content type="html"><![CDATA[<p>After upgrading hexo and dependencies in local repo package.json, when regenerating the github pages and pushed to remote repo, the customized domain starts to respond 404.</p>
-<p>Check github, the way to add customized domain is to add a CNAME file with each domain in one line. If user tries to manaully configure his/her own domain on github settings tab, a CNAME file will be pegged automatically by github. However, the manually grown CNAME file will be purged in next posting time if hexo is not correctly configured. </p>
-<p>Searching the hexo document, the place to hold this CNAME file is not local repo root folder but the root folder of hexo theme. In My case, it is <code>./themes/next-wuxubj-5.0.2/</code>. If your hexo applies other theme, please change to the corresponding folder name. This way, the CNAME file will be preserved.</p>
-]]></content>
-      
-        <categories>
-            
-            <category> Github </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Github </tag>
-            
-            <tag> Hexo </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[Convolutional Neural Networks in TensorFlow]]></title>
       <url>http://maxwu.me/2019/06/02/Completed-Deeplearning-ai-CNN-in-TensorFlow-A-retro-on-roadmap/</url>
       <content type="html"><![CDATA[<p>Cheers! Completed the Deeplearning.ai course <strong>Convolutional Neural Networks in TensorFlow</strong>.</p>
@@ -105,6 +80,31 @@
             
         </categories>
         
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Customized domain for github page with hexo]]></title>
+      <url>http://maxwu.me/2019/05/01/Customized-domain-for-github-page-with-hexo/</url>
+      <content type="html"><![CDATA[<p>After upgrading hexo and dependencies in local repo package.json, when regenerating the github pages and pushed to remote repo, the customized domain starts to respond 404.</p>
+<p>Check github, the way to add customized domain is to add a CNAME file with each domain in one line. If user tries to manaully configure his/her own domain on github settings tab, a CNAME file will be pegged automatically by github. However, the manually grown CNAME file will be purged in next posting time if hexo is not correctly configured. </p>
+<p>Searching the hexo document, the place to hold this CNAME file is not local repo root folder but the root folder of hexo theme. In My case, it is <code>./themes/next-wuxubj-5.0.2/</code>. If your hexo applies other theme, please change to the corresponding folder name. This way, the CNAME file will be preserved.</p>
+]]></content>
+      
+        <categories>
+            
+            <category> Github </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Github </tag>
+            
+            <tag> Hexo </tag>
+            
+        </tags>
         
     </entry>
     
