@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://maxwu.me/2019/06/03/Customized-domain-for-github-page-with-hexo/</loc>
+    
+    <lastmod>2019-06-03T10:09:31.121Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://maxwu.me/2018/11/07/Acquired-AWS-Solution-Architecture-and-DevOps-Professional-Certificates/</loc>
+    
+    <lastmod>2019-06-03T10:01:30.093Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://maxwu.me/2019/06/02/Completed-Deeplearning-ai-CNN-in-TensorFlow-A-retro-on-roadmap/</loc>
+    
+    <lastmod>2019-06-03T02:47:54.981Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://maxwu.me/2017/05/02/Recursive-Depth-First-Search-with-a-tracking-Set/</loc>
     
     <lastmod>2019-06-02T23:15:37.363Z</lastmod>
@@ -82,13 +103,6 @@
     <loc>http://maxwu.me/2017/08/13/Selenium-and-WebDriver-Version-Selection/</loc>
     
     <lastmod>2019-06-02T22:58:21.375Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://maxwu.me/2019/06/02/Completed-Deeplearning-ai-CNN-in-TensorFlow-A-retro-on-roadmap/</loc>
-    
-    <lastmod>2019-06-02T22:44:12.746Z</lastmod>
     
   </url>
   
