@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="+U Maxout!">
 <meta property="og:description" content="This post is based on a quick note on how to create a docker image for openshift/k8s to debug dotnet core app with LLD online in the containter environment.">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-06-09T11:45:40.700Z">
+<meta property="og:updated_time" content="2019-06-09T11:56:29.712Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Debug dotnet core with LLDB on RHEL Image">
 <meta name="twitter:description" content="This post is based on a quick note on how to create a docker image for openshift/k8s to debug dotnet core app with LLD online in the containter environment.">
@@ -350,8 +350,8 @@
               <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
-                  <a href="/categories/DevOps/" itemprop="url" rel="index">
-                    <span itemprop="name">DevOps</span>
+                  <a href="/categories/Programming/" itemprop="url" rel="index">
+                    <span itemprop="name">Programming</span>
                   </a>
                 </span>
 
@@ -362,7 +362,7 @@
 
               
                 <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
-                  <a href="/categories/DevOps/Docker/" itemprop="url" rel="index">
+                  <a href="/categories/Programming/Docker/" itemprop="url" rel="index">
                     <span itemprop="name">Docker</span>
                   </a>
                 </span>
@@ -415,7 +415,7 @@
 <a id="more"></a>
 <h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><p>(TBC)</p>
 <h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>It will request a Red Hat developer account to register to RHN when trying to enable <code>rhel-7-server-devtools-rpms</code> RPM repo on Red Hat. However, if it is a docker environment, which is not required to register the docker instance to RHN to add this repo. So the repo could be enabled in Dockerfile. Then the LLDB toolset would be installed to this image.</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="comment"># From a customized RHEL dotnet sdk base image</span></span><br><span class="line"><span class="keyword">FROM</span> XXX/dotnet-<span class="number">21</span>-sdk-rhel7</span><br><span class="line"> </span><br><span class="line"><span class="comment"># Set the timezone</span></span><br><span class="line"><span class="keyword">ENV</span> TZ=XXX</span><br><span class="line"> </span><br><span class="line"><span class="keyword">USER</span> root</span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> yum-config-manager --enable rhel-7-server-devtools-rpms</span></span><br><span class="line"><span class="bash">RUN yum install -y wget tcpdump vim llvm-toolset-7</span></span><br><span class="line"><span class="bash">RUN rm -rf /opt/app-root/.pki</span></span><br><span class="line"><span class="bash"> </span></span><br><span class="line"><span class="bash">USER 1001</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="comment"># From a customized RHEL dotnet sdk base image</span></span><br><span class="line"><span class="keyword">FROM</span> XXX/dotnet-<span class="number">21</span>-sdk-rhel7</span><br><span class="line"> </span><br><span class="line"><span class="comment"># Set the timezone</span></span><br><span class="line"><span class="keyword">ENV</span> TZ=XXX</span><br><span class="line"> </span><br><span class="line"><span class="keyword">USER</span> root</span><br><span class="line"><span class="keyword">RUN</span> yum-config-manager --enable rhel-7-server-devtools-rpms</span><br><span class="line">RUN yum install -y wget tcpdump vim llvm-toolset-7</span><br><span class="line">RUN rm -rf /opt/app-root/.pki</span><br><span class="line"> </span><br><span class="line">USER 1001</span><br></pre></td></tr></table></figure>
 <h2 id="How-to-debug-dotnet-core-app-with-LLDB"><a href="#How-to-debug-dotnet-core-app-with-LLDB" class="headerlink" title="How to debug dotnet core app with LLDB"></a>How to debug dotnet core app with LLDB</h2><blockquote>
 <p>(TODO):<br>  Push the image to dockerhub and launch more test with AWS environment. </p>
 <p>Complete this post with more details on how to apply LLDB on memory check and online debug.</p>
@@ -580,7 +580,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
