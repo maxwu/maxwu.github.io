@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://maxwu.me/2019/04/15/Debug-dotnet-core-with-LLDB-on-RHEL-Image/</loc>
+    
+    <lastmod>2019-06-09T11:45:40.700Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://maxwu.me/2019/06/09/Incrementally-measure-code-coverage/</loc>
+    
+    <lastmod>2019-06-09T11:33:55.457Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://maxwu.me/2017/01/30/converting-to-docker/</loc>
+    
+    <lastmod>2019-06-09T10:30:49.714Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://maxwu.me/about/index.html</loc>
     
     <lastmod>2019-06-03T10:23:58.207Z</lastmod>
@@ -68,13 +89,6 @@
     <loc>http://maxwu.me/2017/01/13/Cucumber-JVM-Selenium-JUnit-Toy-Project-baselined-to-v1-2/</loc>
     
     <lastmod>2019-06-02T23:09:14.484Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://maxwu.me/2017/01/30/converting-to-docker/</loc>
-    
-    <lastmod>2019-06-02T23:07:33.644Z</lastmod>
     
   </url>
   

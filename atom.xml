@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://maxwu.me/"/>
-  <updated>2019-06-03T02:47:54.981Z</updated>
+  <updated>2019-06-09T11:33:55.457Z</updated>
   <id>http://maxwu.me/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Incrementally measure code coverage</title>
+    <link href="http://maxwu.me/2019/06/09/Incrementally-measure-code-coverage/"/>
+    <id>http://maxwu.me/2019/06/09/Incrementally-measure-code-coverage/</id>
+    <published>2019-06-09T09:42:34.000Z</published>
+    <updated>2019-06-09T11:33:55.457Z</updated>
+    
+    <content type="html"><![CDATA[<p>For new app or repos with a close to ideal level code coverage, the populor code coverage solution on coverage metrics threshold check would be efficient. However, to maintain a legacy or low coverage level repo, it is not eonough to just check coverage percentage on metrics. This post described an idea to check coverage json diff with istanbul-diff on node.js repos.</p><a id="more"></a><h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><p>Usually in Jenkins Pipeline or SAAS DevOps infrastructure, the code coverage check is implemented with <code>Cobertura</code> or cloud service <code>Coverage</code>. </p><p>As described in previous posts, here are samples of <code>Coverage</code> service and on-premise <code>Cobertura</code>.</p><p><a href="https://imgur.com/gtm74Pr" target="_blank" rel="noopener"><img src="https://i.imgur.com/gtm74Prm.png" alt="Coverage"></a></p><p><a href="https://imgur.com/YHyhOJ7t" target="_blank" rel="noopener"><img src="https://i.imgur.com/YHyhOJ7t.png" alt="Cobertura"></a></p><p>The coverage check is implemented with metrics and thresholds, in other wors, the score of code coverage on current baseline. This won’t be a problem when the repo has an ideal coverage leve. </p><p>For example, if the threshold is set to 95% on lines, functions and branches thress metrics, when the change breaks the threshold, the coverage check will fail. </p><p>On an legacy repo, this would potentially be a problem with a low coverage level. For an example, if the repo has 45% overall lines coverage. On one of the feature branch, the code change lower down some source code coverage by accidently introduced a wrong condition in Jest. But the feature branch aslo introduced a batch of new source and keep 100% on these new added source filed. Therefore, it is possible to see an increase in <code>Total Coverage</code>. And due to a lower level of <code>Cobertura</code> threshold on existing code, this cannot be discovered by the coverage check at all. The feature branch can be merged to master branch with successful coverage endorsement. </p><p>Above is a real case in coverage overall check with one of my projects. </p><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>Since the project mentioned above is a node.js front-end app, the coverage measurement is implemented with Jest coverage. Underneath the jest framework, <a href="https://istanbul.js.org" target="_blank" rel="noopener"><code>istanbul</code></a> is the code coverage lib. This triggered me to seek a way to compare the coverage result files from the source branch to target branch.</p><p>The solution could rely on JsonDiff lib to compare the coverage between two branches and fail when there is any nodes on source tree has decrease on coverage unless the leave nodes (file-line, function, branch path) are removed from source branch. </p><p>Here the term <code>leave node</code> depends on which coverage metrics are selected. It could be one or more from lines, functions and branches. The three coverage metrics are supported by istanbul.</p><ul><li><p>The first condition can be satisfied by applying an npm lib <a href="https://github.com/moos/istanbul-diff" target="_blank" rel="noopener"><code>istabul-diff</code></a>. Which is based on <code>jsondiffpath</code> lib to compare the increments between source coverage summary and target (existing) one.</p></li><li><p>The second condition would be resolved with traditional way – <code>Artifactory</code>. On Jenkins Pipeline, a goovy closure will be defined to push coverage-summary JSON to artifactory if current <code>BUILD</code> passes and it is on master branch. </p><p>So the artifactory specific PATH will only keep a latest copy of master branch coverage result (in JSON format).</p><p>When Pipeline determines the build is on a feature branch, it will automatically download the master coverage summary from Artifactory and apply istanbul-diff to find if there is any loss on coverage but will accept all the positive (incremental) coverage.</p></li><li><p>To utilize istanbul-diff tool, istanbul reporter <code>json-summary</code> is required. By default Jest would apply parameter <code>[&quot;json&quot;, &quot;lcov&quot;, &quot;text&quot;, &quot;clover&quot;]</code> (refer to <a href="https://jestjs.io/docs/en/configuration#coveragereporters-array-string" target="_blank" rel="noopener">Jest Doc</a>)</p><p>So the package.json could be updated as:</p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  ...</span><br><span class="line">  <span class="string">"jest"</span>: &#123;</span><br><span class="line">    <span class="string">"coverageReporters"</span>: [</span><br><span class="line">      <span class="string">"json"</span>, </span><br><span class="line">      <span class="string">"lcov"</span>, </span><br><span class="line">      <span class="string">"text"</span>, </span><br><span class="line">      <span class="string">"clover"</span>,</span><br><span class="line">      <span class="string">"json-summary"</span></span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul><h2 id="More-topics"><a href="#More-topics" class="headerlink" title="More topics"></a>More topics</h2><p>The author just verified the idea with a rough react sample but haven’t tested the solution with prototype on pipeline yet. Here are actions to fulfill and confirm:</p><ul><li><p>Implement the solution above in an POC branch on pipeline definition file.</p></li><li><p>Take special care to verify when leave nodes are removed, istanbul-diff could accept it not as a failure.</p></li><li><p>When multiple metrics are specified, e.g. both lines and functions, any loss of coverage in one of more of the metrics will fail the final return code.</p></li><li><p>A PR submitted to fix typo in istanbul-diff README Markdown doc, <a href="https://github.com/moos/istanbul-diff/pull/3" target="_blank" rel="noopener">https://github.com/moos/istanbul-diff/pull/3</a> </p></li></ul><h2 id="Change-Log"><a href="#Change-Log" class="headerlink" title="Change Log"></a>Change Log</h2><p>Jun 09, 2019: Initial and roughly tested with sample node.js repo. </p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;For new app or repos with a close to ideal level code coverage, the populor code coverage solution on coverage metrics threshold check would be efficient. However, to maintain a legacy or low coverage level repo, it is not eonough to just check coverage percentage on metrics. This post described an idea to check coverage json diff with istanbul-diff on node.js repos.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="DevOps" scheme="http://maxwu.me/categories/DevOps/"/>
+    
+      <category term="Coverage" scheme="http://maxwu.me/categories/DevOps/Coverage/"/>
+    
+    
+      <category term="Istanbul" scheme="http://maxwu.me/tags/Istanbul/"/>
+    
+      <category term="Coverage" scheme="http://maxwu.me/tags/Coverage/"/>
+    
+      <category term="DevOps" scheme="http://maxwu.me/tags/DevOps/"/>
+    
+  </entry>
   
   <entry>
     <title>Convolutional Neural Networks in TensorFlow</title>
@@ -86,6 +114,34 @@
       <category term="Github" scheme="http://maxwu.me/tags/Github/"/>
     
       <category term="Hexo" scheme="http://maxwu.me/tags/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Debug dotnet core with LLDB on RHEL Image</title>
+    <link href="http://maxwu.me/2019/04/15/Debug-dotnet-core-with-LLDB-on-RHEL-Image/"/>
+    <id>http://maxwu.me/2019/04/15/Debug-dotnet-core-with-LLDB-on-RHEL-Image/</id>
+    <published>2019-04-15T10:25:42.000Z</published>
+    <updated>2019-06-09T11:45:40.700Z</updated>
+    
+    <content type="html"><![CDATA[<p>This post is based on a quick note on how to create a docker image for openshift/k8s to debug dotnet core app with LLD online in the containter environment.</p><a id="more"></a><h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><p>(TBC)</p><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>It will request a Red Hat developer account to register to RHN when trying to enable <code>rhel-7-server-devtools-rpms</code> RPM repo on Red Hat. However, if it is a docker environment, which is not required to register the docker instance to RHN to add this repo. So the repo could be enabled in Dockerfile. Then the LLDB toolset would be installed to this image.</p><figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="comment"># From a customized RHEL dotnet sdk base image</span></span><br><span class="line"><span class="keyword">FROM</span> XXX/dotnet-<span class="number">21</span>-sdk-rhel7</span><br><span class="line"> </span><br><span class="line"><span class="comment"># Set the timezone</span></span><br><span class="line"><span class="keyword">ENV</span> TZ=XXX</span><br><span class="line"> </span><br><span class="line"><span class="keyword">USER</span> root</span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> yum-config-manager --enable rhel-7-server-devtools-rpms</span></span><br><span class="line"><span class="bash">RUN yum install -y wget tcpdump vim llvm-toolset-7</span></span><br><span class="line"><span class="bash">RUN rm -rf /opt/app-root/.pki</span></span><br><span class="line"><span class="bash"> </span></span><br><span class="line"><span class="bash">USER 1001</span></span><br></pre></td></tr></table></figure><h2 id="How-to-debug-dotnet-core-app-with-LLDB"><a href="#How-to-debug-dotnet-core-app-with-LLDB" class="headerlink" title="How to debug dotnet core app with LLDB"></a>How to debug dotnet core app with LLDB</h2><blockquote><p>(TODO):<br>  Push the image to dockerhub and launch more test with AWS environment. </p><p>Complete this post with more details on how to apply LLDB on memory check and online debug.</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;This post is based on a quick note on how to create a docker image for openshift/k8s to debug dotnet core app with LLD online in the containter environment.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="DevOps" scheme="http://maxwu.me/categories/DevOps/"/>
+    
+      <category term="Docker" scheme="http://maxwu.me/categories/DevOps/Docker/"/>
+    
+    
+      <category term="Docker" scheme="http://maxwu.me/tags/Docker/"/>
+    
+      <category term="LLDB" scheme="http://maxwu.me/tags/LLDB/"/>
+    
+      <category term="DotnetCore" scheme="http://maxwu.me/tags/DotnetCore/"/>
     
   </entry>
   
@@ -521,67 +577,6 @@
       <category term="Google" scheme="http://maxwu.me/tags/Google/"/>
     
       <category term="Clawer" scheme="http://maxwu.me/tags/Clawer/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Setup virtualenv for Jenkins Python CI Task</title>
-    <link href="http://maxwu.me/2017/03/09/Setup-virtualenv-for-Jenkins-Task/"/>
-    <id>http://maxwu.me/2017/03/09/Setup-virtualenv-for-Jenkins-Task/</id>
-    <published>2017-03-09T03:53:53.000Z</published>
-    <updated>2019-06-02T23:15:01.367Z</updated>
-    
-    <content type="html"><![CDATA[<p>When setting up CI for python projects, virtualenv could help to separate the test/deployment environment. This post will provide a template for Jenkins to use virtualenv for Jenkins tasks with <a href="http://jenkins.maxwu.me/job/ci-stat/" target="_blank" rel="noopener">Jenkins example</a>.</p><p><img src="https://i.imgur.com/7uPOevZm.png" alt="ci-stat screenshot"><br><a id="more"></a></p><h3 id="Common-Test-Script-Template"><a href="#Common-Test-Script-Template" class="headerlink" title="Common Test Script Template"></a>Common Test Script Template</h3><p>Here is the script I used on Jenkins</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env bash</span></span><br><span class="line"><span class="comment">########################</span></span><br><span class="line"><span class="comment"># Step 1: Setup virtualenv</span></span><br><span class="line"><span class="comment"># This step is only for Jenkins. Travis and CircleCI will ignore this step.</span></span><br><span class="line"><span class="comment">########################</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ -n <span class="string">"<span class="variable">$&#123;WORKSPACE:+1&#125;</span>"</span> ]; <span class="keyword">then</span></span><br><span class="line">    <span class="comment"># Path to virtualenv cmd installed by pip</span></span><br><span class="line">    <span class="comment"># /usr/local/bin/virtualenv</span></span><br><span class="line">    PATH=<span class="variable">$WORKSPACE</span>/venv/bin:/usr/<span class="built_in">local</span>/bin:<span class="variable">$PATH</span></span><br><span class="line">    <span class="keyword">if</span> [ ! <span class="_">-d</span> <span class="string">"venv"</span> ]; <span class="keyword">then</span></span><br><span class="line">            virtualenv venv</span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">    . venv/bin/activate</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="comment"># Alternatively, $TRAVIS_REPO_SLUG could be utilized here to provide name.</span></span><br><span class="line">    <span class="built_in">export</span> JOB_NAME=<span class="string">"ci-stat"</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">pip install -r requirements.txt -r <span class="built_in">test</span>/test_requirements.txt --cache-dir /tmp/<span class="variable">$JOB_NAME</span></span><br><span class="line"></span><br><span class="line"><span class="comment">########################</span></span><br><span class="line"><span class="comment"># Step 2: Execute Test</span></span><br><span class="line"><span class="comment">########################</span></span><br><span class="line">nosetests --with-xunit --all-modules --traverse-namespace --with-xcoverage --cover-package=me.maxwu --cover-inclusive --logging-level=INFO --debug=me.maxwu <span class="_">-s</span> -v --xunit-file ci-stat_nose_xunit.xml --cover-html ./<span class="built_in">test</span></span><br><span class="line"></span><br><span class="line"><span class="comment">########################</span></span><br><span class="line"><span class="comment"># Step 3: PyLint</span></span><br><span class="line"><span class="comment">########################</span></span><br><span class="line"><span class="built_in">cd</span> src</span><br><span class="line">pylint <span class="_">-f</span> parseable <span class="_">-d</span> I0011,R0801 me.maxwu | tee ../pylint.out</span><br><span class="line"><span class="built_in">cd</span> ..</span><br><span class="line"><span class="comment">#EOF</span></span><br></pre></td></tr></table></figure><p>There are two requirements files in my repo: requirements.txt and test/test_requirements.txt. The later one defines the prerequisites for test using as told by name and location. Special attention is recommended to take for nose, coverage, pylint and codecov (if using travis).</p><p>The test_requirements.txt has below contents. </p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">nose&gt;=1.3.7</span><br><span class="line">nosexcover&gt;=1.0.11</span><br><span class="line">pylint&gt;=1.6.5</span><br><span class="line">coverage&gt;=4.3.4</span><br><span class="line"># codecov for post-build Travis CI step.</span><br><span class="line">codecov==2.0.5</span><br></pre></td></tr></table></figure><h3 id="Configure-Jenkins-with-above-test"><a href="#Configure-Jenkins-with-above-test" class="headerlink" title="Configure Jenkins with above test"></a>Configure Jenkins with above test</h3><h4 id="Build-Steps"><a href="#Build-Steps" class="headerlink" title="Build Steps"></a>Build Steps</h4><p>To utilize above bash script, we can add one shell execution step on Jenkins task management portal. </p><pre><code class="bash">bash -x <span class="built_in">test</span>/nosetests_ci-stat.sh</code></pre><p>Sometimes the build-step is divided to several steps including virtualenv, nose test, and, lint scoring. Explicit “shell exeuction” steps with Jenkins make the logic clear to maintain and reuse.</p><p>Some other times, the test is based on PyPi package and virtualenv could offer a separate environment to install real packages for test using.</p><h4 id="Environmental-Variables"><a href="#Environmental-Variables" class="headerlink" title="Environmental Variables"></a>Environmental Variables</h4><p>It is a critical security concern to protect environmental variables if there is configuration items applied through them. For example, I have local config.yaml file to specify my Travis and Circle CI API token, but this config.yaml is in gitignore file. To read such secrets, I configure Jenkins secret as in menu “<strong>Build Environment -&gt; Binding</strong>“. For environmental variables on Travis, it has protection not to show plain text contents in logs so which is secured automatically. </p><h4 id="Post-Build-Steps"><a href="#Post-Build-Steps" class="headerlink" title="Post Build Steps"></a>Post Build Steps</h4><p>Three popular but fundamental plugins will be introduced:</p><pre><code>- JUnit Test Result Publishment.- Violation Report: The lint scan results. - Cobertura Coverage Report: the coverage data (for given Python package). </code></pre><h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><ul><li><p><a href="http://jenkins.maxwu.me/job/ci-stat/" target="_blank" rel="noopener">http://jenkins.maxwu.me/job/ci-stat/</a></p></li><li><p><a href="http://iamnearlythere.com/jenkins-python-virtualenv/" target="_blank" rel="noopener">http://iamnearlythere.com/jenkins-python-virtualenv/</a></p></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;When setting up CI for python projects, virtualenv could help to separate the test/deployment environment. This post will provide a template for Jenkins to use virtualenv for Jenkins tasks with &lt;a href=&quot;http://jenkins.maxwu.me/job/ci-stat/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Jenkins example&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/7uPOevZm.png&quot; alt=&quot;ci-stat screenshot&quot;&gt;&lt;br&gt;
-    
-    </summary>
-    
-      <category term="Automation Test" scheme="http://maxwu.me/categories/Automation-Test/"/>
-    
-      <category term="CI" scheme="http://maxwu.me/categories/Automation-Test/CI/"/>
-    
-    
-      <category term="CI" scheme="http://maxwu.me/tags/CI/"/>
-    
-      <category term="Jenkins" scheme="http://maxwu.me/tags/Jenkins/"/>
-    
-      <category term="Python" scheme="http://maxwu.me/tags/Python/"/>
-    
-      <category term="Automation" scheme="http://maxwu.me/tags/Automation/"/>
-    
-      <category term="Virtualenv" scheme="http://maxwu.me/tags/Virtualenv/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>A dip with performance test lib Locust</title>
-    <link href="http://maxwu.me/2017/03/06/A-dip-with-performance-test-lib-Locust/"/>
-    <id>http://maxwu.me/2017/03/06/A-dip-with-performance-test-lib-Locust/</id>
-    <published>2017-03-05T12:30:29.000Z</published>
-    <updated>2017-03-15T07:29:53.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>Locust is a Python lib for performance test. Here is a first dip with locust with sample codes.<br><a id="more"></a></p><h3 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ⓑ&gt;pip install locust pyzmq</span><br></pre></td></tr></table></figure><h3 id="The-Sample-Case"><a href="#The-Sample-Case" class="headerlink" title="The Sample Case"></a>The Sample Case</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">ⓑ&gt;cat http_bare_visit.py</span><br><span class="line"><span class="keyword">from</span> locust <span class="keyword">import</span> HttpLocust, TaskSet, task</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserBehavior</span><span class="params">(TaskSet)</span>:</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @task(1)</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">bare_visit</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.client.get(<span class="string">"/"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WebsiteUser</span><span class="params">(HttpLocust)</span>:</span></span><br><span class="line">    task_set = UserBehavior</span><br><span class="line">    min_wait = <span class="number">3000</span></span><br><span class="line">    max_wait = <span class="number">6000</span></span><br><span class="line"> ⓑ&gt;</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line"><span class="comment">### Run A Performance Test</span></span><br><span class="line"></span><br><span class="line">```bash</span><br><span class="line">ⓑ&gt;locust -f ./http_bare_visit.py  --host=http://jenkins.maxwu.me</span><br><span class="line">[<span class="number">2017</span><span class="number">-03</span><span class="number">-06</span> <span class="number">01</span>:<span class="number">23</span>:<span class="number">44</span>,<span class="number">842</span>] MaxWudeMacBook-Pro.local/INFO/locust.main: Starting web monitor at *:<span class="number">8089</span></span><br><span class="line">[<span class="number">2017</span><span class="number">-03</span><span class="number">-06</span> <span class="number">01</span>:<span class="number">23</span>:<span class="number">44</span>,<span class="number">842</span>] MaxWudeMacBook-Pro.local/INFO/locust.main: Starting Locust <span class="number">0.7</span><span class="number">.5</span></span><br><span class="line">[<span class="number">2017</span><span class="number">-03</span><span class="number">-06</span> <span class="number">01</span>:<span class="number">24</span>:<span class="number">24</span>,<span class="number">914</span>] MaxWudeMacBook-Pro.local/INFO/locust.runners: Hatching <span class="keyword">and</span> swarming <span class="number">10</span> clients at the rate <span class="number">1</span> clients/s...</span><br><span class="line">[<span class="number">2017</span><span class="number">-03</span><span class="number">-06</span> <span class="number">01</span>:<span class="number">24</span>:<span class="number">34</span>,<span class="number">939</span>] MaxWudeMacBook-Pro.local/INFO/locust.runners: All locusts hatched: WebsiteUser: <span class="number">10</span></span><br></pre></td></tr></table></figure><p>Open browser on <a href="http://localhost:8089" target="_blank" rel="noopener">http://localhost:8089</a> and configure the simulation size and hatch rate. When the test execution starts, the GUI will provides statistic data.</p><p>Press Ctrl-C on terminal to stop the runner process. The data report is available on terminal console, too. </p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[2017-03-06 01:29:10,073] MaxWudeMacBook-Pro.local/ERROR/stderr: KeyboardInterrupt</span><br><span class="line">[2017-03-06 01:29:10,074] MaxWudeMacBook-Pro.local/INFO/locust.main: Shutting down (<span class="built_in">exit</span> code 0), bye.</span><br><span class="line"> Name                                                          <span class="comment"># reqs      # fails     Avg     Min     Max  |  Median   req/s</span></span><br><span class="line">--------------------------------------------------------------------------------------------------------------------------------------------</span><br><span class="line"> GET /                                                            106     1(0.93%)     346     179     501  |     350    2.00</span><br><span class="line">--------------------------------------------------------------------------------------------------------------------------------------------</span><br><span class="line"> Total                                                            106     1(0.94%)                                       2.00</span><br><span class="line"></span><br><span class="line">Percentage of the requests completed within given <span class="built_in">times</span></span><br><span class="line"> Name                                                           <span class="comment"># reqs    50%    66%    75%    80%    90%    95%    98%    99%   100%</span></span><br><span class="line">--------------------------------------------------------------------------------------------------------------------------------------------</span><br><span class="line"> GET /                                                             106    350    350    360    360    390    400    440    500    501</span><br><span class="line">--------------------------------------------------------------------------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">Error report</span><br><span class="line"> <span class="comment"># occurences       Error</span></span><br><span class="line">--------------------------------------------------------------------------------------------------------------------------------------------</span><br><span class="line"> 1                  GET /: <span class="string">"ConnectionError(ProtocolError('Connection aborted.', error(54, 'Connection reset by peer')),)"</span></span><br><span class="line">--------------------------------------------------------------------------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"> ⓑ&gt;</span><br></pre></td></tr></table></figure><p>[EOF]</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Locust is a Python lib for performance test. Here is a first dip with locust with sample codes.&lt;br&gt;
-    
-    </summary>
-    
-      <category term="Automation Test" scheme="http://maxwu.me/categories/Automation-Test/"/>
-    
-      <category term="Performance Test" scheme="http://maxwu.me/categories/Automation-Test/Performance-Test/"/>
-    
-    
-      <category term="Python" scheme="http://maxwu.me/tags/Python/"/>
-    
-      <category term="Locust" scheme="http://maxwu.me/tags/Locust/"/>
-    
-      <category term="Web" scheme="http://maxwu.me/tags/Web/"/>
     
   </entry>
   
