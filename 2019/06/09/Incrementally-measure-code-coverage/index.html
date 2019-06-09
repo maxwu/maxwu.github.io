@@ -94,7 +94,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://i.imgur.com/gtm74Prm.png">
 <meta property="og:image" content="https://i.imgur.com/YHyhOJ7t.png">
-<meta property="og:updated_time" content="2019-06-09T11:33:55.457Z">
+<meta property="og:updated_time" content="2019-06-09T11:48:26.268Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Incrementally measure code coverage">
 <meta name="twitter:description" content="For new app or repos with a close to ideal level code coverage, the populor code coverage solution on coverage metrics threshold check would be efficient. However, to maintain a legacy or low coverage">
@@ -418,8 +418,7 @@
 <a id="more"></a>
 <h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><p>Usually in Jenkins Pipeline or SAAS DevOps infrastructure, the code coverage check is implemented with <code>Cobertura</code> or cloud service <code>Coverage</code>. </p>
 <p>As described in previous posts, here are samples of <code>Coverage</code> service and on-premise <code>Cobertura</code>.</p>
-<p><a href="https://imgur.com/gtm74Pr" target="_blank" rel="noopener"><img src="https://i.imgur.com/gtm74Prm.png" alt="Coverage"></a></p>
-<p><a href="https://imgur.com/YHyhOJ7t" target="_blank" rel="noopener"><img src="https://i.imgur.com/YHyhOJ7t.png" alt="Cobertura"></a></p>
+<p><a href="https://imgur.com/gtm74Pr" target="_blank" rel="noopener"><img src="https://i.imgur.com/gtm74Prm.png" alt="Coverage"></a><br><a href="https://imgur.com/YHyhOJ7t" target="_blank" rel="noopener"><img src="https://i.imgur.com/YHyhOJ7t.png" alt="Cobertura"></a></p>
 <p>The coverage check is implemented with metrics and thresholds, in other wors, the score of code coverage on current baseline. This won’t be a problem when the repo has an ideal coverage leve. </p>
 <p>For example, if the threshold is set to 95% on lines, functions and branches thress metrics, when the change breaks the threshold, the coverage check will fail. </p>
 <p>On an legacy repo, this would potentially be a problem with a low coverage level. For an example, if the repo has 45% overall lines coverage. On one of the feature branch, the code change lower down some source code coverage by accidently introduced a wrong condition in Jest. But the feature branch aslo introduced a batch of new source and keep 100% on these new added source filed. Therefore, it is possible to see an increase in <code>Total Coverage</code>. And due to a lower level of <code>Cobertura</code> threshold on existing code, this cannot be discovered by the coverage check at all. The feature branch can be merged to master branch with successful coverage endorsement. </p>
