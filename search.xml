@@ -177,7 +177,7 @@
 <a id="more"></a>
 <h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><p>(TBC)</p>
 <h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>It will request a Red Hat developer account to register to RHN when trying to enable <code>rhel-7-server-devtools-rpms</code> RPM repo on Red Hat. However, if it is a docker environment, which is not required to register the docker instance to RHN to add this repo. So the repo could be enabled in Dockerfile. Then the LLDB toolset would be installed to this image.</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="comment"># From a customized RHEL dotnet sdk base image</span></span><br><span class="line"><span class="keyword">FROM</span> XXX/dotnet-<span class="number">21</span>-sdk-rhel7</span><br><span class="line"> </span><br><span class="line"><span class="comment"># Set the timezone</span></span><br><span class="line"><span class="keyword">ENV</span> TZ=XXX</span><br><span class="line"> </span><br><span class="line"><span class="keyword">USER</span> root</span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> yum-config-manager --enable rhel-7-server-devtools-rpms</span></span><br><span class="line"><span class="bash">RUN yum install -y wget tcpdump vim llvm-toolset-7</span></span><br><span class="line"><span class="bash">RUN rm -rf /opt/app-root/.pki</span></span><br><span class="line"><span class="bash"> </span></span><br><span class="line"><span class="bash">USER 1001</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="comment"># From a customized RHEL dotnet sdk base image</span></span><br><span class="line"><span class="keyword">FROM</span> dotnet/dotnet-<span class="number">21</span>-rhel7</span><br><span class="line"> </span><br><span class="line"><span class="comment"># Set the timezone</span></span><br><span class="line"><span class="keyword">ENV</span> TZ=XXX</span><br><span class="line"> </span><br><span class="line"><span class="keyword">USER</span> root</span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> yum-config-manager --enable rhel-7-server-devtools-rpms</span></span><br><span class="line"><span class="bash">RUN yum install -y wget tcpdump vim llvm-toolset-7</span></span><br><span class="line"><span class="bash">RUN rm -rf /opt/app-root/.pki</span></span><br><span class="line"><span class="bash"> </span></span><br><span class="line"><span class="bash">USER 1001</span></span><br></pre></td></tr></table></figure>
 <h2 id="How-to-debug-dotnet-core-app-with-LLDB"><a href="#How-to-debug-dotnet-core-app-with-LLDB" class="headerlink" title="How to debug dotnet core app with LLDB"></a>How to debug dotnet core app with LLDB</h2><blockquote>
 <p>(TODO):<br>  Push the image to dockerhub and launch more test with AWS environment. </p>
 <p>Complete this post with more details on how to apply LLDB on memory check and online debug.</p>
@@ -424,9 +424,9 @@
         
         <tags>
             
-            <tag> Automation Test </tag>
-            
             <tag> Selenium </tag>
+            
+            <tag> Automation Test </tag>
             
             <tag> Headless </tag>
             
@@ -496,9 +496,9 @@ FIXME: need to download the original image from qiniu.
             
             <tag> Concrete-level-tag </tag>
             
-            <tag> Automation Test </tag>
-            
             <tag> Selenium </tag>
+            
+            <tag> Automation Test </tag>
             
         </tags>
         
@@ -1073,7 +1073,7 @@ ss = bfs(lmt, x, n)
     <entry>
       <title><![CDATA[Recursive Depth-First-Search with a tracking Set]]></title>
       <url>http://maxwu.me/2017/05/02/Recursive-Depth-First-Search-with-a-tracking-Set/</url>
-      <content type="html"><![CDATA[<p>Inspired by a StackOverflow(SFO) question, this post is a refreshment on DFS and key points to take care before coding a recursive DFS.<br><a id="more"></a></p>
+      <content type="html"><![CDATA[<p>Inspired by a StackOverflow(SOF) question, this post is a refreshment on DFS and key points to take care before coding a recursive DFS.<br><a id="more"></a></p>
 <h2 id="The-Problem-Statement"><a href="#The-Problem-Statement" class="headerlink" title="The Problem Statement"></a>The Problem Statement</h2><blockquote>
 <p>I have the following lists:<br>Animals Food Cat Fish Dog Pork Beef I would like to allocate food to the animals in as many different ways as possible like:</p>
 </blockquote>
@@ -2508,9 +2508,9 @@ self.assertTrue(<span class="string">"exception message"</span> <span class="key
         
         <tags>
             
-            <tag> Selenium </tag>
-            
             <tag> Cucumber </tag>
+            
+            <tag> Selenium </tag>
             
             <tag> Junit </tag>
             
@@ -2553,9 +2553,9 @@ self.assertTrue(<span class="string">"exception message"</span> <span class="key
             
             <tag> Java </tag>
             
-            <tag> Selenium </tag>
-            
             <tag> Cucumber </tag>
+            
+            <tag> Selenium </tag>
             
             <tag> Junit </tag>
             
