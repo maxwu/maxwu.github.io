@@ -1957,9 +1957,9 @@ ss = bfs(lmt, x, n)
         
         <tags>
             
-            <tag> Docker </tag>
-            
             <tag> Mac </tag>
+            
+            <tag> Docker </tag>
             
         </tags>
         
@@ -2646,9 +2646,9 @@ self.assertTrue(<span class="string">"exception message"</span> <span class="key
             
             <tag> RESTful </tag>
             
-            <tag> Test </tag>
-            
             <tag> Defect </tag>
+            
+            <tag> Test </tag>
             
         </tags>
         
