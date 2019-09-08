@@ -5,7 +5,7 @@
     
     <entry>
       <title><![CDATA[Fix home brew updating failure]]></title>
-      <url>http://maxwu.me/2019/08/24/Fix-home-brew-updating-failure/</url>
+      <url>http://maxwu.me/2019/08/17/Fix-home-brew-updating-failure/</url>
       <content type="html"><![CDATA[<a id="more"></a>
 <h2 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h2><p>After a few weeks sorting up and working with Python3 on my Mac Book Pro, the brew update failed to update and reported an error of aws command not found.</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt; brew update</span><br><span class="line">aws codecommit credential-helper $@ get: aws: command not found</span><br><span class="line">fatal: could not read Username for &apos;https://github.com/Homebrew/homebrew-boneyard&apos;: terminal prompts disabled</span><br><span class="line"></span><br><span class="line">^Cerror: https://github.com/caskroom/homebrew-cask did not send all necessary objects</span><br></pre></td></tr></table></figure>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://maxwu.me/"/>
-  <updated>2019-09-08T12:42:34.968Z</updated>
+  <updated>2019-09-08T12:47:03.511Z</updated>
   <id>http://maxwu.me/</id>
   
   <author>
@@ -18,10 +18,10 @@
   
   <entry>
     <title>Fix home brew updating failure</title>
-    <link href="http://maxwu.me/2019/08/24/Fix-home-brew-updating-failure/"/>
-    <id>http://maxwu.me/2019/08/24/Fix-home-brew-updating-failure/</id>
-    <published>2019-08-24T11:21:51.000Z</published>
-    <updated>2019-09-08T12:42:34.968Z</updated>
+    <link href="http://maxwu.me/2019/08/17/Fix-home-brew-updating-failure/"/>
+    <id>http://maxwu.me/2019/08/17/Fix-home-brew-updating-failure/</id>
+    <published>2019-08-17T11:21:51.000Z</published>
+    <updated>2019-09-08T12:47:03.511Z</updated>
     
     <content type="html"><![CDATA[<a id="more"></a><h2 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h2><p>After a few weeks sorting up and working with Python3 on my Mac Book Pro, the brew update failed to update and reported an error of aws command not found.</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt; brew update</span><br><span class="line">aws codecommit credential-helper $@ get: aws: command not found</span><br><span class="line">fatal: could not read Username for &apos;https://github.com/Homebrew/homebrew-boneyard&apos;: terminal prompts disabled</span><br><span class="line"></span><br><span class="line">^Cerror: https://github.com/caskroom/homebrew-cask did not send all necessary objects</span><br></pre></td></tr></table></figure><h2 id="Resolution"><a href="#Resolution" class="headerlink" title="Resolution"></a>Resolution</h2><p>The solution is straight through. Since aws cli is not found, it is a missed step in migrating Mac development environment from Python2 to Python3 – the corresponding aws cli is not installed well to Python3. </p><p>My python environment is managed via PyEnv. When a new python version is installed, the upstream depeendencies are not maintained via requirement.txt so it needs a manual step to re-enable awscli.</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt;pip3 install awscli --upgrade</span><br></pre></td></tr></table></figure>]]></content>
     
