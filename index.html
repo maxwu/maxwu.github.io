@@ -322,6 +322,148 @@
             
               
                 
+                <a class="post-title-link" href="/2019/08/24/Fix-home-brew-updating-failure/" itemprop="url">
+                  Fix home brew updating failure
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2019-08-24T23:21:51+12:00" content="2019-08-24">
+              2019-08-24
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
+                  <a href="/categories/Mac/" itemprop="url" rel="index">
+                    <span itemprop="name">Mac</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2019/08/24/Fix-home-brew-updating-failure/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/08/24/Fix-home-brew-updating-failure/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2019/08/24/Fix-home-brew-updating-failure/" class="leancloud_visitors" data-flag-title="Fix home brew updating failure">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">visitors </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a>
+<h2 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h2><p>After a few weeks sorting up and working with Python3 on my Mac Book Pro, the brew update failed to update and reported an error of aws command not found.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt; brew update</span><br><span class="line">aws codecommit credential-helper $@ get: aws: command not found</span><br><span class="line">fatal: could not read Username for &apos;https://github.com/Homebrew/homebrew-boneyard&apos;: terminal prompts disabled</span><br><span class="line"></span><br><span class="line">^Cerror: https://github.com/caskroom/homebrew-cask did not send all necessary objects</span><br></pre></td></tr></table></figure>
+<h2 id="Resolution"><a href="#Resolution" class="headerlink" title="Resolution"></a>Resolution</h2><p>The solution is straight through. Since aws cli is not found, it is a missed step in migrating Mac development environment from Python2 to Python3 – the corresponding aws cli is not installed well to Python3. </p>
+<p>My python environment is managed via PyEnv. When a new python version is installed, the upstream depeendencies are not maintained via requirement.txt so it needs a manual step to re-enable awscli.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt;pip3 install awscli --upgrade</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+	<div>
+      
+    </div>
+	
+    <div>
+      
+    </div>
+    <div text-align:="" center="">
+      
+    </div>
+
+    <div>
+      
+    </div>
+      
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+
+
+    </footer>
+  </article>
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2019/06/09/Incrementally-measure-code-coverage/" itemprop="url">
                   Incrementally measure code coverage
                 </a>
@@ -1593,162 +1735,11 @@
   </article>
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/09/28/Greeting-Shell-script-with-Picture-show-and-Weathre-Forecast/" itemprop="url">
-                  Greeting Shell script with Picture show and Weathre Forecast
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2017-09-28T01:53:18+13:00" content="2017-09-28">
-              2017-09-28
-            </time>
-          </span>
-
-          
-            <span class="post-category">
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
-                  <a href="/categories/Programming/" itemprop="url" rel="index">
-                    <span itemprop="name">Programming</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-
-              
-                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
-                  <a href="/categories/Programming/Shell/" itemprop="url" rel="index">
-                    <span itemprop="name">Shell</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/09/28/Greeting-Shell-script-with-Picture-show-and-Weathre-Forecast/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/09/28/Greeting-Shell-script-with-Picture-show-and-Weathre-Forecast/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2017/09/28/Greeting-Shell-script-with-Picture-show-and-Weathre-Forecast/" class="leancloud_visitors" data-flag-title="Greeting Shell script with Picture show and Weathre Forecast">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">visitors </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>“<strong>iterm2 greeting with weather and image</strong>“ is a short shell made for bash_profil invoke to weather forecast based on GeoIP, a quote of greeting, and, show a random picture from given folder.</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/09/28/Greeting-Shell-script-with-Picture-show-and-Weathre-Forecast/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-	<div>
-      
-    </div>
-	
-    <div>
-      
-    </div>
-    <div text-align:="" center="">
-      
-    </div>
-
-    <div>
-      
-    </div>
-      
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-
-
-    </footer>
-  </article>
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1787,7 +1778,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">50</span>
+              <span class="site-state-item-count">51</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -1804,7 +1795,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">104</span>
+                <span class="site-state-item-count">105</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>

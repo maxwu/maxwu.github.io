@@ -4,6 +4,34 @@
   
     
     <entry>
+      <title><![CDATA[Fix home brew updating failure]]></title>
+      <url>http://maxwu.me/2019/08/24/Fix-home-brew-updating-failure/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<h2 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h2><p>After a few weeks sorting up and working with Python3 on my Mac Book Pro, the brew update failed to update and reported an error of aws command not found.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt; brew update</span><br><span class="line">aws codecommit credential-helper $@ get: aws: command not found</span><br><span class="line">fatal: could not read Username for &apos;https://github.com/Homebrew/homebrew-boneyard&apos;: terminal prompts disabled</span><br><span class="line"></span><br><span class="line">^Cerror: https://github.com/caskroom/homebrew-cask did not send all necessary objects</span><br></pre></td></tr></table></figure>
+<h2 id="Resolution"><a href="#Resolution" class="headerlink" title="Resolution"></a>Resolution</h2><p>The solution is straight through. Since aws cli is not found, it is a missed step in migrating Mac development environment from Python2 to Python3 – the corresponding aws cli is not installed well to Python3. </p>
+<p>My python environment is managed via PyEnv. When a new python version is installed, the upstream depeendencies are not maintained via requirement.txt so it needs a manual step to re-enable awscli.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt;pip3 install awscli --upgrade</span><br></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> Mac </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Mac </tag>
+            
+            <tag> Brew </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Incrementally measure code coverage]]></title>
       <url>http://maxwu.me/2019/06/09/Incrementally-measure-code-coverage/</url>
       <content type="html"><![CDATA[<p>For new app or repos with a close to ideal level code coverage, the populor code coverage solution on coverage metrics threshold check would be efficient. However, to maintain a legacy or low coverage level repo, it is not eonough to just check coverage percentage on metrics. This post described an idea to check coverage json diff with istanbul-diff on node.js repos.</p>
@@ -424,9 +452,9 @@
         
         <tags>
             
-            <tag> Selenium </tag>
-            
             <tag> Automation Test </tag>
+            
+            <tag> Selenium </tag>
             
             <tag> Headless </tag>
             
@@ -496,9 +524,9 @@ FIXME: need to download the original image from qiniu.
             
             <tag> Concrete-level-tag </tag>
             
-            <tag> Selenium </tag>
-            
             <tag> Automation Test </tag>
+            
+            <tag> Selenium </tag>
             
         </tags>
         
@@ -1957,9 +1985,9 @@ ss = bfs(lmt, x, n)
         
         <tags>
             
-            <tag> Mac </tag>
-            
             <tag> Docker </tag>
+            
+            <tag> Mac </tag>
             
         </tags>
         
@@ -2508,9 +2536,9 @@ self.assertTrue(<span class="string">"exception message"</span> <span class="key
         
         <tags>
             
-            <tag> Cucumber </tag>
-            
             <tag> Selenium </tag>
+            
+            <tag> Cucumber </tag>
             
             <tag> Junit </tag>
             
@@ -2553,9 +2581,9 @@ self.assertTrue(<span class="string">"exception message"</span> <span class="key
             
             <tag> Java </tag>
             
-            <tag> Cucumber </tag>
-            
             <tag> Selenium </tag>
+            
+            <tag> Cucumber </tag>
             
             <tag> Junit </tag>
             
@@ -2646,9 +2674,9 @@ self.assertTrue(<span class="string">"exception message"</span> <span class="key
             
             <tag> RESTful </tag>
             
-            <tag> Defect </tag>
-            
             <tag> Test </tag>
+            
+            <tag> Defect </tag>
             
         </tags>
         
