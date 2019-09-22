@@ -4,6 +4,52 @@
   
     
     <entry>
+      <title><![CDATA[A Bite of SpringBoot]]></title>
+      <url>http://maxwu.me/2019/09/21/A-Bite-Of-Springboot/</url>
+      <content type="html"><![CDATA[<p>Creating first springboot app on Mac.</p>
+<a id="more"></a>
+<h2 id="Backgounds"><a href="#Backgounds" class="headerlink" title="Backgounds"></a>Backgounds</h2><p>As a pythonist on system level, I built several my experience with Java Web Frameworks are mostly on structs MVC as an UI backend to interact with JQuery to present the status and management from message security gateway products. However, according to the reality of circumstance, framework seems much more impressive than computer science and ways of thoughts. </p>
+<p>It’s the time to take a bite on Springboot and see what’s inside. </p>
+<h2 id="1-Environment"><a href="#1-Environment" class="headerlink" title="1 Environment"></a>1 Environment</h2><p>In brief, Jetbrain IntelliJ community version on Mac. I used to program Python on PyCharm and IntelliJ shares similar features on Java IDE.</p>
+<p>Java toolchain will be organized in Gradle. Maven is an alternative which I used in previous test automation tools. However, gradle is graceful and brief.</p>
+<p>Eventually the service will be wrapped in kubernetes pod but it is not the first step.</p>
+<h2 id="2-Create-A-New-Springboot-App"><a href="#2-Create-A-New-Springboot-App" class="headerlink" title="2 Create A New Springboot App"></a>2 Create A New Springboot App</h2><p>Springboot web site offers <code>curl</code> interface to generate a demo project to start from. Visit <a href="https://start.spring.io" target="_blank" rel="noopener">https://start.spring.io</a> on cli tool curl will show the manual on how to generate springboot scaffold.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">curl https://start.spring.io</span><br><span class="line"># The response shows a manual page with below samples.</span><br><span class="line">Examples:</span><br><span class="line"></span><br><span class="line">To create a default demo.zip:</span><br><span class="line">	$ curl https://start.spring.io/starter.zip -o demo.zip</span><br><span class="line"></span><br><span class="line">To create a web project using Java 11:</span><br><span class="line">	$ curl https://start.spring.io/starter.zip -d dependencies=web \\</span><br><span class="line">			-d javaVersion=11 -o demo.zip</span><br><span class="line"></span><br><span class="line">To create a web/data-jpa gradle project unpacked:</span><br><span class="line">	$ curl https://start.spring.io/starter.tgz -d dependencies=web,data-jpa \\</span><br><span class="line">		   -d type=gradle-project -d baseDir=my-dir | tar -xzvf -</span><br><span class="line"></span><br><span class="line">To generate a Maven POM with war packaging:</span><br><span class="line">	$ curl https://start.spring.io/pom.xml -d packaging=war -o pom.xml</span><br></pre></td></tr></table></figure>
+<p>I chose a demo web project using Java 8. Which means, a wrapped dependency of <code>spring-boot-starter-web</code>. Springboo will interrepte it to real dependencies.</p>
+<p><code>curl https://start.spring.io/starter.zip -d dependencies=web -d javaVersion=8 -d type=gradle-project -o demo.zip</code></p>
+<p>Alternatively, open IntelliJ menu to “New Project” will also provide options to visit <code>start.spring.io</code> within the IDE UI to create project scaffold.</p>
+<h2 id="3-Launch-Springboot-Demo"><a href="#3-Launch-Springboot-Demo" class="headerlink" title="3 Launch Springboot Demo"></a>3 Launch Springboot Demo</h2><p>When importing the scaffold project to IntelliJ, a run configuration with main class on the <code>DemoApplication</code> , where the annotation <code>@SpringBootApplication</code> is applied, will be created. Run the configuration “DemoApplication” will launch Springboo web app in couple of seconds. However, visiting <code>localhost:8080</code> will still return an error page since there is nothing to respond.</p>
+<p>For the gradle configured project, the IntelliJ would spend a bit while to download gradle dependencies.</p>
+<p>A simple controller class is added to respond string content to path <code>/</code>. Thanks to IntelliJ, the annotations are auto-completed. Key points here are “GetMapping” annotation to specify the path of <code>/</code> and “RespenseBody” annotation t</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.demo;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ResponseBody;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/"</span>)</span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">home</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Home"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Use <code>./gradlew tasks</code> could also pring out a task list which can be run by gradle plugin. </p>
+<p>After updating the above controller class, run <code>./gradlew runBoot</code> would also run the springboot application to server <code>localhost:8080</code></p>
+<p>(To be continued)</p>
+<h2 id="Change-Log"><a href="#Change-Log" class="headerlink" title="Change Log"></a>Change Log</h2><p>Sep 22, 2019: Configuration and start a new springboot app.</p>
+]]></content>
+      
+        <categories>
+            
+            <category> Microservice </category>
+            
+            <category> Springboot </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Java </tag>
+            
+            <tag> Springboot </tag>
+            
+            <tag> Demo </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Fix home brew updating failure]]></title>
       <url>http://maxwu.me/2019/08/17/Fix-home-brew-updating-failure/</url>
       <content type="html"><![CDATA[<a id="more"></a>
@@ -2674,9 +2720,9 @@ self.assertTrue(<span class="string">"exception message"</span> <span class="key
             
             <tag> RESTful </tag>
             
-            <tag> Test </tag>
-            
             <tag> Defect </tag>
+            
+            <tag> Test </tag>
             
         </tags>
         
