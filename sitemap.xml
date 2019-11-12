@@ -2,9 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://maxwu.me/2019/11/11/Still-On-the-Way-to-Cloud/</loc>
+    
+    <lastmod>2019-11-12T10:58:28.527Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://maxwu.me/2019/04/15/Debug-dotnet-core-with-LLDB-on-RHEL-Image/</loc>
+    
+    <lastmod>2019-11-12T09:43:04.571Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://maxwu.me/2019/09/28/A-Bite-Of-Springboot/</loc>
     
-    <lastmod>2019-09-28T13:14:12.672Z</lastmod>
+    <lastmod>2019-09-28T20:51:23.570Z</lastmod>
     
   </url>
   
@@ -12,13 +26,6 @@
     <loc>http://maxwu.me/2019/08/17/Fix-home-brew-updating-failure/</loc>
     
     <lastmod>2019-09-08T12:47:03.511Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://maxwu.me/2019/04/15/Debug-dotnet-core-with-LLDB-on-RHEL-Image/</loc>
-    
-    <lastmod>2019-06-10T10:15:01.328Z</lastmod>
     
   </url>
   

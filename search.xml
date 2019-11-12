@@ -4,6 +4,41 @@
   
     
     <entry>
+      <title><![CDATA[Still On the Way to Cloud]]></title>
+      <url>http://maxwu.me/2019/11/11/Still-On-the-Way-to-Cloud/</url>
+      <content type="html"><![CDATA[<p>It is the last quarter of 2019. A large number of organizations already deployed docker containerized applications in production environment and usually the services are orchestrated with kubernetes or Openshift. As the well known saying, just moving applications to cloud doesn’t mean clouding, we are still in the middle of way to cloud. This post is also a retrospective on the issues discovered this year on migrating traditional technical stacks to cloud. </p>
+<p>(This post is still in progress)</p>
+<p><img src="https://i.imgur.com/zApN0Gsm.jpg" alt="Docker_Kube"></p>
+<a id="more"></a>
+<h2 id="1-Typical-issues-on-sensitivity-of-container-environment"><a href="#1-Typical-issues-on-sensitivity-of-container-environment" class="headerlink" title="1 Typical issues on sensitivity of container environment"></a>1 Typical issues on sensitivity of container environment</h2><h3 id="1-1-Dotnet-core-2-1-Pod-restarted-on-OOM-Killer"><a href="#1-1-Dotnet-core-2-1-Pod-restarted-on-OOM-Killer" class="headerlink" title="1.1 Dotnet core 2.1 Pod restarted on OOM Killer"></a>1.1 Dotnet core 2.1 Pod restarted on OOM Killer</h3><p>This was the first issue I spent a big effort this year to realize that popular technical stacks were still not ready to adapt themselves to container environment. Typically if a managed system reads the mount point <code>/proc/self/mountinfo</code> as on regular Linux platform but not the <code>/proc/self/cgroup</code>, the memory limits are not observable from the memory management. </p>
+<p>The github link is <a href="https://github.com/dotnet/coreclr/issues/13489" target="_blank" rel="noopener">https://github.com/dotnet/coreclr/issues/13489</a>.</p>
+<p>The phenomenon was dotnet core pod restarted more than 200 times per day and openshift monitor portal showed <code>OOM Killer</code> in event description. It was lukcy the production environment deployed with replica number 4 so fintech service was not interrupted. To debug this issue, an image of LLDB on dotnet core was created to detect threading model and high memory blocks (<a href="https://maxwu.me/2019/04/15/Debug-dotnet-core-with-LLDB-on-RHEL-Image/">https://maxwu.me/2019/04/15/Debug-dotnet-core-with-LLDB-on-RHEL-Image/</a>). Per my observation, the high runners are Newtonsoft JSON entities because lots of memory were consumed by dotnet string buffers. </p>
+<p>(TBC)</p>
+<h3 id="1-2-Jenkins-Pipeline-ran-out-of-memory"><a href="#1-2-Jenkins-Pipeline-ran-out-of-memory" class="headerlink" title="1.2 Jenkins Pipeline ran out of memory"></a>1.2 Jenkins Pipeline ran out of memory</h3><h3 id="1-3-Cypress-failed-to-launch-XVFB-in-docker-container"><a href="#1-3-Cypress-failed-to-launch-XVFB-in-docker-container" class="headerlink" title="1.3 Cypress failed to launch XVFB in docker container"></a>1.3 Cypress failed to launch XVFB in docker container</h3><h2 id="2-Typical-issues-on-container-orchestration"><a href="#2-Typical-issues-on-container-orchestration" class="headerlink" title="2 Typical issues on container orchestration"></a>2 Typical issues on container orchestration</h2><h3 id="2-1-Orchestrating-Cypress-tests-in-Map-Reduce-model-on-kube-cloud"><a href="#2-1-Orchestrating-Cypress-tests-in-Map-Reduce-model-on-kube-cloud" class="headerlink" title="2.1 Orchestrating Cypress tests in Map-Reduce model on kube cloud"></a>2.1 Orchestrating Cypress tests in Map-Reduce model on kube cloud</h3><h3 id="2-2-Rolling-out-springboot-pod-generated-alert-flooding-on-splunk"><a href="#2-2-Rolling-out-springboot-pod-generated-alert-flooding-on-splunk" class="headerlink" title="2.2 Rolling out springboot pod generated alert flooding on splunk"></a>2.2 Rolling out springboot pod generated alert flooding on splunk</h3><h2 id="3-Retrospective"><a href="#3-Retrospective" class="headerlink" title="3 Retrospective"></a>3 Retrospective</h2><h2 id="Change-Log"><a href="#Change-Log" class="headerlink" title="Change Log"></a>Change Log</h2><p>Nov 12, 2019: Initial post with intro part and the outline.</p>
+]]></content>
+      
+        <categories>
+            
+            <category> DevOps </category>
+            
+            <category> Docker </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Docker </tag>
+            
+            <tag> Openshift </tag>
+            
+            <tag> Cloud </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[A Bite of SpringBoot]]></title>
       <url>http://maxwu.me/2019/09/28/A-Bite-Of-Springboot/</url>
       <content type="html"><![CDATA[<p>The journey to migrate dotnet experiences to springboot and build a demo app from scratch, deploy it to kubernetes with explanation on technical points and the cloud native practice notes.</p>
@@ -23,6 +58,7 @@
 <p>A simple controller class is added to respond string content to path <code>/</code>. Thanks to IntelliJ, the annotations are auto-completed. Key points here are “GetMapping” annotation to specify the path of <code>/</code> and “RespenseBody” annotation t</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.demo;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ResponseBody;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/"</span>)</span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">home</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Home"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>Like <code>npm run</code> but more verbose than the node.js cmd, luanch <code>./gradlew tasks</code> or directly run <code>gradle tasks</code> in root folder of project would print out a task list which can be run by gradle plugin. If it is the first time running <code>gradle</code>, the gradle daemon shall be luanched and basic environment/dependencies checks would be performed first.</p>
+<p><code>gradlew</code> and <code>gradle.bat</code> are artifacts generated by <code>gradle warpper</code> task which empower environments with gradle preinstalled to run gradle toolchain commands.</p>
 <p>After updating the above controller class, run <code>gradle bootRun</code> would also run the springboot application to server <code>localhost:8080</code>. In the browser, the simple content “Home” is fetched and rendered.</p>
 <h2 id="4-Build-Docker-Image-for-Springboot-App"><a href="#4-Build-Docker-Image-for-Springboot-App" class="headerlink" title="4 Build Docker Image for Springboot App"></a>4 Build Docker Image for Springboot App</h2><p>As usual there are multiple ways to build docker images as first step to containerize the app. Thanks to the gradle community <code>com.palantir.docker</code> plugin is picked up in this demo project.</p>
 <p>The gradle pluin could be applied in build.script DSL or plugin DSL. This experiment applies the plugin DSL and build docker image with Dockerfile rather than docker plugin DSL to reuse author’s existing Dockerfile experiences for now.</p>
@@ -30,9 +66,9 @@
 <h3 id="4-2-Introduce-docker-Task"><a href="#4-2-Introduce-docker-Task" class="headerlink" title="4.2 Introduce docker Task"></a>4.2 Introduce <code>docker</code> Task</h3><p>The task is defined as below:</p>
 <figure class="highlight gradle"><table><tr><td class="code"><pre><span class="line">docker &#123;</span><br><span class="line">	dependsOn build</span><br><span class="line">	name <span class="string">"$&#123;project.group&#125;/$&#123;bootJar.baseName&#125;"</span></span><br><span class="line">	files bootJar.archivePath</span><br><span class="line">	buildArgs([<span class="string">'JAR_FILE'</span>: <span class="string">"$&#123;bootJar.archiveName&#125;"</span>])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="4-3-Create-the-Dockerfile"><a href="#4-3-Create-the-Dockerfile" class="headerlink" title="4.3 Create the Dockerfile"></a>4.3 Create the Dockerfile</h3><p>To keep the image slim, alpine jdk8 image is picked as base image. </p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> openjdk:<span class="number">8</span>-jdk-alpine</span><br><span class="line"><span class="keyword">VOLUME</span> /tmp</span><br><span class="line">ARG JAR_FILE</span><br><span class="line">COPY $&#123;JAR_FILE&#125; app.jar</span><br><span class="line">ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]</span><br></pre></td></tr></table></figure>
-<h3 id="4-4-Launch-Container-Locally"><a href="#4-4-Launch-Container-Locally" class="headerlink" title="4.4 Launch Container Locally"></a>4.4 Launch Container Locally</h3><p>Quickly test the docker image by launching it locally, <code>docker run -p 8080:8080 -t com.example/demo</code>. Then open browser on URL <code>http://localhost:8080/</code> the same contents are responded “Home”.</p>
-<p>(To be continued)</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> openjdk:<span class="number">8</span>-jdk-alpine</span><br><span class="line"><span class="keyword">VOLUME</span><span class="bash"> /tmp</span></span><br><span class="line"><span class="bash">ARG JAR_FILE</span></span><br><span class="line"><span class="bash">COPY <span class="variable">$&#123;JAR_FILE&#125;</span> app.jar</span></span><br><span class="line"><span class="bash">ENTRYPOINT [<span class="string">"java"</span>,<span class="string">"-Djava.security.egd=file:/dev/./urandom"</span>,<span class="string">"-jar"</span>,<span class="string">"/app.jar"</span>]</span></span><br></pre></td></tr></table></figure>
+<h3 id="4-4-Launch-Container-Locally"><a href="#4-4-Launch-Container-Locally" class="headerlink" title="4.4 Launch Container Locally"></a>4.4 Launch Container Locally</h3><p>With above Dockerfile and the     <code>docker</code> task inserted to gradle.build script, run <code>gradle docker</code> would (re)build the app image with dependencies. Quickly test the docker image by launching it locally, <code>docker run -p 8080:8080 -t com.example/demo</code>. Then open browser on URL <code>http://localhost:8080/</code> the same contents are responded “Home”.</p>
+<h2 id="5-Deploy-to-Kubernetes"><a href="#5-Deploy-to-Kubernetes" class="headerlink" title="5 Deploy to Kubernetes"></a>5 Deploy to Kubernetes</h2><p>(To be continued)</p>
 <h2 id="Change-Log"><a href="#Change-Log" class="headerlink" title="Change Log"></a>Change Log</h2><p>Sep 22, 2019: Configuration and start a new springboot app.<br>Sep 28, 2019: </p>
 ]]></content>
       
@@ -51,7 +87,7 @@
             
             <tag> Springboot </tag>
             
-            <tag> Demo </tag>
+            <tag> Kubernetes </tag>
             
         </tags>
         
@@ -268,7 +304,7 @@
       
         <categories>
             
-            <category> Programming </category>
+            <category> DevOps </category>
             
             <category> Docker </category>
             
@@ -2728,9 +2764,9 @@ self.assertTrue(<span class="string">"exception message"</span> <span class="key
             
             <tag> RESTful </tag>
             
-            <tag> Defect </tag>
-            
             <tag> Test </tag>
+            
+            <tag> Defect </tag>
             
         </tags>
         
