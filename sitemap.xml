@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://maxwu.me/2019/11/24/Using-Multi-Stage-Build-to-Reduce-Docker-Image-Size/</loc>
+    
+    <lastmod>2019-11-24T12:36:13.358Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://maxwu.me/2019/11/11/Still-On-the-Way-to-Cloud/</loc>
     
-    <lastmod>2019-11-17T11:00:55.133Z</lastmod>
+    <lastmod>2019-11-24T12:09:24.783Z</lastmod>
     
   </url>
   

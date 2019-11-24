@@ -4,7 +4,7 @@
 
 
 <html class="theme-next pisces">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -150,7 +150,7 @@
   <title> Tips on Selenium PageObjects Design | +U Maxout!  -  </title>
 </head>
 
-<body itemscope="" itemtype="https://schema.org/WebPage" lang="en">
+<body itemscope itemtype="https://schema.org/WebPage" lang="en">
 
   
 
@@ -180,7 +180,7 @@
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="https://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="https://schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
@@ -318,7 +318,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
       <header class="post-header">
@@ -354,7 +354,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/Automation-Test/" itemprop="url" rel="index">
                     <span itemprop="name">Automation Test</span>
                   </a>
@@ -366,7 +366,7 @@
                 
 
               
-                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/Automation-Test/Selenium/" itemprop="url" rel="index">
                     <span itemprop="name">Selenium</span>
                   </a>
@@ -546,7 +546,7 @@
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Findbys</span>(&#123;</span><br><span class="line">    <span class="meta">@FindBy</span>(how = How.CSS, using = <span class="string">"div.A"</span>),</span><br><span class="line">    <span class="meta">@FindBy</span>(how = How.CSS, using = <span class="string">"div.B"</span>)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">public</span> List&lt;WebElement&gt; BinAList;</span><br></pre></td></tr></table></figure>
 <p>Above example will return div elements which has className “B” and(from) className “A”. </p>
 <h2 id="State-Transition"><a href="#State-Transition" class="headerlink" title="State Transition"></a>State Transition</h2><p>Theoretically Selenium is a tool for UI testing or Web testing, which focus on user scenarios instead of functions. Functional test is still covered in API level tests. Here is a chart to describe where Selenium is in the Test Pyramid. <a href="https://maxwu.github.io/2017/01/23/JUnit-Tips/" target="_blank" rel="noopener">Link</a></p>
-<p><img src="http://oei21r8n1.bkt.clouddn.com/Test_Pyramid_v2.png?imageView/2/w/600/q/100" alt=""></p>
+<p><img src="http://oei21r8n1.bkt.clouddn.com/Test_Pyramid_v2.png?imageView/2/w/600/q/100" alt></p>
 <p>Selenium is an excellent tool to support the test on user journeys acrossing views or pages. Here states represent the different views which the end users visit. A user scenario typically consists a sequence of views or pages towards a complete, incomplete, successful or failed business target. The footprints include a sequence of interactions. </p>
 <p>If the new view after a given action can still be interpreted by current PageObject to get an object level description about the set of interested points to test, we can either continuously to use the existing page object with a fresh on specific elements, or, create a new object with the same PageObject class. The construction phase will map element members to a set of interested points.</p>
 <p><img src="http://oei21r8n1.bkt.clouddn.com/pom_TransitionWithSamePageObject.png" class="img-left"></p>
@@ -609,10 +609,10 @@
         
       
     </div>
-    <div text-align:="" center="">
+    <div text-align: center>
       
 <a href="https://stackoverflow.com/users/230100/maxwu?theme=clean">
-<img src="https://stackoverflow.com/users/flair/230100.png" width="208" height="58" alt="profile for maxwu at Stack Overflow, Q&amp;A for professional and enthusiast programmers" title="">
+<img src="https://stackoverflow.com/users/flair/230100.png" width="208" height="58" alt="profile for maxwu at Stack Overflow, Q&amp;A for professional and enthusiast programmers" title>
 </a>
 <!-- FIXME: Disable Evernote Prompt. 
 <a href="https://evernote.grsm.io/ebccMaxWu">
@@ -725,7 +725,7 @@
       
 
       <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="https://0.gravatar.com/avatar/4a3ccf96788c0264158cce73dec64369" alt="Max Wu">
           <p class="site-author-name" itemprop="name">Max Wu</p>
           <p class="site-description motion-element" itemprop="description">Software Crafter and Pythonist</p>
@@ -733,7 +733,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">53</span>
+              <span class="site-state-item-count">54</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -750,7 +750,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">109</span>
+                <span class="site-state-item-count">110</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
