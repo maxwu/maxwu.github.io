@@ -5,9 +5,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://maxwu.me/"/>
+  <link href="https://www.maxwu.me/"/>
   <updated>2019-11-24T10:51:09.000Z</updated>
-  <id>http://maxwu.me/</id>
+  <id>https://www.maxwu.me/</id>
   
   <author>
     <name>Max Wu</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Using Multi-Stage Build to Reduce Docker Image Size</title>
-    <link href="http://maxwu.me/2019/11/24/Using-Multi-Stage-Build-to-Reduce-Docker-Image-Size/"/>
-    <id>http://maxwu.me/2019/11/24/Using-Multi-Stage-Build-to-Reduce-Docker-Image-Size/</id>
+    <link href="https://www.maxwu.me/2019/11/24/Using-Multi-Stage-Build-to-Reduce-Docker-Image-Size/"/>
+    <id>https://www.maxwu.me/2019/11/24/Using-Multi-Stage-Build-to-Reduce-Docker-Image-Size/</id>
     <published>2019-11-24T10:51:09.000Z</published>
     <updated>2019-11-24T10:51:09.000Z</updated>
     
@@ -32,21 +32,21 @@
     
     </summary>
     
-      <category term="DevOps" scheme="http://maxwu.me/categories/DevOps/"/>
+      <category term="DevOps" scheme="https://www.maxwu.me/categories/DevOps/"/>
     
-      <category term="Docker" scheme="http://maxwu.me/categories/DevOps/Docker/"/>
+      <category term="Docker" scheme="https://www.maxwu.me/categories/DevOps/Docker/"/>
     
     
-      <category term="Docker" scheme="http://maxwu.me/tags/Docker/"/>
+      <category term="Docker" scheme="https://www.maxwu.me/tags/Docker/"/>
     
-      <category term="Cloud" scheme="http://maxwu.me/tags/Cloud/"/>
+      <category term="Cloud" scheme="https://www.maxwu.me/tags/Cloud/"/>
     
   </entry>
   
   <entry>
     <title>Still On the Way to Cloud</title>
-    <link href="http://maxwu.me/2019/11/11/Still-On-the-Way-to-Cloud/"/>
-    <id>http://maxwu.me/2019/11/11/Still-On-the-Way-to-Cloud/</id>
+    <link href="https://www.maxwu.me/2019/11/11/Still-On-the-Way-to-Cloud/"/>
+    <id>https://www.maxwu.me/2019/11/11/Still-On-the-Way-to-Cloud/</id>
     <published>2019-11-11T10:00:20.000Z</published>
     <updated>2019-11-11T10:00:20.000Z</updated>
     
@@ -62,23 +62,23 @@
     
     </summary>
     
-      <category term="DevOps" scheme="http://maxwu.me/categories/DevOps/"/>
+      <category term="DevOps" scheme="https://www.maxwu.me/categories/DevOps/"/>
     
-      <category term="Docker" scheme="http://maxwu.me/categories/DevOps/Docker/"/>
+      <category term="Docker" scheme="https://www.maxwu.me/categories/DevOps/Docker/"/>
     
     
-      <category term="Docker" scheme="http://maxwu.me/tags/Docker/"/>
+      <category term="Docker" scheme="https://www.maxwu.me/tags/Docker/"/>
     
-      <category term="Openshift" scheme="http://maxwu.me/tags/Openshift/"/>
+      <category term="Openshift" scheme="https://www.maxwu.me/tags/Openshift/"/>
     
-      <category term="Cloud" scheme="http://maxwu.me/tags/Cloud/"/>
+      <category term="Cloud" scheme="https://www.maxwu.me/tags/Cloud/"/>
     
   </entry>
   
   <entry>
     <title>A Bite of SpringBoot</title>
-    <link href="http://maxwu.me/2019/09/28/A-Bite-Of-Springboot/"/>
-    <id>http://maxwu.me/2019/09/28/A-Bite-Of-Springboot/</id>
+    <link href="https://www.maxwu.me/2019/09/28/A-Bite-Of-Springboot/"/>
+    <id>https://www.maxwu.me/2019/09/28/A-Bite-Of-Springboot/</id>
     <published>2019-09-28T08:37:33.000Z</published>
     <updated>2019-09-28T08:37:33.000Z</updated>
     
@@ -90,23 +90,23 @@
     
     </summary>
     
-      <category term="Microservice" scheme="http://maxwu.me/categories/Microservice/"/>
+      <category term="Microservice" scheme="https://www.maxwu.me/categories/Microservice/"/>
     
-      <category term="Springboot" scheme="http://maxwu.me/categories/Microservice/Springboot/"/>
+      <category term="Springboot" scheme="https://www.maxwu.me/categories/Microservice/Springboot/"/>
     
     
-      <category term="Java" scheme="http://maxwu.me/tags/Java/"/>
+      <category term="Java" scheme="https://www.maxwu.me/tags/Java/"/>
     
-      <category term="Springboot" scheme="http://maxwu.me/tags/Springboot/"/>
+      <category term="Springboot" scheme="https://www.maxwu.me/tags/Springboot/"/>
     
-      <category term="Kubernetes" scheme="http://maxwu.me/tags/Kubernetes/"/>
+      <category term="Kubernetes" scheme="https://www.maxwu.me/tags/Kubernetes/"/>
     
   </entry>
   
   <entry>
     <title>Fix home brew updating failure</title>
-    <link href="http://maxwu.me/2019/08/17/Fix-home-brew-updating-failure/"/>
-    <id>http://maxwu.me/2019/08/17/Fix-home-brew-updating-failure/</id>
+    <link href="https://www.maxwu.me/2019/08/17/Fix-home-brew-updating-failure/"/>
+    <id>https://www.maxwu.me/2019/08/17/Fix-home-brew-updating-failure/</id>
     <published>2019-08-17T11:21:51.000Z</published>
     <updated>2019-08-17T11:21:51.000Z</updated>
     
@@ -123,19 +123,19 @@
     
     </summary>
     
-      <category term="Mac" scheme="http://maxwu.me/categories/Mac/"/>
+      <category term="Mac" scheme="https://www.maxwu.me/categories/Mac/"/>
     
     
-      <category term="Mac" scheme="http://maxwu.me/tags/Mac/"/>
+      <category term="Mac" scheme="https://www.maxwu.me/tags/Mac/"/>
     
-      <category term="Brew" scheme="http://maxwu.me/tags/Brew/"/>
+      <category term="Brew" scheme="https://www.maxwu.me/tags/Brew/"/>
     
   </entry>
   
   <entry>
     <title>Incrementally measure code coverage</title>
-    <link href="http://maxwu.me/2019/06/09/Incrementally-measure-code-coverage/"/>
-    <id>http://maxwu.me/2019/06/09/Incrementally-measure-code-coverage/</id>
+    <link href="https://www.maxwu.me/2019/06/09/Incrementally-measure-code-coverage/"/>
+    <id>https://www.maxwu.me/2019/06/09/Incrementally-measure-code-coverage/</id>
     <published>2019-06-09T09:42:34.000Z</published>
     <updated>2019-06-09T09:42:34.000Z</updated>
     
@@ -147,23 +147,23 @@
     
     </summary>
     
-      <category term="DevOps" scheme="http://maxwu.me/categories/DevOps/"/>
+      <category term="DevOps" scheme="https://www.maxwu.me/categories/DevOps/"/>
     
-      <category term="Coverage" scheme="http://maxwu.me/categories/DevOps/Coverage/"/>
+      <category term="Coverage" scheme="https://www.maxwu.me/categories/DevOps/Coverage/"/>
     
     
-      <category term="Istanbul" scheme="http://maxwu.me/tags/Istanbul/"/>
+      <category term="Istanbul" scheme="https://www.maxwu.me/tags/Istanbul/"/>
     
-      <category term="Coverage" scheme="http://maxwu.me/tags/Coverage/"/>
+      <category term="Coverage" scheme="https://www.maxwu.me/tags/Coverage/"/>
     
-      <category term="DevOps" scheme="http://maxwu.me/tags/DevOps/"/>
+      <category term="DevOps" scheme="https://www.maxwu.me/tags/DevOps/"/>
     
   </entry>
   
   <entry>
     <title>Convolutional Neural Networks in TensorFlow</title>
-    <link href="http://maxwu.me/2019/06/02/Completed-Deeplearning-ai-CNN-in-TensorFlow-A-retro-on-roadmap/"/>
-    <id>http://maxwu.me/2019/06/02/Completed-Deeplearning-ai-CNN-in-TensorFlow-A-retro-on-roadmap/</id>
+    <link href="https://www.maxwu.me/2019/06/02/Completed-Deeplearning-ai-CNN-in-TensorFlow-A-retro-on-roadmap/"/>
+    <id>https://www.maxwu.me/2019/06/02/Completed-Deeplearning-ai-CNN-in-TensorFlow-A-retro-on-roadmap/</id>
     <published>2019-06-02T02:36:23.000Z</published>
     <updated>2019-06-02T02:36:23.000Z</updated>
     
@@ -177,15 +177,15 @@
     
     </summary>
     
-      <category term="Machine Learning" scheme="http://maxwu.me/categories/Machine-Learning/"/>
+      <category term="Machine Learning" scheme="https://www.maxwu.me/categories/Machine-Learning/"/>
     
     
   </entry>
   
   <entry>
     <title>Completed Deeplearning.ai TensorFlow Introdution Course</title>
-    <link href="http://maxwu.me/2019/05/05/Completed-Deeplearning-ai-TensorFlow-Introdution-Course/"/>
-    <id>http://maxwu.me/2019/05/05/Completed-Deeplearning-ai-TensorFlow-Introdution-Course/</id>
+    <link href="https://www.maxwu.me/2019/05/05/Completed-Deeplearning-ai-TensorFlow-Introdution-Course/"/>
+    <id>https://www.maxwu.me/2019/05/05/Completed-Deeplearning-ai-TensorFlow-Introdution-Course/</id>
     <published>2019-05-05T11:37:15.000Z</published>
     <updated>2019-05-05T11:37:15.000Z</updated>
     
@@ -201,15 +201,15 @@
     
     </summary>
     
-      <category term="Machine Learning" scheme="http://maxwu.me/categories/Machine-Learning/"/>
+      <category term="Machine Learning" scheme="https://www.maxwu.me/categories/Machine-Learning/"/>
     
     
   </entry>
   
   <entry>
     <title>Customized domain for github page with hexo</title>
-    <link href="http://maxwu.me/2019/05/01/Customized-domain-for-github-page-with-hexo/"/>
-    <id>http://maxwu.me/2019/05/01/Customized-domain-for-github-page-with-hexo/</id>
+    <link href="https://www.maxwu.me/2019/05/01/Customized-domain-for-github-page-with-hexo/"/>
+    <id>https://www.maxwu.me/2019/05/01/Customized-domain-for-github-page-with-hexo/</id>
     <published>2019-05-01T10:02:08.000Z</published>
     <updated>2019-05-01T10:02:08.000Z</updated>
     
@@ -224,19 +224,19 @@
     
     </summary>
     
-      <category term="Github" scheme="http://maxwu.me/categories/Github/"/>
+      <category term="Github" scheme="https://www.maxwu.me/categories/Github/"/>
     
     
-      <category term="Github" scheme="http://maxwu.me/tags/Github/"/>
+      <category term="Github" scheme="https://www.maxwu.me/tags/Github/"/>
     
-      <category term="Hexo" scheme="http://maxwu.me/tags/Hexo/"/>
+      <category term="Hexo" scheme="https://www.maxwu.me/tags/Hexo/"/>
     
   </entry>
   
   <entry>
     <title>Debug dotnet core with LLDB on RHEL Image</title>
-    <link href="http://maxwu.me/2019/04/15/Debug-dotnet-core-with-LLDB-on-RHEL-Image/"/>
-    <id>http://maxwu.me/2019/04/15/Debug-dotnet-core-with-LLDB-on-RHEL-Image/</id>
+    <link href="https://www.maxwu.me/2019/04/15/Debug-dotnet-core-with-LLDB-on-RHEL-Image/"/>
+    <id>https://www.maxwu.me/2019/04/15/Debug-dotnet-core-with-LLDB-on-RHEL-Image/</id>
     <published>2019-04-15T10:25:42.000Z</published>
     <updated>2019-04-15T10:25:42.000Z</updated>
     
@@ -248,23 +248,23 @@
     
     </summary>
     
-      <category term="DevOps" scheme="http://maxwu.me/categories/DevOps/"/>
+      <category term="DevOps" scheme="https://www.maxwu.me/categories/DevOps/"/>
     
-      <category term="Docker" scheme="http://maxwu.me/categories/DevOps/Docker/"/>
+      <category term="Docker" scheme="https://www.maxwu.me/categories/DevOps/Docker/"/>
     
     
-      <category term="LLDB" scheme="http://maxwu.me/tags/LLDB/"/>
+      <category term="LLDB" scheme="https://www.maxwu.me/tags/LLDB/"/>
     
-      <category term="DotnetCore" scheme="http://maxwu.me/tags/DotnetCore/"/>
+      <category term="DotnetCore" scheme="https://www.maxwu.me/tags/DotnetCore/"/>
     
-      <category term="Docker" scheme="http://maxwu.me/tags/Docker/"/>
+      <category term="Docker" scheme="https://www.maxwu.me/tags/Docker/"/>
     
   </entry>
   
   <entry>
     <title>Acquired AWS Solution Architecture Professional (SAP) and DevOps Professional (DOP) Certificates</title>
-    <link href="http://maxwu.me/2018/11/07/Acquired-AWS-Solution-Architecture-and-DevOps-Professional-Certificates/"/>
-    <id>http://maxwu.me/2018/11/07/Acquired-AWS-Solution-Architecture-and-DevOps-Professional-Certificates/</id>
+    <link href="https://www.maxwu.me/2018/11/07/Acquired-AWS-Solution-Architecture-and-DevOps-Professional-Certificates/"/>
+    <id>https://www.maxwu.me/2018/11/07/Acquired-AWS-Solution-Architecture-and-DevOps-Professional-Certificates/</id>
     <published>2018-11-07T05:50:29.000Z</published>
     <updated>2018-11-07T05:50:29.000Z</updated>
     
@@ -278,21 +278,21 @@
     
     </summary>
     
-      <category term="AWS" scheme="http://maxwu.me/categories/AWS/"/>
+      <category term="AWS" scheme="https://www.maxwu.me/categories/AWS/"/>
     
     
-      <category term="AWS" scheme="http://maxwu.me/tags/AWS/"/>
+      <category term="AWS" scheme="https://www.maxwu.me/tags/AWS/"/>
     
-      <category term="SAP" scheme="http://maxwu.me/tags/SAP/"/>
+      <category term="SAP" scheme="https://www.maxwu.me/tags/SAP/"/>
     
-      <category term="DOP" scheme="http://maxwu.me/tags/DOP/"/>
+      <category term="DOP" scheme="https://www.maxwu.me/tags/DOP/"/>
     
   </entry>
   
   <entry>
     <title>Michigan Data Science with Python Course Achieved</title>
-    <link href="http://maxwu.me/2018/04/09/Michigan-Data-Science-with-Python-Course-Achieved/"/>
-    <id>http://maxwu.me/2018/04/09/Michigan-Data-Science-with-Python-Course-Achieved/</id>
+    <link href="https://www.maxwu.me/2018/04/09/Michigan-Data-Science-with-Python-Course-Achieved/"/>
+    <id>https://www.maxwu.me/2018/04/09/Michigan-Data-Science-with-Python-Course-Achieved/</id>
     <published>2018-04-08T12:04:50.000Z</published>
     <updated>2018-04-08T12:04:50.000Z</updated>
     
@@ -310,19 +310,19 @@
     
     </summary>
     
-      <category term="Machine Learning" scheme="http://maxwu.me/categories/Machine-Learning/"/>
+      <category term="Machine Learning" scheme="https://www.maxwu.me/categories/Machine-Learning/"/>
     
     
-      <category term="Python" scheme="http://maxwu.me/tags/Python/"/>
+      <category term="Python" scheme="https://www.maxwu.me/tags/Python/"/>
     
-      <category term="Data Science" scheme="http://maxwu.me/tags/Data-Science/"/>
+      <category term="Data Science" scheme="https://www.maxwu.me/tags/Data-Science/"/>
     
   </entry>
   
   <entry>
     <title>Update Anaconda-Navigator thru command line</title>
-    <link href="http://maxwu.me/2018/03/19/Update-Anaconda-Navigator-thru-command-line/"/>
-    <id>http://maxwu.me/2018/03/19/Update-Anaconda-Navigator-thru-command-line/</id>
+    <link href="https://www.maxwu.me/2018/03/19/Update-Anaconda-Navigator-thru-command-line/"/>
+    <id>https://www.maxwu.me/2018/03/19/Update-Anaconda-Navigator-thru-command-line/</id>
     <published>2018-03-18T20:23:35.000Z</published>
     <updated>2018-03-18T20:23:35.000Z</updated>
     
@@ -336,21 +336,21 @@
     
     </summary>
     
-      <category term="Programming" scheme="http://maxwu.me/categories/Programming/"/>
+      <category term="Programming" scheme="https://www.maxwu.me/categories/Programming/"/>
     
-      <category term="Python" scheme="http://maxwu.me/categories/Programming/Python/"/>
+      <category term="Python" scheme="https://www.maxwu.me/categories/Programming/Python/"/>
     
     
-      <category term="Python" scheme="http://maxwu.me/tags/Python/"/>
+      <category term="Python" scheme="https://www.maxwu.me/tags/Python/"/>
     
-      <category term="Anaconda" scheme="http://maxwu.me/tags/Anaconda/"/>
+      <category term="Anaconda" scheme="https://www.maxwu.me/tags/Anaconda/"/>
     
   </entry>
   
   <entry>
     <title>Stanford A-NG Machine Learning Certificate Achieved</title>
-    <link href="http://maxwu.me/2017/11/12/Stanford-A-NG-Machine-Learning-Certificate-Achieved/"/>
-    <id>http://maxwu.me/2017/11/12/Stanford-A-NG-Machine-Learning-Certificate-Achieved/</id>
+    <link href="https://www.maxwu.me/2017/11/12/Stanford-A-NG-Machine-Learning-Certificate-Achieved/"/>
+    <id>https://www.maxwu.me/2017/11/12/Stanford-A-NG-Machine-Learning-Certificate-Achieved/</id>
     <published>2017-11-12T09:37:15.000Z</published>
     <updated>2017-11-12T09:37:15.000Z</updated>
     
@@ -367,21 +367,21 @@
     
     </summary>
     
-      <category term="Machine Learning" scheme="http://maxwu.me/categories/Machine-Learning/"/>
+      <category term="Machine Learning" scheme="https://www.maxwu.me/categories/Machine-Learning/"/>
     
     
-      <category term="Machine Learning" scheme="http://maxwu.me/tags/Machine-Learning/"/>
+      <category term="Machine Learning" scheme="https://www.maxwu.me/tags/Machine-Learning/"/>
     
-      <category term="Andrew-Ng" scheme="http://maxwu.me/tags/Andrew-Ng/"/>
+      <category term="Andrew-Ng" scheme="https://www.maxwu.me/tags/Andrew-Ng/"/>
     
-      <category term="Stanford" scheme="http://maxwu.me/tags/Stanford/"/>
+      <category term="Stanford" scheme="https://www.maxwu.me/tags/Stanford/"/>
     
   </entry>
   
   <entry>
     <title>Greeting Shell script with Picture show and Weathre Forecast</title>
-    <link href="http://maxwu.me/2017/09/28/Greeting-Shell-script-with-Picture-show-and-Weathre-Forecast/"/>
-    <id>http://maxwu.me/2017/09/28/Greeting-Shell-script-with-Picture-show-and-Weathre-Forecast/</id>
+    <link href="https://www.maxwu.me/2017/09/28/Greeting-Shell-script-with-Picture-show-and-Weathre-Forecast/"/>
+    <id>https://www.maxwu.me/2017/09/28/Greeting-Shell-script-with-Picture-show-and-Weathre-Forecast/</id>
     <published>2017-09-27T12:53:18.000Z</published>
     <updated>2017-09-27T12:53:18.000Z</updated>
     
@@ -393,23 +393,23 @@
     
     </summary>
     
-      <category term="Programming" scheme="http://maxwu.me/categories/Programming/"/>
+      <category term="Programming" scheme="https://www.maxwu.me/categories/Programming/"/>
     
-      <category term="Shell" scheme="http://maxwu.me/categories/Programming/Shell/"/>
+      <category term="Shell" scheme="https://www.maxwu.me/categories/Programming/Shell/"/>
     
     
-      <category term="iterm2" scheme="http://maxwu.me/tags/iterm2/"/>
+      <category term="iterm2" scheme="https://www.maxwu.me/tags/iterm2/"/>
     
-      <category term="shell" scheme="http://maxwu.me/tags/shell/"/>
+      <category term="shell" scheme="https://www.maxwu.me/tags/shell/"/>
     
-      <category term="imgcat" scheme="http://maxwu.me/tags/imgcat/"/>
+      <category term="imgcat" scheme="https://www.maxwu.me/tags/imgcat/"/>
     
   </entry>
   
   <entry>
     <title>Selenium and WebDriver Version Selection</title>
-    <link href="http://maxwu.me/2017/08/13/Selenium-and-WebDriver-Version-Selection/"/>
-    <id>http://maxwu.me/2017/08/13/Selenium-and-WebDriver-Version-Selection/</id>
+    <link href="https://www.maxwu.me/2017/08/13/Selenium-and-WebDriver-Version-Selection/"/>
+    <id>https://www.maxwu.me/2017/08/13/Selenium-and-WebDriver-Version-Selection/</id>
     <published>2017-08-12T22:19:09.000Z</published>
     <updated>2017-08-12T22:19:09.000Z</updated>
     
@@ -424,27 +424,27 @@
     
     </summary>
     
-      <category term="Automation Test" scheme="http://maxwu.me/categories/Automation-Test/"/>
+      <category term="Automation Test" scheme="https://www.maxwu.me/categories/Automation-Test/"/>
     
-      <category term="Selenium" scheme="http://maxwu.me/categories/Automation-Test/Selenium/"/>
+      <category term="Selenium" scheme="https://www.maxwu.me/categories/Automation-Test/Selenium/"/>
     
     
-      <category term="Automation Test" scheme="http://maxwu.me/tags/Automation-Test/"/>
+      <category term="Automation Test" scheme="https://www.maxwu.me/tags/Automation-Test/"/>
     
-      <category term="Selenium" scheme="http://maxwu.me/tags/Selenium/"/>
+      <category term="Selenium" scheme="https://www.maxwu.me/tags/Selenium/"/>
     
-      <category term="Headless" scheme="http://maxwu.me/tags/Headless/"/>
+      <category term="Headless" scheme="https://www.maxwu.me/tags/Headless/"/>
     
-      <category term="Firefox" scheme="http://maxwu.me/tags/Firefox/"/>
+      <category term="Firefox" scheme="https://www.maxwu.me/tags/Firefox/"/>
     
-      <category term="Chrome" scheme="http://maxwu.me/tags/Chrome/"/>
+      <category term="Chrome" scheme="https://www.maxwu.me/tags/Chrome/"/>
     
   </entry>
   
   <entry>
     <title>Capture Existing Selenium WebDriver Session</title>
-    <link href="http://maxwu.me/2017/08/06/Capture-Existing-Selenium-WebDriver-Session/"/>
-    <id>http://maxwu.me/2017/08/06/Capture-Existing-Selenium-WebDriver-Session/</id>
+    <link href="https://www.maxwu.me/2017/08/06/Capture-Existing-Selenium-WebDriver-Session/"/>
+    <id>https://www.maxwu.me/2017/08/06/Capture-Existing-Selenium-WebDriver-Session/</id>
     <published>2017-08-06T10:43:07.000Z</published>
     <updated>2017-08-06T10:43:07.000Z</updated>
     
@@ -456,23 +456,23 @@
     
     </summary>
     
-      <category term="Automation Test" scheme="http://maxwu.me/categories/Automation-Test/"/>
+      <category term="Automation Test" scheme="https://www.maxwu.me/categories/Automation-Test/"/>
     
-      <category term="Selenium" scheme="http://maxwu.me/categories/Automation-Test/Selenium/"/>
+      <category term="Selenium" scheme="https://www.maxwu.me/categories/Automation-Test/Selenium/"/>
     
     
-      <category term="Concrete-level-tag" scheme="http://maxwu.me/tags/Concrete-level-tag/"/>
+      <category term="Concrete-level-tag" scheme="https://www.maxwu.me/tags/Concrete-level-tag/"/>
     
-      <category term="Automation Test" scheme="http://maxwu.me/tags/Automation-Test/"/>
+      <category term="Automation Test" scheme="https://www.maxwu.me/tags/Automation-Test/"/>
     
-      <category term="Selenium" scheme="http://maxwu.me/tags/Selenium/"/>
+      <category term="Selenium" scheme="https://www.maxwu.me/tags/Selenium/"/>
     
   </entry>
   
   <entry>
     <title>A Dip on Performance Testing</title>
-    <link href="http://maxwu.me/2017/07/25/Briefing-on-Performance-Testing/"/>
-    <id>http://maxwu.me/2017/07/25/Briefing-on-Performance-Testing/</id>
+    <link href="https://www.maxwu.me/2017/07/25/Briefing-on-Performance-Testing/"/>
+    <id>https://www.maxwu.me/2017/07/25/Briefing-on-Performance-Testing/</id>
     <published>2017-07-25T11:03:57.000Z</published>
     <updated>2017-07-25T11:03:57.000Z</updated>
     
@@ -484,21 +484,21 @@
     
     </summary>
     
-      <category term="Automation Test" scheme="http://maxwu.me/categories/Automation-Test/"/>
+      <category term="Automation Test" scheme="https://www.maxwu.me/categories/Automation-Test/"/>
     
-      <category term="Performance Test" scheme="http://maxwu.me/categories/Automation-Test/Performance-Test/"/>
+      <category term="Performance Test" scheme="https://www.maxwu.me/categories/Automation-Test/Performance-Test/"/>
     
     
-      <category term="Performance Testing" scheme="http://maxwu.me/tags/Performance-Testing/"/>
+      <category term="Performance Testing" scheme="https://www.maxwu.me/tags/Performance-Testing/"/>
     
-      <category term="Stressing Testing" scheme="http://maxwu.me/tags/Stressing-Testing/"/>
+      <category term="Stressing Testing" scheme="https://www.maxwu.me/tags/Stressing-Testing/"/>
     
   </entry>
   
   <entry>
     <title>Lessons and Thoughts on Agile and Test Automation Approaches</title>
-    <link href="http://maxwu.me/2017/06/09/Lessons-and-Thoughts-on-Agile-and-Test-Automation-Approaches/"/>
-    <id>http://maxwu.me/2017/06/09/Lessons-and-Thoughts-on-Agile-and-Test-Automation-Approaches/</id>
+    <link href="https://www.maxwu.me/2017/06/09/Lessons-and-Thoughts-on-Agile-and-Test-Automation-Approaches/"/>
+    <id>https://www.maxwu.me/2017/06/09/Lessons-and-Thoughts-on-Agile-and-Test-Automation-Approaches/</id>
     <published>2017-06-09T04:45:23.000Z</published>
     <updated>2017-06-09T04:45:23.000Z</updated>
     
@@ -512,21 +512,21 @@
     
     </summary>
     
-      <category term="Automation Test" scheme="http://maxwu.me/categories/Automation-Test/"/>
+      <category term="Automation Test" scheme="https://www.maxwu.me/categories/Automation-Test/"/>
     
-      <category term="Agile" scheme="http://maxwu.me/categories/Automation-Test/Agile/"/>
+      <category term="Agile" scheme="https://www.maxwu.me/categories/Automation-Test/Agile/"/>
     
     
-      <category term="Agile" scheme="http://maxwu.me/tags/Agile/"/>
+      <category term="Agile" scheme="https://www.maxwu.me/tags/Agile/"/>
     
-      <category term="Test Automation" scheme="http://maxwu.me/tags/Test-Automation/"/>
+      <category term="Test Automation" scheme="https://www.maxwu.me/tags/Test-Automation/"/>
     
   </entry>
   
   <entry>
     <title>Thoughts on RESTful API Design and Testing</title>
-    <link href="http://maxwu.me/2017/05/20/Thoughts-on-RESTful-API-Design-and-Testing/"/>
-    <id>http://maxwu.me/2017/05/20/Thoughts-on-RESTful-API-Design-and-Testing/</id>
+    <link href="https://www.maxwu.me/2017/05/20/Thoughts-on-RESTful-API-Design-and-Testing/"/>
+    <id>https://www.maxwu.me/2017/05/20/Thoughts-on-RESTful-API-Design-and-Testing/</id>
     <published>2017-05-20T09:27:33.000Z</published>
     <updated>2017-05-20T09:27:33.000Z</updated>
     
@@ -538,21 +538,21 @@
     
     </summary>
     
-      <category term="Automation Test" scheme="http://maxwu.me/categories/Automation-Test/"/>
+      <category term="Automation Test" scheme="https://www.maxwu.me/categories/Automation-Test/"/>
     
-      <category term="RESTful" scheme="http://maxwu.me/categories/Automation-Test/RESTful/"/>
+      <category term="RESTful" scheme="https://www.maxwu.me/categories/Automation-Test/RESTful/"/>
     
     
-      <category term="RESTful" scheme="http://maxwu.me/tags/RESTful/"/>
+      <category term="RESTful" scheme="https://www.maxwu.me/tags/RESTful/"/>
     
-      <category term="Architecture" scheme="http://maxwu.me/tags/Architecture/"/>
+      <category term="Architecture" scheme="https://www.maxwu.me/tags/Architecture/"/>
     
   </entry>
   
   <entry>
     <title>BFS solution of power sum challenge</title>
-    <link href="http://maxwu.me/2017/05/16/BFS-solution-of-power-sum-challenge/"/>
-    <id>http://maxwu.me/2017/05/16/BFS-solution-of-power-sum-challenge/</id>
+    <link href="https://www.maxwu.me/2017/05/16/BFS-solution-of-power-sum-challenge/"/>
+    <id>https://www.maxwu.me/2017/05/16/BFS-solution-of-power-sum-challenge/</id>
     <published>2017-05-16T10:18:19.000Z</published>
     <updated>2017-05-16T10:18:19.000Z</updated>
     
@@ -564,16 +564,16 @@
     
     </summary>
     
-      <category term="Programming" scheme="http://maxwu.me/categories/Programming/"/>
+      <category term="Programming" scheme="https://www.maxwu.me/categories/Programming/"/>
     
-      <category term="Python" scheme="http://maxwu.me/categories/Programming/Python/"/>
+      <category term="Python" scheme="https://www.maxwu.me/categories/Programming/Python/"/>
     
     
-      <category term="Python" scheme="http://maxwu.me/tags/Python/"/>
+      <category term="Python" scheme="https://www.maxwu.me/tags/Python/"/>
     
-      <category term="Algorithm" scheme="http://maxwu.me/tags/Algorithm/"/>
+      <category term="Algorithm" scheme="https://www.maxwu.me/tags/Algorithm/"/>
     
-      <category term="BFS" scheme="http://maxwu.me/tags/BFS/"/>
+      <category term="BFS" scheme="https://www.maxwu.me/tags/BFS/"/>
     
   </entry>
   
