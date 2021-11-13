@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"maxwu.me","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Genre-Clawer (Github) is a tool in both maven lib and cli-app created to verify an idea to fetch genres for given music pieces. It started with a post on Lower Hutt Countdown wall and which is a good">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Genre-Clawer -- A Cli-App and Maven lib to fetch genres">
+<meta property="og:url" content="http://maxwu.me/2017/03/22/Genre-Clawer-A-Cli-App-and-Maven-lib-to-fetch-genres/index.html">
+<meta property="og:site_name" content="+U Maxout!">
+<meta property="og:description" content="Genre-Clawer (Github) is a tool in both maven lib and cli-app created to verify an idea to fetch genres for given music pieces. It started with a post on Lower Hutt Countdown wall and which is a good">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.imgur.com/aeMFkdFm.png">
+<meta property="og:image" content="https://asciinema.org/a/b0n59hqlnjjqte4es7e9wg96f.png">
+<meta property="article:published_time" content="2017-03-22T08:49:02.000Z">
+<meta property="article:modified_time" content="2021-10-24T22:03:14.505Z">
+<meta property="article:author" content="Max Wu">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="Selenium">
+<meta property="article:tag" content="Selenide">
+<meta property="article:tag" content="HtmlUnit">
+<meta property="article:tag" content="Maven">
+<meta property="article:tag" content="JitPack">
+<meta property="article:tag" content="Genre">
+<meta property="article:tag" content="Google">
+<meta property="article:tag" content="Clawer">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/aeMFkdFm.png">
+
+<link rel="canonical" href="http://maxwu.me/2017/03/22/Genre-Clawer-A-Cli-App-and-Maven-lib-to-fetch-genres/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Genre-Clawer -- A Cli-App and Maven lib to fetch genres | +U Maxout!</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">+U Maxout!</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://maxwu.me/2017/03/22/Genre-Clawer-A-Cli-App-and-Maven-lib-to-fetch-genres/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Max Wu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="+U Maxout!">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Genre-Clawer -- A Cli-App and Maven lib to fetch genres
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-03-22 21:49:02" itemprop="dateCreated datePublished" datetime="2017-03-22T21:49:02+13:00">2017-03-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-10-25 11:03:14" itemprop="dateModified" datetime="2021-10-25T11:03:14+13:00">2021-10-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming/" itemprop="url" rel="index"><span itemprop="name">Programming</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Genre-Clawer (<a target="_blank" rel="noopener" href="https://github.com/maxwu/Genre-Clawer">Github</a>) is a tool in both maven lib and cli-app created to verify an idea to fetch genres for given music pieces. It started with a post on Lower Hutt Countdown wall and which is a good journey as a weekend hackathon. </p>
+<p><img src="https://i.imgur.com/aeMFkdFm.png" alt="Genre-Clawer-v1.4a1"><br><span id="more"></span></p>
+<h2 id="Backgrounds"><a href="#Backgrounds" class="headerlink" title="Backgrounds"></a>Backgrounds</h2><p>Last week, I saw a post on Lower Hutt countdown community wall. The writer shared a problem in picking songs from a genre sets with given order. I took it as an interesting topic and divided it into two steps: </p>
+<ul>
+<li>Genre tagging;</li>
+<li>Recommendation algorithms. </li>
+</ul>
+<p>There comes the Genre-Clawer in the weekend as a maven lib and a CLI binary.  It is also a good journey for me to learn new stuffs. </p>
+<p>This jar ball is a tool to support the tagging sub-problem and practice selenide as well as maven lib deployment. For a realistic case, I would prefer a fast implementation with Python for the more convenient eco and sweety language. However, regarding most of the dev/test positions in Wellington that I am looking for require tracks of Java coding proof, it is a choice to keep hands warm with Java all possible time. </p>
+<p>The Java lib picks BillBoard weekly top100 songs by default to fetch genres. From v1.3 on, the success rate is <strong>92%</strong> for the top100 songs. The failed songs genre list will only contain one term “NA”.</p>
+<h2 id="User-Guide"><a href="#User-Guide" class="headerlink" title="User Guide"></a>User Guide</h2><h3 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">repositories</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">repository</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>jitpack.io<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://jitpack.io<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">repository</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">repositories</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.github.maxwu<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>Genre-Clawer<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>v1.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>With above dependencies with maven, here is a quick sample to query genre list with song information.</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> me.maxwu.genre.htmlUnit.HtmlUnitBase;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GenreCli</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(</span><br><span class="line">            <span class="string">&quot;Song: That&#x27;s What I Like, Genre:&quot;</span></span><br><span class="line">                + <span class="keyword">new</span> HtmlUnitBase()</span><br><span class="line">                .getSongGenres(<span class="string">&quot;That&#x27;s What I Like&quot;</span>, <span class="string">&quot;Bruno Mars&quot;</span>)</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Execution Logs</span><br><span class="line">Song: That&#x27;s What I Like, Genre:[Pop]</span><br></pre></td></tr></table></figure>
+<p>Another sample to use HtmlUnit client in both billboard top100 song list and genre fetching. </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> me.maxwu.genre.htmlUnit.HtmlUnitBase;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CliApp</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="keyword">new</span> HtmlUnitBase()</span><br><span class="line">            .getBillboardTop100Map(<span class="number">4</span>)</span><br><span class="line">            .values()</span><br><span class="line">            .forEach(s -&gt; System.out.println(</span><br><span class="line">                <span class="string">&quot;Song: &quot;</span> + s.get(<span class="string">&quot;song&quot;</span>) + <span class="string">&quot;, Genre:&quot;</span></span><br><span class="line">                    + <span class="keyword">new</span> HtmlUnitBase()</span><br><span class="line">                        .getSongGenres(s.get(<span class="string">&quot;song&quot;</span>).toString(), s.get(<span class="string">&quot;artist&quot;</span>).toString()) )</span><br><span class="line">            );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#Execution logs</span><br><span class="line">Song: Shape Of You, Genre:[Pop]</span><br><span class="line">Song: That&#x27;s What I Like, Genre:[Pop]</span><br><span class="line">Song: Bad And Boujee, Genre:[Hip-hop, rap]</span><br><span class="line">Song: I Don&#x27;t Wanna Live Forever (Fifty Shades Darker), Genre:[Pop]</span><br></pre></td></tr></table></figure>
+<p>Since in most situation people will not utilize multiple clients unless in testing, app package is in progress of an update to support a simplified application and efficient improvement.<br>These are on list for v1.4 as next release, which is open for recommendations.</p>
+<h3 id="Java-Application-Cli"><a href="#Java-Application-Cli" class="headerlink" title="Java Application Cli"></a>Java Application Cli</h3><p>Usage: </p>
+<blockquote>
+<p><strong>>java -jar ./target/Genre-Clawer-1.3.jar [-h] | [-n ${size}] [-c ${client}] [-s ${song} | [-a ${artist]]</strong></p>
+<p>“-h”: Show help message and exit.</p>
+<p>“-n”: Size of song list fetched from BillBoard Top100 music. This option is int type and defaults to 10.</p>
+<p>“-c”: Case insensitive client type from {“HtmlUnit”, “Selenide” and Jsoup (in progress)}.<br>Option is case insensitive string of client name.<br>  HtmlUnit is the default client type.<br>  Using Selenide requests Chrome Browser configured up with Selenium and WebDriverManager.</p>
+<p>“-s”: Song name in string to query genres for a specific music piece.<br>  Song name is recommended to wrapped with quotation marks.</p>
+<p>“-a”: Artist name in string to support the above query with song name.<br>  Artist name is recommended to wrapped with quotation marks.</p>
+</blockquote>
+<h4 id="Example-1-Fetch-billboard-top-5-songs-genres"><a href="#Example-1-Fetch-billboard-top-5-songs-genres" class="headerlink" title="Example 1: Fetch billboard top 5 songs genres"></a>Example 1: Fetch billboard top 5 songs genres</h4><p>By default, HtmlUnit headless browser is used in this example.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># To fetch billboard top5 songs genres:</span><br><span class="line">&gt;java -jar ./target/Genre-Clawer-1.3.jar -n5</span><br><span class="line">Got total 5 songs</span><br><span class="line">1:</span><br><span class="line">  song: Shape Of You</span><br><span class="line">  artist: Ed Sheeran</span><br><span class="line">  genres: [Pop]</span><br><span class="line">2:</span><br><span class="line">  song: Bad And Boujee</span><br><span class="line">  artist: Migos Featuring Lil Uzi Vert</span><br><span class="line">  genres: [Hip-hop, rap]</span><br><span class="line">3:</span><br><span class="line">  song: That&#x27;s What I Like</span><br><span class="line">  artist: Bruno Mars</span><br><span class="line">  genres: [Pop]</span><br><span class="line">4:</span><br><span class="line">  song: I Don&#x27;t Wanna Live Forever (Fifty Shades Darker)</span><br><span class="line">  artist: Zayn / Taylor Swift</span><br><span class="line">  genres: [Pop]</span><br><span class="line">5:</span><br><span class="line">  song: Love On The Brain</span><br><span class="line">  artist: Rihanna</span><br><span class="line">  genres: [Contemporary R&amp;B, Pop]</span><br><span class="line"></span><br><span class="line">Success rate = 100.00%</span><br></pre></td></tr></table></figure>
+<h4 id="Example-2-Fetch-genres-for-song-name-“Love-On-The-Brain”-and-artist-name-“Rihanna”"><a href="#Example-2-Fetch-genres-for-song-name-“Love-On-The-Brain”-and-artist-name-“Rihanna”" class="headerlink" title="Example 2: Fetch genres for song name “Love On The Brain” and artist name “Rihanna”"></a>Example 2: Fetch genres for song name “Love On The Brain” and artist name “Rihanna”</h4><p>Obviously, this example will utilize default HtmlUnit headless browser.</p>
+<p><a target="_blank" rel="noopener" href="https://asciinema.org/a/b0n59hqlnjjqte4es7e9wg96f"><img src="https://asciinema.org/a/b0n59hqlnjjqte4es7e9wg96f.png" alt="asciicast"></a></p>
+<h2 id="Further-works"><a href="#Further-works" class="headerlink" title="Further works"></a>Further works</h2><p>For the second sub-problem, some additional glue works shall be adapted in between as:</p>
+<ul>
+<li><p>Regulating genre and mapping to dimensions, e.g. with <a target="_blank" rel="noopener" href="http://id3.org/id3v2.3.0#Appendix_A_-_Genre_List_from_ID3v1">ID3v1</a></p>
+</li>
+<li><p>Cached persistence and realistic storage</p>
+</li>
+<li><p>RESTful API with a presentation layer in front</p>
+</li>
+</ul>
+<p>With the above constructions, generating playlist could be turned to a typical recommendation algorithm. </p>
+<h2 id="Appendix"><a href="#Appendix" class="headerlink" title="Appendix"></a>Appendix</h2><h3 id="Change-logs"><a href="#Change-logs" class="headerlink" title="Change logs:"></a>Change logs:</h3><p>2017-03-21, Initial summary for Genre-Clawer v1.4a1.</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/Selenium/" rel="tag"># Selenium</a>
+              <a href="/tags/Selenide/" rel="tag"># Selenide</a>
+              <a href="/tags/HtmlUnit/" rel="tag"># HtmlUnit</a>
+              <a href="/tags/Maven/" rel="tag"># Maven</a>
+              <a href="/tags/JitPack/" rel="tag"># JitPack</a>
+              <a href="/tags/Genre/" rel="tag"># Genre</a>
+              <a href="/tags/Google/" rel="tag"># Google</a>
+              <a href="/tags/Clawer/" rel="tag"># Clawer</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/03/09/Setup-virtualenv-for-Jenkins-Task/" rel="prev" title="Setup virtualenv for Jenkins Python CI Task">
+      <i class="fa fa-chevron-left"></i> Setup virtualenv for Jenkins Python CI Task
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/04/15/Share-a-Shell-Toy-with-Buddies/" rel="next" title="Share a Shell Toy with Buddies">
+      Share a Shell Toy with Buddies <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Backgrounds"><span class="nav-number">1.</span> <span class="nav-text">Backgrounds</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#User-Guide"><span class="nav-number">2.</span> <span class="nav-text">User Guide</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Maven"><span class="nav-number">2.1.</span> <span class="nav-text">Maven</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-Application-Cli"><span class="nav-number">2.2.</span> <span class="nav-text">Java Application Cli</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Example-1-Fetch-billboard-top-5-songs-genres"><span class="nav-number">2.2.1.</span> <span class="nav-text">Example 1: Fetch billboard top 5 songs genres</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Example-2-Fetch-genres-for-song-name-%E2%80%9CLove-On-The-Brain%E2%80%9D-and-artist-name-%E2%80%9CRihanna%E2%80%9D"><span class="nav-number">2.2.2.</span> <span class="nav-text">Example 2: Fetch genres for song name “Love On The Brain” and artist name “Rihanna”</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Further-works"><span class="nav-number">3.</span> <span class="nav-text">Further works</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Appendix"><span class="nav-number">4.</span> <span class="nav-text">Appendix</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Change-logs"><span class="nav-number">4.1.</span> <span class="nav-text">Change logs:</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Max Wu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">104</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Max Wu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

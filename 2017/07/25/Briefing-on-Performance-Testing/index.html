@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"maxwu.me","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="There are many sources over internet to describe performance testing. But most are not for new comer to kick start when people have tasks right in hands seeking for an jump start point to enter. This">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Dip on Performance Testing">
+<meta property="og:url" content="http://maxwu.me/2017/07/25/Briefing-on-Performance-Testing/index.html">
+<meta property="og:site_name" content="+U Maxout!">
+<meta property="og:description" content="There are many sources over internet to describe performance testing. But most are not for new comer to kick start when people have tasks right in hands seeking for an jump start point to enter. This">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.imgur.com/4UtYp66m.png">
+<meta property="article:published_time" content="2017-07-25T11:03:57.000Z">
+<meta property="article:modified_time" content="2021-10-24T22:03:14.504Z">
+<meta property="article:author" content="Max Wu">
+<meta property="article:tag" content="Performance Testing">
+<meta property="article:tag" content="Stressing Testing">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/4UtYp66m.png">
+
+<link rel="canonical" href="http://maxwu.me/2017/07/25/Briefing-on-Performance-Testing/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>A Dip on Performance Testing | +U Maxout!</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">+U Maxout!</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://maxwu.me/2017/07/25/Briefing-on-Performance-Testing/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Max Wu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="+U Maxout!">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          A Dip on Performance Testing
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-07-25 23:03:57" itemprop="dateCreated datePublished" datetime="2017-07-25T23:03:57+12:00">2017-07-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-10-25 11:03:14" itemprop="dateModified" datetime="2021-10-25T11:03:14+13:00">2021-10-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Automation-Test/" itemprop="url" rel="index"><span itemprop="name">Automation Test</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Automation-Test/Performance-Test/" itemprop="url" rel="index"><span itemprop="name">Performance Test</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>There are many sources over internet to describe performance testing. But most are not for new comer to kick start when people have tasks right in hands seeking for an jump start point to enter. This post targets to provide a glace of it with practical hints and introduce some simple methods and toolkits. (In progress)<br><span id="more"></span></p>
+<h2 id="Types-of-Performance-Testing"><a href="#Types-of-Performance-Testing" class="headerlink" title="Types of Performance Testing"></a>Types of Performance Testing</h2><p>There are two kinds of performance testing mostly seen in practices. </p>
+<h3 id="Quantitive-Measurement"><a href="#Quantitive-Measurement" class="headerlink" title="Quantitive Measurement"></a>Quantitive Measurement</h3><p>One type is to seek a quantitive measurement on software + hardware(cloud/infrastructure environment). Usually the practice is with automation toolkits to simulate concurrent transactions (for OLTP) or streams (for transmission systems). The key factors would be sorted into categories and critical factors will be figured during the test. </p>
+<p><a target="_blank" rel="noopener" href="http://www.maxwu.me/2017/02/26/Apache-ab-and-gnuplot-to-generate-benchmark-test-chart/">An example of gnuplot chart on performance testing with apache ab toolkit</a></p>
+<p><img src="https://i.imgur.com/4UtYp66m.png" alt="[benchmark performance test chart][https://imgur.com/4UtYp66]"></p>
+<p>According to different quantative measurement perpectives, the measurements are also named to different performance test kinds. Among them, <strong>Load Test</strong> and <strong>Capacity Test</strong> are often planned on verticle and horizontal views.</p>
+<p>Load Test is executed against service level agreement on temporal and spcial factors. Industry practice, especially in telecommunication, the measurement is on statistical results according to standard definition of MTBF(Mean Time Between Failure) and MTTF(Mean Time To Failure). Here MTBF is the sum of MTTF and MTTR (Mean Time To Repair).</p>
+<p>Capacity Test figures out which dimension is critical for scaling. Horizontal as scaling-out or Vertical as scaling-up.</p>
+<h3 id="Stressing-Test"><a href="#Stressing-Test" class="headerlink" title="Stressing Test"></a>Stressing Test</h3><p>Another type of performance test is to stress the software system into an predesigned extreme situation and verify if the availability and IO/Transaction rate can still satisfy the criteria of such circumstance. </p>
+<p>For example, I made a dynamic lib with toolchain to load into embedded Linux card to consume a certain portion (read from cli) of CPU time on the designated core. If the portion is 70%, the test will show system behavior with one core 70% busy as background traffic effects. The result is satifying or not compliant with estimated criteria per requirement key checkpoints by agile team. </p>
+<p>Another example is to generate 8 TCP streams with IPerf tool and test if the system can still holds the acceptance success rate. </p>
+<p>Innovation of testing methodologies could save the cost and time by introducing new techniques to stress system. One case is that I used to set Linux IP Filter to drop 50% packets from some source and verify if the fault handling is still correct. </p>
+<h2 id="Toolkits-and-Tips-to-Implement-Performance-Testing"><a href="#Toolkits-and-Tips-to-Implement-Performance-Testing" class="headerlink" title="Toolkits and Tips to Implement Performance Testing"></a>Toolkits and Tips to Implement Performance Testing</h2><h3 id="Simulate-the-Background-Load"><a href="#Simulate-the-Background-Load" class="headerlink" title="Simulate the Background Load"></a>Simulate the Background Load</h3><p>Background load here refers to the prerequisites to kick off stressing test. It usually includes one of below item or a combination of picked up factors.</p>
+<h4 id="CPU-load"><a href="#CPU-load" class="headerlink" title="CPU load"></a>CPU load</h4><p>(per core or for specific cores)</p>
+<h4 id="Memory-Pressure"><a href="#Memory-Pressure" class="headerlink" title="Memory Pressure"></a>Memory Pressure</h4><p>(Pay attention to libc-rt malloc and overcommitment.)</p>
+<h4 id="Traffics-w-or-w-o-stream-packet-dropping-rate"><a href="#Traffics-w-or-w-o-stream-packet-dropping-rate" class="headerlink" title="Traffics (w/ or w/o stream/packet dropping rate)"></a>Traffics (w/ or w/o stream/packet dropping rate)</h4><p>(Stream: shape, rate, ToS/QoS, Jumbo packets, Back-to-back)</p>
+<p>(IP Filter based packet drop rate)</p>
+<p>(SQL transaction drop rate)</p>
+<p>(Load Balance Policy based failure rate)</p>
+<p>(Other failure rate)</p>
+<p>(TBC)</p>
+<h4 id="Persistance-status-disk-occupation-rate-disk-IO-pressure"><a href="#Persistance-status-disk-occupation-rate-disk-IO-pressure" class="headerlink" title="Persistance status (disk occupation rate, disk IO pressure)"></a>Persistance status (disk occupation rate, disk IO pressure)</h4><p>(IOwait measurement, simulation)</p>
+<p>(TBC)</p>
+<h2 id="Performance-Issues-Sharing"><a href="#Performance-Issues-Sharing" class="headerlink" title="Performance Issues Sharing"></a>Performance Issues Sharing</h2><p>(Experiences of solving performance issues)</p>
+<p>(TBC)</p>
+<h2 id="Change-Log"><a href="#Change-Log" class="headerlink" title="Change Log"></a>Change Log</h2><p>Jul26, 2017: Initial post draft.</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Performance-Testing/" rel="tag"># Performance Testing</a>
+              <a href="/tags/Stressing-Testing/" rel="tag"># Stressing Testing</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/06/09/Lessons-and-Thoughts-on-Agile-and-Test-Automation-Approaches/" rel="prev" title="Lessons and Thoughts on Agile and Test Automation Approaches">
+      <i class="fa fa-chevron-left"></i> Lessons and Thoughts on Agile and Test Automation Approaches
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/08/06/Capture-Existing-Selenium-WebDriver-Session/" rel="next" title="Capture Existing Selenium WebDriver Session">
+      Capture Existing Selenium WebDriver Session <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Types-of-Performance-Testing"><span class="nav-number">1.</span> <span class="nav-text">Types of Performance Testing</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Quantitive-Measurement"><span class="nav-number">1.1.</span> <span class="nav-text">Quantitive Measurement</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Stressing-Test"><span class="nav-number">1.2.</span> <span class="nav-text">Stressing Test</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Toolkits-and-Tips-to-Implement-Performance-Testing"><span class="nav-number">2.</span> <span class="nav-text">Toolkits and Tips to Implement Performance Testing</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Simulate-the-Background-Load"><span class="nav-number">2.1.</span> <span class="nav-text">Simulate the Background Load</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CPU-load"><span class="nav-number">2.1.1.</span> <span class="nav-text">CPU load</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Memory-Pressure"><span class="nav-number">2.1.2.</span> <span class="nav-text">Memory Pressure</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Traffics-w-or-w-o-stream-packet-dropping-rate"><span class="nav-number">2.1.3.</span> <span class="nav-text">Traffics (w&#x2F; or w&#x2F;o stream&#x2F;packet dropping rate)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Persistance-status-disk-occupation-rate-disk-IO-pressure"><span class="nav-number">2.1.4.</span> <span class="nav-text">Persistance status (disk occupation rate, disk IO pressure)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Performance-Issues-Sharing"><span class="nav-number">3.</span> <span class="nav-text">Performance Issues Sharing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Change-Log"><span class="nav-number">4.</span> <span class="nav-text">Change Log</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Max Wu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">104</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Max Wu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"maxwu.me","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="This post described a python solution on coding challenge “the power sum” (med) and common points on BFS algorithm. The_Power_Sum asks how many solutions on equation $n_1^x + n_2^x + .. n_i^x &#x3D; n$ whe">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BFS solution of power sum challenge">
+<meta property="og:url" content="http://maxwu.me/2017/05/16/BFS-solution-of-power-sum-challenge/index.html">
+<meta property="og:site_name" content="+U Maxout!">
+<meta property="og:description" content="This post described a python solution on coding challenge “the power sum” (med) and common points on BFS algorithm. The_Power_Sum asks how many solutions on equation $n_1^x + n_2^x + .. n_i^x &#x3D; n$ whe">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2017-05-16T10:18:19.000Z">
+<meta property="article:modified_time" content="2021-10-24T22:03:14.504Z">
+<meta property="article:author" content="Max Wu">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Algorithm">
+<meta property="article:tag" content="BFS">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://maxwu.me/2017/05/16/BFS-solution-of-power-sum-challenge/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>BFS solution of power sum challenge | +U Maxout!</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">+U Maxout!</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://maxwu.me/2017/05/16/BFS-solution-of-power-sum-challenge/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Max Wu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="+U Maxout!">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          BFS solution of power sum challenge
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-05-16 22:18:19" itemprop="dateCreated datePublished" datetime="2017-05-16T22:18:19+12:00">2017-05-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-10-25 11:03:14" itemprop="dateModified" datetime="2021-10-25T11:03:14+13:00">2021-10-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming/" itemprop="url" rel="index"><span itemprop="name">Programming</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>This post described a python solution on coding challenge “the power sum” (med) and common points on BFS algorithm. <strong>The_Power_Sum</strong> asks how many solutions on equation $n_1^x + n_2^x + .. n_i^x = n$ when $n_1, n_2, n_i \in [1, n]$<br><span id="more"></span></p>
+<h2 id="Problem-Statement"><a href="#Problem-Statement" class="headerlink" title="Problem Statement"></a>Problem Statement</h2><p>Given positive numbers $n,x$ and find how many solutions can satisfy $n_1^x + n_2^x + .. n_i^x = n$ when $n_1, n_2, n_i \in [1, n]$. Since every number is unique and only shows up once from $[1,n]$, with the symmetry of $+$ operation, the answer is how many combinations from set $[1,n]$, not permutation. On a general perspective of view, the solution space is within $\sum_{i=1}^n C(^n_k)$, which is $2^n$.</p>
+<p>For example, if n is 10 and x is 2 then there answer is 1 since there is only one solution of $1^2 + 3^2 = 10$. But 100, 2 would get 3 as answer because $100 = 10^2 = 6^2 + 8^2 = 1^2 + 3^2 + 4^2 + 5^2 + 7^2$.</p>
+<h2 id="Rephrase-the-Problem-to-Mathimatical-Language"><a href="#Rephrase-the-Problem-to-Mathimatical-Language" class="headerlink" title="Rephrase the Problem to Mathimatical Language"></a>Rephrase the Problem to Mathimatical Language</h2><h3 id="Terminology"><a href="#Terminology" class="headerlink" title="Terminology"></a>Terminology</h3><p><strong>BFS</strong>: Breadth First Search. Classic BFS defines problem as a search in space described by set V, E where each V as vertex has a set of E ($V_i \to V_j$ where $V_i, V_j \in V$). </p>
+<p>The worst performance is $O(|V| + |E|)$ because it travels from all candidate vertexes and loops all possible $E_i$. Therefore, to cache all the candidate partial results, the worst space complexity is $O(|V|)$. Here $E$ only describes the state transition and a $O(|V|)$ structure queues the concerned information on paths.</p>
+<p>The classic BFS procedure is straight, simple and useful. We can find the transformed BFS in DB join query, distributed query on indexes or caches, Fast Hashing, GeoApps as Navigator and Shopping Guide Apps. Keys within fundamental algorithms are how to apply the abstract model to real worlds $\lambda \to \pi$. The most natrual principal of computer system design is to mimic a structure which represents the nouns of concepts from real world. Which requests a map from machine space to human view space.</p>
+<h3 id="Problem-Space"><a href="#Problem-Space" class="headerlink" title="Problem Space"></a>Problem Space</h3><p>To apply the thoughts of DFS and BFS algorithm we shall rephase the problem to a typical search in given logical sapce. Moreover, if we generally define a vector to present the tracks of current search, a set of vector could be regarded as the set of partial search results.</p>
+<h3 id="Intermediate-Result-Set"><a href="#Intermediate-Result-Set" class="headerlink" title="Intermediate Result Set"></a>Intermediate Result Set</h3><p>BFS, as how the term is coined, will cache the intermediate results and move forward on all of them during each step. So it is fair to all possible branches. That’s why it can find the fastest path(s).</p>
+<p>Here search sapce it numbers of [1, n]. Since each number can only show up once or not, we have n vertexes on a linear space. We can assign 0, 1 to the vertex to mark it picked up or not picked-up in current search branch. The string of ‘0’ and ‘1’ can represent a path of current search and the strings in list can play the data structure as the intermediate vectors of partial search results.</p>
+<h3 id="Algorithm-Application-Key-Points"><a href="#Algorithm-Application-Key-Points" class="headerlink" title="Algorithm Application Key Points:"></a>Algorithm Application Key Points:</h3><p>My <a href="http://maxwu.me/2017/05/02/Recursive-Depth-First-Search-with-a-tracking-Set/">previous post</a> is about a common recursive design of DFS. It emphasized two key steps to form a recursive solution. </p>
+<ul>
+<li>✎ Termination condition: For DFS, it is the test whether to record the result as a success and whether to continue the search. Back to current problem, I stop the branch because it is not meaningful to add any positive number since the summary is already satisfied or even exceeded.<ul>
+<li>Whether to record the success path when termination state found</li>
+<li>Whether to continue search: if there is a cycle of arcs from one termination state to another termination state and the path is meaningful, we shall continue but be reminded of cycles in search. </li>
+</ul>
+</li>
+<li>✎ How to reduce: “Reduce” is a term to apply the sub-problem (current scope of search) of DFS to join the other branch of search.</li>
+</ul>
+<p>For a BFS algorithm, we evaluate all branches on the same depth level in search. Sometimes the depth is a term of cost. Here for current problem, we can assign the number of positive numbers visited as the depth of search. </p>
+<p>On each step, BFS check the partial search result set and work on all partial paths. Usually we loop all of the candidates and move forward one step if the candidate can generate further paths to search.</p>
+<h3 id="Smart-Search"><a href="#Smart-Search" class="headerlink" title="Smart Search"></a>Smart Search</h3><p>A loop on all candidates is mentioned in above section. However, it could be generalized to a weight based candidate set. So a ranking based on partial results can be assessed. Based on what we know for each step, the weight will be adjusted. A smart search can work from high ranked candidate branch to the low ranked ones. Which is also the key to $A^*$ algorithm although heuristic algorithms are not within the scope of this post. </p>
+<p>In current solution to “The Sum of Power” coding challenge, we just force the exceeded partial search paths do not take any more number. It is to cut off not useful branches in the search space. </p>
+<p>To shrink the search scope for this particular problem, uplimit is calculated because for $n_i &gt; \sqrt[X]N where i \in [1, n]$ the $n_i$ is safe to bypass. Each element has two branches on search paths, ‘1’: selected, ‘0’: bypassed, so search space is within $2^{lmt}$.</p>
+<h2 id="Solution-and-code"><a href="#Solution-and-code" class="headerlink" title="Solution and code"></a>Solution and code</h2><p>With above understanding, turning design into codes is a straight and clear action. The BFS codes have 11 lines in Python to search given space.</p>
+<p>A dict is introduced to queue the intermediate results as {<strong>search path in 0|1 string : partial sum</strong> }.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bfs</span>(<span class="params">lmt, tgt, pwr</span>):</span></span><br><span class="line">    rec = &#123;<span class="string">&#x27;&#x27;</span>: <span class="number">0</span>&#125;  <span class="comment"># candidates in str: int format</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, lmt+<span class="number">1</span>):</span><br><span class="line">        tmp_rec = <span class="built_in">dict</span>() <span class="comment"># The candidate E for futher steps</span></span><br><span class="line">        <span class="keyword">for</span> k,v <span class="keyword">in</span> rec.iteritems():</span><br><span class="line">            <span class="keyword">if</span> v &lt; tgt:</span><br><span class="line">                tmp_rec[k+<span class="string">&#x27;1&#x27;</span>] = v + i**pwr <span class="comment"># Take a step forward on this path with &#x27;1&#x27; branch</span></span><br><span class="line">                tmp_rec[k+<span class="string">&#x27;0&#x27;</span>] = v <span class="comment"># Take a step on &#x27;0&#x27; branch</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                tmp_rec[k+<span class="string">&#x27;0&#x27;</span>] = v <span class="comment"># Can only take &#x27;0&#x27; branch</span></span><br><span class="line">        rec = tmp_rec</span><br><span class="line">    <span class="keyword">return</span> [k <span class="keyword">for</span> k, v <span class="keyword">in</span> rec.iteritems() <span class="keyword">if</span> v == tgt]</span><br><span class="line"></span><br><span class="line"><span class="comment"># __main__</span></span><br><span class="line">x, n = [<span class="built_in">int</span>(raw_input().strip())<span class="keyword">for</span> _ <span class="keyword">in</span> xrange(<span class="number">2</span>)]</span><br><span class="line">lmt = <span class="built_in">int</span>(<span class="built_in">round</span>(x ** (<span class="number">1.0</span>/n))) + <span class="number">1</span></span><br><span class="line">ss = bfs(lmt, x, n)</span><br><span class="line"><span class="built_in">print</span> <span class="built_in">len</span>(ss)</span><br></pre></td></tr></table></figure>
+<p>We could not alter an iterator within the iteration loop with Python (or other langauge like Java). So a tmp_rec is introduced to queue those partial paths which are meaningful to take further efforts to catch up and search deeper. </p>
+<h1 id="Following-Up"><a href="#Following-Up" class="headerlink" title="Following Up"></a>Following Up</h1><p>This problem is a common BFS application occasion. As we have above implementation for BFS, a general way of coding can be applied to other BFS solution. </p>
+<p>(TBC: Would get back and add other generalized BFS solving examples.)</p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li><p>The coding challenge link, <a target="_blank" rel="noopener" href="https://www.hackerrank.com/challenges/the-power-sum">https://www.hackerrank.com/challenges/the-power-sum</a> </p>
+</li>
+<li><p>Previous Post, <a href="http://maxwu.me/2017/05/02/Recursive-Depth-First-Search-with-a-tracking-Set">http://maxwu.me/2017/05/02/Recursive-Depth-First-Search-with-a-tracking-Set</a></p>
+</li>
+</ul>
+<h1 id="Change-Log"><a href="#Change-Log" class="headerlink" title="Change Log"></a>Change Log</h1><ul>
+<li>May 18, 2017: Change to MathJax format to rewrite equations clearly.</li>
+<li>May 16, 2017: Finish the initial draft.</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Python/" rel="tag"># Python</a>
+              <a href="/tags/Algorithm/" rel="tag"># Algorithm</a>
+              <a href="/tags/BFS/" rel="tag"># BFS</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/05/12/CIstat-preview-version-released/" rel="prev" title="CIstat preview version released">
+      <i class="fa fa-chevron-left"></i> CIstat preview version released
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/05/20/Thoughts-on-RESTful-API-Design-and-Testing/" rel="next" title="Thoughts on RESTful API Design and Testing">
+      Thoughts on RESTful API Design and Testing <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-Statement"><span class="nav-number">1.</span> <span class="nav-text">Problem Statement</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Rephrase-the-Problem-to-Mathimatical-Language"><span class="nav-number">2.</span> <span class="nav-text">Rephrase the Problem to Mathimatical Language</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Terminology"><span class="nav-number">2.1.</span> <span class="nav-text">Terminology</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Problem-Space"><span class="nav-number">2.2.</span> <span class="nav-text">Problem Space</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Intermediate-Result-Set"><span class="nav-number">2.3.</span> <span class="nav-text">Intermediate Result Set</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Algorithm-Application-Key-Points"><span class="nav-number">2.4.</span> <span class="nav-text">Algorithm Application Key Points:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Smart-Search"><span class="nav-number">2.5.</span> <span class="nav-text">Smart Search</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-and-code"><span class="nav-number">3.</span> <span class="nav-text">Solution and code</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Following-Up"><span class="nav-number"></span> <span class="nav-text">Following Up</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#References"><span class="nav-number"></span> <span class="nav-text">References</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Change-Log"><span class="nav-number"></span> <span class="nav-text">Change Log</span></a></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Max Wu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">104</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Max Wu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

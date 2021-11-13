@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"maxwu.me","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Recently took a short test task on a blog prototype, here are notes about tips on applying JUnit into Testing, especially Web Testing. As a new comer to advanced JUnit features, this post is also a tr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tips on Using JUnit for Testing in Java">
+<meta property="og:url" content="http://maxwu.me/2017/01/23/JUnit-Tips/index.html">
+<meta property="og:site_name" content="+U Maxout!">
+<meta property="og:description" content="Recently took a short test task on a blog prototype, here are notes about tips on applying JUnit into Testing, especially Web Testing. As a new comer to advanced JUnit features, this post is also a tr">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://oei21r8n1.bkt.clouddn.com/Test_Pyramid_v2.png?imageView/2/w/800/q/100">
+<meta property="og:image" content="http://oei21r8n1.bkt.clouddn.com/ThreeDimenssions.png?imageView/2/w/400/q/100">
+<meta property="og:image" content="http://oei21r8n1.bkt.clouddn.com/ab_maxwu_chart.png">
+<meta property="og:image" content="http://junit.org/junit4/images/junit-logo.png">
+<meta property="og:image" content="http://www.seleniumhq.org/images/selenium-logo.png">
+<meta property="og:image" content="https://maven.apache.org/images/logos/maven-feather.png">
+<meta property="article:published_time" content="2017-01-23T01:43:45.000Z">
+<meta property="article:modified_time" content="2021-10-24T22:03:14.506Z">
+<meta property="article:author" content="Max Wu">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="JUnit">
+<meta property="article:tag" content="Rule">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://oei21r8n1.bkt.clouddn.com/Test_Pyramid_v2.png?imageView/2/w/800/q/100">
+
+<link rel="canonical" href="http://maxwu.me/2017/01/23/JUnit-Tips/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Tips on Using JUnit for Testing in Java | +U Maxout!</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">+U Maxout!</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://maxwu.me/2017/01/23/JUnit-Tips/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Max Wu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="+U Maxout!">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Tips on Using JUnit for Testing in Java
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-01-23 14:43:45" itemprop="dateCreated datePublished" datetime="2017-01-23T14:43:45+13:00">2017-01-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-10-25 11:03:14" itemprop="dateModified" datetime="2021-10-25T11:03:14+13:00">2021-10-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Automation-Test/" itemprop="url" rel="index"><span itemprop="name">Automation Test</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Automation-Test/JUnit/" itemprop="url" rel="index"><span itemprop="name">JUnit</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Recently took a short test task on a blog prototype, here are notes about tips on applying JUnit into Testing, especially Web Testing. As a new comer to advanced JUnit features, this post is also a track of learning. The current topics include tips about using @Rule, customize test strategy, to parameterize test, hints on Java Lambda, JUnit 5 new features, et.</p>
+<h2 id="Structure-and-Test-Pyramid"><a href="#Structure-and-Test-Pyramid" class="headerlink" title="Structure and Test Pyramid"></a>Structure and Test Pyramid</h2><p><img src="http://oei21r8n1.bkt.clouddn.com/Test_Pyramid_v2.png?imageView/2/w/800/q/100" alt=""></p>
+<p><em>Chart drafted with sketchboard.io</em><br><span id="more"></span></p>
+<p>Above is the concept mapping from Martin Fowler <strong>Test Pyramid</strong>. There are still other verticle dimension test as performance test with JMeter (or curl, JPerf, et.), as OWASP test with ZAP. And in the time dimension, which is managed by <strong>Maven</strong> from drafting, coding, building, testing to deployment.</p>
+<p>Therefore the three dimenssions could be measured:</p>
+<p><img src="http://oei21r8n1.bkt.clouddn.com/ThreeDimenssions.png?imageView/2/w/400/q/100"  class="img-left"/></p>
+<p><em>Chart drafted with draw.io</em></p>
+<ul>
+<li><p><strong>Space dimession</strong>: Tests happen in different levels with different parameter scopes, exploring depth (test strength):</p>
+<ul>
+<li>JUnit cases;</li>
+<li>HTTP Client URL/Params; </li>
+<li>Selenium PageObjects and activities;</li>
+</ul>
+</li>
+<li><p><strong>Logic dimession</strong>: Controlled by JUnit Runner and Cucumber;</p>
+<ul>
+<li>States could be: Igored, Pass, Failure, or, Pending (during an execution);</li>
+<li>Relationship between cases: Execution dependency, extra resources, parameterized suites, et;</li>
+<li>Weights on suites or cases;</li>
+<li>Criticality on discovered issues (e.g. processing ExceptionCollector in JUnit)</li>
+</ul>
+</li>
+<li><p><strong>Time dimenssion</strong>: Maven Lifecycle Management and the history quality track (for data analysis and cost/operation prediction).</p>
+<ul>
+<li>Maven Configuration, agile deployment, supports to DevOps;</li>
+<li>History track and data analysis;</li>
+<li>Iteration Planning supports.</li>
+</ul>
+</li>
+</ul>
+<p>Typically JUnit is not recognized as Integration or Performance testing tool. However, JUnit could be utilized as a test suite management/report tool in scenario or integration test as well. </p>
+<p>Following sections track the tips and hints for applying JUnit and following sections are updated lively with corrections, new findings, or, thoughts.</p>
+<h2 id="1-Applying-Rule"><a href="#1-Applying-Rule" class="headerlink" title="1. Applying @Rule"></a>1. Applying @Rule</h2><p>Annotation Rule is introduced with several builtin samples with JUnit4. </p>
+<ol>
+<li>TestName <br><br>An example is to ignore test method in @Before. The simple way is to check test method name with @Rule annotation.</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//...In JUnit test class</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> List&lt;String&gt; testListByPassBeforeHook = Arrays.asList(</span><br><span class="line">        <span class="string">&quot;$YourTestMethodName&quot;</span></span><br><span class="line">);</span><br><span class="line">    </span><br><span class="line"><span class="meta">@Rule</span></span><br><span class="line"><span class="keyword">public</span> TestName name = <span class="keyword">new</span> TestName();</span><br><span class="line"></span><br><span class="line"><span class="comment">//...In test setup</span></span><br><span class="line"><span class="meta">@Before</span></span><br><span class="line"><span class="function">pubic <span class="keyword">void</span> <span class="title">casualNameTest</span><span class="params">()</span></span>&#123;</span><br><span class="line">	String testName = name.getMethodName();</span><br><span class="line">	<span class="comment">//Checksteps against name.</span></span><br><span class="line">	<span class="keyword">if</span> (testListByPassBeforeHook.contains(testName))&#123;</span><br><span class="line">		<span class="comment">//special steps</span></span><br><span class="line">		<span class="keyword">return</span>; <span class="comment">//avoid further init steps.</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// further init steps as PageObject building.</span></span><br><span class="line">&#125;    </span><br></pre></td></tr></table></figure>
+<h2 id="2-Execution-Sequence"><a href="#2-Execution-Sequence" class="headerlink" title="2. Execution Sequence"></a>2. Execution Sequence</h2><p>This section is the relatively easy part of the article. JUnit test execution sequence could be explained as below. The order among T1, T2, .., Tx, .., Tn is by default up to JVM reflection API (Ref to <a target="_blank" rel="noopener" href="https://github.com/junit-team/junit4/wiki/Test-execution-order">Ref-1</a>). Annotation @FixMethodOrder isis offered with v4.11+ to customize test case execution order. For example, name ascending order could be specified by _@FixMethodOrder(MethodSorters.NAME_ASCENDING)_</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@BeforeClass –&gt; </span><br><span class="line">	// See MethodSorters for more order preference.</span><br><span class="line">	@Before –&gt; @Test T1 –&gt; @After </span><br><span class="line"></span><br><span class="line">	@Before –&gt; @Test T2 –&gt; @After </span><br><span class="line"></span><br><span class="line">–&gt; @AfterClass</span><br></pre></td></tr></table></figure>
+<h2 id="3-Using-Test-Runner"><a href="#3-Using-Test-Runner" class="headerlink" title="3.Using Test Runner"></a>3.Using Test Runner</h2><h3 id="Parameterized-Test-with-Runner"><a href="#Parameterized-Test-with-Runner" class="headerlink" title="Parameterized Test with Runner"></a>Parameterized Test with Runner</h3><h3 id="Customized-Test-Suite-with-Runner"><a href="#Customized-Test-Suite-with-Runner" class="headerlink" title="Customized Test Suite with Runner"></a>Customized Test Suite with Runner</h3><h3 id="Execute-Cucumber-Specs-with-Runner"><a href="#Execute-Cucumber-Specs-with-Runner" class="headerlink" title="Execute Cucumber Specs with Runner"></a>Execute Cucumber Specs with Runner</h3><h2 id="4-Three-Ways-of-Negative-Test-with-Exception"><a href="#4-Three-Ways-of-Negative-Test-with-Exception" class="headerlink" title="4.Three Ways of Negative Test with Exception"></a>4.Three Ways of Negative Test with Exception</h2><h3 id="Using-Test-annotation-parameter-from-JUnit4"><a href="#Using-Test-annotation-parameter-from-JUnit4" class="headerlink" title="Using @Test annotation parameter from JUnit4"></a>Using @Test annotation parameter from JUnit4</h3><p><code>@Test(expected = YourException.class)</code></p>
+<h3 id="Applying-a-Rule-of-ExpectException"><a href="#Applying-a-Rule-of-ExpectException" class="headerlink" title="Applying a @Rule of ExpectException"></a>Applying a @Rule of ExpectException</h3><p>@Rule could hanlde RuntTimeException, however, above @Test annotation parameter could only capture Exceptions.</p>
+<p>Another benefit is that @Rule could check the exception details.</p>
+<h3 id="Traditinal-Try-Catch-block"><a href="#Traditinal-Try-Catch-block" class="headerlink" title="Traditinal Try-Catch block"></a>Traditinal Try-Catch block</h3><p>(Pay attention not to forget the fail() in final{} block) </p>
+<h2 id="5-Test-the-output-stream"><a href="#5-Test-the-output-stream" class="headerlink" title="5.Test the output stream"></a>5.Test the output stream</h2><p>(TBC)</p>
+<h2 id="6-Test-Http-Level-and-Web-API-with-OkHttp"><a href="#6-Test-Http-Level-and-Web-API-with-OkHttp" class="headerlink" title="6.Test Http Level and Web API with OkHttp"></a>6.Test Http Level and Web API with OkHttp</h2><p>Selenium is designed as a web test tool. It does not intend to support Http level verification, neither an API test tool. This is well discussed on selenium github about whether to add HTTP response header extraction, <a target="_blank" rel="noopener" href="https://github.com/seleniumhq/selenium-google-code-issue-archive/issues/141">https://github.com/seleniumhq/selenium-google-code-issue-archive/issues/141</a>. </p>
+<p>Therefore, to complete the pyramid shap, we shall find a robust but efficient Http client test utility to build the low level coverage. OkHttp is one of the choice.</p>
+<p>The major benefits of applying OkHttp include:</p>
+<ul>
+<li><p>HTTP/2 support allows all requests to the same host to share a socket.</p>
+</li>
+<li><p>Connection pooling reduces request latency (if HTTP/2 isn’t available).</p>
+</li>
+<li><p>Transparent GZIP shrinks download sizes.</p>
+</li>
+<li><p>Response caching avoids the network completely for repeat requests. </p>
+</li>
+</ul>
+<p>An example to test against JSON WebAPI:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">httpFreegeoipJsonTest</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    Request request = <span class="keyword">new</span> Request.Builder()</span><br><span class="line">            .url(Constants.Freegeoio_Url_Json)</span><br><span class="line">            .build();</span><br><span class="line">    Response response = client.newCall(request).execute();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!response.isSuccessful()) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IOException(<span class="string">&quot;Service Error&quot;</span> + response);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Assert.assertEquals(<span class="number">200</span>, response.code());</span><br><span class="line">    Assert.assertEquals(<span class="string">&quot;application/json&quot;</span>, response.body().contentType().toString());</span><br><span class="line"></span><br><span class="line">    JSONObject jsonResp = <span class="keyword">new</span> JSONObject(response.body().string());</span><br><span class="line">    String ip = jsonResp.getString(<span class="string">&quot;ip&quot;</span>);</span><br><span class="line">    Assert.assertTrue(checkIpv4(ip));</span><br><span class="line"></span><br><span class="line">    <span class="comment">//Debug dump without verification.</span></span><br><span class="line">    Headers respHeaders = response.headers();</span><br><span class="line">    respHeaders.names().forEach(n -&gt; logger.debug(ColorPrint.green(<span class="string">&quot;header name:&quot;</span> + n + <span class="string">&quot;, value:&quot;</span> + respHeaders.get(n))));</span><br><span class="line">    logger.debug(ColorPrint.blue(strResp));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>The sample code works with log4j configuration record <code>log4j.logger.org.maxwu.jrefresh.HttpApi=DEBUG</code>.</p>
+<h2 id="7-Other-Tests"><a href="#7-Other-Tests" class="headerlink" title="7.Other Tests"></a>7.Other Tests</h2><h3 id="Web-Performance-Test"><a href="#Web-Performance-Test" class="headerlink" title="Web Performance Test"></a>Web Performance Test</h3><ol>
+<li>ab </li>
+</ol>
+<p>“ab” is Apache Benchmark Testing Tool. </p>
+<p>A kick-start sample as <a href="http://maxwu.me/2017/02/26/Apache-ab-and-gnuplot-to-generate-benchmark-test-chart/">Link</a></p>
+<p>With gnuplot, the test result data could generate a chart.</p>
+<p><img src="http://oei21r8n1.bkt.clouddn.com/ab_maxwu_chart.png" alt="benchmark performance test chart"></p>
+<ol start="2">
+<li>JMeter</li>
+</ol>
+<p>JMeter is widely used as performance test tool to execute preconfigured test sceanrio files.</p>
+<ol start="3">
+<li>Locust</li>
+</ol>
+<p>Locust is a Python based web performance test toolbox with an embedded Web GUI to execute the specified Python script. It is progammer friendly and requests Python Web Programming fundamentals. </p>
+<h3 id="OWASP-Web-Security-Test"><a href="#OWASP-Web-Security-Test" class="headerlink" title="OWASP Web Security Test"></a>OWASP Web Security Test</h3><h3 id="RESTful-CRUD-Model-Test"><a href="#RESTful-CRUD-Model-Test" class="headerlink" title="RESTful CRUD Model Test"></a>RESTful CRUD Model Test</h3><p>[<em>Updated by Feb15, several sections TBD</em>]</p>
+<p>[<em>Updated by Jan23, items TBD</em>]</p>
+<hr>
+<h3 id="Backup"><a href="#Backup" class="headerlink" title="Backup"></a>Backup</h3><table>
+<thead>
+<tr>
+<th>JUnit</th>
+<th>Selenium</th>
+<th>Maven</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="http://junit.org/junit4/images/junit-logo.png" class=img-left/></td>
+<td><img src="http://www.seleniumhq.org/images/selenium-logo.png" class=img-left/></td>
+<td><img src="https://maven.apache.org/images/logos/maven-feather.png" class=img-left/></td>
+</tr>
+</tbody>
+</table>
+<p>[EOF]</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/JUnit/" rel="tag"># JUnit</a>
+              <a href="/tags/Rule/" rel="tag"># Rule</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/01/23/Python-unittest-tips-from-JUnit-view/" rel="prev" title="Python unittest tips from JUnit view">
+      <i class="fa fa-chevron-left"></i> Python unittest tips from JUnit view
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/01/28/happy-chinese-new-year-2017/" rel="next" title="Happy Chinese New Year 2017">
+      Happy Chinese New Year 2017 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Structure-and-Test-Pyramid"><span class="nav-number">1.</span> <span class="nav-text">Structure and Test Pyramid</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Applying-Rule"><span class="nav-number">2.</span> <span class="nav-text">1. Applying @Rule</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Execution-Sequence"><span class="nav-number">3.</span> <span class="nav-text">2. Execution Sequence</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Using-Test-Runner"><span class="nav-number">4.</span> <span class="nav-text">3.Using Test Runner</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Parameterized-Test-with-Runner"><span class="nav-number">4.1.</span> <span class="nav-text">Parameterized Test with Runner</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Customized-Test-Suite-with-Runner"><span class="nav-number">4.2.</span> <span class="nav-text">Customized Test Suite with Runner</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Execute-Cucumber-Specs-with-Runner"><span class="nav-number">4.3.</span> <span class="nav-text">Execute Cucumber Specs with Runner</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Three-Ways-of-Negative-Test-with-Exception"><span class="nav-number">5.</span> <span class="nav-text">4.Three Ways of Negative Test with Exception</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Using-Test-annotation-parameter-from-JUnit4"><span class="nav-number">5.1.</span> <span class="nav-text">Using @Test annotation parameter from JUnit4</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Applying-a-Rule-of-ExpectException"><span class="nav-number">5.2.</span> <span class="nav-text">Applying a @Rule of ExpectException</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Traditinal-Try-Catch-block"><span class="nav-number">5.3.</span> <span class="nav-text">Traditinal Try-Catch block</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Test-the-output-stream"><span class="nav-number">6.</span> <span class="nav-text">5.Test the output stream</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Test-Http-Level-and-Web-API-with-OkHttp"><span class="nav-number">7.</span> <span class="nav-text">6.Test Http Level and Web API with OkHttp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-Other-Tests"><span class="nav-number">8.</span> <span class="nav-text">7.Other Tests</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Web-Performance-Test"><span class="nav-number">8.1.</span> <span class="nav-text">Web Performance Test</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OWASP-Web-Security-Test"><span class="nav-number">8.2.</span> <span class="nav-text">OWASP Web Security Test</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RESTful-CRUD-Model-Test"><span class="nav-number">8.3.</span> <span class="nav-text">RESTful CRUD Model Test</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Backup"><span class="nav-number">8.4.</span> <span class="nav-text">Backup</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Max Wu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">104</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Max Wu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

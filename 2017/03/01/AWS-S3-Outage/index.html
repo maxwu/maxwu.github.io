@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"maxwu.me","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Encountered an AWS S3 Outage today on Travis CI. The broadcasting message shew that some apps providers have nothing to do but just pray or twitter and expect AWS to recover the issuing region S3 serv">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AWS S3 Outage">
+<meta property="og:url" content="http://maxwu.me/2017/03/01/AWS-S3-Outage/index.html">
+<meta property="og:site_name" content="+U Maxout!">
+<meta property="og:description" content="Encountered an AWS S3 Outage today on Travis CI. The broadcasting message shew that some apps providers have nothing to do but just pray or twitter and expect AWS to recover the issuing region S3 serv">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://oei21r8n1.bkt.clouddn.com/travis_s3_outage.png?imageView/2/w/300/q/100">
+<meta property="article:published_time" content="2017-03-01T00:33:05.000Z">
+<meta property="article:modified_time" content="2021-10-24T22:03:14.503Z">
+<meta property="article:author" content="Max Wu">
+<meta property="article:tag" content="AWS">
+<meta property="article:tag" content="S3">
+<meta property="article:tag" content="TravisCI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://oei21r8n1.bkt.clouddn.com/travis_s3_outage.png?imageView/2/w/300/q/100">
+
+<link rel="canonical" href="http://maxwu.me/2017/03/01/AWS-S3-Outage/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>AWS S3 Outage | +U Maxout!</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">+U Maxout!</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://maxwu.me/2017/03/01/AWS-S3-Outage/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Max Wu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="+U Maxout!">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          AWS S3 Outage
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-03-01 13:33:05" itemprop="dateCreated datePublished" datetime="2017-03-01T13:33:05+13:00">2017-03-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-10-25 11:03:14" itemprop="dateModified" datetime="2021-10-25T11:03:14+13:00">2021-10-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AWS/" itemprop="url" rel="index"><span itemprop="name">AWS</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Encountered an <strong>AWS S3 Outage</strong> today on <strong>Travis CI</strong>. The broadcasting message shew that some apps providers have nothing to do but just pray or twitter and expect AWS to recover the issuing region S3 service (the most failures were from <strong>North Virginia Regnion</strong>, US-East, the following number -1 depends on accounts). Quora even has core stack out so content is not accessible for a while. As a content provider, we hope at least the authentication and reading on hot/warm data shall be maintained with appropertiate techniques as staticizing and CDN, hybrid mode for warm/hot data, et. The fact is cruel. On the other hand, which brings us back to <strong>Netflix Simian Army</strong> and most people are sure Netflix will not be impacted based on the chaos weather test from public reports. </p>
+<p>Since S3 is a storage service, moreover, it is also a base to support many other famous AWS services. Which could explain why the AWS monitoring system was still presenting a green light at first couple of hours. It is weird to build WatchDog on top of the system under watch. However, it happened. </p>
+<p><img src="http://oei21r8n1.bkt.clouddn.com/travis_s3_outage.png?imageView/2/w/300/q/100" alt="Travis Error Message on My Project"></p>
+<p>This post will share some thoughts on AWS outage.<br><span id="more"></span></p>
+<h3 id="A-look-at-Travis-CI"><a href="#A-look-at-Travis-CI" class="headerlink" title="A look at Travis CI"></a>A look at Travis CI</h3><p>It failed to query build and test logs from cloud for a while in the morning. It seemed only US-East region was impacted. My public resume and logboks on US-West works fine till now. However, most developers will see US-East1 outage but we shall keep it in mind that the number X in US-EastX is up to different user accounts. Which means, US-East1 for some developer is US-East2 for some other developers. This mapping table will not change for one specified developer account.</p>
+<p>Detail information could be found at <a target="_blank" rel="noopener" href="https://www.traviscistatus.com/incidents/hmwq9yy5dh9d">Travis broadcast update</a></p>
+<h3 id="Thoughts-on-AWS-issue-Outage"><a href="#Thoughts-on-AWS-issue-Outage" class="headerlink" title="Thoughts on AWS issue (Outage)"></a>Thoughts on AWS issue (Outage)</h3><h4 id="Keep-Core-Stack-Alive"><a href="#Keep-Core-Stack-Alive" class="headerlink" title="Keep Core Stack Alive"></a>Keep Core Stack Alive</h4><p>The core stack of authentication, basic view, dashboard, et. shall be alive at severe disaster. It is an element of service no matter what kind of techniques and serving bandwidth is. For a content provider, the cache of CDN shall be closely monitored.</p>
+<p>If a vertical module is identified as core-stack, it shall be a separate service. Even I could not write on quora, could not search or see the recommended streamlines, I still want to see a portal showing a primitive channel to access the contents.</p>
+<h4 id="Staticize-Core-UX-part"><a href="#Staticize-Core-UX-part" class="headerlink" title="Staticize Core UX part"></a>Staticize Core UX part</h4><p>As mentioned in above section, the core UX part as user login authentication, dashboard presenting (even there could be red alert in chart), hot/warm data reading are better be cached on static channel as CDN. I don’t have work experience on internet company so this section is just by best imaging. Since front-end development model is sophisticated and strong enough, we could try to make resources as static as possible. Below are techniques we can grasp at first sight:</p>
+<ul>
+<li><em>Memcache</em> and <em>Redis</em> with DB;</li>
+<li><em>Squid</em> or <em>Nginx (with plugin)</em> cache;</li>
+<li><em>CDN</em> with balanced and separated cloudfront nodes;</li>
+<li><em>DNS</em>, prefetching, plan-B on primary domain failure;</li>
+</ul>
+<p>More consideration includes traditional concerns around cache design patterns on caching, CAP vs. latency.</p>
+<p>In some cases, we can design an alternative UX to alternatively activate in cases the dynamic solution failure/outage is detected.</p>
+<p>This can provide end users and operation stakeholders a straight view that our service is still up but some part is under recovery. </p>
+<h4 id="Error-Handling"><a href="#Error-Handling" class="headerlink" title="Error Handling"></a>Error Handling</h4><p>Since core stack is separated, the error from infrastructure shall be captured and handled in an approperiate way. Which could porivde an information page, a short message, or, just a pager call to operation staff but avoid collapsing the whole application service like some of the famous applications we saw during the accident.</p>
+<p>In short, it is to localize errors as much as possible. </p>
+<h4 id="Learn-from-Simian-Army"><a href="#Learn-from-Simian-Army" class="headerlink" title="Learn from Simian Army"></a>Learn from Simian Army</h4><p>Simian Army, <a target="_blank" rel="noopener" href="http://techblog.netflix.com/2011/07/netflix-simian-army.html">Netflix Paper</a>, is the means to create realistic chaos withing stage system when actual infrastructure is still working fine. For example, “Chaos Gorilla” is the tool to let Dev and Ops test the mitigation-plan when AWS cloud service is out. </p>
+<p>It will randomly change host file on your application so product team could test and live with disasters from infrastructure. With the first hand “realistic” data, a self-healing or graceful recovery could be designed and integrated. </p>
+<p>The paper was drafted year 2011 and it is still worthy reading every time when we see a batch of internet services are down when there is an AWS flu.</p>
+<p>Live with Murphy’s law, live with test. </p>
+<h4 id="Portability-of-Apps"><a href="#Portability-of-Apps" class="headerlink" title="Portability of Apps"></a>Portability of Apps</h4><p>In other words, as mentioned in an interview on CloudFormation topic, the first thing we need to consider about CloudFormation technical stack is portability: if it supports to migrate your service to another provider to create an either stand-by cloud deployment or a fast grown plan-b. I would rather prefer to construct an ORM style internal stack to work as cloudformat to keep an open interface in cases. And there shall be a designed and open to provide interfaced “DataFormat” to keep warm data duplicated.</p>
+<h4 id="Own-the-system-from-mindset"><a href="#Own-the-system-from-mindset" class="headerlink" title="Own the system from mindset"></a>Own the system from mindset</h4><p>The system is rent but design principle shall include AWS infrastructure as on premise thinking. The AWS services you utilitized will be part of your system, not just a rental from mindset. The SDLC shall still cover it from architecture phase.</p>
+<p>As applications are being migrated from business line to end-user line, from BS/CS to cloud, from cadenced CI to CD even DevOps, the overall architecture and systematic thinking as a whole system on premises mind is not popular any more. I remember the days in Lucent Technologies to write and review system specifications for a security feature to support series of following candidate features. We drafted thoughts, made prototype to test, verifying with modelling tools and took the system in a whole view top to bottom and state by state within the layer. </p>
+<p>2017-03-02, Max, added Simian Army section.</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/AWS/" rel="tag"># AWS</a>
+              <a href="/tags/S3/" rel="tag"># S3</a>
+              <a href="/tags/TravisCI/" rel="tag"># TravisCI</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/02/28/domain-and-iptables-update-notes/" rel="prev" title="domain and iptables update notes">
+      <i class="fa fa-chevron-left"></i> domain and iptables update notes
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/03/02/why-I-write-technical-blog/" rel="next" title="why I write technical blog">
+      why I write technical blog <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#A-look-at-Travis-CI"><span class="nav-number">1.</span> <span class="nav-text">A look at Travis CI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Thoughts-on-AWS-issue-Outage"><span class="nav-number">2.</span> <span class="nav-text">Thoughts on AWS issue (Outage)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Keep-Core-Stack-Alive"><span class="nav-number">2.1.</span> <span class="nav-text">Keep Core Stack Alive</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Staticize-Core-UX-part"><span class="nav-number">2.2.</span> <span class="nav-text">Staticize Core UX part</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Error-Handling"><span class="nav-number">2.3.</span> <span class="nav-text">Error Handling</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Learn-from-Simian-Army"><span class="nav-number">2.4.</span> <span class="nav-text">Learn from Simian Army</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Portability-of-Apps"><span class="nav-number">2.5.</span> <span class="nav-text">Portability of Apps</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Own-the-system-from-mindset"><span class="nav-number">2.6.</span> <span class="nav-text">Own the system from mindset</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Max Wu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">104</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Max Wu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

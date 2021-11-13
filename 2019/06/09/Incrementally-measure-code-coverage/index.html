@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"maxwu.me","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="For new app or repos with a close to ideal level code coverage, the populor code coverage solution on coverage metrics threshold check would be efficient. However, to maintain a legacy or low coverage">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Incrementally measure code coverage">
+<meta property="og:url" content="http://maxwu.me/2019/06/09/Incrementally-measure-code-coverage/index.html">
+<meta property="og:site_name" content="+U Maxout!">
+<meta property="og:description" content="For new app or repos with a close to ideal level code coverage, the populor code coverage solution on coverage metrics threshold check would be efficient. However, to maintain a legacy or low coverage">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.imgur.com/gtm74Prm.png">
+<meta property="og:image" content="https://i.imgur.com/YHyhOJ7t.png">
+<meta property="article:published_time" content="2019-06-09T09:42:34.000Z">
+<meta property="article:modified_time" content="2021-10-24T22:03:14.506Z">
+<meta property="article:author" content="Max Wu">
+<meta property="article:tag" content="Istanbul">
+<meta property="article:tag" content="Coverage">
+<meta property="article:tag" content="DevOps">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/gtm74Prm.png">
+
+<link rel="canonical" href="http://maxwu.me/2019/06/09/Incrementally-measure-code-coverage/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Incrementally measure code coverage | +U Maxout!</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">+U Maxout!</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://maxwu.me/2019/06/09/Incrementally-measure-code-coverage/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Max Wu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="+U Maxout!">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Incrementally measure code coverage
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-09 21:42:34" itemprop="dateCreated datePublished" datetime="2019-06-09T21:42:34+12:00">2019-06-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-10-25 11:03:14" itemprop="dateModified" datetime="2021-10-25T11:03:14+13:00">2021-10-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/DevOps/" itemprop="url" rel="index"><span itemprop="name">DevOps</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/DevOps/Coverage/" itemprop="url" rel="index"><span itemprop="name">Coverage</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>For new app or repos with a close to ideal level code coverage, the populor code coverage solution on coverage metrics threshold check would be efficient. However, to maintain a legacy or low coverage level repo, it is not eonough to just check coverage percentage on metrics. This post described an idea to check coverage json diff with istanbul-diff on node.js repos.</p>
+<span id="more"></span>
+<h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><p>Usually in Jenkins Pipeline or SAAS DevOps infrastructure, the code coverage check is implemented with <code>Cobertura</code> or cloud service <code>Coverage</code>. </p>
+<p>As described in previous posts, here are samples of <code>Coverage</code> service and on-premise <code>Cobertura</code>.</p>
+<p><a target="_blank" rel="noopener" href="https://i.imgur.com/gtm74Pr.png"><img src="https://i.imgur.com/gtm74Prm.png" alt="Coverage"></a><br><a target="_blank" rel="noopener" href="https://i.imgur.com/YHyhOJ7.png"><img src="https://i.imgur.com/YHyhOJ7t.png" alt="Cobertura"></a></p>
+<p>The coverage check is implemented with metrics and thresholds, in other wors, the score of code coverage on current baseline. This won’t be a problem when the repo has an ideal coverage leve. </p>
+<p>For example, if the threshold is set to 95% on lines, functions and branches thress metrics, when the change breaks the threshold, the coverage check will fail. </p>
+<p>On an legacy repo, this would potentially be a problem with a low coverage level. For an example, if the repo has 45% overall lines coverage. On one of the feature branch, the code change lower down some source code coverage by accidently introduced a wrong condition in Jest. But the feature branch aslo introduced a batch of new source and keep 100% on these new added source filed. Therefore, it is possible to see an increase in <code>Total Coverage</code>. And due to a lower level of <code>Cobertura</code> threshold on existing code, this cannot be discovered by the coverage check at all. The feature branch can be merged to master branch with successful coverage endorsement. </p>
+<p>Above is a real case in coverage overall check with one of my projects. </p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>Since the project mentioned above is a node.js front-end app, the coverage measurement is implemented with Jest coverage. Underneath the jest framework, <a target="_blank" rel="noopener" href="https://istanbul.js.org"><code>istanbul</code></a> is the code coverage lib. This triggered me to seek a way to compare the coverage result files from the source branch to target branch.</p>
+<p>The solution could rely on JsonDiff lib to compare the coverage between two branches and fail when there is any nodes on source tree has decrease on coverage unless the leave nodes (file-line, function, branch path) are removed from source branch. </p>
+<p>Here the term <code>leave node</code> depends on which coverage metrics are selected. It could be one or more from lines, functions and branches. The three coverage metrics are supported by istanbul.</p>
+<ul>
+<li><p>The first condition can be satisfied by applying an npm lib <a target="_blank" rel="noopener" href="https://github.com/moos/istanbul-diff"><code>istabul-diff</code></a>. Which is based on <code>jsondiffpath</code> lib to compare the increments between source coverage summary and target (existing) one.</p>
+</li>
+<li><p>The second condition would be resolved with traditional way – <code>Artifactory</code>. On Jenkins Pipeline, a goovy closure will be defined to push coverage-summary JSON to artifactory if current <code>BUILD</code> passes and it is on master branch. </p>
+<p>So the artifactory specific PATH will only keep a latest copy of master branch coverage result (in JSON format).</p>
+<p>When Pipeline determines the build is on a feature branch, it will automatically download the master coverage summary from Artifactory and apply istanbul-diff to find if there is any loss on coverage but will accept all the positive (incremental) coverage.</p>
+</li>
+<li><p>To utilize istanbul-diff tool, istanbul reporter <code>json-summary</code> is required. By default Jest would apply parameter <code>[&quot;json&quot;, &quot;lcov&quot;, &quot;text&quot;, &quot;clover&quot;]</code> (refer to <a target="_blank" rel="noopener" href="https://jestjs.io/docs/en/configuration#coveragereporters-array-string">Jest Doc</a>)</p>
+<p>So the package.json could be updated as:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  ...</span><br><span class="line">  <span class="string">&quot;jest&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;coverageReporters&quot;</span>: [</span><br><span class="line">      <span class="string">&quot;json&quot;</span>, </span><br><span class="line">      <span class="string">&quot;lcov&quot;</span>, </span><br><span class="line">      <span class="string">&quot;text&quot;</span>, </span><br><span class="line">      <span class="string">&quot;clover&quot;</span>,</span><br><span class="line">      <span class="string">&quot;json-summary&quot;</span></span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="More-topics"><a href="#More-topics" class="headerlink" title="More topics"></a>More topics</h2><p>The author just verified the idea with a rough react sample but haven’t tested the solution with prototype on pipeline yet. Here are actions to fulfill and confirm:</p>
+<ul>
+<li><p>Implement the solution above in an POC branch on pipeline definition file.</p>
+</li>
+<li><p>Take special care to verify when leave nodes are removed, istanbul-diff could accept it not as a failure.</p>
+</li>
+<li><p>When multiple metrics are specified, e.g. both lines and functions, any loss of coverage in one of more of the metrics will fail the final return code.</p>
+</li>
+<li><p>A PR submitted to fix typo in istanbul-diff README Markdown doc, <a target="_blank" rel="noopener" href="https://github.com/moos/istanbul-diff/pull/3">https://github.com/moos/istanbul-diff/pull/3</a> </p>
+</li>
+</ul>
+<h2 id="Change-Log"><a href="#Change-Log" class="headerlink" title="Change Log"></a>Change Log</h2><p>Jun 09, 2019: Initial and roughly tested with sample node.js repo. </p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Istanbul/" rel="tag"># Istanbul</a>
+              <a href="/tags/Coverage/" rel="tag"># Coverage</a>
+              <a href="/tags/DevOps/" rel="tag"># DevOps</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/06/02/Completed-Deeplearning-ai-CNN-in-TensorFlow-A-retro-on-roadmap/" rel="prev" title="Convolutional Neural Networks in TensorFlow">
+      <i class="fa fa-chevron-left"></i> Convolutional Neural Networks in TensorFlow
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/08/17/Fix-home-brew-updating-failure/" rel="next" title="Fix home brew updating failure">
+      Fix home brew updating failure <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem"><span class="nav-number">1.</span> <span class="nav-text">Problem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution"><span class="nav-number">2.</span> <span class="nav-text">Solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#More-topics"><span class="nav-number">3.</span> <span class="nav-text">More topics</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Change-Log"><span class="nav-number">4.</span> <span class="nav-text">Change Log</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Max Wu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">104</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Max Wu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

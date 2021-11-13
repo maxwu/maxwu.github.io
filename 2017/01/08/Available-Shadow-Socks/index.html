@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"maxwu.me","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="“我的征途是星辰大海”–《银河英雄传》 刚刚过去的假期读罢&lt;北京折叠&gt;.其实类似的反乌托邦题材并不罕见,然而数天后仍然能感觉到作者在字里行间中透出的压抑下的无力和自嘲 – 本贴长期更新,记录访问Internet和从Internet访问世界上最大的局域网科学方法和最佳实践.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Available Shadowsocks">
+<meta property="og:url" content="http://maxwu.me/2017/01/08/Available-Shadow-Socks/index.html">
+<meta property="og:site_name" content="+U Maxout!">
+<meta property="og:description" content="“我的征途是星辰大海”–《银河英雄传》 刚刚过去的假期读罢&lt;北京折叠&gt;.其实类似的反乌托邦题材并不罕见,然而数天后仍然能感觉到作者在字里行间中透出的压抑下的无力和自嘲 – 本贴长期更新,记录访问Internet和从Internet访问世界上最大的局域网科学方法和最佳实践.">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2017-01-07T22:24:47.000Z">
+<meta property="article:modified_time" content="2021-10-24T22:03:14.504Z">
+<meta property="article:author" content="Max Wu">
+<meta property="article:tag" content="Shadowsocks">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://maxwu.me/2017/01/08/Available-Shadow-Socks/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Available Shadowsocks | +U Maxout!</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">+U Maxout!</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://maxwu.me/2017/01/08/Available-Shadow-Socks/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Max Wu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="+U Maxout!">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Available Shadowsocks
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-01-08 11:24:47" itemprop="dateCreated datePublished" datetime="2017-01-08T11:24:47+13:00">2017-01-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-10-25 11:03:14" itemprop="dateModified" datetime="2021-10-25T11:03:14+13:00">2021-10-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Writing/" itemprop="url" rel="index"><span itemprop="name">Writing</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><em>“我的征途是星辰大海”–《银河英雄传》</em></p>
+<p>刚刚过去的假期读罢&lt;北京折叠&gt;.其实类似的反乌托邦题材并不罕见,然而数天后仍然能感觉到作者在字里行间中透出的压抑下的无力和自嘲 – 本贴长期更新,记录访问Internet和从Internet访问世界上最大的局域网科学方法和最佳实践.<br><span id="more"></span></p>
+<p>第一次具体的感受Beijing是2000年的除夕,和厦门大学的另一位毛老师一起走路到国旗广场.后来只是去美国每次转机会路过首都机场,坐在玻璃幕墙内,躲避着午后倦倦的困意.再后来就是2008年出差去印度Banglore,国师的团体操给公司同事都留下了深刻印象,我记得第二天几乎每个人都在向我们祝贺Beijing的成功.一句老话,No free lunch,当付出和收益的主体不统一时,不在同一个空间位置甚至也不是同一个时间标度时,就像一只大手从一堆砝码里拿出一些,端到另一堆,只不过有时候是看不见的手(经济)有时候是看得见的手(政治)…”科学”获取信息的途径也经由”科学”而来.这里Shared的Shadow Socks代理包括了从科学上网和海外转国内方式都是日常使用或验证能够工作正常的方法.</p>
+<ul>
+<li><u>购买VPS部署SS</u>:<ul>
+<li>最传统的方式,也比较容易上手.建议Deploy一个实例平时做其他用途,当做Back up;</li>
+<li>VPS提供商建议选择<a target="_blank" rel="noopener" href="https://bandwagonhost.com/aff.php?aff=12795">搬瓦工-www.bandwagonhost.com</a>.感恩节和圣诞会有大促.两年前9.9刀一年的最低配置一直很稳定.这个链接点进去包含了我的推荐码.以后我会更新更多Promotion信息.</li>
+<li>选择VPS需要看机房配置和迁移方便程度.搬瓦工上在不同机房比如LA迁移到Arizona非常方便.近期搬瓦工推出日本机房,访问速度应该能够更快.</li>
+</ul>
+</li>
+<li><u>AWS EC2 配置SS</u>:<ul>
+<li>类似传统方法,AWS提供一年期免费体验计划Free Tier.其中包含EC2最多两个T2类型实例. 配置方法和上面一样,搜索Shadowsocks的RPM安装方式,注意配置自动启动即可.</li>
+<li>AWS的Autoscaling可以配置为一个组最多1,最少也是1.然后再Cloud Format加入RPM安装配置的步骤就可以完成HA.</li>
+<li>EC2作为非托管服务,其上运行的服务需要用户自己配置Monitor.</li>
+<li>最后需要注意AWS有些服务不在免费范围内,最好配置账单提醒,阈值设置为0,这样只要有Charge就可以及时收到邮件,可以第一时间查看并Escalate取消. 比如CloudFormation,如果Stack启动超过1hr应该就已经开始对特定个tsmall instance计费,及时查看计价方法.</li>
+</ul>
+</li>
+<li><u>Docker Service</u>:<ul>
+<li>樱花是日本一家Docker DevOps服务商,目前在试用期提供免费的Docker 实例服务.配置Shadow Socks的Docker Image并设置好环境变量即可.Docker服务的好处是启动关闭速度很快,修改后重新Launch只需要一分钟时间.很符合云计算的口号,Hurry Up, Go die,用过就回收,需要的时候临时起一份,负载增加的时候直接Scale out.</li>
+<li>可以采用AWS ECS(EC2 Container Service).</li>
+<li>类似的Docker服务DevOps提供商还很多,即使收费也基本上按需(运行时间)定价策略为主,适合只是偶尔用ShadowSocks的轻度用户或经常更换Service的用户.</li>
+<li><a target="_blank" rel="noopener" href="https://arukas.io/en/">樱花链接</a>, 记得选En语言,否则都是霓虹文字.目前樱花还在Beta阶段,每账号10个免费实例.</li>
+<li>验证过的Image: “mritd/shadowsocks”,加密方式和密码配置在环境变量内.<ul>
+<li>需要注意,环境变量配置给Shadowsocks的port number需要在容器的配置上打开同样的端口;</li>
+<li>这个映像已经做了自启动,启动脚本可以留空.</li>
+</ul>
+</li>
+<li>其实AWS也开始提供Docker Cloud,因为樱花云已经很方便了所以AWS的Docker尚未验证过. 估计优势之一是应用Cloud Format统一描述.</li>
+</ul>
+</li>
+<li><p><u>命令行环境以及局域网内共享代理</u>:</p>
+<ul>
+<li>命令行环境可以通过Privoxy来实现,将本地localhost:port设置为HTTP代理并Capture到本地的Socks代理内;</li>
+<li><p>通过Privoxy也可以把HTTP Proxy端口开放出来给同一个Wi-Fi SSID的其他用户同时使用;</p>
+<ul>
+<li><p>To have launchd start privoxy now and restart at login, use below command:</p>
+<blockquote>
+<p>brew services start privoxy</p>
+</blockquote>
+</li>
+<li><p>Or, if you don’t want/need a background service you can just run:</p>
+<blockquote>
+<p>privoxy /usr/local/etc/privoxy/config</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>Windows版的Shadowsocks客户端有RR Load Balance功能,而Mac版已经很不会更新也不具备这个功能;</p>
+</li>
+<li>使用Mac版需要注意SS-NG还在开放中,有一些问题,不过SS-NG内置了一个Privoxy的Binary环境.因为和本机自己的privoxy出现不一致所以SS-NG这个版本笔者这里就不验证了.</li>
+</ul>
+</li>
+<li><p><u>反向穿梭</u>:</p>
+<ul>
+<li><p>反向穿梭后可以提升访问媒体网站的(ting)速(yin)度(yue).</p>
+<ul>
+<li><p>简单的方法: </p>
+<ul>
+<li>DNS改为: 45.32.72.192, 158.69.209.100</li>
+</ul>
+</li>
+<li><p>Android设备: </p>
+<ul>
+<li>Proxy设置为手动,PAC地址是<a target="_blank" rel="noopener" href="http://pac.uku.im/pac.pac">http://pac.uku.im/pac.pac</a></li>
+</ul>
+</li>
+<li><p>Mac和Linux, set different DNS for different domains:</p>
+<ul>
+<li>在Mac下DNS信息存储于/etc/resolv.conf</li>
+<li><p>如果处于安全或访问时间考虑希望上面Ublock志愿提供的DNS仅供访问网易云音乐,可以建立目录/etc/resolver/163.com并写入如下内容:</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nameserver 158.69.209.100</span><br><span class="line">nameserver 45.32.72.192</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>体验反向Shadowsocks代理可以试用下面这个:<br>  信息来自Mitbbs,工程团队公开出来做压力测试用端口,验证可用.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Server_IP：182.92.156.212</span><br><span class="line">server_port : 10062</span><br><span class="line">local_port : 1080,</span><br><span class="line">password : 61203456</span><br><span class="line">method : aes-256-cfb</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<p>以上.</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Shadowsocks/" rel="tag"># Shadowsocks</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/01/07/Corrigendum-for-AWS-Chinese-learners/" rel="prev" title="Corrigendum for AWS Chinese learners">
+      <i class="fa fa-chevron-left"></i> Corrigendum for AWS Chinese learners
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/01/08/flickering-scenario-terminology-clarification/" rel="next" title="flickering scenario -- terminology clarification">
+      flickering scenario -- terminology clarification <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Max Wu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">104</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Max Wu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

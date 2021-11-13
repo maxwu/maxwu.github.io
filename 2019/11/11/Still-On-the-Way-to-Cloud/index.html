@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"maxwu.me","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="It is the last quarter of 2019. A large number of organizations already deployed docker containerized applications in production environment and usually the services are orchestrated with kubernetes o">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Still On the Way to Cloud">
+<meta property="og:url" content="http://maxwu.me/2019/11/11/Still-On-the-Way-to-Cloud/index.html">
+<meta property="og:site_name" content="+U Maxout!">
+<meta property="og:description" content="It is the last quarter of 2019. A large number of organizations already deployed docker containerized applications in production environment and usually the services are orchestrated with kubernetes o">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.imgur.com/zApN0Gsm.jpg">
+<meta property="article:published_time" content="2019-11-11T10:00:20.000Z">
+<meta property="article:modified_time" content="2021-10-25T11:10:09.459Z">
+<meta property="article:author" content="Max Wu">
+<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="Openshift">
+<meta property="article:tag" content="Cloud">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/zApN0Gsm.jpg">
+
+<link rel="canonical" href="http://maxwu.me/2019/11/11/Still-On-the-Way-to-Cloud/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Still On the Way to Cloud | +U Maxout!</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">+U Maxout!</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://maxwu.me/2019/11/11/Still-On-the-Way-to-Cloud/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Max Wu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="+U Maxout!">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Still On the Way to Cloud
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-11-11 23:00:20" itemprop="dateCreated datePublished" datetime="2019-11-11T23:00:20+13:00">2019-11-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-10-26 00:10:09" itemprop="dateModified" datetime="2021-10-26T00:10:09+13:00">2021-10-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/DevOps/" itemprop="url" rel="index"><span itemprop="name">DevOps</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/DevOps/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>It is the last quarter of 2019. A large number of organizations already deployed docker containerized applications in production environment and usually the services are orchestrated with kubernetes or Openshift. As the well known saying, just moving applications to cloud doesn’t mean clouding, we are still in the middle of way to cloud. This post is also a retrospective on the issues discovered this year on migrating traditional technical stacks to cloud. </p>
+<p>(WIP)</p>
+<p><img src="https://i.imgur.com/zApN0Gsm.jpg" alt="Docker_Kube"></p>
+<span id="more"></span>
+<h2 id="1-Typical-issues-on-sensitivity-of-container-environment"><a href="#1-Typical-issues-on-sensitivity-of-container-environment" class="headerlink" title="1 Typical issues on sensitivity of container environment"></a>1 Typical issues on sensitivity of container environment</h2><h3 id="1-1-Dotnet-core-2-1-Pod-restarted-on-OOM-Killer"><a href="#1-1-Dotnet-core-2-1-Pod-restarted-on-OOM-Killer" class="headerlink" title="1.1 Dotnet core 2.1 Pod restarted on OOM Killer"></a>1.1 Dotnet core 2.1 Pod restarted on OOM Killer</h3><p>This was the first issue I spent a big effort this year to realize that popular technical stacks were still not ready to adapt themselves to container environment. Typically if a managed system reads the mount point <code>/proc/self/mountinfo</code> as on regular Linux platform but not the <code>/proc/self/cgroup</code>, the memory limits are not observable from the memory management. </p>
+<p>The github link is <a target="_blank" rel="noopener" href="https://github.com/dotnet/coreclr/issues/13489">https://github.com/dotnet/coreclr/issues/13489</a>. The fix includes <a target="_blank" rel="noopener" href="https://github.com/dotnet/coreclr/pull/13488">https://github.com/dotnet/coreclr/pull/13488</a> and <a target="_blank" rel="noopener" href="https://github.com/dotnet/coreclr/pull/15297">https://github.com/dotnet/coreclr/pull/15297</a> to check cgroup resource limits and expose docker processor counts to CLR environments. </p>
+<p>The phenomenon was dotnet core pod restarted more than 200 times per day and openshift monitor portal showed <code>OOM Killer</code> in event description. It was lukcy the production environment deployed with replica number 4 so fintech service was not interrupted. To debug this issue, an image of LLDB on dotnet core was created to detect threading model and high memory blocks (<a href="https://maxwu.me/2019/04/15/Debug-dotnet-core-with-LLDB-on-RHEL-Image/)">https://maxwu.me/2019/04/15/Debug-dotnet-core-with-LLDB-on-RHEL-Image/)</a>. Per my observation, the high runners are Newtonsoft JSON entities because lots of memory were consumed by dotnet string buffers. </p>
+<h3 id="1-2-Jenkins-Pipeline-ran-out-of-memory"><a href="#1-2-Jenkins-Pipeline-ran-out-of-memory" class="headerlink" title="1.2 Jenkins Pipeline ran out of memory"></a>1.2 Jenkins Pipeline ran out of memory</h3><p>This issue is actually a JVM configuration problem. It was dicovered when Jenkins pod ran slowly in one day and Jenkins pod was observed to restart within 72hr everytime. Our Pipeline was a typical Jenkins groovy Pipeline and it communicated to two kinds of slaves: (1) the dynamical jenkins slave created on demand, which were based on different slave images with required technical stack; (2) windows slaves for specific tasks which could only complete by Windows nodes for time being.</p>
+<p>(TBC)</p>
+<h3 id="1-3-Cypress-failed-to-launch-XVFB-in-docker-container"><a href="#1-3-Cypress-failed-to-launch-XVFB-in-docker-container" class="headerlink" title="1.3 Cypress failed to launch XVFB in docker container"></a>1.3 Cypress failed to launch XVFB in docker container</h3><p>Cypress is the in browser javascript UI test framework I picked for team last year (2018) when migrated from host based Selenium to Pipeline. </p>
+<p>(TBC)</p>
+<h2 id="2-Typical-issues-on-container-orchestration"><a href="#2-Typical-issues-on-container-orchestration" class="headerlink" title="2 Typical issues on container orchestration"></a>2 Typical issues on container orchestration</h2><h3 id="2-1-Orchestrating-Cypress-tests-in-Map-Reduce-model-on-kube-cloud"><a href="#2-1-Orchestrating-Cypress-tests-in-Map-Reduce-model-on-kube-cloud" class="headerlink" title="2.1 Orchestrating Cypress tests in Map-Reduce model on kube cloud"></a>2.1 Orchestrating Cypress tests in Map-Reduce model on kube cloud</h3><h3 id="2-2-Rolling-out-springboot-pod-generated-alert-flooding-on-splunk"><a href="#2-2-Rolling-out-springboot-pod-generated-alert-flooding-on-splunk" class="headerlink" title="2.2 Rolling out springboot pod generated alert flooding on splunk"></a>2.2 Rolling out springboot pod generated alert flooding on splunk</h3><h2 id="3-Retrospective"><a href="#3-Retrospective" class="headerlink" title="3 Retrospective"></a>3 Retrospective</h2><h2 id="Change-Log"><a href="#Change-Log" class="headerlink" title="Change Log"></a>Change Log</h2><p>Nov 12, 2019: Initial post with intro part and the outline.</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Docker/" rel="tag"># Docker</a>
+              <a href="/tags/Openshift/" rel="tag"># Openshift</a>
+              <a href="/tags/Cloud/" rel="tag"># Cloud</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/09/28/A-Bite-Of-Springboot/" rel="prev" title="A Bite of SpringBoot">
+      <i class="fa fa-chevron-left"></i> A Bite of SpringBoot
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/11/24/Using-Multi-Stage-Build-to-Reduce-Docker-Image-Size/" rel="next" title="Using Multi-Stage Build to Reduce Docker Image Size">
+      Using Multi-Stage Build to Reduce Docker Image Size <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Typical-issues-on-sensitivity-of-container-environment"><span class="nav-number">1.</span> <span class="nav-text">1 Typical issues on sensitivity of container environment</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-Dotnet-core-2-1-Pod-restarted-on-OOM-Killer"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 Dotnet core 2.1 Pod restarted on OOM Killer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-Jenkins-Pipeline-ran-out-of-memory"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 Jenkins Pipeline ran out of memory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-Cypress-failed-to-launch-XVFB-in-docker-container"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 Cypress failed to launch XVFB in docker container</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Typical-issues-on-container-orchestration"><span class="nav-number">2.</span> <span class="nav-text">2 Typical issues on container orchestration</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-Orchestrating-Cypress-tests-in-Map-Reduce-model-on-kube-cloud"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 Orchestrating Cypress tests in Map-Reduce model on kube cloud</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-Rolling-out-springboot-pod-generated-alert-flooding-on-splunk"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 Rolling out springboot pod generated alert flooding on splunk</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Retrospective"><span class="nav-number">3.</span> <span class="nav-text">3 Retrospective</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Change-Log"><span class="nav-number">4.</span> <span class="nav-text">Change Log</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Max Wu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">104</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Max Wu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

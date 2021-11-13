@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"maxwu.me","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="CIstat is a Python package supporting to fetch, analyze and present automation test data from common CI services as CircleCI, Travis, Bamboo and Jenkins (preview version has implemented CircleCI to ve">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CIstat preview version released">
+<meta property="og:url" content="http://maxwu.me/2017/05/12/CIstat-preview-version-released/index.html">
+<meta property="og:site_name" content="+U Maxout!">
+<meta property="og:description" content="CIstat is a Python package supporting to fetch, analyze and present automation test data from common CI services as CircleCI, Travis, Bamboo and Jenkins (preview version has implemented CircleCI to ve">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.imgur.com/gtm74Prm.png">
+<meta property="og:image" content="https://i.imgur.com/vlPfImUm.png">
+<meta property="og:image" content="https://i.imgur.com/vUhu4B9m.png">
+<meta property="og:image" content="https://i.imgur.com/R2NmQMjm.png">
+<meta property="article:published_time" content="2017-05-11T13:28:22.000Z">
+<meta property="article:modified_time" content="2021-10-24T22:03:14.504Z">
+<meta property="article:author" content="Max Wu">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="RESTful">
+<meta property="article:tag" content="CircleCI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/gtm74Prm.png">
+
+<link rel="canonical" href="http://maxwu.me/2017/05/12/CIstat-preview-version-released/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>CIstat preview version released | +U Maxout!</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">+U Maxout!</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://maxwu.me/2017/05/12/CIstat-preview-version-released/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Max Wu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="+U Maxout!">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CIstat preview version released
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-05-12 01:28:22" itemprop="dateCreated datePublished" datetime="2017-05-12T01:28:22+12:00">2017-05-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-10-25 11:03:14" itemprop="dateModified" datetime="2021-10-25T11:03:14+13:00">2021-10-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Automation-Test/" itemprop="url" rel="index"><span itemprop="name">Automation Test</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Automation-Test/CI/" itemprop="url" rel="index"><span itemprop="name">CI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><a target="_blank" rel="noopener" href="https://github.com/maxwu/cistat">CIstat</a> is a Python package supporting to fetch, analyze and present automation test data from common CI services as CircleCI, <em>Travis</em>, <em>Bamboo</em> and <em>Jenkins</em> (preview version has implemented CircleCI to verify the idea)</p>
+<p><img src="https://i.imgur.com/gtm74Prm.png" alt="CIstat_preview"></p>
+<span id="more"></span>
+<h1 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h1><p>CIstat with preview version could be installed with pip CVS interface from github directly.</p>
+<p>Install cistat Pypi dist with <strong>dev</strong> branch latest code from Github:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pip install https://github.com/maxwu/cistat/archive/dev.zip</span><br></pre></td></tr></table></figure>
+<p>Install cistat from <strong>master</strong> (release) branch on Github:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pip install https://github.com/maxwu/cistat/archive/master.zip</span><br></pre></td></tr></table></figure>
+<h1 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h1><h2 id="Sample-Charts"><a href="#Sample-Charts" class="headerlink" title="Sample Charts"></a>Sample Charts</h2><p><strong>Pie Chart</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">report.get_class_rpt().plot_piechart_casenum(project, <span class="string">&quot;Case Num per Class&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>The Pie Chart for case numbers per class level is:</p>
+<p><img src="https://i.imgur.com/vlPfImUm.png" alt="Pie Chart on Case Number per Class"></p>
+<p><strong>Bar Chart</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">report.plot_barchart_rate(project, <span class="string">&quot;Pass Rate per case&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>The Bar Chart of Pass Rate for cistat project is:</p>
+<p><img src="https://i.imgur.com/vUhu4B9m.png" alt="Bar Chart on Pass Rate"></p>
+<p><strong>Bubble Chart</strong></p>
+<blockquote>
+<p>The ROI chart is more considerable for nightly build result analysis in a testing project within XUnit test framework to control the resources as case, docker/cpu, feature integration.</p>
+</blockquote>
+<blockquote>
+<p>In the sample height of bubble represents the pass rate and the size of bubble shows the test efforts (Currently it is simply the case number; It will be updated to a formula on test time and case number).<br>The lower the bubble positions, the bigger it shall grow to get more resource and invest to float up to 1.0 the stable status.</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">report.get_class_rpt().plot_scatter_roi(project, <span class="string">&quot;Test ROI per Class&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>The Bubble Chart to present case ROI per class as below:</p>
+<p><img src="https://i.imgur.com/R2NmQMjm.png" alt="Bubble Chart on Test ROI"></p>
+<h2 id="Console-Entry-Point"><a href="#Console-Entry-Point" class="headerlink" title="Console Entry Point"></a>Console Entry Point</h2><p>Quick step to run above sample: <code>cistat-cli</code>. Since circleci.com has throttling limit on RESTful API, it is recommended to configure an API-Key in environmental variable or local config.yaml.</p>
+<p>This console command is installed with Pypi dist. <code>cistat-cli</code> is the console entry point planted by PIP installer setup.py.</p>
+<h2 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h2><p>Configuration item preference order is:</p>
+<p><code>Cli Options &gt;&gt; Environment Variables &gt;&gt; Local Config.yaml</code></p>
+<p>Configuration items:</p>
+<ul>
+<li>circleci_api_token: The 40 token characters to avoid throttling.</li>
+</ul>
+<blockquote>
+<p>To test string length with shell, <code>printf $STR | wc -c</code></p>
+</blockquote>
+<h1 id="Design"><a href="#Design" class="headerlink" title="Design"></a>Design</h1><h2 id="Data-Models"><a href="#Data-Models" class="headerlink" title="Data Models"></a>Data Models</h2><p>Now CIstat has implemented XUnit model. Which is a widely used test report XML format. CIstat wrappered it with full functional Python type with +, +=, getter/setter with [key] and len() to simplify the further applications. </p>
+<p>As a practice to prepare for future Cloud related statD thoughts (as DataDog service), XUnit is firstly picked up as XUnit has counter, scalar and ratio types of data. These data in various types can be accumulated or aggregated with +, += and speficied with [] operator.</p>
+<p>The future step on data model is to expand to white-box parts as Lint scores and code coverage.</p>
+<h2 id="Requests"><a href="#Requests" class="headerlink" title="Requests"></a>Requests</h2><p>So far only circleci RESTful interfaces are supported. TravisCI and Jenkins are on following step while the preview version is under more tests. </p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><p>[1] The README document with samples, <a target="_blank" rel="noopener" href="https://github.com/maxwu/cistat">https://github.com/maxwu/cistat</a></p>
+<p>[2] My Gitbook chapter about Pip installation from Github, <a target="_blank" rel="noopener" href="https://maxwu.gitbooks.io/python-tips/content/pip-supports-installation-from-github.html">https://maxwu.gitbooks.io/python-tips/content/pip-supports-installation-from-github.html</a></p>
+<h1 id="Change-Logs"><a href="#Change-Logs" class="headerlink" title="Change Logs"></a>Change Logs</h1><p>May 10, 2017: Init post.</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Python/" rel="tag"># Python</a>
+              <a href="/tags/RESTful/" rel="tag"># RESTful</a>
+              <a href="/tags/CircleCI/" rel="tag"># CircleCI</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/05/02/Recursive-Depth-First-Search-with-a-tracking-Set/" rel="prev" title="Recursive Depth-First-Search with a tracking Set">
+      <i class="fa fa-chevron-left"></i> Recursive Depth-First-Search with a tracking Set
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/05/16/BFS-solution-of-power-sum-challenge/" rel="next" title="BFS solution of power sum challenge">
+      BFS solution of power sum challenge <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Installation"><span class="nav-number">1.</span> <span class="nav-text">Installation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Usage"><span class="nav-number">2.</span> <span class="nav-text">Usage</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Sample-Charts"><span class="nav-number">2.1.</span> <span class="nav-text">Sample Charts</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Console-Entry-Point"><span class="nav-number">2.2.</span> <span class="nav-text">Console Entry Point</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Configuration"><span class="nav-number">2.3.</span> <span class="nav-text">Configuration</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Design"><span class="nav-number">3.</span> <span class="nav-text">Design</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-Models"><span class="nav-number">3.1.</span> <span class="nav-text">Data Models</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Requests"><span class="nav-number">3.2.</span> <span class="nav-text">Requests</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#References"><span class="nav-number">4.</span> <span class="nav-text">References</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Change-Logs"><span class="nav-number">5.</span> <span class="nav-text">Change Logs</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Max Wu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">104</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Max Wu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

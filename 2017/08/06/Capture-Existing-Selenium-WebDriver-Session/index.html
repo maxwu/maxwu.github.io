@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"maxwu.me","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Notes on how to intervene an existing selenium web driver session with impelementation and tests.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Capture Existing Selenium WebDriver Session">
+<meta property="og:url" content="http://maxwu.me/2017/08/06/Capture-Existing-Selenium-WebDriver-Session/index.html">
+<meta property="og:site_name" content="+U Maxout!">
+<meta property="og:description" content="Notes on how to intervene an existing selenium web driver session with impelementation and tests.">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2017-08-06T10:43:07.000Z">
+<meta property="article:modified_time" content="2021-10-24T22:03:14.504Z">
+<meta property="article:author" content="Max Wu">
+<meta property="article:tag" content="Concrete-level-tag">
+<meta property="article:tag" content="Automation Test">
+<meta property="article:tag" content="Selenium">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://maxwu.me/2017/08/06/Capture-Existing-Selenium-WebDriver-Session/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Capture Existing Selenium WebDriver Session | +U Maxout!</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">+U Maxout!</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://maxwu.me/2017/08/06/Capture-Existing-Selenium-WebDriver-Session/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Max Wu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="+U Maxout!">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Capture Existing Selenium WebDriver Session
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-08-06 22:43:07" itemprop="dateCreated datePublished" datetime="2017-08-06T22:43:07+12:00">2017-08-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-10-25 11:03:14" itemprop="dateModified" datetime="2021-10-25T11:03:14+13:00">2021-10-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Automation-Test/" itemprop="url" rel="index"><span itemprop="name">Automation Test</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Automation-Test/Selenium/" itemprop="url" rel="index"><span itemprop="name">Selenium</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Notes on how to intervene an existing selenium web driver session with impelementation and tests.</p>
+<span id="more"></span>
+<h2 id="Problem-to-Solve"><a href="#Problem-to-Solve" class="headerlink" title="Problem to Solve"></a>Problem to Solve</h2><p>As a software engineer in automation test, sometimes it is the most reasonable method to capture the existing selenium web driver session and intervene with customized action steps. Especially with the commercial toolkit or homemade testing utility but source is not open at the meantime. </p>
+<p>In my case, the toolkit is not able to fill up one of the authentication page. However, it offers a keyword to pause until a manual action to input user crediential. Current solution is to monitor the stdout with bash shell, when the typical log of “<a href="http://localhost:XXXX&quot;">http://localhost:XXXX&quot;</a> shows up, use the selenium commander URL to capture the existing selenium session. There is still a parameter of session ID missing. This can be solved by an JSON wired protocol end point, “/sessions”. Usually toolkit implements singleton on seleenium driver language binding. Query the end point of “/sessions” will return the session ID between web driver executable and the browser.</p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><h3 id="Find-Existing-Session-ID"><a href="#Find-Existing-Session-ID" class="headerlink" title="Find Existing Session ID"></a>Find Existing Session ID</h3><p>As mentioned in above, the communication between Selenium Development Language bindings and WebDriver executables is the JSON wired protocol. </p>
+<p><a target="_blank" rel="noopener" href="https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessions">https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessions</a></p>
+<p>Unfortunately this end point is not implemented with Selenium Java or Python binding. It could be soloved by a new created wrapper function to query existing sessions.</p>
+<p>Generally automation test toolkit desktop version implements singleton on selenium binding instance and keep one session. So the query above will return one session in JSON. The solution is to add code parsing the return value and extract the session ID.</p>
+<p>For example, if the selenium based toolkit generates stdout or logs as:</p>
+<p>  <code>http://localhost:6064</code> </p>
+<p>The session can be queried by URL in browser with the end point:</p>
+<p>  <code>http://localhost:6064/sessions</code></p>
+<!---
+FIXME: need to download the original image from qiniu.
+![JSON Return Value](http://oei21r8n1.bkt.clouddn.com/Query_Selenium_Sessions.png?imageView/2/w/400/q/100)
+-->
+<p>(Update Aug 08, 2017) The sample code to query session information. The codesnap only return the first session ID and capabilities in tuple. Production code shall take care of situation when there are multiple sessions as well. </p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># return tupple of session ID and capability dict.</span></span><br><span class="line"><span class="meta">@staticmethod</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_session_id_and_cap</span>(<span class="params">command_executor=<span class="literal">None</span></span>):</span></span><br><span class="line">	<span class="keyword">if</span> <span class="keyword">not</span> command_executor:</span><br><span class="line">   		<span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># requests respects environment variables on proxy and does not bypass localhost.</span></span><br><span class="line">    <span class="comment"># It seems the new post IETF draft catches eyes to solve such issues,</span></span><br><span class="line">    <span class="comment"># https://tools.ietf.org/html/draft-west-let-localhost-be-localhost-04</span></span><br><span class="line">    os.environ[<span class="string">&#x27;NO_PROXY&#x27;</span>] = <span class="string">&#x27;localhost&#x27;</span></span><br><span class="line"></span><br><span class="line">    url = command_executor + <span class="string">&#x27;/sessions&#x27;</span></span><br><span class="line">    resp = requests.get(url=url)</span><br><span class="line">    data = json.loads(resp.text)</span><br><span class="line">    <span class="keyword">if</span> data[<span class="string">&#x27;value&#x27;</span>]:</span><br><span class="line">        <span class="keyword">return</span> data[<span class="string">&#x27;value&#x27;</span>][<span class="number">0</span>][<span class="string">&#x27;id&#x27;</span>], data[<span class="string">&#x27;value&#x27;</span>][<span class="number">0</span>][<span class="string">&#x27;capabilities&#x27;</span>]</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>(End of Aug 08, 2017 Update)</p>
+<h3 id="Capture-Existing-Selenium-Session"><a href="#Capture-Existing-Selenium-Session" class="headerlink" title="Capture Existing Selenium Session"></a>Capture Existing Selenium Session</h3><p>With an effective session ID and executing commander URL, the captured web driver class overwrites start_session method. Property “w3c” is assigned for Web Element Find method groups.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CapturedDriver</span>(<span class="params">WebDriver</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; CapturedDriver.doctest_visit_github()</span></span><br><span class="line"><span class="string">    PASS</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self,</span></span></span><br><span class="line"><span class="params"><span class="function">                 command_executor=<span class="literal">None</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">                 desired_capabilities=&#123;&#125;,</span></span></span><br><span class="line"><span class="params"><span class="function">                 browser_profile=<span class="literal">None</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">                 proxy=<span class="literal">None</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">                 keep_alive=<span class="literal">False</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">                 session_id=<span class="literal">None</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">                 w3c=<span class="literal">True</span></span>):</span></span><br><span class="line">        <span class="built_in">super</span>(CapturedDriver, self).__init__(command_executor, desired_capabilities, browser_profile, proxy, keep_alive)</span><br><span class="line">        self.session_id = session_id</span><br><span class="line">        self.w3c = w3c</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">start_session</span>(<span class="params">self, desired_capabilities, browser_profile</span>):</span></span><br><span class="line">        self.capabilities = &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">doctest_visit_github</span>():</span></span><br><span class="line">        d = wd.Firefox()</span><br><span class="line">        d.get(<span class="string">&#x27;http://github.com&#x27;</span>)</span><br><span class="line">        <span class="comment"># &quot;The world&#x27;s leading software development platform · GitHub&quot;</span></span><br><span class="line">        title1 = d.title</span><br><span class="line">        d2 = CapturedDriver(command_executor=d.command_executor, session_id=d.session_id, w3c=d.w3c)</span><br><span class="line">        title2 = d2.title</span><br><span class="line">        <span class="keyword">if</span> title1 == title2:</span><br><span class="line">            <span class="built_in">print</span> <span class="string">&quot;PASS&quot;</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span> <span class="string">&quot;driver title is %s, captured driver title is %s&quot;</span> % (title1, title2)</span><br><span class="line">        d.quit()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="keyword">import</span> doctest</span><br><span class="line">    doctest.testmod()</span><br></pre></td></tr></table></figure>
+<p>The unit test is implemented with doctest as a fast way for experiment codes.</p>
+<p>The source code is shared at <a target="_blank" rel="noopener" href="https://github.com/maxwu/selenium-behave-box/blob/master/src/captured_driver/captured_driver.py">Github Folder</a> now. Java binding solution is still under construction. After that, a separate Github project will be created to maintain this solution together with monitoring bash shell. </p>
+<h2 id="Test-The-Solution"><a href="#Test-The-Solution" class="headerlink" title="Test The Solution"></a>Test The Solution</h2><p>To tes the solution, open a selenium session and extract the session ID and commander URL. For a quick test, the existing github project <a target="_blank" rel="noopener" href="https://github.com/maxwu/cucumber-java-toy">cucumber-java-toy</a> is used. The code is as below:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">webDriver1</span><span class="params">()</span></span>&#123;</span><br><span class="line">    githubPage = <span class="keyword">new</span> GithubPage(driver, <span class="string">&quot;maxwu&quot;</span>);</span><br><span class="line">    List&lt;String&gt; followings = githubPage.getFollowingList();</span><br><span class="line">    followings.stream().forEach(System.out::println);</span><br><span class="line"></span><br><span class="line">    URL driverUrl = ((HttpCommandExecutor)(((RemoteWebDriver) driver).getCommandExecutor())).getAddressOfRemoteServer();</span><br><span class="line">    String sessionId = ((RemoteWebDriver) driver).getSessionId().toString();</span><br><span class="line">    System.out.println(<span class="string">&quot;URL=&quot;</span> + driverUrl + <span class="string">&quot; ID=&quot;</span> + sessionId);</span><br><span class="line"></span><br><span class="line">    System.out.println(<span class="string">&quot;Old Title=&quot;</span> + driver.getTitle());</span><br><span class="line"></span><br><span class="line">    pause();</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>When the commander URL and session ID are available, the quick test could be performed with below Python snap.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> captured_driver.captured_driver <span class="keyword">import</span> CapturedDriver</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="comment"># For temp test</span></span><br><span class="line">    <span class="comment"># d = CapturedDriver(command_executor=&#x27;http://127.0.0.1:4444/wd/hub&#x27;, session_id=&#x27;&#x27;)</span></span><br><span class="line">    d = CapturedDriver(command_executor=<span class="string">&#x27;http://localhost:6064 &#x27;</span>, session_id=<span class="string">&#x27;49075f494d1add687ab74f1cb95f0314&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span> <span class="string">&quot;Captured Session Title is %s&quot;</span> % d.title</span><br><span class="line">    explore = d.find_element_by_link_text(<span class="string">&quot;Explore&quot;</span>)</span><br><span class="line">    explore.click()</span><br><span class="line">    <span class="built_in">print</span> <span class="string">&quot;Captured Session Title changes to %s&quot;</span> % d.title</span><br><span class="line">    d.back()</span><br></pre></td></tr></table></figure>
+<p>Successful output of test code shall be:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Captured Session Title is maxwu (Max WU) / Following · GitHub</span><br><span class="line">Captured Session Title changes to Explore · GitHub</span><br></pre></td></tr></table></figure>
+<p>Since browser is not running in headless mode, the page transition and backward movement action can also be visual checked that the captured web driver works fine and either driver can quit the session, which leads to a termination on web driver executable process, too.</p>
+<h2 id="Future-Works"><a href="#Future-Works" class="headerlink" title="Future Works"></a>Future Works</h2><ul>
+<li><p>Add query on “/sessions” end point for Selenium Java Binding.<br>Prototype passed test. (TODO: update github and maintain in separate repo).</p>
+</li>
+<li><p>Implement Captured Web Driver with Selenium Java Binding.</p>
+</li>
+<li><p>It works fine with GeckoDriver for Firefox on both Mac and Windows. However, IEDriverServer throws 404 error while performing “find*” API calls. </p>
+<p>It finally reject the 2nd connection with Selenium Python binding. In the meantime, title/url property query through the JSON wired protocol works well.</p>
+</li>
+</ul>
+<h2 id="Change-Log"><a href="#Change-Log" class="headerlink" title="Change Log"></a>Change Log</h2><p>Aug 06, 2017: Initial post as a quick note on captured session with selenium web driver.</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Concrete-level-tag/" rel="tag"># Concrete-level-tag</a>
+              <a href="/tags/Automation-Test/" rel="tag"># Automation Test</a>
+              <a href="/tags/Selenium/" rel="tag"># Selenium</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/07/25/Briefing-on-Performance-Testing/" rel="prev" title="A Dip on Performance Testing">
+      <i class="fa fa-chevron-left"></i> A Dip on Performance Testing
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/08/13/Selenium-and-WebDriver-Version-Selection/" rel="next" title="Selenium and WebDriver Version Selection">
+      Selenium and WebDriver Version Selection <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-to-Solve"><span class="nav-number">1.</span> <span class="nav-text">Problem to Solve</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution"><span class="nav-number">2.</span> <span class="nav-text">Solution</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Find-Existing-Session-ID"><span class="nav-number">2.1.</span> <span class="nav-text">Find Existing Session ID</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Capture-Existing-Selenium-Session"><span class="nav-number">2.2.</span> <span class="nav-text">Capture Existing Selenium Session</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Test-The-Solution"><span class="nav-number">3.</span> <span class="nav-text">Test The Solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Future-Works"><span class="nav-number">4.</span> <span class="nav-text">Future Works</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Change-Log"><span class="nav-number">5.</span> <span class="nav-text">Change Log</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Max Wu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">104</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Max Wu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

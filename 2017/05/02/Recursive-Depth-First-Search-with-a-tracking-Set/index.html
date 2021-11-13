@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"maxwu.me","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Inspired by a StackOverflow(SOF) question, this post is a refreshment on DFS and key points to take care before coding a recursive DFS.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Recursive Depth-First-Search with a tracking Set">
+<meta property="og:url" content="http://maxwu.me/2017/05/02/Recursive-Depth-First-Search-with-a-tracking-Set/index.html">
+<meta property="og:site_name" content="+U Maxout!">
+<meta property="og:description" content="Inspired by a StackOverflow(SOF) question, this post is a refreshment on DFS and key points to take care before coding a recursive DFS.">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2017-05-01T13:38:10.000Z">
+<meta property="article:modified_time" content="2021-10-24T22:03:14.507Z">
+<meta property="article:author" content="Max Wu">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="Algorithm">
+<meta property="article:tag" content="DFS">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://maxwu.me/2017/05/02/Recursive-Depth-First-Search-with-a-tracking-Set/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Recursive Depth-First-Search with a tracking Set | +U Maxout!</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">+U Maxout!</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://maxwu.me/2017/05/02/Recursive-Depth-First-Search-with-a-tracking-Set/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Max Wu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="+U Maxout!">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Recursive Depth-First-Search with a tracking Set
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-05-02 01:38:10" itemprop="dateCreated datePublished" datetime="2017-05-02T01:38:10+12:00">2017-05-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-10-25 11:03:14" itemprop="dateModified" datetime="2021-10-25T11:03:14+13:00">2021-10-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming/" itemprop="url" rel="index"><span itemprop="name">Programming</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Inspired by a StackOverflow(SOF) question, this post is a refreshment on DFS and key points to take care before coding a recursive DFS.<br><span id="more"></span></p>
+<h2 id="The-Problem-Statement"><a href="#The-Problem-Statement" class="headerlink" title="The Problem Statement"></a>The Problem Statement</h2><blockquote>
+<p>I have the following lists:<br>Animals Food Cat Fish Dog Pork Beef I would like to allocate food to the animals in as many different ways as possible like:</p>
+</blockquote>
+<p>Each different animal and food combination will be stored in a map.</p>
+<p>(Cat eats Fish, Dog eats Pork)</p>
+<p>(Cat eats Fish, Dog eats Beef)</p>
+<p>(Cat eats Pork, Dog eats Fish)</p>
+<p>(Cat eats Pork, Dog eats Beef)</p>
+<p>(Cat eats Beef, Dog eats Fish)</p>
+<p>(Cat eats Beef, Dog eats Pork)</p>
+<p>Finally all the maps will be put in a set and returned.<br>I am trying to use recursive function for the same and the following is how I tried it.. but am not able to get it right it right, so please help me to make it.</p>
+<p>It intends to keep the method fingerprint (“will return Set object”) and the incomplete code has no global tracking table as usual.</p>
+<p>The method fingerprint provide by problem statement.</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> Set&lt;Map&lt;Animal, Food&gt;&gt; eats(List&lt;Animal&gt; animal, List&lt;Food&gt; food);</span><br></pre></td></tr></table></figure>
+<p>The original SFO link is <a target="_blank" rel="noopener" href="http://stackoverflow.com/questions/43702227/java-recursive-food-allocation/43719930#43719930">http://stackoverflow.com/questions/43702227/java-recursive-food-allocation/43719930#43719930</a></p>
+<h2 id="Solution-and-Description"><a href="#Solution-and-Description" class="headerlink" title="Solution and Description"></a>Solution and Description</h2><h3 id="Solution-Codes"><a href="#Solution-Codes" class="headerlink" title="Solution Codes"></a>Solution Codes</h3><p><strong>DFS</strong>: Depth First Search. For DFS, we define the machine friendly rephrasing of problem space and lunch the search until termination condition is satisfied.</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">import</span> java.util.stream.Collectors;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SFO_Recursive</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">        CAT, DOG ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">Food</span> </span>&#123;</span><br><span class="line">        FISH, BEEF, PORK ;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Set&lt;Map&lt;Animal, Food&gt;&gt; eats(List&lt;Animal&gt; animal, List&lt;Food&gt; food) &#123;</span><br><span class="line">        Set&lt;Map&lt;Animal,Food&gt;&gt; fleet = <span class="keyword">new</span> HashSet();</span><br><span class="line">        <span class="keyword">for</span> (Animal a: animal)&#123;</span><br><span class="line">            <span class="keyword">for</span> (Food f: food)&#123;</span><br><span class="line">                <span class="comment">// Take a step with (a, f)</span></span><br><span class="line">                List&lt;Food&gt; food_left = food.stream().filter(x -&gt; !x.equals(f)).collect(Collectors.toList());</span><br><span class="line">                List&lt;Animal&gt; animal_left = animal.stream().filter(x -&gt; !x.equals(a)).collect(Collectors.toList());</span><br><span class="line">                <span class="keyword">if</span> (animal_left.isEmpty() || food_left.isEmpty())&#123;</span><br><span class="line">                    <span class="comment">// Terminal state</span></span><br><span class="line">                    fleet.add(<span class="keyword">new</span> HashMap&lt;Animal, Food&gt;()&#123;&#123;put(a,f);&#125;&#125;);</span><br><span class="line">                &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                    eats(animal_left, food_left).stream().forEach(s -&gt; &#123;s.put(a, f); fleet.add(s); &#125;);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> fleet;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        SFO_Recursive.eats(</span><br><span class="line">            Arrays.asList(Animal.CAT, Animal.DOG),</span><br><span class="line">            Arrays.asList(Food.BEEF, Food.FISH, Food.PORK)</span><br><span class="line">        ).stream().forEach(System.out::println);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>The output of above codes:<br><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;CAT=BEEF, DOG=PORK&#125;</span><br><span class="line">&#123;CAT=PORK, DOG=BEEF&#125;</span><br><span class="line">&#123;CAT=BEEF, DOG=FISH&#125;</span><br><span class="line">&#123;CAT=FISH, DOG=BEEF&#125;</span><br><span class="line">&#123;CAT=FISH, DOG=PORK&#125;</span><br><span class="line">&#123;CAT=PORK, DOG=FISH&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="Key-Points-in-DFS-before-Coding"><a href="#Key-Points-in-DFS-before-Coding" class="headerlink" title="Key Points in DFS before Coding"></a>Key Points in DFS before Coding</h3><p>In worst case, the time complexity is $O(|V| + |E|)$. V and E are vertex and edge sets. For recursive Depth-First-Search coding, besides the initial state and problem space representation, there are two key things to take care (before starting programming): </p>
+<ul>
+<li><p><strong>Terminal State Evaluation</strong></p>
+<ul>
+<li>Test condition to determine whether current state is a temrinal one</li>
+<li>Any additional tests to judge if it is an effective result to retrun</li>
+<li>How to pack up the data to return </li>
+</ul>
+</li>
+<li><p><strong>The reduce step</strong>: How to apply current step to a partial result from (future) terminal state(s)</p>
+<ul>
+<li>Let’s assume the rest data are already processed by future states and we have time machine to get back to “now”</li>
+<li>Here the key is to add (animal, food) pair into an existing Set<ul>
+<li>For each element of Set, the new pair can be appended into the element (Map)</li>
+<li>The hashCode algorithms of Map, Map Entries are reliable to directly add new pair without additional restriction check.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>If we have to keep the method fingerprint to return Set with inputs of two Lists. The terminal condition is the obvious empty list in either parameter to stop the search. To apply current step to a Set, we can loop all the Maps and just add the combination of new Animal obj and new Food obj to each one but rely on Set class to check whether unique Map is added. Without global tracking table, we can remove consumed elements from Animal and Food Lists to send the information to next state.</p>
+<h3 id="About-Java-hashCode-Algorithms"><a href="#About-Java-hashCode-Algorithms" class="headerlink" title="About Java hashCode() Algorithms"></a>About Java hashCode() Algorithms</h3><p>Java test equality, “==”, by hashCode(). Map calculate hashCode as $\sum{_{k,v\ in\ map}} (hashCode(k)$ ^ $hashCode(v))$. Every enum value has an unique hashCode by default. Therefore, it is okay to directly add Map elements.</p>
+<p>The simplified formula in other format:<br>Map.hashCode() = $\sum (entry.key.hashCode()$ ^ $entry.val.hashCode())$</p>
+<h3 id="Another-Example-from-SFO"><a href="#Another-Example-from-SFO" class="headerlink" title="Another Example from SFO"></a>Another Example from SFO</h3><p>I confess the AI of SFO is effective as I recommend another DFS algorithm related topic. The original question on codereview.stackexchange.com is on <a target="_blank" rel="noopener" href="https://codereview.stackexchange.com/questions/161989/recursively-listing-files-in-python">Link</a>. </p>
+<p>It is about to walk full paths from a start directory and search for files only with restrictions of min and max Depth.</p>
+<p>In this problem, the original code has mixed min depth check and max depth. Usually DFS check the max depth at first of code block, because it is (part of) <strong>Terminal State</strong> test. The recursion needs to know whether to terminate current approach direction at beginning for most cases. In other words, first sub-problem is whether to cut this search branch.</p>
+<p>With a simple correction, here is the working program. Change happens in 3rd line.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">atDirList4</span>(<span class="params">startDir, maxDepth=sys.maxsize, minDepth=<span class="number">0</span>, curDepth=<span class="number">0</span></span>):</span></span><br><span class="line">    ret = []</span><br><span class="line">    <span class="keyword">if</span> curDepth &lt; maxDepth:</span><br><span class="line">        <span class="keyword">for</span> item <span class="keyword">in</span> os.listdir(startDir):</span><br><span class="line">            fullItem = os.path.join(startDir, item)</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                <span class="keyword">if</span> os.path.isfile(fullItem) <span class="keyword">and</span> curDepth &gt;= minDepth:</span><br><span class="line">                    ret.append(fullItem)</span><br><span class="line">                <span class="keyword">elif</span> os.path.isdir(fullItem) <span class="keyword">and</span> curDepth + <span class="number">1</span> &lt;= maxDepth:</span><br><span class="line">                    ret.extend(atDirList4(fullItem, maxDepth, minDepth, curDepth + <span class="number">1</span>))</span><br><span class="line">            <span class="keyword">except</span> OSError:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">    <span class="keyword">return</span> ret</span><br></pre></td></tr></table></figure>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><blockquote>
+<p>My original answer on StackOverflow: <a target="_blank" rel="noopener" href="http://stackoverflow.com/a/43719930/230100">http://stackoverflow.com/a/43719930/230100</a></p>
+</blockquote>
+<blockquote>
+<p>DFS Definition on Wikipedia: <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Depth-first_search">https://en.wikipedia.org/wiki/Depth-first_search</a></p>
+</blockquote>
+<h2 id="Change-Log"><a href="#Change-Log" class="headerlink" title="Change Log"></a>Change Log</h2><ul>
+<li>May 18, 2017: render equations with MaxthJax format.</li>
+<li>May 03, 2017: add Python DFS example.</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/Algorithm/" rel="tag"># Algorithm</a>
+              <a href="/tags/DFS/" rel="tag"># DFS</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/04/15/Share-a-Shell-Toy-with-Buddies/" rel="prev" title="Share a Shell Toy with Buddies">
+      <i class="fa fa-chevron-left"></i> Share a Shell Toy with Buddies
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/05/12/CIstat-preview-version-released/" rel="next" title="CIstat preview version released">
+      CIstat preview version released <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Problem-Statement"><span class="nav-number">1.</span> <span class="nav-text">The Problem Statement</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-and-Description"><span class="nav-number">2.</span> <span class="nav-text">Solution and Description</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution-Codes"><span class="nav-number">2.1.</span> <span class="nav-text">Solution Codes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Key-Points-in-DFS-before-Coding"><span class="nav-number">2.2.</span> <span class="nav-text">Key Points in DFS before Coding</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#About-Java-hashCode-Algorithms"><span class="nav-number">2.3.</span> <span class="nav-text">About Java hashCode() Algorithms</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Another-Example-from-SFO"><span class="nav-number">2.4.</span> <span class="nav-text">Another Example from SFO</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#References"><span class="nav-number">3.</span> <span class="nav-text">References</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Change-Log"><span class="nav-number">4.</span> <span class="nav-text">Change Log</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Max Wu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">104</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Max Wu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
