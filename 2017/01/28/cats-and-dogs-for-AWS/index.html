@@ -28,7 +28,7 @@
 <meta property="og:description" content="When I worked on a wireless basestation project, there is an IPL layer to configure and manage uboot, uboot to configure and manage build images, image starts HAL, the HAL calls WatchCat, WatchCat wat">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2017-01-28T09:20:16.000Z">
-<meta property="article:modified_time" content="2021-10-24T22:03:14.510Z">
+<meta property="article:modified_time" content="2017-01-28T09:20:16.000Z">
 <meta property="article:author" content="Max Wu">
 <meta property="article:tag" content="AWS">
 <meta property="article:tag" content="Ansible">
@@ -194,13 +194,6 @@
 
               <time title="Created: 2017-01-28 22:20:16" itemprop="dateCreated datePublished" datetime="2017-01-28T22:20:16+13:00">2017-01-28</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-10-25 11:03:14" itemprop="dateModified" datetime="2021-10-25T11:03:14+13:00">2021-10-25</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -223,98 +216,90 @@
 
       
         <p>When I worked on a wireless basestation project, there is an IPL layer to configure and manage uboot, uboot to configure and manage build images, image starts HAL, the HAL calls WatchCat, WatchCat wathes soft WatchDog, then the watchdog propagate Apps which talks via USL (Universal Software Layer). Now AWS runs in an eco as well. There are plenty of Cats and Dogs which can prepare, configure, watch(monitor) even take care your services, containers, apps, or, hosts.</p>
-<p>This post summarizes the eco services as Ansible, Datadog, CircleCI, Terraform and draws a list for further self-study.<br><span id="more"></span></p>
+<p>This post summarizes the eco services as Ansible, Datadog, CircleCI, Terraform and draws a list for further self-study. <span id="more"></span></p>
 <ul>
-<li><p><strong>Management</strong></p>
+<li><strong>Management</strong>
 <ul>
-<li><p><strong>Ansible</strong>, no preinstalled package.</p>
+<li><strong>Ansible</strong>, no preinstalled package.
 <ul>
 <li>Simple to deploy as it only requests Python and SSH connection to target. As Fabric, Ansible is also based on paramiko.</li>
 <li>It will transfer executables to targets and call them via preconfigured YAML as DSL.</li>
 <li>More than 450 modules available.</li>
-<li>Three ways to run:<ul>
+<li>Three ways to run:
+<ul>
 <li>cli ad-hoc run ansible;</li>
 <li>Playbook;</li>
 <li>With automation framework: Tower.</li>
-</ul>
-</li>
+</ul></li>
 <li><strong>Fabric</strong> automates CLI in Py Lib, ansible automates the process.</li>
-</ul>
-</li>
-<li><p><strong>Chef</strong></p>
+</ul></li>
+<li><strong>Chef</strong>
 <ul>
 <li>Use recipes to reuse processes;</li>
 <li>In Ruby based DSL, (looks more like scripts)</li>
 <li>Needs CouchDB and RabbitMQ on server side</li>
 <li>Communication to RESTful via HTTPs with pem key file.</li>
 <li>One <strong>Chef server</strong>, multiple knives (<strong>Chef Workstation</strong>, just the laptop of administrators), multiple <strong>Chef Nodes</strong> (clients, the target to manage, support 1st class CLX as docker)</li>
-</ul>
-</li>
-<li><strong>Puppet</strong><ul>
+</ul></li>
+<li><strong>Puppet</strong>
+<ul>
 <li>Just install by gem;</li>
 <li>No intermedia software to install</li>
-</ul>
-</li>
-<li><strong>SaltStack</strong>, <ul>
+</ul></li>
+<li><strong>SaltStack</strong>,
+<ul>
 <li>YAML config and Python lib, similar to Ansible;</li>
 <li>Needs a package SaltStack minion installed on target as prerequisite.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>Infrastructure Creators</strong> (Infrastructure as Code)</p>
+</ul></li>
+</ul></li>
+<li><strong>Infrastructure Creators</strong> (Infrastructure as Code)
 <ul>
-<li><strong>Packer</strong>, <ul>
+<li><strong>Packer</strong>,
+<ul>
 <li>Creating AMI via JSON config.</li>
-</ul>
-</li>
-<li><strong>Terraform</strong>, <ul>
+</ul></li>
+<li><strong>Terraform</strong>,
+<ul>
 <li>Create infrastructure via DSL;</li>
 <li>Support multiple platforms: Azure, AWS, Openstack, et.</li>
-</ul>
-</li>
-<li><strong>cloudtools</strong>, <ul>
-<li>Open source, <a target="_blank" rel="noopener" href="https://github.com/cloudtools">https://github.com/cloudtools</a>;</li>
+</ul></li>
+<li><strong>cloudtools</strong>,
+<ul>
+<li>Open source, https://github.com/cloudtools;</li>
 <li>troposphere: Py lib to create AWS CloufFormation;</li>
 <li>awacs: Py lib to create AWS Access Policy.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>DevOps</strong></p>
+</ul></li>
+</ul></li>
+<li><strong>DevOps</strong>
 <ul>
 <li>CircleCI: free for open source projects</li>
 <li>Travis: free for open source projects</li>
-</ul>
-</li>
-<li><p><strong>Monitors</strong></p>
+</ul></li>
+<li><strong>Monitors</strong>
 <ul>
-<li><p><strong>DataDog</strong>,</p>
+<li><strong>DataDog</strong>,
 <ul>
 <li>Perf Analysis, as TingCloud, 14 days free trial.</li>
 <li>Needs target installation;</li>
 <li>Follow <strong>StatD</strong> protocol to send timely message via UDP to DataDog servicce then present to Web GUI with visualization.</li>
-</ul>
-</li>
-<li><p><strong>Netflix ICE</strong>,</p>
+</ul></li>
+<li><strong>Netflix ICE</strong>,
 <ul>
 <li>Opensource toolset focus on top-bottom cost and usage analysis.</li>
-</ul>
-</li>
-<li><strong>pagerduty</strong>, <ul>
-<li>Event driven reporter, 14 days free trial. </li>
-</ul>
-</li>
-<li><strong>Scalr</strong>,<ul>
+</ul></li>
+<li><strong>pagerduty</strong>,
+<ul>
+<li>Event driven reporter, 14 days free trial.</li>
+</ul></li>
+<li><strong>Scalr</strong>,
+<ul>
 <li>Needs rpm installaiton, free for open source on-premise mgt.</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<p>“Thoughts and Notes”</p>
-<p>The author also thinks that JSON or YAML based plain CloudFormation is not easy for human beings to edit directly. However, it seems most of the attempts are going to adapt a DSL based of Ruby or YAML. Based on my first sight opinion, this kind of problem is okay to adapt <strong>Template</strong> to help. For example, we can image to create CloudFormation via Jinjia2 flavor template. It is a smaller work and easy to develop. Some template rather than introducing something like YAML again. Web service developers are supposed to be familiar with at least one template as ASP, JSP, or Jinjia2(in Flask or Django).<br>Another way, still a DSL, maybe more programmable, in Scapy style as Python interpreted dsl to describe wrapped resources and linkages. Moreover, could this DSL run in an interactive way, possibly if we just call boto3 and make a lightweight way of feedbacks. </p>
+<hr />
+<p>"Thoughts and Notes"</p>
+<p>The author also thinks that JSON or YAML based plain CloudFormation is not easy for human beings to edit directly. However, it seems most of the attempts are going to adapt a DSL based of Ruby or YAML. Based on my first sight opinion, this kind of problem is okay to adapt <strong>Template</strong> to help. For example, we can image to create CloudFormation via Jinjia2 flavor template. It is a smaller work and easy to develop. Some template rather than introducing something like YAML again. Web service developers are supposed to be familiar with at least one template as ASP, JSP, or Jinjia2(in Flask or Django). Another way, still a DSL, maybe more programmable, in Scapy style as Python interpreted dsl to describe wrapped resources and linkages. Moreover, could this DSL run in an interactive way, possibly if we just call boto3 and make a lightweight way of feedbacks.</p>
 <p>Trying to make more practices with Anisble and check if one of them is still a valid idea to work further.</p>
 <p><em>Jan 31, 2017: After an inpiring discussion with some people this afternoon, knowing more are also sufferring on cloudformation plain edition or drafting, add above thoughts and notes part.</em></p>
 <p>EOF</p>
@@ -555,6 +540,59 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

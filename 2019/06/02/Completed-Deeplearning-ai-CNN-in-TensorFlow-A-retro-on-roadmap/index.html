@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://i.imgur.com/Gqldzu2m.png">
 <meta property="og:image" content="https://i.imgur.com/g9mL59pm.png">
 <meta property="article:published_time" content="2019-06-02T02:36:23.000Z">
-<meta property="article:modified_time" content="2021-10-24T22:03:14.504Z">
+<meta property="article:modified_time" content="2019-06-02T02:36:23.000Z">
 <meta property="article:author" content="Max Wu">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://i.imgur.com/Gqldzu2m.png">
@@ -194,13 +194,6 @@
 
               <time title="Created: 2019-06-02 14:36:23" itemprop="dateCreated datePublished" datetime="2019-06-02T14:36:23+12:00">2019-06-02</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-10-25 11:03:14" itemprop="dateModified" datetime="2021-10-25T11:03:14+13:00">2021-10-25</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -223,13 +216,19 @@
 
       
         <p>Cheers! Completed the Deeplearning.ai course <strong>Convolutional Neural Networks in TensorFlow</strong>.</p>
-<p><a target="_blank" rel="noopener" href="https://imgur.com/Gqldzu2"><img src="https://i.imgur.com/Gqldzu2m.png" alt="Deeplearning-ai-cert-tensorflow-ai-ml-dl"></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgur.com/Gqldzu2"><img src="https://i.imgur.com/Gqldzu2m.png" alt="Deeplearning-ai-cert-tensorflow-ai-ml-dl" /></a></p>
 <p>Following the roadmap, this is the 4th certificates on <a target="_blank" rel="noopener" href="https://www.coursera.org">Coursera.org</a> on the Machine Learning path.</p>
 <span id="more"></span>
-<p>Two big application areas are ready to commercialize Machine Learning with more powerful modern CPU or clouds, the computer visioning and NLP. Images and literal words are two main sources to extract features in our minds and so does the ML. </p>
+<p>Two big application areas are ready to commercialize Machine Learning with more powerful modern CPU or clouds, the computer visioning and NLP. Images and literal words are two main sources to extract features in our minds and so does the ML.</p>
 <table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Course</th>
 <th>Keywords</th>
 <th>Completion Date</th>
@@ -237,31 +236,31 @@
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><em><strong>Machine Learning</strong></em></td>
 <td>Andrew Ng course as ML 101</td>
 <td>Completed by <code>2017-11-05</code></td>
 <td>Standford University</td>
 </tr>
-<tr>
+<tr class="even">
 <td><em><strong>Introduction to Data Science in Python</strong></em></td>
 <td>An intro to PyNum and Pandas in Data Science</td>
 <td>4 weeks, Completed by <code>2018-04-08</code></td>
 <td>University of Michigan</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><em><strong>Convolutional Neural Networks in TensorFlow</strong></em></td>
 <td>Applying CNN with Tensorflow and techniques avoiding overfitting and Transferred learning</td>
 <td>4 weeks, Completed by <code>2019-05-31</code></td>
 <td>deeplearning.ai/coursera</td>
 </tr>
-<tr>
+<tr class="even">
 <td><em><strong>Introduction to TensorFlow for Artificial Intelligence, Machine Learning, and Deep Learning</strong></em></td>
 <td>TansorFlow and Typical ML technoiques and structures for Images</td>
 <td>4 weeks, Completed by <code>2019-05-04</code></td>
 <td>deeplearning.ai/coursera</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>Course TBD, Machine Learing in NLP</strong></td>
 <td>Applying ML to NLP, chatbots</td>
 <td>TODO: next step</td>
@@ -269,8 +268,8 @@
 </tr>
 </tbody>
 </table>
-<p>As on above table, the next bite will be NLP. Let’s move up, buddies!</p>
-<p><a target="_blank" rel="noopener" href="https://imgur.com/g9mL59p"><img src="https://i.imgur.com/g9mL59pm.png" alt="ML_Roadmap_draft_1"></a></p>
+<p>As on above table, the next bite will be NLP. Let's move up, buddies!</p>
+<p><a target="_blank" rel="noopener" href="https://imgur.com/g9mL59p"><img src="https://i.imgur.com/g9mL59pm.png" alt="ML_Roadmap_draft_1" /></a></p>
 
     </div>
 
@@ -503,6 +502,59 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

@@ -28,7 +28,7 @@
 <meta property="og:description" content="After upgrading hexo and dependencies in local repo package.json, when regenerating the github pages and pushed to remote repo, the customized domain starts to respond 404. Check github, the way to ad">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2019-05-01T10:02:08.000Z">
-<meta property="article:modified_time" content="2021-10-24T22:03:14.505Z">
+<meta property="article:modified_time" content="2019-05-01T10:02:08.000Z">
 <meta property="article:author" content="Max Wu">
 <meta property="article:tag" content="Github">
 <meta property="article:tag" content="Hexo">
@@ -193,13 +193,6 @@
 
               <time title="Created: 2019-05-01 22:02:08" itemprop="dateCreated datePublished" datetime="2019-05-01T22:02:08+12:00">2019-05-01</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-10-25 11:03:14" itemprop="dateModified" datetime="2021-10-25T11:03:14+13:00">2021-10-25</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -222,7 +215,7 @@
 
       
         <p>After upgrading hexo and dependencies in local repo package.json, when regenerating the github pages and pushed to remote repo, the customized domain starts to respond 404.</p>
-<p>Check github, the way to add customized domain is to add a CNAME file with each domain in one line. If user tries to manaully configure his/her own domain on github settings tab, a CNAME file will be pegged automatically by github. However, the manually grown CNAME file will be purged in next posting time if hexo is not correctly configured. </p>
+<p>Check github, the way to add customized domain is to add a CNAME file with each domain in one line. If user tries to manaully configure his/her own domain on github settings tab, a CNAME file will be pegged automatically by github. However, the manually grown CNAME file will be purged in next posting time if hexo is not correctly configured.</p>
 <p>Searching the hexo document, the place to hold this CNAME file is not local repo root folder but the root folder of hexo theme. In My case, it is <code>./themes/next-wuxubj-5.0.2/</code>. If your hexo applies other theme, please change to the corresponding folder name. This way, the CNAME file will be preserved.</p>
 
     </div>
@@ -460,6 +453,59 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

@@ -30,7 +30,7 @@
 <meta property="og:image" content="http://oei21r8n1.bkt.clouddn.com/SnapFitness-404.png?imageView/2/w/300/q/100">
 <meta property="og:image" content="http://oei21r8n1.bkt.clouddn.com/snapfitness-postman.png?imageView/2/w/300/q/100">
 <meta property="article:published_time" content="2017-01-10T02:24:05.000Z">
-<meta property="article:modified_time" content="2021-10-24T22:03:14.506Z">
+<meta property="article:modified_time" content="2017-01-10T02:24:05.000Z">
 <meta property="article:author" content="Max Wu">
 <meta property="article:tag" content="RESTful">
 <meta property="article:tag" content="Defect">
@@ -197,13 +197,6 @@
 
               <time title="Created: 2017-01-10 15:24:05" itemprop="dateCreated datePublished" datetime="2017-01-10T15:24:05+13:00">2017-01-10</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-10-25 11:03:14" itemprop="dateModified" datetime="2021-10-25T11:03:14+13:00">2021-10-25</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -229,24 +222,25 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>When I was querying nearby Gym on snapfitness website, it targeted to an HTTP 404 page. As an automation test analyst, I wrote a letter to the webmaster with analysis pointing to backend RESTful API defect and hope it will help :_) </p>
+        <p>When I was querying nearby Gym on snapfitness website, it targeted to an HTTP 404 page. As an automation test analyst, I wrote a letter to the webmaster with analysis pointing to backend RESTful API defect and hope it will help :_)</p>
 <p>Note that this defect only happens with <a target="_blank" rel="noopener" href="https://www.snapfitness.com/">snapfitness.com</a>, another domain <a target="_blank" rel="noopener" href="https://www.snapfitness247.co.nz/">snapfitness247.con.nz</a>is still working fine to return correct JSON data on POST Web API call (thru postman).</p>
-<p><img src="http://oei21r8n1.bkt.clouddn.com/SnapFitness-404.png?imageView/2/w/300/q/100" class="img-left" /><br><span id="more"></span></p>
+<p><img src="http://oei21r8n1.bkt.clouddn.com/SnapFitness-404.png?imageView/2/w/300/q/100" class="img-left" /><br />
+<span id="more"></span></p>
 <p>Just FYI, the defect brief description:</p>
-<h2 id="Reproduce-Steps"><a href="#Reproduce-Steps" class="headerlink" title="Reproduce Steps:"></a><u><strong><em>Reproduce Steps:</em></strong></u></h2><ol>
-<li><p>Navigate from the homepage of snapfitness to “Find A Gym”<br>The target URL is <a target="_blank" rel="noopener" href="https://www.snapfitness.com/">https://www.snapfitness.com/</a></p>
-</li>
-<li><p>Insert “Lower Hutt” into the blank of “city” and click the first result of “LOWER HUTT”<br>This click is redirected to <a target="_blank" rel="noopener" href="https://www.snapfitness.com/lower-hutt">https://www.snapfitness.com/lower-hutt</a><br>However, this URL leads to 404 page.</p>
-</li>
-<li><p>After a few seconds trying, guessing: the correct URL might be <a target="_blank" rel="noopener" href="https://www.snapfitness.com/gyms/lower-hutt">https://www.snapfitness.com/gyms/lower-hutt</a>. This is verified.</p>
-</li>
+<h2 id="reproduce-steps"><u><strong><em>Reproduce Steps:</em></strong></u></h2>
+<ol type="1">
+<li><p>Navigate from the homepage of snapfitness to "Find A Gym" The target URL is https://www.snapfitness.com/</p></li>
+<li><p>Insert "Lower Hutt" into the blank of "city" and click the first result of "LOWER HUTT" This click is redirected to https://www.snapfitness.com/lower-hutt However, this URL leads to 404 page.</p></li>
+<li><p>After a few seconds trying, guessing: the correct URL might be <a target="_blank" rel="noopener" href="https://www.snapfitness.com/gyms/lower-hutt">https://www.snapfitness.com/gyms/lower-hutt</a>. This is verified.</p></li>
 </ol>
-<h2 id="Possible-cause"><a href="#Possible-cause" class="headerlink" title="Possible cause:"></a><u><strong><em>Possible cause:</em></strong></u></h2><p>It tests(looks) like a typo in the backend <strong>JSON</strong> building in the Web API. Which is verified with Postman and the <strong>“infoWindow”</strong> data field in the JSON return from POST API to <strong>“<a target="_blank" rel="noopener" href="http://www.snapfitness.com/gyms/getLocations&quot;">www.snapfitness.com/gyms/getLocations&quot;</a></strong> contains incorrect URL (which would be utilized to composite the click link of Gym places queried from map).</p>
+<h2 id="possible-cause"><u><strong><em>Possible cause:</em></strong></u></h2>
+<p>It tests(looks) like a typo in the backend <strong>JSON</strong> building in the Web API. Which is verified with Postman and the <strong>"infoWindow"</strong> data field in the JSON return from POST API to <strong>"www.snapfitness.com/gyms/getLocations"</strong> contains incorrect URL (which would be utilized to composite the click link of Gym places queried from map).</p>
 <p>The test screenshot with postman to confirm above root cause guess.</p>
 <p><img src="http://oei21r8n1.bkt.clouddn.com/snapfitness-postman.png?imageView/2/w/300/q/100" class="img-left" /></p>
 <p>At last, below is the raw information captured from browser during issue.</p>
 <blockquote>
-<p>The error message on this 404 page:<br>404 PAGE NOT FOUND<br>The page you’re looking for does not exist or cannot be found at this time. If you feel you reached this page in error, please contact us at <a href="mailto:webmaster@snapfitness.com">webmaster@snapfitness.com</a>. Thank you.</p>
+<p>The error message on this 404 page:<br />
+404 PAGE NOT FOUND The page you're looking for does not exist or cannot be found at this time. If you feel you reached this page in error, please contact us at webmaster@snapfitness.com. Thank you.</p>
 </blockquote>
 <blockquote>
 <p>Dev Code: objl-0bd08226-2ab2-4fa3-9473906225e76271</p>
@@ -354,7 +348,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Reproduce-Steps"><span class="nav-number">1.</span> <span class="nav-text">Reproduce Steps:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Possible-cause"><span class="nav-number">2.</span> <span class="nav-text">Possible cause:</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#reproduce-steps"><span class="nav-number">1.</span> <span class="nav-text">Reproduce Steps:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#possible-cause"><span class="nav-number">2.</span> <span class="nav-text">Possible cause:</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -490,6 +484,59 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

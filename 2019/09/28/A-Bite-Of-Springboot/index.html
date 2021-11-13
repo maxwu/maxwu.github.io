@@ -28,7 +28,7 @@
 <meta property="og:description" content="The journey to migrate dotnet experiences to springboot and build a demo app from scratch, deploy it to kubernetes with explanation on technical points and the cloud native practice notes.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2019-09-28T08:37:33.000Z">
-<meta property="article:modified_time" content="2021-10-24T22:03:14.503Z">
+<meta property="article:modified_time" content="2019-09-28T08:37:33.000Z">
 <meta property="article:author" content="Max Wu">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="Springboot">
@@ -194,13 +194,6 @@
 
               <time title="Created: 2019-09-28 20:37:33" itemprop="dateCreated datePublished" datetime="2019-09-28T20:37:33+12:00">2019-09-28</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-10-25 11:03:14" itemprop="dateModified" datetime="2021-10-25T11:03:14+13:00">2021-10-25</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -228,33 +221,44 @@
       
         <p>The journey to migrate dotnet experiences to springboot and build a demo app from scratch, deploy it to kubernetes with explanation on technical points and the cloud native practice notes.</p>
 <span id="more"></span>
-<h2 id="Backgounds"><a href="#Backgounds" class="headerlink" title="Backgounds"></a>Backgounds</h2><p>As a pythonist on system level, I built several my experience with Java Web Frameworks are mostly on structs MVC as an UI backend to interact with JQuery to present the status and management from message security gateway products. However, according to the reality of circumstance, framework seems much more impressive than computer science and ways of thoughts. </p>
-<p>It’s the time to take a bite on Springboot and see what’s inside. </p>
-<h2 id="1-Environment"><a href="#1-Environment" class="headerlink" title="1 Environment"></a>1 Environment</h2><p>In brief, Jetbrain IntelliJ community version on Mac. I used to program Python on PyCharm and IntelliJ shares similar features on Java IDE.</p>
+<h2 id="backgounds">Backgounds</h2>
+<p>As a pythonist on system level, I built several my experience with Java Web Frameworks are mostly on structs MVC as an UI backend to interact with JQuery to present the status and management from message security gateway products. However, according to the reality of circumstance, framework seems much more impressive than computer science and ways of thoughts.</p>
+<p>It's the time to take a bite on Springboot and see what's inside.</p>
+<h2 id="environment">1 Environment</h2>
+<p>In brief, Jetbrain IntelliJ community version on Mac. I used to program Python on PyCharm and IntelliJ shares similar features on Java IDE.</p>
 <p>Java toolchain will be organized in Gradle. Maven is an alternative which I used in previous test automation tools. However, gradle is graceful and brief.</p>
 <p>Eventually the service will be wrapped in kubernetes pod but it is not the first step.</p>
-<h2 id="2-Create-A-New-Springboot-App"><a href="#2-Create-A-New-Springboot-App" class="headerlink" title="2 Create A New Springboot App"></a>2 Create A New Springboot App</h2><p>Springboot web site offers <code>curl</code> interface to generate a demo project to start from. Visit <a target="_blank" rel="noopener" href="https://start.spring.io">https://start.spring.io</a> on cli tool curl will show the manual on how to generate springboot scaffold.</p>
+<h2 id="create-a-new-springboot-app">2 Create A New Springboot App</h2>
+<p>Springboot web site offers <code>curl</code> interface to generate a demo project to start from. Visit https://start.spring.io on cli tool curl will show the manual on how to generate springboot scaffold.</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">curl https://start.spring.io</span><br><span class="line"># The response shows a manual page with below samples.</span><br><span class="line">Examples:</span><br><span class="line"></span><br><span class="line">To create a default demo.zip:</span><br><span class="line">	$ curl https://start.spring.io/starter.zip -o demo.zip</span><br><span class="line"></span><br><span class="line">To create a web project using Java 11:</span><br><span class="line">	$ curl https://start.spring.io/starter.zip -d dependencies=web \\</span><br><span class="line">			-d javaVersion=11 -o demo.zip</span><br><span class="line"></span><br><span class="line">To create a web/data-jpa gradle project unpacked:</span><br><span class="line">	$ curl https://start.spring.io/starter.tgz -d dependencies=web,data-jpa \\</span><br><span class="line">		   -d type=gradle-project -d baseDir=my-dir | tar -xzvf -</span><br><span class="line"></span><br><span class="line">To generate a Maven POM with war packaging:</span><br><span class="line">	$ curl https://start.spring.io/pom.xml -d packaging=war -o pom.xml</span><br></pre></td></tr></table></figure>
 <p>I chose a demo web project using Java 8. Which means, a wrapped dependency of <code>spring-boot-starter-web</code>. Springboo will interrepte it to real dependencies.</p>
 <p><code>curl https://start.spring.io/starter.zip -d dependencies=web -d javaVersion=8 -d type=gradle-project -o demo.zip</code></p>
-<p>Alternatively, open IntelliJ menu to “New Project” will also provide options to visit <code>start.spring.io</code> within the IDE UI to create project scaffold.</p>
-<h2 id="3-Launch-Springboot-Demo"><a href="#3-Launch-Springboot-Demo" class="headerlink" title="3 Launch Springboot Demo"></a>3 Launch Springboot Demo</h2><p>When importing the scaffold project to IntelliJ, a run configuration with main class on the <code>DemoApplication</code> , where the annotation <code>@SpringBootApplication</code> is applied, will be created. Run the configuration “DemoApplication” will launch Springboo web app in couple of seconds. However, visiting <code>localhost:8080</code> will still return an error page since there is nothing to respond.</p>
+<p>Alternatively, open IntelliJ menu to "New Project" will also provide options to visit <code>start.spring.io</code> within the IDE UI to create project scaffold.</p>
+<h2 id="launch-springboot-demo">3 Launch Springboot Demo</h2>
+<p>When importing the scaffold project to IntelliJ, a run configuration with main class on the <code>DemoApplication</code> , where the annotation <code>@SpringBootApplication</code> is applied, will be created. Run the configuration "DemoApplication" will launch Springboo web app in couple of seconds. However, visiting <code>localhost:8080</code> will still return an error page since there is nothing to respond.</p>
 <p>For the gradle configured project, the IntelliJ would spend a bit while to download gradle dependencies.</p>
-<p>A simple controller class is added to respond string content to path <code>/</code>. Thanks to IntelliJ, the annotations are auto-completed. Key points here are “GetMapping” annotation to specify the path of <code>/</code> and “RespenseBody” annotation t</p>
+<p>A simple controller class is added to respond string content to path <code>/</code>. Thanks to IntelliJ, the annotations are auto-completed. Key points here are "GetMapping" annotation to specify the path of <code>/</code> and "RespenseBody" annotation t</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.demo;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ResponseBody;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/&quot;)</span></span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">home</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Home&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>Like <code>npm run</code> but more verbose than the node.js cmd, luanch <code>./gradlew tasks</code> or directly run <code>gradle tasks</code> in root folder of project would print out a task list which can be run by gradle plugin. If it is the first time running <code>gradle</code>, the gradle daemon shall be luanched and basic environment/dependencies checks would be performed first.</p>
 <p><code>gradlew</code> and <code>gradle.bat</code> are artifacts generated by <code>gradle warpper</code> task which empower environments with gradle preinstalled to run gradle toolchain commands.</p>
-<p>After updating the above controller class, run <code>gradle bootRun</code> would also run the springboot application to server <code>localhost:8080</code>. In the browser, the simple content “Home” is fetched and rendered.</p>
-<h2 id="4-Build-Docker-Image-for-Springboot-App"><a href="#4-Build-Docker-Image-for-Springboot-App" class="headerlink" title="4 Build Docker Image for Springboot App"></a>4 Build Docker Image for Springboot App</h2><p>As usual there are multiple ways to build docker images as first step to containerize the app. Thanks to the gradle community <code>com.palantir.docker</code> plugin is picked up in this demo project.</p>
-<p>The gradle pluin could be applied in build.script DSL or plugin DSL. This experiment applies the plugin DSL and build docker image with Dockerfile rather than docker plugin DSL to reuse author’s existing Dockerfile experiences for now.</p>
-<h3 id="4-1-Add-Plugin"><a href="#4-1-Add-Plugin" class="headerlink" title="4.1 Add Plugin"></a>4.1 Add Plugin</h3><p>Insert this plugin reference to build.gradle <code>id &#39;com.palantir.docker&#39; version &#39;0.22.1&#39;</code>.</p>
-<h3 id="4-2-Introduce-docker-Task"><a href="#4-2-Introduce-docker-Task" class="headerlink" title="4.2 Introduce docker Task"></a>4.2 Introduce <code>docker</code> Task</h3><p>The task is defined as below:</p>
+<p>After updating the above controller class, run <code>gradle bootRun</code> would also run the springboot application to server <code>localhost:8080</code>. In the browser, the simple content "Home" is fetched and rendered.</p>
+<h2 id="build-docker-image-for-springboot-app">4 Build Docker Image for Springboot App</h2>
+<p>As usual there are multiple ways to build docker images as first step to containerize the app. Thanks to the gradle community <code>com.palantir.docker</code> plugin is picked up in this demo project.</p>
+<p>The gradle pluin could be applied in build.script DSL or plugin DSL. This experiment applies the plugin DSL and build docker image with Dockerfile rather than docker plugin DSL to reuse author's existing Dockerfile experiences for now.</p>
+<h3 id="add-plugin">4.1 Add Plugin</h3>
+<p>Insert this plugin reference to build.gradle <code>id 'com.palantir.docker' version '0.22.1'</code>.</p>
+<h3 id="introduce-docker-task">4.2 Introduce <code>docker</code> Task</h3>
+<p>The task is defined as below:</p>
 <figure class="highlight gradle"><table><tr><td class="code"><pre><span class="line">docker &#123;</span><br><span class="line">	dependsOn build</span><br><span class="line">	name <span class="string">&quot;$&#123;project.group&#125;/$&#123;bootJar.baseName&#125;&quot;</span></span><br><span class="line">	files bootJar.archivePath</span><br><span class="line">	buildArgs([<span class="string">&#x27;JAR_FILE&#x27;</span>: <span class="string">&quot;$&#123;bootJar.archiveName&#125;&quot;</span>])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="4-3-Create-the-Dockerfile"><a href="#4-3-Create-the-Dockerfile" class="headerlink" title="4.3 Create the Dockerfile"></a>4.3 Create the Dockerfile</h3><p>To keep the image slim, alpine jdk8 image is picked as base image. </p>
+<h3 id="create-the-dockerfile">4.3 Create the Dockerfile</h3>
+<p>To keep the image slim, alpine jdk8 image is picked as base image.</p>
 <figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> openjdk:<span class="number">8</span>-jdk-alpine</span><br><span class="line"><span class="keyword">VOLUME</span><span class="bash"> /tmp</span></span><br><span class="line"><span class="keyword">ARG</span> JAR_FILE</span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> <span class="variable">$&#123;JAR_FILE&#125;</span> app.jar</span></span><br><span class="line"><span class="keyword">ENTRYPOINT</span><span class="bash"> [<span class="string">&quot;java&quot;</span>,<span class="string">&quot;-Djava.security.egd=file:/dev/./urandom&quot;</span>,<span class="string">&quot;-jar&quot;</span>,<span class="string">&quot;/app.jar&quot;</span>]</span></span><br></pre></td></tr></table></figure>
-<h3 id="4-4-Launch-Container-Locally"><a href="#4-4-Launch-Container-Locally" class="headerlink" title="4.4 Launch Container Locally"></a>4.4 Launch Container Locally</h3><p>With above Dockerfile and the     <code>docker</code> task inserted to gradle.build script, run <code>gradle docker</code> would (re)build the app image with dependencies. Quickly test the docker image by launching it locally, <code>docker run -p 8080:8080 -t com.example/demo</code>. Then open browser on URL <code>http://localhost:8080/</code> the same contents are responded “Home”.</p>
-<h2 id="5-Deploy-to-Kubernetes"><a href="#5-Deploy-to-Kubernetes" class="headerlink" title="5 Deploy to Kubernetes"></a>5 Deploy to Kubernetes</h2><p>(To be continued)</p>
-<h2 id="Change-Log"><a href="#Change-Log" class="headerlink" title="Change Log"></a>Change Log</h2><p>Sep 22, 2019: Configuration and start a new springboot app.<br>Sep 28, 2019: </p>
+<h3 id="launch-container-locally">4.4 Launch Container Locally</h3>
+<p>With above Dockerfile and the <code>docker</code> task inserted to gradle.build script, run <code>gradle docker</code> would (re)build the app image with dependencies. Quickly test the docker image by launching it locally, <code>docker run -p 8080:8080 -t com.example/demo</code>. Then open browser on URL <code>http://localhost:8080/</code> the same contents are responded "Home".</p>
+<h2 id="deploy-to-kubernetes">5 Deploy to Kubernetes</h2>
+<p>(To be continued)</p>
+<h2 id="change-log">Change Log</h2>
+<p>Sep 22, 2019: Configuration and start a new springboot app. Sep 28, 2019:</p>
 
     </div>
 
@@ -357,7 +361,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Backgounds"><span class="nav-number">1.</span> <span class="nav-text">Backgounds</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Environment"><span class="nav-number">2.</span> <span class="nav-text">1 Environment</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Create-A-New-Springboot-App"><span class="nav-number">3.</span> <span class="nav-text">2 Create A New Springboot App</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Launch-Springboot-Demo"><span class="nav-number">4.</span> <span class="nav-text">3 Launch Springboot Demo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Build-Docker-Image-for-Springboot-App"><span class="nav-number">5.</span> <span class="nav-text">4 Build Docker Image for Springboot App</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-Add-Plugin"><span class="nav-number">5.1.</span> <span class="nav-text">4.1 Add Plugin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-Introduce-docker-Task"><span class="nav-number">5.2.</span> <span class="nav-text">4.2 Introduce docker Task</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-Create-the-Dockerfile"><span class="nav-number">5.3.</span> <span class="nav-text">4.3 Create the Dockerfile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-Launch-Container-Locally"><span class="nav-number">5.4.</span> <span class="nav-text">4.4 Launch Container Locally</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Deploy-to-Kubernetes"><span class="nav-number">6.</span> <span class="nav-text">5 Deploy to Kubernetes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Change-Log"><span class="nav-number">7.</span> <span class="nav-text">Change Log</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#backgounds"><span class="nav-number">1.</span> <span class="nav-text">Backgounds</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#environment"><span class="nav-number">2.</span> <span class="nav-text">1 Environment</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#create-a-new-springboot-app"><span class="nav-number">3.</span> <span class="nav-text">2 Create A New Springboot App</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#launch-springboot-demo"><span class="nav-number">4.</span> <span class="nav-text">3 Launch Springboot Demo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#build-docker-image-for-springboot-app"><span class="nav-number">5.</span> <span class="nav-text">4 Build Docker Image for Springboot App</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#add-plugin"><span class="nav-number">5.1.</span> <span class="nav-text">4.1 Add Plugin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#introduce-docker-task"><span class="nav-number">5.2.</span> <span class="nav-text">4.2 Introduce docker Task</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#create-the-dockerfile"><span class="nav-number">5.3.</span> <span class="nav-text">4.3 Create the Dockerfile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#launch-container-locally"><span class="nav-number">5.4.</span> <span class="nav-text">4.4 Launch Container Locally</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#deploy-to-kubernetes"><span class="nav-number">6.</span> <span class="nav-text">5 Deploy to Kubernetes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#change-log"><span class="nav-number">7.</span> <span class="nav-text">Change Log</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -493,6 +497,59 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

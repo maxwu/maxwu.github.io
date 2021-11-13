@@ -29,7 +29,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://i.imgur.com/adsP1G1t.png">
 <meta property="article:published_time" content="2019-11-24T10:51:09.000Z">
-<meta property="article:modified_time" content="2021-10-24T22:03:14.510Z">
+<meta property="article:modified_time" content="2019-11-24T10:51:09.000Z">
 <meta property="article:author" content="Max Wu">
 <meta property="article:tag" content="Docker">
 <meta property="article:tag" content="Cloud">
@@ -195,13 +195,6 @@
 
               <time title="Created: 2019-11-24 23:51:09" itemprop="dateCreated datePublished" datetime="2019-11-24T23:51:09+13:00">2019-11-24</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-10-25 11:03:14" itemprop="dateModified" datetime="2021-10-25T11:03:14+13:00">2021-10-25</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -227,66 +220,68 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><a target="_blank" rel="noopener" href="https://imgur.com/adsP1G1"><img src="https://i.imgur.com/adsP1G1t.png" alt="Docker on the Producing Line"></a></p>
+        <p><a target="_blank" rel="noopener" href="https://imgur.com/adsP1G1"><img src="https://i.imgur.com/adsP1G1t.png" alt="Docker on the Producing Line" /></a></p>
 <p>The multi-stage supports in docker image building was introduced with Docker v17.05 in 2017. This post summarizes the practical points which can benefit the development experience, secure the data and reduce the docker image size.</p>
 <span id="more"></span>
-<h2 id="Multi-Stage-in-Docker-Image-Building"><a href="#Multi-Stage-in-Docker-Image-Building" class="headerlink" title="Multi-Stage in Docker Image Building"></a>Multi-Stage in Docker Image Building</h2><p>The multi-stage docker image build, in my practices, shows a way to resolve thress issues. </p>
+<h2 id="multi-stage-in-docker-image-building">Multi-Stage in Docker Image Building</h2>
+<p>The multi-stage docker image build, in my practices, shows a way to resolve thress issues.</p>
 <ul>
-<li><p>Data Security Supports: If there are previous steps to download the source, setting up the toolchain then there is a risk to leak information via incomplete deletion or to introudce more vulnerability by leaving the artifacts building toolchain on product images. Some cloud solution vendor offers special solution to build artifacts with homogeneous images and only delivery final artifacts in last image. </p>
-</li>
-<li><p>Reducing Docker Image Size: Docker image build generate new layer on each command and the AUFS applies <code>Lazy Deletion</code>. If caches and temporary files are removed in second command, the size wouldn’t be reduced from volume but just those files are marked as deleted in the new layer. As pointed by many <code>Dockerfile Best Practice</code> or guidelines, there are recommended tricky steps to keep the <code>dotnet build</code>, <code>yun install</code> or <code>apt-get install</code> followed by purges. Multi-stage build could resolve it by copying artifacts from another stage.</p>
-</li>
-<li><p>Easy to Maintain Dockerfile: The above two issues could be mitigated with well configured multiple images in a procedure to deliver the final artifacts only in last image. However, the Dockerfiles would have dependencies and the Dockerfile would be hard to maintain.</p>
-</li>
+<li><p>Data Security Supports: If there are previous steps to download the source, setting up the toolchain then there is a risk to leak information via incomplete deletion or to introudce more vulnerability by leaving the artifacts building toolchain on product images. Some cloud solution vendor offers special solution to build artifacts with homogeneous images and only delivery final artifacts in last image.</p></li>
+<li><p>Reducing Docker Image Size: Docker image build generate new layer on each command and the AUFS applies <code>Lazy Deletion</code>. If caches and temporary files are removed in second command, the size wouldn't be reduced from volume but just those files are marked as deleted in the new layer. As pointed by many <code>Dockerfile Best Practice</code> or guidelines, there are recommended tricky steps to keep the <code>dotnet build</code>, <code>yun install</code> or <code>apt-get install</code> followed by purges. Multi-stage build could resolve it by copying artifacts from another stage.</p></li>
+<li><p>Easy to Maintain Dockerfile: The above two issues could be mitigated with well configured multiple images in a procedure to deliver the final artifacts only in last image. However, the Dockerfiles would have dependencies and the Dockerfile would be hard to maintain.</p></li>
 </ul>
-<p>Multi-stage build was introduced to divide the docker image build into multiple stages which can pass artifacts from one to another and eventually ship the final artifacts in the last stage. </p>
-<h2 id="Examples-to-Reduce-Docker-Image"><a href="#Examples-to-Reduce-Docker-Image" class="headerlink" title="Examples to Reduce Docker Image"></a>Examples to Reduce Docker Image</h2><p>Take an example of upgrading googl-chrome browser version. The base image is <code>cypress/browers</code>. </p>
-<h3 id="Upgrade-Google-Chrome-without-Purging-the-Cache"><a href="#Upgrade-Google-Chrome-without-Purging-the-Cache" class="headerlink" title="Upgrade Google-Chrome without Purging the Cache"></a>Upgrade Google-Chrome without Purging the Cache</h3><p>The Dockefile is straight through:<br><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">FROM cypress/browsers:node11.13.0-chrome73</span><br><span class="line"></span><br><span class="line">ENV TZ=Pacific/Auckland</span><br><span class="line"></span><br><span class="line">RUN apt-get update &amp;&amp; apt-get install google-chrome-stable -y &amp;&amp; \</span><br><span class="line">    google-chrome --version</span><br></pre></td></tr></table></figure></p>
+<p>Multi-stage build was introduced to divide the docker image build into multiple stages which can pass artifacts from one to another and eventually ship the final artifacts in the last stage.</p>
+<h2 id="examples-to-reduce-docker-image">Examples to Reduce Docker Image</h2>
+<p>Take an example of upgrading googl-chrome browser version. The base image is <code>cypress/browers</code>.</p>
+<h3 id="upgrade-google-chrome-without-purging-the-cache">Upgrade Google-Chrome without Purging the Cache</h3>
+<p>The Dockefile is straight through: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">FROM cypress/browsers:node11.13.0-chrome73</span><br><span class="line"></span><br><span class="line">ENV TZ=Pacific/Auckland</span><br><span class="line"></span><br><span class="line">RUN apt-get update &amp;&amp; apt-get install google-chrome-stable -y &amp;&amp; \</span><br><span class="line">    google-chrome --version</span><br></pre></td></tr></table></figure></p>
 <p>From the logs, it shows chrome browser v78 replaced original v73. To check the image size, either <code>docker images</code> with labels/tags to show a summary on matched images or <code>docker inspect</code> command can show image details.</p>
-<p>Then <code>docker inspect cypress3-chrome-updated-without-purge | jq &#39;.[0].Size&#39;</code> would show the image szie <code>1520046216</code> in Bytes. Alternatively, the docker command native <code>JSON</code> filer could be applied to get the same result on given image <code>docker inspect cypress3-chrome-updated-without-purge --format=&#39;\&#123;\&#123;.Size\&#125;\&#125;&#39;</code>.</p>
-<h3 id="Upgrade-Google-Chrome-and-Purge-the-Cache-Immediately"><a href="#Upgrade-Google-Chrome-and-Purge-the-Cache-Immediately" class="headerlink" title="Upgrade Google-Chrome and Purge the Cache Immediately"></a>Upgrade Google-Chrome and Purge the Cache Immediately</h3><p>Apply the recommended hacks to clean the cache on every command:</p>
+<p>Then <code>docker inspect cypress3-chrome-updated-without-purge | jq '.[0].Size'</code> would show the image szie <code>1520046216</code> in Bytes. Alternatively, the docker command native <code>JSON</code> filer could be applied to get the same result on given image <code>docker inspect cypress3-chrome-updated-without-purge --format='\&#123;\&#123;.Size\&#125;\&#125;'</code>.</p>
+<h3 id="upgrade-google-chrome-and-purge-the-cache-immediately">Upgrade Google-Chrome and Purge the Cache Immediately</h3>
+<p>Apply the recommended hacks to clean the cache on every command:</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">FROM cypress/browsers:node11.13.0-chrome73</span><br><span class="line"></span><br><span class="line">ENV TZ=Pacific/Auckland</span><br><span class="line"></span><br><span class="line">RUN apt-get update &amp;&amp; apt-get install google-chrome-stable \</span><br><span class="line">    -y --no-install-recommends &amp;&amp; \</span><br><span class="line">    rm -rf /var/lib/apt/lists/* &amp;&amp; \</span><br><span class="line">    google-chrome --version</span><br></pre></td></tr></table></figure>
 <p>This way the image size is reduced to 1503569359 Bytes. 200MB caches are removed from the same layer to upgrade chrome browser.</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; docker inspect cypress3-chrome-updated-cache-purged  --format=&#x27;&#123;&#123;.Size&#125;&#125;&#x27;</span><br><span class="line">&gt; 1503569359</span><br></pre></td></tr></table></figure>
 <p>Obviously the Dockerfile is a bit harder to maintain because each step was appended with all kinds of purge commands. If there is no convenient way to purge right away or it is difficult to maintain such code in one command, a script might be drafted and copied to the intermediate layers to support such a command in one step.</p>
-<h3 id="Generate-the-Same-Image-in-Multi-Stage-Build"><a href="#Generate-the-Same-Image-in-Multi-Stage-Build" class="headerlink" title="Generate the Same Image in Multi-Stage Build"></a>Generate the Same Image in Multi-Stage Build</h3><p>With a quick check, the google chrome is maintained in <code>/opt/google/chrome</code> folder and as an image for experiments, it is okay not to consider apt-get checksums. The new Dockerfile is drafted as below:</p>
+<h3 id="generate-the-same-image-in-multi-stage-build">Generate the Same Image in Multi-Stage Build</h3>
+<p>With a quick check, the google chrome is maintained in <code>/opt/google/chrome</code> folder and as an image for experiments, it is okay not to consider apt-get checksums. The new Dockerfile is drafted as below:</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">FROM cypress/browsers:node11.13.0-chrome73 as stage1</span><br><span class="line"></span><br><span class="line">ENV TZ=Pacific/Auckland</span><br><span class="line"></span><br><span class="line">RUN apt-get update &amp;&amp; apt-get install google-chrome-stable \</span><br><span class="line">    -y --no-install-recommends &amp;&amp; \</span><br><span class="line">    rm -rf /var/lib/apt/lists/* &amp;&amp; \</span><br><span class="line">    google-chrome --version</span><br><span class="line"></span><br><span class="line">FROM cypress/browsers:node11.13.0-chrome73</span><br><span class="line">COPY --from=stage1 /opt/google/chrome /opt/google/chrome</span><br><span class="line">RUN google-chrome --version</span><br></pre></td></tr></table></figure>
 <p>The first image is also homogeneous and it just contribute the google-chrome binary files. Then the final image <code>copied</code> the binaries directly to corresponding folder.</p>
 <p>Test the google-chrome version in cli.</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; docker run -it cypress3-chrome-updated-multi-stages google-chrome --version</span><br><span class="line">&gt; Google Chrome 78.0.3904.108</span><br></pre></td></tr></table></figure>
 <p>Check the image size and it shows even a smaller size than that from Dockerfile to purge apt-get system caches because this solution only copies the required folder.</p>
-<p><code>docker inspect cypress3-chrome-updated-multi-stages  --format=&#39;\&#123;\&#123;\.Size\&#125;\&#125;&#39;</code> reports size as <code>1501127204</code> Bytes.</p>
-<h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><ul>
-<li><p>Less information left on image: No need to keep addition YUM repos if it is an RHEL image, no extra keys left, more important, no development phase configuration or source code left on image.</p>
-</li>
-<li><p>Smaller size: Since copying the artifacts is the clean way to add only requested files to final image, the size is only increased for neccessary. </p>
-</li>
+<p><code>docker inspect cypress3-chrome-updated-multi-stages  --format='\&#123;\&#123;\.Size\&#125;\&#125;'</code> reports size as <code>1501127204</code> Bytes.</p>
+<h3 id="summary">Summary</h3>
+<ul>
+<li><p>Less information left on image: No need to keep addition YUM repos if it is an RHEL image, no extra keys left, more important, no development phase configuration or source code left on image.</p></li>
+<li><p>Smaller size: Since copying the artifacts is the clean way to add only requested files to final image, the size is only increased for neccessary.</p></li>
 </ul>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>Building way</th>
-<th style="text-align:center">Size</th>
+<th style="text-align: center;">Size</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Install pkg from apt-get</td>
-<td style="text-align:center">1520046216</td>
+<td style="text-align: center;">1520046216</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Install pkg and purge</td>
-<td style="text-align:center">1503569359</td>
+<td style="text-align: center;">1503569359</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Copying binaries from previous stage</td>
-<td style="text-align:center">1501127204</td>
+<td style="text-align: center;">1501127204</td>
 </tr>
 </tbody>
 </table>
-<h2 id="Further-Discussion"><a href="#Further-Discussion" class="headerlink" title="Further Discussion"></a>Further Discussion</h2><p>A better chance to apply multi-stage docker image building is to support multi-stage compilation. One typical example is to upgrade git version on an RHEL Jenkins Slave Image. RHEL official YUM repo only supplies the old version of git client. Which doesn’t support the advanced functions as Dotnet Core NuGet operations. In this case, the solution is to download git source code and install gcc toolchain to build it locally. Without multi-stage image build, the procedure would request a cross compilation on source code in separate script or build it on docker image directly for homogeneous arch. Multi-stage docker image build can maintain the steps in one single Dockerfile.</p>
-<p>On the other side, the sample in this post is not an apt example. If only the chrome binary executable files under /opt/google/chrome are updated staightly, the /etc/alternative would still point to chrome-stable binary but the apt pkg management DB still regard it as the original version v73, not the current version and the dependencies check won’t cover v78 neither. Like Sun Solaris package system, it is possible to overwrite the package DB but which would request one more command and consequently a new docker image layer. The apt package DB is located at /var/lib/apt/lists. </p>
-<p>So apply multi-stage image build for source code compilation especially multi-stage compilation, decompressed binary package as Node.js.  </p>
+<h2 id="further-discussion">Further Discussion</h2>
+<p>A better chance to apply multi-stage docker image building is to support multi-stage compilation. One typical example is to upgrade git version on an RHEL Jenkins Slave Image. RHEL official YUM repo only supplies the old version of git client. Which doesn't support the advanced functions as Dotnet Core NuGet operations. In this case, the solution is to download git source code and install gcc toolchain to build it locally. Without multi-stage image build, the procedure would request a cross compilation on source code in separate script or build it on docker image directly for homogeneous arch. Multi-stage docker image build can maintain the steps in one single Dockerfile.</p>
+<p>On the other side, the sample in this post is not an apt example. If only the chrome binary executable files under /opt/google/chrome are updated staightly, the /etc/alternative would still point to chrome-stable binary but the apt pkg management DB still regard it as the original version v73, not the current version and the dependencies check won't cover v78 neither. Like Sun Solaris package system, it is possible to overwrite the package DB but which would request one more command and consequently a new docker image layer. The apt package DB is located at /var/lib/apt/lists.</p>
+<p>So apply multi-stage image build for source code compilation especially multi-stage compilation, decompressed binary package as Node.js.</p>
 <p>(TBC)</p>
 
     </div>
@@ -386,7 +381,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Multi-Stage-in-Docker-Image-Building"><span class="nav-number">1.</span> <span class="nav-text">Multi-Stage in Docker Image Building</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Examples-to-Reduce-Docker-Image"><span class="nav-number">2.</span> <span class="nav-text">Examples to Reduce Docker Image</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Upgrade-Google-Chrome-without-Purging-the-Cache"><span class="nav-number">2.1.</span> <span class="nav-text">Upgrade Google-Chrome without Purging the Cache</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Upgrade-Google-Chrome-and-Purge-the-Cache-Immediately"><span class="nav-number">2.2.</span> <span class="nav-text">Upgrade Google-Chrome and Purge the Cache Immediately</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-the-Same-Image-in-Multi-Stage-Build"><span class="nav-number">2.3.</span> <span class="nav-text">Generate the Same Image in Multi-Stage Build</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Summary"><span class="nav-number">2.4.</span> <span class="nav-text">Summary</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Further-Discussion"><span class="nav-number">3.</span> <span class="nav-text">Further Discussion</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#multi-stage-in-docker-image-building"><span class="nav-number">1.</span> <span class="nav-text">Multi-Stage in Docker Image Building</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#examples-to-reduce-docker-image"><span class="nav-number">2.</span> <span class="nav-text">Examples to Reduce Docker Image</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#upgrade-google-chrome-without-purging-the-cache"><span class="nav-number">2.1.</span> <span class="nav-text">Upgrade Google-Chrome without Purging the Cache</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#upgrade-google-chrome-and-purge-the-cache-immediately"><span class="nav-number">2.2.</span> <span class="nav-text">Upgrade Google-Chrome and Purge the Cache Immediately</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#generate-the-same-image-in-multi-stage-build"><span class="nav-number">2.3.</span> <span class="nav-text">Generate the Same Image in Multi-Stage Build</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#summary"><span class="nav-number">2.4.</span> <span class="nav-text">Summary</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#further-discussion"><span class="nav-number">3.</span> <span class="nav-text">Further Discussion</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -522,6 +517,59 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

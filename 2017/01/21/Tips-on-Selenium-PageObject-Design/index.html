@@ -20,19 +20,19 @@
     var CONFIG = {"hostname":"maxwu.me","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="About PageObjects The “PageObjects“ are introduced mainly to avoid duplicated codes in test and simplify the maintenance works as well. PageObject just models the WebUI under test and represent the st">
+  <meta name="description" content="About PageObjects  The &quot;PageObjects&quot; are introduced mainly to avoid duplicated codes in test and simplify the maintenance works as well. PageObject just models the WebUI under test and represent the s">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Tips on Selenium PageObjects Design">
 <meta property="og:url" content="http://maxwu.me/2017/01/21/Tips-on-Selenium-PageObject-Design/index.html">
 <meta property="og:site_name" content="+U Maxout!">
-<meta property="og:description" content="About PageObjects The “PageObjects“ are introduced mainly to avoid duplicated codes in test and simplify the maintenance works as well. PageObject just models the WebUI under test and represent the st">
+<meta property="og:description" content="About PageObjects  The &quot;PageObjects&quot; are introduced mainly to avoid duplicated codes in test and simplify the maintenance works as well. PageObject just models the WebUI under test and represent the s">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://www.seleniumhq.org/images/selenium-logo.png">
 <meta property="og:image" content="http://oei21r8n1.bkt.clouddn.com/Test_Pyramid_v2.png?imageView/2/w/600/q/100">
 <meta property="og:image" content="http://oei21r8n1.bkt.clouddn.com/pom_TransitionWithSamePageObject.png">
 <meta property="og:image" content="http://oei21r8n1.bkt.clouddn.com/pom-page-transition.png">
 <meta property="article:published_time" content="2017-01-21T04:36:27.000Z">
-<meta property="article:modified_time" content="2021-10-24T22:03:14.509Z">
+<meta property="article:modified_time" content="2017-01-21T04:36:27.000Z">
 <meta property="article:author" content="Max Wu">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="Selenium">
@@ -200,13 +200,6 @@
 
               <time title="Created: 2017-01-21 17:36:27" itemprop="dateCreated datePublished" datetime="2017-01-21T17:36:27+13:00">2017-01-21</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-10-25 11:03:14" itemprop="dateModified" datetime="2021-10-25T11:03:14+13:00">2021-10-25</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -232,30 +225,35 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="About-PageObjects"><a href="#About-PageObjects" class="headerlink" title="About PageObjects"></a>About PageObjects</h1><p><img src="http://www.seleniumhq.org/images/selenium-logo.png" class="img-left" /> The “<strong>PageObjects</strong>“ are introduced mainly to avoid duplicated codes in test and simplify the maintenance works as well. PageObject just models the WebUI under test and represent the state transition among UI(page) activities.</p>
-<p><a target="_blank" rel="noopener" href="https://www.seleniumhq.org/docs/06_test_design_considerations.jsp">PageObjects and Page Factory Pattern</a> are terms from Selenium documents. The concepts of PageObject and (w/ or w/o) Page Factory are also derived from general OOD. It could be regarded as a much simplified ORM or a simple DAO if we regard test cases as data, test scenario pattern as DB tables. So the methodology can apply to other tests besides web. </p>
+        <h1 id="about-pageobjects">About PageObjects</h1>
+<p><img src="http://www.seleniumhq.org/images/selenium-logo.png" class="img-left" /> The "<strong>PageObjects</strong>" are introduced mainly to avoid duplicated codes in test and simplify the maintenance works as well. PageObject just models the WebUI under test and represent the state transition among UI(page) activities.</p>
+<p><a target="_blank" rel="noopener" href="https://www.seleniumhq.org/docs/06_test_design_considerations.jsp">PageObjects and Page Factory Pattern</a> are terms from Selenium documents. The concepts of PageObject and (w/ or w/o) Page Factory are also derived from general OOD. It could be regarded as a much simplified ORM or a simple DAO if we regard test cases as data, test scenario pattern as DB tables. So the methodology can apply to other tests besides web.</p>
 <ul>
 <li>PageObject is a pattern of design</li>
 <li>Selenium Java package provides a basic support on lazy init. However, it is still a wheel to build for specific test area.</li>
 </ul>
 <p>A rough mapping could describe the concept easilier:</p>
 <table>
+<colgroup>
+<col style="width: 47%" />
+<col style="width: 52%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Traditional App Dev terms</th>
 <th>Web Automation Test Concepts</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><strong>DB drivers</strong> like mysql-connector</td>
 <td><strong>Web Drivers</strong> (take JSON call and get results from browser process)</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>DB Abstract</strong> as JDBC</td>
 <td><strong>Selenium 2</strong>(it bridge the API to JSON calls)</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>ORM</strong> as peewee or SQLAlchemy to ensure DB agnostic</td>
 <td><strong>PageObject</strong> provides agnostic on selectors and page details</td>
 </tr>
@@ -263,135 +261,136 @@
 </table>
 <p>Based on project experiences, PageObjects offers below three functions to automation:</p>
 <table>
+<colgroup>
+<col style="width: 49%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Traditional App Dev terms</th>
 <th>Selenium PageObject Sections</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><strong>DB Table Structure</strong> as create, alter operations</td>
-<td><strong>Web Elements Encapsulation</strong> as lazy init, multiple selectors, and, retries </td>
+<td><strong>Web Elements Encapsulation</strong> as lazy init, multiple selectors, and, retries</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>Select/View</strong> A snapshot of state</td>
 <td><strong>Pages</strong> define the states of sceanrio</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>Transaction Procedure</strong></td>
 <td><strong>Functional methods</strong> provides interaction on pages, some of them triggers state transition, either return a new object of page or change the internal states</td>
 </tr>
 </tbody>
 </table>
-<p>It can be utilized to design test suppport classes for  database, CLI (especially tree view cli), interactive shell and desktop applications. The key is to design abstract objects to represent the internal relationships between states and adjunct methods to fetch/operate the POI(points of interests, I borrowed this concept from MapSys design). </p>
-<p>Therefore, the <strong>PageObjects here formed a layer to separate test logics and supporting objects</strong>. When people are drafting tests, we don’t need to switch to OOD part to spend time “thinking” about how to implement it and finally find out we forget the original motivation or target to do. This makes a concentration.</p>
-<h2 id="PageObjects-Pattern-or-Bot-Style-Test"><a href="#PageObjects-Pattern-or-Bot-Style-Test" class="headerlink" title="PageObjects Pattern or Bot Style Test?"></a>PageObjects Pattern or Bot Style Test?</h2><blockquote>
-<p>it’s not always a pattern that teams feel comfortable following.</p>
+<p>It can be utilized to design test suppport classes for database, CLI (especially tree view cli), interactive shell and desktop applications. The key is to design abstract objects to represent the internal relationships between states and adjunct methods to fetch/operate the POI(points of interests, I borrowed this concept from MapSys design).</p>
+<p>Therefore, the <strong>PageObjects here formed a layer to separate test logics and supporting objects</strong>. When people are drafting tests, we don't need to switch to OOD part to spend time "thinking" about how to implement it and finally find out we forget the original motivation or target to do. This makes a concentration.</p>
+<h2 id="pageobjects-pattern-or-bot-style-test">PageObjects Pattern or Bot Style Test?</h2>
+<blockquote>
+<p>it's not always a pattern that teams feel comfortable following.</p>
 </blockquote>
-<p>Alternatively there is <strong>Bot Style</strong> in test and test automation. Following PageObjects style, one turns to draw a state transition map on paper or in mind, no matter it is automation or manual test.  For Bot Stylte, the test is designed against action steps (user scenarios). It is not to see which style is “better” in a quick glance. Here I am trying to provide some tips on finding the correct technique within the project characters and constrains. Usualy no matter in manual or automation, Bot Style is the first technique to utilize at beginning to get more domain knowledge while doing sanity test. <strong>Bot Style focus on the encapsulation of interactive actions</strong> so it is consistent to the test description on test plan or user manual.<br><span id="more"></span></p>
+<p>Alternatively there is <strong>Bot Style</strong> in test and test automation. Following PageObjects style, one turns to draw a state transition map on paper or in mind, no matter it is automation or manual test. For Bot Stylte, the test is designed against action steps (user scenarios). It is not to see which style is "better" in a quick glance. Here I am trying to provide some tips on finding the correct technique within the project characters and constrains. Usualy no matter in manual or automation, Bot Style is the first technique to utilize at beginning to get more domain knowledge while doing sanity test. <strong>Bot Style focus on the encapsulation of interactive actions</strong> so it is consistent to the test description on test plan or user manual. <span id="more"></span></p>
 <p>Moving on, some of the tests concepts could be abstracted with statemachine to form a pattern which is easy to extend and more robust to maintain. For example, an organization is maintaining a number of business stories composited with given common pages. To reduce time-to-market and accept new test cases without duplicated codes, PageObject might be considered an approperiate choice to study.</p>
 <blockquote>
-<p>Let’s say: If all the interactions are functional, stateless, elementary and reenterable, there is no much difference between Bot Style and PageObject Pattern. </p>
+<p>Let's say: If all the interactions are functional, stateless, elementary and reenterable, there is no much difference between Bot Style and PageObject Pattern.</p>
 </blockquote>
 <blockquote>
-<p>An U(topia)aaS (named after A(I)aaS, B(ackend)aaS, F(unc)aaS) with which every services are interacting with others and human beings interfaces with read-only primative types of sequence or callable. Sequneces can be a list, string (another form of list), tuple, dict, json, or any other linear things while callable is a lambda, class with “__call__“. Read-only types as list shall be copied before returning a modified version back. </p>
+<p>An U(topia)aaS (named after A(I)aaS, B(ackend)aaS, F(unc)aaS) with which every services are interacting with others and human beings interfaces with read-only primative types of sequence or callable. Sequneces can be a list, string (another form of list), tuple, dict, json, or any other linear things while callable is a lambda, class with "__call__". Read-only types as list shall be copied before returning a modified version back.</p>
 </blockquote>
-<p>Bot Style, as indicated by name, is to simulate the actions as what directly seen by users. A lot of organizations drafted Bot Style tests pretty well and maintain them in a high quality. It is not a must to go PageObject or state based test design but a selection on  concept of abstract method to reflect the test purpose. </p>
+<p>Bot Style, as indicated by name, is to simulate the actions as what directly seen by users. A lot of organizations drafted Bot Style tests pretty well and maintain them in a high quality. It is not a must to go PageObject or state based test design but a selection on concept of abstract method to reflect the test purpose.</p>
 <ul>
-<li><p>A simple way of Bot Style test case is just translate every single test step to a method and assemble the steps into a class of one test case. It is useful under stressing constrains and lower down the training cost. The test review is also more smoothy to participate since the most significant checkpoints during review are domain knowledge then. </p>
-</li>
-<li><p>Some test are not easy to abstract as PageObjects, e.g. front-end test.</p>
-</li>
-<li><p>Sometimes, the ROI is not in balance to refactor steps into reusable PageObjects, e.g. the business scenarios are stable. If we are testing an desktop application and the GUI elements, logs and operation sequences are quite stable which are not changing among versions, Bot Style is good to create and maintain.</p>
-</li>
+<li><p>A simple way of Bot Style test case is just translate every single test step to a method and assemble the steps into a class of one test case. It is useful under stressing constrains and lower down the training cost. The test review is also more smoothy to participate since the most significant checkpoints during review are domain knowledge then.</p></li>
+<li><p>Some test are not easy to abstract as PageObjects, e.g. front-end test.</p></li>
+<li><p>Sometimes, the ROI is not in balance to refactor steps into reusable PageObjects, e.g. the business scenarios are stable. If we are testing an desktop application and the GUI elements, logs and operation sequences are quite stable which are not changing among versions, Bot Style is good to create and maintain.</p></li>
 </ul>
-<h2 id="Page-Factory-from-a-Technical-Point-of-View"><a href="#Page-Factory-from-a-Technical-Point-of-View" class="headerlink" title="Page Factory from a Technical Point of View"></a>Page Factory from a Technical Point of View</h2><p>Above section compares Bot Style and PageObject mainly from process and organization view. This section describes the detail technical benefits with Page Factory to implement PageObject.</p>
+<h2 id="page-factory-from-a-technical-point-of-view">Page Factory from a Technical Point of View</h2>
+<p>Above section compares Bot Style and PageObject mainly from process and organization view. This section describes the detail technical benefits with Page Factory to implement PageObject.</p>
 <p>Page Factory offers proxies to access the WebElements on page. Therefore, this solution has below advantages:</p>
 <ul>
-<li><p><strong>When PageFactory is initialized with PageFactory.initElements()</strong>, the proxies are configured against the elements representing real page elements <strong>but they are not searched at the time being</strong>. The developers won’t see NoSuchElementException.  </p>
-</li>
-<li><p><strong>Each access to the element via the proxies will trigger the search and bind again</strong>, so developers won’t see StaleElementException. </p>
+<li><p><strong>When PageFactory is initialized with PageFactory.initElements()</strong>, the proxies are configured against the elements representing real page elements <strong>but they are not searched at the time being</strong>. The developers won't see NoSuchElementException.</p></li>
+<li><p><strong>Each access to the element via the proxies will trigger the search and bind again</strong>, so developers won't see StaleElementException.</p>
 <ul>
-<li>To avoid the searching every time, annotation @CacheLookup on element. It will just do the search once and keep the reference.</li>
-<li>Direct call to initElements() won’t be impacted by this annotation.  </li>
-</ul>
-</li>
+<li>To avoid the searching every time, annotation <span class="citation" data-cites="CacheLookup">@CacheLookup</span> on element. It will just do the search once and keep the reference.</li>
+<li>Direct call to initElements() won't be impacted by this annotation.</li>
+</ul></li>
 </ul>
 <p>Further more, if the PageObject actually reflects multiple but similar states, developers can combine the elememts definition together and keep the lazy initialization. Once the conditions are satisfied use an arch (method call) toward ame state and just start to access the elements right away.</p>
-<h2 id="General-PageObject-Structure"><a href="#General-PageObject-Structure" class="headerlink" title="General PageObject Structure"></a>General PageObject Structure</h2><p>Here is the general PageObject code template including 4 major parts for general purpose. If there is an arc from current page to transition to another page, even it is the same PageObject type, the actioner (method) shall return the new page object. The caller from test code, e.g. JUnit case, shall detect exceptions.</p>
+<h2 id="general-pageobject-structure">General PageObject Structure</h2>
+<p>Here is the general PageObject code template including 4 major parts for general purpose. If there is an arc from current page to transition to another page, even it is the same PageObject type, the actioner (method) shall return the new page object. The caller from test code, e.g. JUnit case, shall detect exceptions.</p>
 <p>The <strong>PageBase</strong> in the following sample provides an abstract of common properties and behaviors as:</p>
 <ul>
 <li>URL check against an RegExp.</li>
 <li>Page title check.</li>
 <li>Cookie validation;</li>
-<li>Common test supporting:<ul>
+<li>Common test supporting:
+<ul>
 <li>Screenshot;</li>
 <li>Color contrast ratio;</li>
 <li>Timing and waiting methods.</li>
-</ul>
-</li>
+</ul></li>
 <li>Common Data generator or loading supports.</li>
-<li>Special XML, Path, or File Format validator.  </li>
+<li>Special XML, Path, or File Format validator.</li>
 </ul>
 <p>As mentioned above, it is a tradeoff by the test/SDET whether to implement the abstract hierarchy.</p>
-<p><em>This note is about placing a hook to take screenshot on failure. Based on the practice study, it is convenient to add such a hook when @RunWith(Cucumber.class) as the runner. However, if it is the default runner, which could be planted by a customized @Rule extends TestWatcher. This way, the hook needs have an access to the screenshot method if it is carried by PageBase Object. It could be a registration slot with static properties for example.</em></p>
+<p><em>This note is about placing a hook to take screenshot on failure. Based on the practice study, it is convenient to add such a hook when <span class="citation" data-cites="RunWith">@RunWith</span>(Cucumber.class) as the runner. However, if it is the default runner, which could be planted by a customized <span class="citation" data-cites="Rule">@Rule</span> extends TestWatcher. This way, the hook needs have an access to the screenshot method if it is carried by PageBase Object. It could be a registration slot with static properties for example.</em></p>
 <p>Here we refer to a simplified Page Object Model design in which most fundamental functionalities are just grouped to one layer of <strong>PageBase</strong>. However, for experienced readers and in best industry practice, it shall be considered whether to implement Page Object with multiple layers. For example, there shall be a bottom layer, e.g. <strong>IDriver</strong>, to encapsule WebDriver concerned operations as <strong>clear-and-input</strong>, <strong>send-key or javascript based input</strong>, <strong>default FluentWait or Explicit Wait</strong>, <strong>move-to-and-click/Keys.Enter</strong>, etc. These are all frequently seen common actions existing in most of testing projects. Above this layer, there are business related structures as extracting work-flow state from CSS selectors, Web Component Linkage based on work-flow assumptions, until a high abstract on business logics which are well mapped to encapsulated in Page Object details, transparent to test case designers.</p>
 <p>A new post is under drafting to summarize experiences and tips on hierarchy and reusable structure of practical page object. In facts, it will be determined by cost benefit balance on how abstract the page object shall move toward.</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> xxx.xxx.pageObjects</span><br><span class="line"><span class="comment">//import ...</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//or public XxxxPage implements IPage</span></span><br><span class="line"><span class="comment">//if behaviors abstracted as Intf.</span></span><br><span class="line"><span class="keyword">public</span> XxxxPage extends PageBase&#123;</span><br><span class="line">   <span class="comment">//////////////////////////////// </span></span><br><span class="line">	<span class="comment">//***Part 1: WebDriver and remaining Constants ***</span></span><br><span class="line">	<span class="keyword">private</span> WebDriver driver = <span class="keyword">null</span>;</span><br><span class="line">	<span class="keyword">static</span> String someRegExConst = <span class="string">&quot;$my_url_regex&quot;</span>;</span><br><span class="line">		</span><br><span class="line">	<span class="comment">////////////////////////////////</span></span><br><span class="line">	<span class="comment">//***Part 2: WebElements ***</span></span><br><span class="line">	<span class="meta">@FindBy(how = How.CSS, using = &quot;input#class&quot;)</span></span><br><span class="line">	WebElement inputName;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@FindBy(how = How.CSS, using = &quot;body &gt; p:nth-child(2n+1)&quot;)</span></span><br><span class="line">	List&lt;WebElement&gt; pSomeParagraphList;</span><br><span class="line">   </span><br><span class="line">	<span class="comment">////////////////////////////////</span></span><br><span class="line">	<span class="comment">//***Part 3: Constructors ***</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">XxxxPage</span><span class="params">(WebDriver dr)</span></span>&#123;</span><br><span class="line">       <span class="keyword">this</span>.driver = dr;</span><br><span class="line">       </span><br><span class="line">       <span class="comment">//Transient state(s) handling if compliant to test purpose</span></span><br><span class="line">       <span class="comment">//E.g. an authentication transient page handling</span></span><br><span class="line">       authenticate(driver, $Some_Class_Variables)</span><br><span class="line">       </span><br><span class="line">       <span class="comment">//Title and/or Url check, raise RuntimeException if fails;</span></span><br><span class="line">       <span class="comment">//...(See notes below)</span></span><br><span class="line">       </span><br><span class="line">       PageFactory.initElements(driver, <span class="keyword">this</span>);</span><br><span class="line">       </span><br><span class="line">       <span class="comment">//Other checks after PageFactory init.</span></span><br><span class="line">       <span class="comment">//Not recommended to add much tests here.</span></span><br><span class="line">       <span class="comment">//If map, list operations are processed every time,</span></span><br><span class="line">       <span class="comment">//the test duration will extend.</span></span><br><span class="line">       <span class="comment">//However, stable tests do not need to play detail checks</span></span><br><span class="line">       <span class="comment">//On every construction step.</span></span><br><span class="line">       <span class="comment">//Tests shall be separate.</span></span><br><span class="line">    &#125;</span><br><span class="line">   </span><br><span class="line">	<span class="comment">////////////////////////////////</span></span><br><span class="line">	<span class="comment">//***Part 4: Web UI actions ***</span></span><br><span class="line">	<span class="comment">//Actions including getters, setters, submission, clicker, mouseMover et.</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setInputXxxYxx</span><span class="params">(String name)</span> <span class="keyword">throws</span> WrongPageException</span>&#123;</span><br><span class="line">   		<span class="comment">//Web Driver actions.</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">	<span class="comment">//Some Getter/Setters return an new instance of same or other PageObject</span></span><br><span class="line">	<span class="comment">//The type here represnets the arc between Web UI(page)s</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> ZzzPageObject <span class="title">submitRegisterForm</span><span class="params">(String name)</span> <span class="keyword">throws</span> WrongPageException</span>&#123;</span><br><span class="line">       <span class="comment">//Setters/getters/methods calls and operations</span></span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">new</span> ZzzPageObject(driver, someOtherParams)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
-<li><p><em>Note-1: It is up to the test purpose whether to separate a specific state to handle transient state like authentication. In most cases, the constructor could verify the transient state via a callable design as well. However, if there is deeper abstract (for reuse or polymorphism afterwards) design, a separate PageObject or group of PageObjects shall be introduced.</em></p>
-</li>
-<li><p>_Note-2: The potential problem is to throw exception in constructor method. One thing to take care is to make sure unmanaged resources are gracefully handled if exception thrown in subclass or base class. Another issue is related to security.Ref to <a target="_blank" rel="noopener" href="https://www.oracle.com/technetwork/java/seccodeguide-139067.html">Secure Coding Guideline for Java SE, Oracle, Guideline-7_3 in Ch-7: Object construction</a>, parially constructed objects lead to security vulnerability. Besides, the @After and @AfterClass or @After in Cucumber shall be checked to avoid any side effects if there is state change while throwing execption in an incomplete procedure._</p>
-</li>
-<li><p><em>Note-3: In usual functional test, if the authentication is not the purpose to test against, authentication could be regarded as an arc from current state to same state. This arc of state-transition could be handled in one method called by the constructor. However, it depends on how complicated the authentication scenario is. If it branches to different situation with sophisticated processing steps, it shall be better to explicitly design a state of AuthenticationPageObject to maintain the logic and which can be a base for further security cases to grow from.</em></p>
-</li>
+<li><p><em>Note-1: It is up to the test purpose whether to separate a specific state to handle transient state like authentication. In most cases, the constructor could verify the transient state via a callable design as well. However, if there is deeper abstract (for reuse or polymorphism afterwards) design, a separate PageObject or group of PageObjects shall be introduced.</em></p></li>
+<li><p><em>Note-2: The potential problem is to throw exception in constructor method. One thing to take care is to make sure unmanaged resources are gracefully handled if exception thrown in subclass or base class. Another issue is related to security.Ref to <a target="_blank" rel="noopener" href="https://www.oracle.com/technetwork/java/seccodeguide-139067.html">Secure Coding Guideline for Java SE, Oracle, Guideline-7_3 in Ch-7: Object construction</a>, parially constructed objects lead to security vulnerability. Besides, the <span class="citation" data-cites="After">@After</span> and <span class="citation" data-cites="AfterClass">@AfterClass</span> or <span class="citation" data-cites="After">@After</span> in Cucumber shall be checked to avoid any side effects if there is state change while throwing execption in an incomplete procedure.</em></p></li>
+<li><p><em>Note-3: In usual functional test, if the authentication is not the purpose to test against, authentication could be regarded as an arc from current state to same state. This arc of state-transition could be handled in one method called by the constructor. However, it depends on how complicated the authentication scenario is. If it branches to different situation with sophisticated processing steps, it shall be better to explicitly design a state of AuthenticationPageObject to maintain the logic and which can be a base for further security cases to grow from.</em></p></li>
 </ul>
-<p>With above PageObject template, a simplified @Before hook could be designed following below template.</p>
+<p>With above PageObject template, a simplified <span class="citation" data-cites="Before">@Before</span> hook could be designed following below template.</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Before</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">// Protective check.</span></span><br><span class="line">    <span class="keyword">if</span> (driver != <span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="comment">//Quit driver (see notes below)</span></span><br><span class="line">        <span class="comment">//DriverFactory.quitDriver(driver);</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//Init driver, browser type, timeout, et. parameters</span></span><br><span class="line">    driver = DriverFactory.getDriver();</span><br><span class="line">    driver.manage().timeouts().implicitlyWait(<span class="number">20</span>, TimeUnit.SECONDS);</span><br><span class="line">    driver.manage().window().maximize();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Checking ignore list.</span></span><br><span class="line">    String testName = name.getMethodName();</span><br><span class="line">    <span class="keyword">if</span> (testListByPassBeforeHook.contains(testName))&#123;</span><br><span class="line">        ColorPrint.println_blue(<span class="string">&quot;Ignore PageObj NewPost setup for test: &quot;</span> + testName);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">//From site entry, start from an object of New Post Object</span></span><br><span class="line">        <span class="comment">//Here getNewPostPage will return a PageObject</span></span><br><span class="line">        <span class="comment">//...representing the drafting post page</span></span><br><span class="line">        <span class="comment">//...and it will implicitly walk through</span></span><br><span class="line">        <span class="comment">//...a transient authentication page state</span></span><br><span class="line">        <span class="comment">//As mentioned above, this transient state is implicit</span></span><br><span class="line">        <span class="comment">//...which is verified within a method, not an object.</span></span><br><span class="line">        newPostPage = <span class="keyword">new</span> PageObject(driver).getNewPostPage();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
 <p>A simplified test method is convenient to expand given above PageObject and hook example.</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> CommentPage <span class="title">submitAndVerifyNewPost</span><span class="params">(String title, String body, String expectedTitle, String expectedBody)</span></span>&#123;</span><br><span class="line">	<span class="comment">//A state transition happens here</span></span><br><span class="line">	CommentPage commentPage = newPostPage.publishNewPost(title, body);</span><br><span class="line">    Assert.assertEquals(expectedTitle, commentPage.getTitle());</span><br><span class="line">    Assert.assertEquals(expectedBody, commentPage.getBody());</span><br><span class="line">    <span class="keyword">return</span> commentPage;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">verifyPublishNewPost</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//Here a fuzzer shall be considered</span></span><br><span class="line">	String title = <span class="string">&quot;One time used title &quot;</span>;</span><br><span class="line">	String body = <span class="string">&quot;One time used body &quot;</span>;</span><br><span class="line">	<span class="comment">//...prepare expected values in cases of trim(), cap, et.</span></span><br><span class="line">	    </span><br><span class="line">	submitAndVerifyNewPost(title, body, expectedTitle, expectedBody);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//Check-2: Expect the new title when it turns back to Posts (view) page</span></span><br><span class="line">	PostsPage postsPage = <span class="keyword">new</span> PostsPage(driver);</span><br><span class="line">	List&lt;String&gt; titles = postsPage.getPostTitles();</span><br><span class="line">	Assert.assertTrue(<span class="string">&quot;Recently added title should display in posts page&quot;</span>, titles.contains(title));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Page-Factory"><a href="#Page-Factory" class="headerlink" title="Page Factory"></a>Page Factory</h2><p>Refer to <a target="_blank" rel="noopener" href="https://github.com/SeleniumHQ/selenium/wiki/PageFactory">Page Factory Github</a>, Page Factory simplifies the work to instantiate the WebElement or List <WebElement> so PageObject could be <strong>lazily</strong> initialized and keep a clean focus of codes by <strong>reducing verbosity</strong> through dynamic proxy.</p>
-<p>The sample of Page Factory Pattern could be found in “Part-2” of Page Object code example above. There are couple of tips for beginners.</p>
+<h2 id="page-factory">Page Factory</h2>
+<p>Refer to <a target="_blank" rel="noopener" href="https://github.com/SeleniumHQ/selenium/wiki/PageFactory">Page Factory Github</a>, Page Factory simplifies the work to instantiate the WebElement or List <WebElement> so PageObject could be <strong>lazily</strong> initialized and keep a clean focus of codes by <strong>reducing verbosity</strong> through dynamic proxy.</p>
+<p>The sample of Page Factory Pattern could be found in "Part-2" of Page Object code example above. There are couple of tips for beginners.</p>
 <ul>
-<li><p>As a strong typing language, here WebElement is the type as returned by lazing evaluation. For example, if a special operation with HTML select element to make one option selected, you can cast it to Select type.</p>
-</li>
-<li><p>If the return value is a list, use List<WebElement> as the sample code shows.</p>
-</li>
-<li><p>@FindBys vs @FindByAll: The annotation @FindBys({ @FindBy(contion1), @FindBy(condition2)}) will return an intersection of condition1 and condition2 while @FindByAll returns the union set of elements satisfy either condition.</p>
-</li>
+<li><p>As a strong typing language, here WebElement is the type as returned by lazing evaluation. For example, if a special operation with HTML select element to make one option selected, you can cast it to Select type.</p></li>
+<li><p>If the return value is a list, use List<WebElement> as the sample code shows.</p></li>
+<li><p><span class="citation" data-cites="FindBys">@FindBys</span> vs <span class="citation" data-cites="FindByAll">@FindByAll</span>: The annotation <span class="citation" data-cites="FindBys">@FindBys</span>({ <span class="citation" data-cites="FindBy">@FindBy</span>(contion1), <span class="citation" data-cites="FindBy">@FindBy</span>(condition2)}) will return an intersection of condition1 and condition2 while <span class="citation" data-cites="FindByAll">@FindByAll</span> returns the union set of elements satisfy either condition.</p></li>
 </ul>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Findbys(&#123;</span></span><br><span class="line"><span class="meta">    @FindBy(how = How.CSS, using = &quot;div.A&quot;),</span></span><br><span class="line"><span class="meta">    @FindBy(how = How.CSS, using = &quot;div.B&quot;)</span></span><br><span class="line"><span class="meta">&#125;)</span></span><br><span class="line"><span class="keyword">public</span> List&lt;WebElement&gt; BinAList;</span><br></pre></td></tr></table></figure>
-<p>Above example will return div elements which has className “B” and(from) className “A”. </p>
-<h2 id="State-Transition"><a href="#State-Transition" class="headerlink" title="State Transition"></a>State Transition</h2><p>Theoretically Selenium is a tool for UI testing or Web testing, which focus on user scenarios instead of functions. Functional test is still covered in API level tests. Here is a chart to describe where Selenium is in the Test Pyramid. <a target="_blank" rel="noopener" href="https://maxwu.github.io/2017/01/23/JUnit-Tips/">Link</a></p>
-<p><img src="http://oei21r8n1.bkt.clouddn.com/Test_Pyramid_v2.png?imageView/2/w/600/q/100" alt=""></p>
-<p>Selenium is an excellent tool to support the test on user journeys acrossing views or pages. Here states represent the different views which the end users visit. A user scenario typically consists a sequence of views or pages towards a complete, incomplete, successful or failed business target. The footprints include a sequence of interactions. </p>
+<p>Above example will return div elements which has className "B" and(from) className "A".</p>
+<h2 id="state-transition">State Transition</h2>
+<p>Theoretically Selenium is a tool for UI testing or Web testing, which focus on user scenarios instead of functions. Functional test is still covered in API level tests. Here is a chart to describe where Selenium is in the Test Pyramid. <a target="_blank" rel="noopener" href="https://maxwu.github.io/2017/01/23/JUnit-Tips/">Link</a></p>
+<p><img src="http://oei21r8n1.bkt.clouddn.com/Test_Pyramid_v2.png?imageView/2/w/600/q/100" /></p>
+<p>Selenium is an excellent tool to support the test on user journeys acrossing views or pages. Here states represent the different views which the end users visit. A user scenario typically consists a sequence of views or pages towards a complete, incomplete, successful or failed business target. The footprints include a sequence of interactions.</p>
 <p>If the new view after a given action can still be interpreted by current PageObject to get an object level description about the set of interested points to test, we can either continuously to use the existing page object with a fresh on specific elements, or, create a new object with the same PageObject class. The construction phase will map element members to a set of interested points.</p>
 <p><img src="http://oei21r8n1.bkt.clouddn.com/pom_TransitionWithSamePageObject.png" class="img-left" /></p>
-<font size="1"><em>“POM” here means page object model.</em></font>
-
+<p><font size="1"><em>"POM" here means page object model.</em></font></p>
 <p>Otherwise, the action method generally returns a new object which in new PageObject class type to represent a new HTML page view in browser.</p>
 <p><img src="http://oei21r8n1.bkt.clouddn.com/pom-page-transition.png" class="img-left" /></p>
-<p>Here the partial refresh could be considered as a kind of arc pointing to same state. Each constructor call of PageObject classes is regarded as an arc from the action method class to the new PageObject class. </p>
+<p>Here the partial refresh could be considered as a kind of arc pointing to same state. Each constructor call of PageObject classes is regarded as an arc from the action method class to the new PageObject class.</p>
 <p>For example, if an user adds a comment piece to current blog post page, the page refreshs and shows the commnet right away. It could be tested with either ways:</p>
 <ul>
-<li><p>Refresh comment list corresponding List<WebElement> with a partial refreshment call. This is a state transition from the comment view state to the same state.</p>
-</li>
-<li><p>The comment adding action method could return a new instance of same PageObject class. This new instance holds the new comment WebElement thru the construction call.</p>
-</li>
+<li><p>Refresh comment list corresponding List<WebElement> with a partial refreshment call. This is a state transition from the comment view state to the same state.</p></li>
+<li><p>The comment adding action method could return a new instance of same PageObject class. This new instance holds the new comment WebElement thru the construction call.</p></li>
 </ul>
 <p>In summary, a partial refreshment on certain WebElement(s) is regarded as a state transition to same state, while any call to a new instance of PageObject class, same class or another class, indicates a state transition from existing object class to the return value class.</p>
 <p>More about state and state transition in testing could be found at <a target="_blank" rel="noopener" href="https://www.cs.helsinki.fi/u/paakki/software-testing-s05-Ch611.pdf">State based Testing</a>.</p>
-<h2 id="Smart-Pages-and-Page-Theme"><a href="#Smart-Pages-and-Page-Theme" class="headerlink" title="Smart Pages and Page Theme"></a>Smart Pages and Page Theme</h2><p>The above PageBase and PageObjects are straight through samples for simple scenarios. For sophesticated E2E (end-to-end) acceptance testing, sometimes the applicaiton engine is more complicated that we can hardly predict the targeted page from current state.</p>
-<p>Based on practices and technical discussion with buddies recently, two techniques could be introduced to support such “smart” acceptance test.</p>
+<h2 id="smart-pages-and-page-theme">Smart Pages and Page Theme</h2>
+<p>The above PageBase and PageObjects are straight through samples for simple scenarios. For sophesticated E2E (end-to-end) acceptance testing, sometimes the applicaiton engine is more complicated that we can hardly predict the targeted page from current state.</p>
+<p>Based on practices and technical discussion with buddies recently, two techniques could be introduced to support such "smart" acceptance test.</p>
 <p><strong>Smart Pages</strong>: Smart pages do not define which exact page the application engine will run to next step but just offer loose check points as excluding list and accepted list, or, nothing. The transitioned page will be recognized smartly by PageObject.</p>
 <p>For example, if P1 can lead to P2 or P3 and both are accepted scenarios, PageObject will detect which page it is on after execution P1. It could be from title, URL, or, a CSS selector condition. When it detects current page is P2 and P2 is accepted, it will load the page definition from prepared data files to offer a map of wrappered elemenets with actions as input, text extraction, regular expression check, variable get/set, mouse events, et.</p>
 <p><strong>Page Theme</strong>: Themes are predefined states for current page. For example, if current Page is an interactive page, the PageObject will first check theme before searching on element map. Which could be a chained map with precedences.</p>
-<h2 id="Fuzzing-Test-Data-Factory"><a href="#Fuzzing-Test-Data-Factory" class="headerlink" title="Fuzzing Test (Data Factory)"></a>Fuzzing Test (Data Factory)</h2><p>Another approach to “Smart” Test is fuzzing test. The PageObject is created with a set of fuzzing rules instead of a data set loaded from persistence. (TBC)</p>
-<h3 id="Data-Fuzzing"><a href="#Data-Fuzzing" class="headerlink" title="Data Fuzzing"></a>Data Fuzzing</h3><p>OWASP JBroFuzz is a popular Fuzzer lib to support fuzzing test.<br>It offers various fuzzer DB definition and customized features to support data fuzzing.</p>
-<h3 id="Sequence-Fuzzing"><a href="#Sequence-Fuzzing" class="headerlink" title="Sequence Fuzzing"></a>Sequence Fuzzing</h3><p>With JUnit, the execution sequence is able to customize with @Rule.</p>
-<h2 id="Further-Topics"><a href="#Further-Topics" class="headerlink" title="Further Topics"></a>Further Topics</h2><p>Classic PageObject spends too much efforts on disbaling the readability (encapslation) the action implementations to archeive the code reusing. However, most of the works could be simplified to a more friendly facade with Java features. <a target="_blank" rel="noopener" href="http://selenide.org/documentation/page-objects.html">selenide</a> is worthy a try to make your PageObject design works done in a graceful and faster way.  </p>
-<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><hr>
+<h2 id="fuzzing-test-data-factory">Fuzzing Test (Data Factory)</h2>
+<p>Another approach to "Smart" Test is fuzzing test. The PageObject is created with a set of fuzzing rules instead of a data set loaded from persistence. (TBC)</p>
+<h3 id="data-fuzzing">Data Fuzzing</h3>
+<p>OWASP JBroFuzz is a popular Fuzzer lib to support fuzzing test. It offers various fuzzer DB definition and customized features to support data fuzzing.</p>
+<h3 id="sequence-fuzzing">Sequence Fuzzing</h3>
+<p>With JUnit, the execution sequence is able to customize with <span class="citation" data-cites="Rule">@Rule</span>.</p>
+<h2 id="further-topics">Further Topics</h2>
+<p>Classic PageObject spends too much efforts on disbaling the readability (encapslation) the action implementations to archeive the code reusing. However, most of the works could be simplified to a more friendly facade with Java features. <a target="_blank" rel="noopener" href="http://selenide.org/documentation/page-objects.html">selenide</a> is worthy a try to make your PageObject design works done in a graceful and faster way.</p>
+<h2 id="references">References</h2>
+<hr />
 <p>[Updated Aug13, 2017]: Update with smart pages practice tips.</p>
 <p>[Updated Mar30]: Add the concept mapping between DB App Dev and PageObject testing.</p>
 <p>[Updated Feb07]: Reword state transition section and publish it.</p>
@@ -500,7 +499,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#About-PageObjects"><span class="nav-number">1.</span> <span class="nav-text">About PageObjects</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#PageObjects-Pattern-or-Bot-Style-Test"><span class="nav-number">1.1.</span> <span class="nav-text">PageObjects Pattern or Bot Style Test?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Page-Factory-from-a-Technical-Point-of-View"><span class="nav-number">1.2.</span> <span class="nav-text">Page Factory from a Technical Point of View</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#General-PageObject-Structure"><span class="nav-number">1.3.</span> <span class="nav-text">General PageObject Structure</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Page-Factory"><span class="nav-number">1.4.</span> <span class="nav-text">Page Factory</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#State-Transition"><span class="nav-number">1.5.</span> <span class="nav-text">State Transition</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Smart-Pages-and-Page-Theme"><span class="nav-number">1.6.</span> <span class="nav-text">Smart Pages and Page Theme</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fuzzing-Test-Data-Factory"><span class="nav-number">1.7.</span> <span class="nav-text">Fuzzing Test (Data Factory)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-Fuzzing"><span class="nav-number">1.7.1.</span> <span class="nav-text">Data Fuzzing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sequence-Fuzzing"><span class="nav-number">1.7.2.</span> <span class="nav-text">Sequence Fuzzing</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Further-Topics"><span class="nav-number">1.8.</span> <span class="nav-text">Further Topics</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#References"><span class="nav-number">1.9.</span> <span class="nav-text">References</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#about-pageobjects"><span class="nav-number">1.</span> <span class="nav-text">About PageObjects</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#pageobjects-pattern-or-bot-style-test"><span class="nav-number">1.1.</span> <span class="nav-text">PageObjects Pattern or Bot Style Test?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#page-factory-from-a-technical-point-of-view"><span class="nav-number">1.2.</span> <span class="nav-text">Page Factory from a Technical Point of View</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#general-pageobject-structure"><span class="nav-number">1.3.</span> <span class="nav-text">General PageObject Structure</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#page-factory"><span class="nav-number">1.4.</span> <span class="nav-text">Page Factory</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#state-transition"><span class="nav-number">1.5.</span> <span class="nav-text">State Transition</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#smart-pages-and-page-theme"><span class="nav-number">1.6.</span> <span class="nav-text">Smart Pages and Page Theme</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fuzzing-test-data-factory"><span class="nav-number">1.7.</span> <span class="nav-text">Fuzzing Test (Data Factory)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#data-fuzzing"><span class="nav-number">1.7.1.</span> <span class="nav-text">Data Fuzzing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sequence-fuzzing"><span class="nav-number">1.7.2.</span> <span class="nav-text">Sequence Fuzzing</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#further-topics"><span class="nav-number">1.8.</span> <span class="nav-text">Further Topics</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#references"><span class="nav-number">1.9.</span> <span class="nav-text">References</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -636,6 +635,59 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

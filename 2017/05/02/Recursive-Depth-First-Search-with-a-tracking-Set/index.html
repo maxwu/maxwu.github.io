@@ -28,7 +28,7 @@
 <meta property="og:description" content="Inspired by a StackOverflow(SOF) question, this post is a refreshment on DFS and key points to take care before coding a recursive DFS.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2017-05-01T13:38:10.000Z">
-<meta property="article:modified_time" content="2021-10-24T22:03:14.507Z">
+<meta property="article:modified_time" content="2017-05-01T13:38:10.000Z">
 <meta property="article:author" content="Max Wu">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="Algorithm">
@@ -194,13 +194,6 @@
 
               <time title="Created: 2017-05-02 01:38:10" itemprop="dateCreated datePublished" datetime="2017-05-02T01:38:10+12:00">2017-05-02</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-10-25 11:03:14" itemprop="dateModified" datetime="2021-10-25T11:03:14+13:00">2021-10-25</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -226,9 +219,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>Inspired by a StackOverflow(SOF) question, this post is a refreshment on DFS and key points to take care before coding a recursive DFS.<br><span id="more"></span></p>
-<h2 id="The-Problem-Statement"><a href="#The-Problem-Statement" class="headerlink" title="The Problem Statement"></a>The Problem Statement</h2><blockquote>
-<p>I have the following lists:<br>Animals Food Cat Fish Dog Pork Beef I would like to allocate food to the animals in as many different ways as possible like:</p>
+        <p>Inspired by a StackOverflow(SOF) question, this post is a refreshment on DFS and key points to take care before coding a recursive DFS. <span id="more"></span></p>
+<h2 id="the-problem-statement">The Problem Statement</h2>
+<blockquote>
+<p>I have the following lists: Animals Food Cat Fish Dog Pork Beef I would like to allocate food to the animals in as many different ways as possible like:</p>
 </blockquote>
 <p>Each different animal and food combination will be stored in a map.</p>
 <p>(Cat eats Fish, Dog eats Pork)</p>
@@ -237,49 +231,54 @@
 <p>(Cat eats Pork, Dog eats Beef)</p>
 <p>(Cat eats Beef, Dog eats Fish)</p>
 <p>(Cat eats Beef, Dog eats Pork)</p>
-<p>Finally all the maps will be put in a set and returned.<br>I am trying to use recursive function for the same and the following is how I tried it.. but am not able to get it right it right, so please help me to make it.</p>
-<p>It intends to keep the method fingerprint (“will return Set object”) and the incomplete code has no global tracking table as usual.</p>
+<p>Finally all the maps will be put in a set and returned. I am trying to use recursive function for the same and the following is how I tried it.. but am not able to get it right it right, so please help me to make it.</p>
+<p>It intends to keep the method fingerprint ("will return Set object") and the incomplete code has no global tracking table as usual.</p>
 <p>The method fingerprint provide by problem statement.</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> Set&lt;Map&lt;Animal, Food&gt;&gt; eats(List&lt;Animal&gt; animal, List&lt;Food&gt; food);</span><br></pre></td></tr></table></figure>
 <p>The original SFO link is <a target="_blank" rel="noopener" href="http://stackoverflow.com/questions/43702227/java-recursive-food-allocation/43719930#43719930">http://stackoverflow.com/questions/43702227/java-recursive-food-allocation/43719930#43719930</a></p>
-<h2 id="Solution-and-Description"><a href="#Solution-and-Description" class="headerlink" title="Solution and Description"></a>Solution and Description</h2><h3 id="Solution-Codes"><a href="#Solution-Codes" class="headerlink" title="Solution Codes"></a>Solution Codes</h3><p><strong>DFS</strong>: Depth First Search. For DFS, we define the machine friendly rephrasing of problem space and lunch the search until termination condition is satisfied.</p>
+<h2 id="solution-and-description">Solution and Description</h2>
+<h3 id="solution-codes">Solution Codes</h3>
+<p><strong>DFS</strong>: Depth First Search. For DFS, we define the machine friendly rephrasing of problem space and lunch the search until termination condition is satisfied.</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">import</span> java.util.stream.Collectors;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SFO_Recursive</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">        CAT, DOG ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">Food</span> </span>&#123;</span><br><span class="line">        FISH, BEEF, PORK ;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Set&lt;Map&lt;Animal, Food&gt;&gt; eats(List&lt;Animal&gt; animal, List&lt;Food&gt; food) &#123;</span><br><span class="line">        Set&lt;Map&lt;Animal,Food&gt;&gt; fleet = <span class="keyword">new</span> HashSet();</span><br><span class="line">        <span class="keyword">for</span> (Animal a: animal)&#123;</span><br><span class="line">            <span class="keyword">for</span> (Food f: food)&#123;</span><br><span class="line">                <span class="comment">// Take a step with (a, f)</span></span><br><span class="line">                List&lt;Food&gt; food_left = food.stream().filter(x -&gt; !x.equals(f)).collect(Collectors.toList());</span><br><span class="line">                List&lt;Animal&gt; animal_left = animal.stream().filter(x -&gt; !x.equals(a)).collect(Collectors.toList());</span><br><span class="line">                <span class="keyword">if</span> (animal_left.isEmpty() || food_left.isEmpty())&#123;</span><br><span class="line">                    <span class="comment">// Terminal state</span></span><br><span class="line">                    fleet.add(<span class="keyword">new</span> HashMap&lt;Animal, Food&gt;()&#123;&#123;put(a,f);&#125;&#125;);</span><br><span class="line">                &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                    eats(animal_left, food_left).stream().forEach(s -&gt; &#123;s.put(a, f); fleet.add(s); &#125;);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> fleet;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        SFO_Recursive.eats(</span><br><span class="line">            Arrays.asList(Animal.CAT, Animal.DOG),</span><br><span class="line">            Arrays.asList(Food.BEEF, Food.FISH, Food.PORK)</span><br><span class="line">        ).stream().forEach(System.out::println);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>The output of above codes:<br><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;CAT=BEEF, DOG=PORK&#125;</span><br><span class="line">&#123;CAT=PORK, DOG=BEEF&#125;</span><br><span class="line">&#123;CAT=BEEF, DOG=FISH&#125;</span><br><span class="line">&#123;CAT=FISH, DOG=BEEF&#125;</span><br><span class="line">&#123;CAT=FISH, DOG=PORK&#125;</span><br><span class="line">&#123;CAT=PORK, DOG=FISH&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="Key-Points-in-DFS-before-Coding"><a href="#Key-Points-in-DFS-before-Coding" class="headerlink" title="Key Points in DFS before Coding"></a>Key Points in DFS before Coding</h3><p>In worst case, the time complexity is $O(|V| + |E|)$. V and E are vertex and edge sets. For recursive Depth-First-Search coding, besides the initial state and problem space representation, there are two key things to take care (before starting programming): </p>
+<p>The output of above codes: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;CAT=BEEF, DOG=PORK&#125;</span><br><span class="line">&#123;CAT=PORK, DOG=BEEF&#125;</span><br><span class="line">&#123;CAT=BEEF, DOG=FISH&#125;</span><br><span class="line">&#123;CAT=FISH, DOG=BEEF&#125;</span><br><span class="line">&#123;CAT=FISH, DOG=PORK&#125;</span><br><span class="line">&#123;CAT=PORK, DOG=FISH&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="key-points-in-dfs-before-coding">Key Points in DFS before Coding</h3>
+<p>In worst case, the time complexity is <span class="math inline">\(O(|V| + |E|)\)</span>. V and E are vertex and edge sets. For recursive Depth-First-Search coding, besides the initial state and problem space representation, there are two key things to take care (before starting programming):</p>
 <ul>
-<li><p><strong>Terminal State Evaluation</strong></p>
+<li><strong>Terminal State Evaluation</strong>
 <ul>
 <li>Test condition to determine whether current state is a temrinal one</li>
 <li>Any additional tests to judge if it is an effective result to retrun</li>
-<li>How to pack up the data to return </li>
-</ul>
-</li>
-<li><p><strong>The reduce step</strong>: How to apply current step to a partial result from (future) terminal state(s)</p>
+<li>How to pack up the data to return</li>
+</ul></li>
+<li><strong>The reduce step</strong>: How to apply current step to a partial result from (future) terminal state(s)
 <ul>
-<li>Let’s assume the rest data are already processed by future states and we have time machine to get back to “now”</li>
-<li>Here the key is to add (animal, food) pair into an existing Set<ul>
+<li>Let's assume the rest data are already processed by future states and we have time machine to get back to "now"</li>
+<li>Here the key is to add (animal, food) pair into an existing Set
+<ul>
 <li>For each element of Set, the new pair can be appended into the element (Map)</li>
 <li>The hashCode algorithms of Map, Map Entries are reliable to directly add new pair without additional restriction check.</li>
-</ul>
-</li>
-</ul>
-</li>
+</ul></li>
+</ul></li>
 </ul>
 <p>If we have to keep the method fingerprint to return Set with inputs of two Lists. The terminal condition is the obvious empty list in either parameter to stop the search. To apply current step to a Set, we can loop all the Maps and just add the combination of new Animal obj and new Food obj to each one but rely on Set class to check whether unique Map is added. Without global tracking table, we can remove consumed elements from Animal and Food Lists to send the information to next state.</p>
-<h3 id="About-Java-hashCode-Algorithms"><a href="#About-Java-hashCode-Algorithms" class="headerlink" title="About Java hashCode() Algorithms"></a>About Java hashCode() Algorithms</h3><p>Java test equality, “==”, by hashCode(). Map calculate hashCode as $\sum{_{k,v\ in\ map}} (hashCode(k)$ ^ $hashCode(v))$. Every enum value has an unique hashCode by default. Therefore, it is okay to directly add Map elements.</p>
-<p>The simplified formula in other format:<br>Map.hashCode() = $\sum (entry.key.hashCode()$ ^ $entry.val.hashCode())$</p>
-<h3 id="Another-Example-from-SFO"><a href="#Another-Example-from-SFO" class="headerlink" title="Another Example from SFO"></a>Another Example from SFO</h3><p>I confess the AI of SFO is effective as I recommend another DFS algorithm related topic. The original question on codereview.stackexchange.com is on <a target="_blank" rel="noopener" href="https://codereview.stackexchange.com/questions/161989/recursively-listing-files-in-python">Link</a>. </p>
+<h3 id="about-java-hashcode-algorithms">About Java hashCode() Algorithms</h3>
+<p>Java test equality, "==", by hashCode(). Map calculate hashCode as <span class="math inline">\(\sum{_{k,v\ in\ map}} (hashCode(k)\)</span> ^ <span class="math inline">\(hashCode(v))\)</span>. Every enum value has an unique hashCode by default. Therefore, it is okay to directly add Map elements.</p>
+<p>The simplified formula in other format: Map.hashCode() = <span class="math inline">\(\sum (entry.key.hashCode()\)</span> ^ <span class="math inline">\(entry.val.hashCode())\)</span></p>
+<h3 id="another-example-from-sfo">Another Example from SFO</h3>
+<p>I confess the AI of SFO is effective as I recommend another DFS algorithm related topic. The original question on codereview.stackexchange.com is on <a target="_blank" rel="noopener" href="https://codereview.stackexchange.com/questions/161989/recursively-listing-files-in-python">Link</a>.</p>
 <p>It is about to walk full paths from a start directory and search for files only with restrictions of min and max Depth.</p>
 <p>In this problem, the original code has mixed min depth check and max depth. Usually DFS check the max depth at first of code block, because it is (part of) <strong>Terminal State</strong> test. The recursion needs to know whether to terminate current approach direction at beginning for most cases. In other words, first sub-problem is whether to cut this search branch.</p>
 <p>With a simple correction, here is the working program. Change happens in 3rd line.</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">atDirList4</span>(<span class="params">startDir, maxDepth=sys.maxsize, minDepth=<span class="number">0</span>, curDepth=<span class="number">0</span></span>):</span></span><br><span class="line">    ret = []</span><br><span class="line">    <span class="keyword">if</span> curDepth &lt; maxDepth:</span><br><span class="line">        <span class="keyword">for</span> item <span class="keyword">in</span> os.listdir(startDir):</span><br><span class="line">            fullItem = os.path.join(startDir, item)</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                <span class="keyword">if</span> os.path.isfile(fullItem) <span class="keyword">and</span> curDepth &gt;= minDepth:</span><br><span class="line">                    ret.append(fullItem)</span><br><span class="line">                <span class="keyword">elif</span> os.path.isdir(fullItem) <span class="keyword">and</span> curDepth + <span class="number">1</span> &lt;= maxDepth:</span><br><span class="line">                    ret.extend(atDirList4(fullItem, maxDepth, minDepth, curDepth + <span class="number">1</span>))</span><br><span class="line">            <span class="keyword">except</span> OSError:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">    <span class="keyword">return</span> ret</span><br></pre></td></tr></table></figure>
-<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><blockquote>
+<h2 id="references">References</h2>
+<blockquote>
 <p>My original answer on StackOverflow: <a target="_blank" rel="noopener" href="http://stackoverflow.com/a/43719930/230100">http://stackoverflow.com/a/43719930/230100</a></p>
 </blockquote>
 <blockquote>
 <p>DFS Definition on Wikipedia: <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Depth-first_search">https://en.wikipedia.org/wiki/Depth-first_search</a></p>
 </blockquote>
-<h2 id="Change-Log"><a href="#Change-Log" class="headerlink" title="Change Log"></a>Change Log</h2><ul>
+<h2 id="change-log">Change Log</h2>
+<ul>
 <li>May 18, 2017: render equations with MaxthJax format.</li>
 <li>May 03, 2017: add Python DFS example.</li>
 </ul>
@@ -385,7 +384,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Problem-Statement"><span class="nav-number">1.</span> <span class="nav-text">The Problem Statement</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-and-Description"><span class="nav-number">2.</span> <span class="nav-text">Solution and Description</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution-Codes"><span class="nav-number">2.1.</span> <span class="nav-text">Solution Codes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Key-Points-in-DFS-before-Coding"><span class="nav-number">2.2.</span> <span class="nav-text">Key Points in DFS before Coding</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#About-Java-hashCode-Algorithms"><span class="nav-number">2.3.</span> <span class="nav-text">About Java hashCode() Algorithms</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Another-Example-from-SFO"><span class="nav-number">2.4.</span> <span class="nav-text">Another Example from SFO</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#References"><span class="nav-number">3.</span> <span class="nav-text">References</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Change-Log"><span class="nav-number">4.</span> <span class="nav-text">Change Log</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#the-problem-statement"><span class="nav-number">1.</span> <span class="nav-text">The Problem Statement</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#solution-and-description"><span class="nav-number">2.</span> <span class="nav-text">Solution and Description</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#solution-codes"><span class="nav-number">2.1.</span> <span class="nav-text">Solution Codes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#key-points-in-dfs-before-coding"><span class="nav-number">2.2.</span> <span class="nav-text">Key Points in DFS before Coding</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#about-java-hashcode-algorithms"><span class="nav-number">2.3.</span> <span class="nav-text">About Java hashCode() Algorithms</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#another-example-from-sfo"><span class="nav-number">2.4.</span> <span class="nav-text">Another Example from SFO</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#references"><span class="nav-number">3.</span> <span class="nav-text">References</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#change-log"><span class="nav-number">4.</span> <span class="nav-text">Change Log</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -521,6 +520,59 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

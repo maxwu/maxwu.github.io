@@ -20,16 +20,16 @@
     var CONFIG = {"hostname":"maxwu.me","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="This article is inspired by another post described the disapproving on current common misunderstanding among concepts of RESTful, CRUD, Safety, Security and Idempotency.![RESTful Img][https:&#x2F;&#x2F;i.imgur.">
+  <meta name="description" content="This article is inspired by another post described the disapproving on current common misunderstanding among concepts of RESTful, CRUD, Safety, Security and Idempotency. [RESTful Img][https:&#x2F;&#x2F;i.imgur.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Thoughts on RESTful API Design and Testing">
 <meta property="og:url" content="http://maxwu.me/2017/05/20/Thoughts-on-RESTful-API-Design-and-Testing/index.html">
 <meta property="og:site_name" content="+U Maxout!">
-<meta property="og:description" content="This article is inspired by another post described the disapproving on current common misunderstanding among concepts of RESTful, CRUD, Safety, Security and Idempotency.![RESTful Img][https:&#x2F;&#x2F;i.imgur.">
+<meta property="og:description" content="This article is inspired by another post described the disapproving on current common misunderstanding among concepts of RESTful, CRUD, Safety, Security and Idempotency. [RESTful Img][https:&#x2F;&#x2F;i.imgur.">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://oei21r8n1.bkt.clouddn.com/CRUD_20170527_7.png?imageView2/2/w/240">
 <meta property="article:published_time" content="2017-05-20T09:27:33.000Z">
-<meta property="article:modified_time" content="2021-10-24T22:03:14.509Z">
+<meta property="article:modified_time" content="2017-05-20T09:27:33.000Z">
 <meta property="article:author" content="Max Wu">
 <meta property="article:tag" content="RESTful">
 <meta property="article:tag" content="Architecture">
@@ -195,13 +195,6 @@
 
               <time title="Created: 2017-05-20 21:27:33" itemprop="dateCreated datePublished" datetime="2017-05-20T21:27:33+12:00">2017-05-20</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-10-25 11:03:14" itemprop="dateModified" datetime="2021-10-25T11:03:14+13:00">2021-10-25</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -227,9 +220,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>This article is inspired by another post described the disapproving on current common misunderstanding among concepts of RESTful, CRUD, Safety, Security and Idempotency.<br><a target="_blank" rel="noopener" href="https://imgur.com/tS7bZ9i">![RESTful Img][https://i.imgur.com/tS7bZ9im.png]</a><br>This post targets to rephase RESTful concept and describes common check points against RESTful API architecture test during Software Design Review.As practical samples, Jenkins API and CircleCI/TravisCI API will be analyzed, tested and evaluated.<br><span id="more"></span></p>
-<h2 id="1-RESTful-Style-Design"><a href="#1-RESTful-Style-Design" class="headerlink" title="1 RESTful Style Design"></a>1 RESTful Style Design</h2><h3 id="1-1-RESTful-Maturity-Model-and-the-Background"><a href="#1-1-RESTful-Maturity-Model-and-the-Background" class="headerlink" title="1.1 RESTful Maturity Model and the Background"></a>1.1 RESTful Maturity Model and the Background</h3><p>$\mathsf{\color{olive}{✐\ RESTful}}$: <strong>REpresentational State Transfer</strong>, by Roy Thomas Fielding <a target="_blank" rel="noopener" href="https://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm" title="Architectural Styles and the Design of Network-based Software Architectures">Phd Dessertation</a>, 2000.</p>
-<p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Representational_state_transfer" title="RESTful Wiki">RESTful</a> is a style of architecture. It is also called <strong>Resource Oriented Architecture (ROA)</strong> Which defines a group of restrictions for common architecturing practices as a meta architecture. RESTful compliant deliveries take the conventions of restrictions to build self-describable (semantic) network all together. </p>
+        <p>This article is inspired by another post described the disapproving on current common misunderstanding among concepts of RESTful, CRUD, Safety, Security and Idempotency. <a target="_blank" rel="noopener" href="https://imgur.com/tS7bZ9i">[RESTful Img][https://i.imgur.com/tS7bZ9im.png]</a> This post targets to rephase RESTful concept and describes common check points against RESTful API architecture test during Software Design Review.As practical samples, Jenkins API and CircleCI/TravisCI API will be analyzed, tested and evaluated. <span id="more"></span></p>
+<h2 id="restful-style-design">1 RESTful Style Design</h2>
+<h3 id="restful-maturity-model-and-the-background">1.1 RESTful Maturity Model and the Background</h3>
+<p><span class="math inline">\(\mathsf{\color{olive}{✐\ RESTful}}\)</span>: <strong>REpresentational State Transfer</strong>, by Roy Thomas Fielding <a target="_blank" rel="noopener" href="https://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm" title="Architectural Styles and the Design of Network-based Software Architectures">Phd Dessertation</a>, 2000.</p>
+<p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Representational_state_transfer" title="RESTful Wiki">RESTful</a> is a style of architecture. It is also called <strong>Resource Oriented Architecture (ROA)</strong> Which defines a group of restrictions for common architecturing practices as a meta architecture. RESTful compliant deliveries take the conventions of restrictions to build self-describable (semantic) network all together.</p>
 <p>Approaching with RESTful is like a ceremony to take a breakfast coffee ☕ in the morning ☀ to start the day with greeting and smile to people in community while exchaning news, sports and weather. The network is community which Apps and Services live within and people in ceremony are the nodes compliant to RESTful. Those common restrictions release the stress of life and offer people dimensions of freedom to move up (evolve, or, live with happiness) and exchange information.</p>
 <p>Traditionally a common style of API service architecture focused on operations. For example, the client creates the form and fulfills it with operation code, data and adjacent properties (session, auth) then sends it to server and expect a state transition on server. It creates a coupling between client and server, hardly to keep URL consistent in system evolution, and, operation focused design brings side effects as stateful constrain, cache application issue.</p>
 <p>While RESTful service is designed against resources. In short, <strong>URI is only designed for resources</strong>, Aka. <strong>design only servers data models</strong>. Which leaves the freedom to system evolution in three dimensions: service side, client side and resource linkages(resource descriptions). In concept, RESTful is a series of constrains towards an open architecture for next 10 years. Therefore the key points are:</p>
@@ -238,96 +233,93 @@
 <li><strong>Hyper-media driven</strong>: Business logic openness ☞ The dimension of freedom to support business evolution. Clients start from limited entry points and the requests are driven by hyperlinks in between.</li>
 <li><strong>Uniform Interface</strong>: Client side openness ☞ A dimension for Client side to evolute and separate implementation details.</li>
 </ul>
-<p>HTTP is the only implementation base so far. In common practices, the verbs and constrains on verbs are mixed from HTTP or RESTful. In other words, in context of concrete implementations, some conventions are borrowed from HTTP constrains. </p>
-<p>With HTTP and the using of HTTP Methods, RESTful also offers a kind of transparency to the network. <strong>Cache</strong> support is a widely mentioned feature comparing to traditional SOAP. With SOAP, the intermediate nodes can hardly know whether the operation is cache friendly unless it decode the message and find the Action Code within XML body. The existing HTTP headers as “modified-after-*” is not reusable with SOAP. But RESTful architecture can reuse existing infrastructures of Web Services and Network. It is friendly to existing Load Balance, CDN/Cache, and, Health-check facilities.</p>
-<p>From a practice point of view, Infosys published a handbook describing three wheels of RESTful: the <em>Resources(URI)[^URI], Verbs(Methods) and Representation (Format)</em>. Before starting practicing, my recommendation is still to think more on what is resource and how the resources are represented in such a semi-transparent and open architecture sytle. </p>
-<p>$\mathsf{\color{olive}{✐\ RESTful\ Maturity\ Model}}$: 4 Levels of RESTful Maturity definition to show the way to improve and where we are, by <a target="_blank" rel="noopener" href="https://www.crummy.com/writing/speaking/2008-QCon/act3.html">Leonard Richardson</a>, 2008. </p>
-<p><a target="_blank" rel="noopener" href="https://imgur.com/3f6qnOE">![RESTful Maturity Model][https://i.imgur.com/3f6qnOEm.png]</a> </p>
+<p>HTTP is the only implementation base so far. In common practices, the verbs and constrains on verbs are mixed from HTTP or RESTful. In other words, in context of concrete implementations, some conventions are borrowed from HTTP constrains.</p>
+<p>With HTTP and the using of HTTP Methods, RESTful also offers a kind of transparency to the network. <strong>Cache</strong> support is a widely mentioned feature comparing to traditional SOAP. With SOAP, the intermediate nodes can hardly know whether the operation is cache friendly unless it decode the message and find the Action Code within XML body. The existing HTTP headers as "modified-after-*" is not reusable with SOAP. But RESTful architecture can reuse existing infrastructures of Web Services and Network. It is friendly to existing Load Balance, CDN/Cache, and, Health-check facilities.</p>
+<p>From a practice point of view, Infosys published a handbook describing three wheels of RESTful: the <em>Resources(URI)<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, Verbs(Methods) and Representation (Format)</em>. Before starting practicing, my recommendation is still to think more on what is resource and how the resources are represented in such a semi-transparent and open architecture sytle.</p>
+<p><span class="math inline">\(\mathsf{\color{olive}{✐\ RESTful\ Maturity\ Model}}\)</span>: 4 Levels of RESTful Maturity definition to show the way to improve and where we are, by <a target="_blank" rel="noopener" href="https://www.crummy.com/writing/speaking/2008-QCon/act3.html">Leonard Richardson</a>, 2008.</p>
+<p><a target="_blank" rel="noopener" href="https://imgur.com/3f6qnOE">[RESTful Maturity Model][https://i.imgur.com/3f6qnOEm.png]</a></p>
 <p>It is still debating whether the first three levels are within RESTful scope. Because the maturity model might mislead people to understand the objectives of RESTful to build an eco of HATEOAS. At least, a common understanding is the maturity model provides a way to evaluate on a growth view towards semantic network.</p>
 <p>It is said that a large part of current online so-called RESTful services are quick works moved to HTTP verb driven, not hyper-media driven. And they are designed against operations, not resources.</p>
-<h4 id="Level-0-Just-one-URI-as-XML-RPC"><a href="#Level-0-Just-one-URI-as-XML-RPC" class="headerlink" title="Level 0: Just one URI, as XML-RPC"></a>Level 0: Just one URI, as XML-RPC</h4><p>The HTTP headers have no relation with transaction data. It is just a sharing point. All business and model logic is encoded in payload with a tight coupling between clients and servers. The client must have internal knowledge on how server works.</p>
-<h4 id="Level-1-Multiple-URI-but-one-method"><a href="#Level-1-Multiple-URI-but-one-method" class="headerlink" title="Level 1: Multiple URI but one method"></a>Level 1: Multiple URI but one method</h4><p>The RESTful degrades from Application Protocol to a Transportation Layer. As in SOAP or XML-RPC, an action code is in payload like “Do.Action” and “Operation=**“.</p>
-<h4 id="Level-2-Multiple-URI-Multiple-method"><a href="#Level-2-Multiple-URI-Multiple-method" class="headerlink" title="Level 2: Multiple URI, Multiple method"></a>Level 2: Multiple URI, Multiple method</h4><p>Methods and Status Code in Headers are representing transaction logic.</p>
-<p><em><em>Notes:</em></em></p>
-<blockquote>
-<p>CRUD: Post, Get, Put/PATCH, Delete<br>PUT: Update the whole object, while, PATCH: Update the properties of object.<br>HEAD: Fetch meta data.<br>OPTIONS: Fetch which properties can be altered</p>
-</blockquote>
-<h4 id="Level-3-Hypermedia-as-Application-Engine-–-HATEOAS"><a href="#Level-3-Hypermedia-as-Application-Engine-–-HATEOAS" class="headerlink" title="Level 3: Hypermedia as Application Engine – HATEOAS"></a>Level 3: Hypermedia as Application Engine – HATEOAS</h4><p>Leave the server side a freedom of service evolution. The application just enters from the entry point and will triger <strong>State Transfer</strong> on server objects via a hyperlinks.</p>
+<h4 id="level-0-just-one-uri-as-xml-rpc">Level 0: Just one URI, as XML-RPC</h4>
+<p>The HTTP headers have no relation with transaction data. It is just a sharing point. All business and model logic is encoded in payload with a tight coupling between clients and servers. The client must have internal knowledge on how server works.</p>
+<h4 id="level-1-multiple-uri-but-one-method">Level 1: Multiple URI but one method</h4>
+<p>The RESTful degrades from Application Protocol to a Transportation Layer. As in SOAP or XML-RPC, an action code is in payload like "Do.Action" and "Operation=**".</p>
+<h4 id="level-2-multiple-uri-multiple-method">Level 2: Multiple URI, Multiple method</h4>
+<p>Methods and Status Code in Headers are representing transaction logic.</p>
+<p><em><em>Notes:</em></em> &gt; CRUD: Post, Get, Put/PATCH, Delete &gt; PUT: Update the whole object, while, PATCH: Update the properties of object. &gt; HEAD: Fetch meta data. &gt; OPTIONS: Fetch which properties can be altered</p>
+<h4 id="level-3-hypermedia-as-application-engine----hateoas">Level 3: Hypermedia as Application Engine -- HATEOAS</h4>
+<p>Leave the server side a freedom of service evolution. The application just enters from the entry point and will triger <strong>State Transfer</strong> on server objects via a hyperlinks.</p>
 <p>GET: can use filter, paging, not idempotent, POST: seems better and it return links to results.</p>
-<h4 id="Brief-History"><a href="#Brief-History" class="headerlink" title="Brief History"></a>Brief History</h4><p>When RESTful was published 2000, it was ahead of time. With more and more services were delivered in the name of RESTful, the situation was not getting better towards <strong>self-describable network</strong>. </p>
-<p>When the first internet bubble was over, more studies were spent on this topic. The popular Rails makes <strong>CRUD</strong> a widely accepted concept in a narrowed context. Together with ROR is the dominancy trend of various application clients than browser. Mobile traffics exceeded desktop from 2016 and <a target="_blank" rel="noopener" href="https://www.businessinsider.com.au/mobile-web-vs-app-usage-statistics-2014-4" title="mobile web vs app">Apps dominant mobile internet</a> More people turn to review this topic (from 2014) and publish articles and posts towards core concept of RESTful.<br><img src="http://oei21r8n1.bkt.clouddn.com/CRUD_20170527_7.png?imageView2/2/w/240" alt="CRUD Image"><br>In short, CRUD is a selected implementation offered by most of modern Apps and Frameworks. It can be roughly regarded as a craft way between level-2 and HATEOAS. While RESTful is on a higher abstract layer to define the architecture style. </p>
-<h3 id="1-2-Applications"><a href="#1-2-Applications" class="headerlink" title="1.2 Applications"></a>1.2 Applications</h3><p>Two kinds: Browser and Other Application. The Clients details are protected from coupling up with distributed systems. However, it can be checked through the User-Agent header.</p>
-<h3 id="1-3-Verbs-in-HTTP"><a href="#1-3-Verbs-in-HTTP" class="headerlink" title="1.3 Verbs in HTTP"></a>1.3 Verbs in HTTP</h3><h4 id="1-3-1-Safety-and-Idempotence"><a href="#1-3-1-Safety-and-Idempotence" class="headerlink" title="1.3.1 Safety and Idempotence"></a>1.3.1 Safety and Idempotence</h4><p>$\mathsf{\color{olive}{✐\ Safety}}$: The operation won’t change resource state on server side. Therefore if a safe operation is performed once or multiple times, the server state does not change as client never make the operation at all. </p>
+<h4 id="brief-history">Brief History</h4>
+<p>When RESTful was published 2000, it was ahead of time. With more and more services were delivered in the name of RESTful, the situation was not getting better towards <strong>self-describable network</strong>.</p>
+<p>When the first internet bubble was over, more studies were spent on this topic. The popular Rails makes <strong>CRUD</strong> a widely accepted concept in a narrowed context. Together with ROR is the dominancy trend of various application clients than browser. Mobile traffics exceeded desktop from 2016 and <a target="_blank" rel="noopener" href="https://www.businessinsider.com.au/mobile-web-vs-app-usage-statistics-2014-4" title="mobile web vs app">Apps dominant mobile internet</a> More people turn to review this topic (from 2014) and publish articles and posts towards core concept of RESTful. <img src="http://oei21r8n1.bkt.clouddn.com/CRUD_20170527_7.png?imageView2/2/w/240" alt="CRUD Image" /> In short, CRUD is a selected implementation offered by most of modern Apps and Frameworks. It can be roughly regarded as a craft way between level-2 and HATEOAS. While RESTful is on a higher abstract layer to define the architecture style.</p>
+<h3 id="applications">1.2 Applications</h3>
+<p>Two kinds: Browser and Other Application. The Clients details are protected from coupling up with distributed systems. However, it can be checked through the User-Agent header.</p>
+<h3 id="verbs-in-http">1.3 Verbs in HTTP</h3>
+<h4 id="safety-and-idempotence">1.3.1 Safety and Idempotence</h4>
+<p><span class="math inline">\(\mathsf{\color{olive}{✐\ Safety}}\)</span>: The operation won't change resource state on server side. Therefore if a safe operation is performed once or multiple times, the server state does not change as client never make the operation at all.</p>
 <p><strong>Tips:</strong> Client does not know whether the server really does not change anything. Here safety is on <strong>service</strong> layer of perspective. The client does not couple up with whether server keeps audit, logs or runs an iterator as internal implementation. From a service layer view, if the resource remains, the uniformed interface with curren method is safe. So does Idempotence.</p>
-<p><em><em>Notes:</em></em></p>
-<blockquote>
-<p><strong>Safety vs Security</strong>: In Chinese language, the two concepts are not distinguished by default. The two terms defined different scope in general English context. Safety refers to the infrastructural problems as climate disaster, earthquake, or, severes threats without indistinctive targets. Security is a bit narrow concept on individual level protection from explosing, targeted attacks.</p>
-</blockquote>
+<p><em><em>Notes:</em></em> &gt; <strong>Safety vs Security</strong>: In Chinese language, the two concepts are not distinguished by default. The two terms defined different scope in general English context. Safety refers to the infrastructural problems as climate disaster, earthquake, or, severes threats without indistinctive targets. Security is a bit narrow concept on individual level protection from explosing, targeted attacks.</p>
 <p>Examples: GET and HEAD are safe methods. POST is not safe.</p>
-<p>$\mathsf{\color{olive}{✐ Idempotence}}$: The operation on resource(s) by making one request is the same as making a series of <em>identical</em> requests. This concept is from Maths. When an operation has same effect whether it is applied once or more than once. For example,$4\times0\times0 == 4\times0$. </p>
+<p><span class="math inline">\(\mathsf{\color{olive}{✐ Idempotence}}\)</span>: The operation on resource(s) by making one request is the same as making a series of <em>identical</em> requests. This concept is from Maths. When an operation has same effect whether it is applied once or more than once. For example,<span class="math inline">\(4\times0\times0 == 4\times0\)</span>.</p>
 <p>Examples: GET, PUT and DELETE are idempotent. POST is not idempotent, neither.</p>
-<p>HTTP v1.1 defines idempotence as:</p>
-<blockquote>
-<p>Methods can also have the property of “idempotence” in that (aside from error or expiration issues) the side-effects of N &gt; 0 identical requests is the same as for a single request.</p>
-</blockquote>
-<p>In distributed systems, idempotence is a key feature to decouple systems  to eliminate strong constrains. For example, withdraw money from a deposit</p>
+<p>HTTP v1.1 defines idempotence as: &gt;Methods can also have the property of "idempotence" in that (aside from error or expiration issues) the side-effects of N &gt; 0 identical requests is the same as for a single request.</p>
+<p>In distributed systems, idempotence is a key feature to decouple systems to eliminate strong constrains. For example, withdraw money from a deposit</p>
 <p>Safety and idempotency allow clients to make reliable request over unreliable network environment. If the operation is safe, it can be cached and mutiplied without worry about side effects. If it is idempotent, the request can be replayed in unreliable environment.</p>
-<p>$\color{brown}{✓\ Misusing\ GET\ for\ Unsafe\ Operations}$<br>There is a common checkpoints for testing team to pay attention if safe metod as “GET” is misused to expose unsafe interfaces. </p>
-<h4 id="1-3-2-Summary-of-HTTP-Methods"><a href="#1-3-2-Summary-of-HTTP-Methods" class="headerlink" title="1.3.2 Summary of HTTP Methods"></a>1.3.2 Summary of HTTP Methods</h4><table>
+<p><span class="math inline">\(\color{brown}{✓\ Misusing\ GET\ for\ Unsafe\ Operations}\)</span> There is a common checkpoints for testing team to pay attention if safe metod as "GET" is misused to expose unsafe interfaces.</p>
+<h4 id="summary-of-http-methods">1.3.2 Summary of HTTP Methods</h4>
+<table>
 <thead>
-<tr>
-<th style="text-align:left">Method</th>
-<th style="text-align:center">Safe</th>
-<th style="text-align:center">Idempotent</th>
+<tr class="header">
+<th style="text-align: left;">Method</th>
+<th style="text-align: center;">Safe</th>
+<th style="text-align: center;">Idempotent</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left">POST</td>
-<td style="text-align:center"><span style="color: red">no</span></td>
-<td style="text-align:center"><span style="color: red">no</span></td>
+<tr class="odd">
+<td style="text-align: left;">POST</td>
+<td style="text-align: center;"><span style="color: red">no</span></td>
+<td style="text-align: center;"><span style="color: red">no</span></td>
 </tr>
-<tr>
-<td style="text-align:left">GET</td>
-<td style="text-align:center"><span style="color: green">yes</span></td>
-<td style="text-align:center"><span style="color: green">yes</span></td>
+<tr class="even">
+<td style="text-align: left;">GET</td>
+<td style="text-align: center;"><span style="color: green">yes</span></td>
+<td style="text-align: center;"><span style="color: green">yes</span></td>
 </tr>
-<tr>
-<td style="text-align:left">HEAD</td>
-<td style="text-align:center"><span style="color: green">yes</span></td>
-<td style="text-align:center"><span style="color: green">yes </span></td>
+<tr class="odd">
+<td style="text-align: left;">HEAD</td>
+<td style="text-align: center;"><span style="color: green">yes</span></td>
+<td style="text-align: center;"><span style="color: green">yes </span></td>
 </tr>
-<tr>
-<td style="text-align:left">PUT</td>
-<td style="text-align:center"><span style="color: red">no</span></td>
-<td style="text-align:center"><span style="color: green">yes </span></td>
+<tr class="even">
+<td style="text-align: left;">PUT</td>
+<td style="text-align: center;"><span style="color: red">no</span></td>
+<td style="text-align: center;"><span style="color: green">yes </span></td>
 </tr>
-<tr>
-<td style="text-align:left">PATCH</td>
-<td style="text-align:center"><span style="color: red">no</span></td>
-<td style="text-align:center"><span style="color: red">no</span></td>
+<tr class="odd">
+<td style="text-align: left;">PATCH</td>
+<td style="text-align: center;"><span style="color: red">no</span></td>
+<td style="text-align: center;"><span style="color: red">no</span></td>
 </tr>
-<tr>
-<td style="text-align:left">DELETE</td>
-<td style="text-align:center"><span style="color: red">no</span></td>
-<td style="text-align:center"><span style="color: green">yes </span></td>
+<tr class="even">
+<td style="text-align: left;">DELETE</td>
+<td style="text-align: center;"><span style="color: red">no</span></td>
+<td style="text-align: center;"><span style="color: green">yes </span></td>
 </tr>
-<tr>
-<td style="text-align:left">LINK</td>
-<td style="text-align:center"><span style="color: red">no</span></td>
-<td style="text-align:center"><span style="color: green">yes </span></td>
+<tr class="odd">
+<td style="text-align: left;">LINK</td>
+<td style="text-align: center;"><span style="color: red">no</span></td>
+<td style="text-align: center;"><span style="color: green">yes </span></td>
 </tr>
-<tr>
-<td style="text-align:left">UNLINK</td>
-<td style="text-align:center"><span style="color: red">no</span></td>
-<td style="text-align:center"><span style="color: green">yes </span></td>
+<tr class="even">
+<td style="text-align: left;">UNLINK</td>
+<td style="text-align: center;"><span style="color: red">no</span></td>
+<td style="text-align: center;"><span style="color: green">yes </span></td>
 </tr>
 </tbody>
 </table>
-<p><em><em>Notes:</em></em></p>
-<blockquote>
-<p><strong>PATCH</strong>: Unlike PUT, PATCH is not idempotent, both are not safe. Which is to say, PATCH is not required to be idempotent as I updates selected properties. Client shall not assume PATCH as idempotent operation. However, in purticular context, PATCH can be idempotent with headers “If-Match” or “If-Unmodified-Since”. </p>
-</blockquote>
+<p><em><em>Notes:</em></em> &gt; <strong>PATCH</strong>: Unlike PUT, PATCH is not idempotent, both are not safe. Which is to say, PATCH is not required to be idempotent as I updates selected properties. Client shall not assume PATCH as idempotent operation. However, in purticular context, PATCH can be idempotent with headers "If-Match" or "If-Unmodified-Since".</p>
 <blockquote>
 <p>Another point, PATCH is not natively defined by HTTP specification. Which is introduced by RFC 5789, 2010 as an extension for Web APIs.</p>
 </blockquote>
@@ -335,11 +327,11 @@
 <p><strong>GET</strong>: Safe and Idempotent. It is a hint to test cache via proxy or packet analyzer.</p>
 </blockquote>
 <blockquote>
-<p><strong>POST</strong>: Two cases for POST method: Post-to-append (appending POST) and Post-to-overloaded (overloading POST). Post-to-append is the HTTP request to create a new resource beneath another resource. </p>
+<p><strong>POST</strong>: Two cases for POST method: Post-to-append (appending POST) and Post-to-overloaded (overloading POST). Post-to-append is the HTTP request to create a new resource beneath another resource.</p>
 </blockquote>
 <blockquote>
-<p><strong>POST_and_PUT</strong>: POST regards the URI as resource “acceptor”, not the resource itself to create. <code>POST https://api.forum.com/articles</code> is to create an article “for” articles resource, or, owned by articles. In the return result links to the new resource shall be indicated. The 2nd POST request will create another URI for articles. Therefore POST is not safe, non-idempotent. </p>
-<p>PUT is idempotent. <code>PUT https://api.forum.com/articles/101</code> is to update or create the resource “in” 101 URI. Multiple POST actions make no difference here. Hence PUT is idempotent method by definition. </p>
+<p><strong>POST_and_PUT</strong>: POST regards the URI as resource "acceptor", not the resource itself to create. <code>POST https://api.forum.com/articles</code> is to create an article "for" articles resource, or, owned by articles. In the return result links to the new resource shall be indicated. The 2nd POST request will create another URI for articles. Therefore POST is not safe, non-idempotent.</p>
+<p>PUT is idempotent. <code>PUT https://api.forum.com/articles/101</code> is to update or create the resource "in" 101 URI. Multiple POST actions make no difference here. Hence PUT is idempotent method by definition.</p>
 </blockquote>
 <blockquote>
 <p><strong>HEAD</strong>: Similar to GET but only has HTTP headers.</p>
@@ -350,46 +342,53 @@
 <blockquote>
 <p><strong>LINK/UNLINK</strong>: It is not recommended to adapt LINK/UNLINK so far since it is not popular. The LINK/UNLINK are proposed in an IETF draft.</p>
 </blockquote>
-<h3 id="1-4-HTTP-Status-Code"><a href="#1-4-HTTP-Status-Code" class="headerlink" title="1.4 HTTP Status Code"></a>1.4 HTTP Status Code</h3><table>
+<h3 id="http-status-code">1.4 HTTP Status Code</h3>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 37%" />
+<col style="width: 37%" />
+</colgroup>
 <thead>
-<tr>
-<th style="text-align:left">Range</th>
-<th style="text-align:center">Transition Information</th>
-<th style="text-align:center">Notes</th>
+<tr class="header">
+<th style="text-align: left;">Range</th>
+<th style="text-align: center;">Transition Information</th>
+<th style="text-align: center;">Notes</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left">1XX</td>
-<td style="text-align:center"><span style="color: blue">Information</span></td>
-<td style="text-align:center"><span style="color: blue">100 - Continue</span></td>
+<tr class="odd">
+<td style="text-align: left;">1XX</td>
+<td style="text-align: center;"><span style="color: blue">Information</span></td>
+<td style="text-align: center;"><span style="color: blue">100 - Continue</span></td>
 </tr>
-<tr>
-<td style="text-align:left">2XX</td>
-<td style="text-align:center"><span style="color: green">OK</span></td>
-<td style="text-align:center"><span style="color: green">201 - Created <br> 204 - No Content</span></td>
+<tr class="even">
+<td style="text-align: left;">2XX</td>
+<td style="text-align: center;"><span style="color: green">OK</span></td>
+<td style="text-align: center;"><span style="color: green">201 - Created <br> 204 - No Content</span></td>
 </tr>
-<tr>
-<td style="text-align:left">3XX</td>
-<td style="text-align:center"><span style="color: brown">Redirection</span></td>
-<td style="text-align:center"><span style="color: brown">301 - Redirect Permanent <br>302 - Redirect Temporary </span></td>
+<tr class="odd">
+<td style="text-align: left;">3XX</td>
+<td style="text-align: center;"><span style="color: brown">Redirection</span></td>
+<td style="text-align: center;"><span style="color: brown">301 - Redirect Permanent <br>302 - Redirect Temporary </span></td>
 </tr>
-<tr>
-<td style="text-align:left">4XX</td>
-<td style="text-align:center"><span style="color: red">Client Error</span></td>
-<td style="text-align:center"><span style="color: red">400 - Bad Request (Malformated) <br> 401 - Unauthorized <br> 403 - Forbidden <br> 404 - Not Found <br> 405 - Now Allowed (wrong method) <br> 409 - Resource Conflict</span></td>
+<tr class="even">
+<td style="text-align: left;">4XX</td>
+<td style="text-align: center;"><span style="color: red">Client Error</span></td>
+<td style="text-align: center;"><span style="color: red">400 - Bad Request (Malformated) <br> 401 - Unauthorized <br> 403 - Forbidden <br> 404 - Not Found <br> 405 - Now Allowed (wrong method) <br> 409 - Resource Conflict</span></td>
 </tr>
-<tr>
-<td style="text-align:left">5XX</td>
-<td style="text-align:center"><span style="color: red">Server Error</span></td>
-<td style="text-align:center"><span style="color: red">501 - Not Implemented <br> 505 - HTTP Version Not Supported</span></td>
+<tr class="odd">
+<td style="text-align: left;">5XX</td>
+<td style="text-align: center;"><span style="color: red">Server Error</span></td>
+<td style="text-align: center;"><span style="color: red">501 - Not Implemented <br> 505 - HTTP Version Not Supported</span></td>
 </tr>
 </tbody>
 </table>
-<p>It is widely seen in practices the return status code is only checked whether it is 2XX as in many front end applications. On syntax level, this is effective. However, it is recommended to apply semantic checks as well. For example, it the request is to <em>C</em>reate an entity, then the status code in the response header is expected to be “201”. On the other hand, when the request is to <em>D</em>elete an entity, the status code is expected to be “204”.</p>
+<p>It is widely seen in practices the return status code is only checked whether it is 2XX as in many front end applications. On syntax level, this is effective. However, it is recommended to apply semantic checks as well. For example, it the request is to <em>C</em>reate an entity, then the status code in the response header is expected to be "201". On the other hand, when the request is to <em>D</em>elete an entity, the status code is expected to be "204".</p>
 <p>From the architecture view, if a Front-End App triggers a state change via request to a service or micro-service, and the payload is transparently carried over to downstream micro-services. When the downstream service reports an payload error as 4XX (client side error), what would be returned to the Front-End App? It will depend on the information disclosure from overall strategy. For many of the applications, the Front-End runs in Browser or Mobile are not permitted to disclose more information for security sake. Therefore, it is possible to see 5XX errors on Front-End instead.</p>
-<p><em><em>Notes:</em></em><br>Here is a <a target="_blank" rel="noopener" href="https://i.stack.imgur.com/whhD1.png">complete decision diagram</a> on HTTP status code.<br>For a quick reference on HTTP status code, readers are recommended to visit <a target="_blank" rel="noopener" href="https://httpstatuses.com/">httpstatuses.com</a></p>
-<h2 id="2-Testing-RESTful-APIs"><a href="#2-Testing-RESTful-APIs" class="headerlink" title="2 Testing RESTful APIs"></a>2 Testing RESTful APIs</h2><p>In current section, the check points list is shared. It will be maintained lively. The list shall be able to apply in architecture review and testing works directly. I would try to add more concrete examples in following days.</p>
+<p><em><em>Notes:</em></em> Here is a <a target="_blank" rel="noopener" href="https://i.stack.imgur.com/whhD1.png">complete decision diagram</a> on HTTP status code. For a quick reference on HTTP status code, readers are recommended to visit <a target="_blank" rel="noopener" href="https://httpstatuses.com/">httpstatuses.com</a></p>
+<h2 id="testing-restful-apis">2 Testing RESTful APIs</h2>
+<p>In current section, the check points list is shared. It will be maintained lively. The list shall be able to apply in architecture review and testing works directly. I would try to add more concrete examples in following days.</p>
 <p><strong>✓ HTTPs protocol always</strong></p>
 <p>As common practice, CircleCI, travis-ci and Github are on HTTPs. However there are still couple of issues to pay special attention on security (refer to previous tips section in this post on safety vs security).</p>
 <ul>
@@ -398,9 +397,9 @@
 <li>Allow one client to work with multiple API keys;</li>
 <li>Adapt <strong>API-key + Secret-Key</strong>, sign key value pairs before URL encoding;</li>
 </ul>
-<p>It is recommended to take a further step from API-key authentication to API-Key + Secret-Key authentication with a convention of <strong>Request Signature</strong>. It is hard to say which signature procedure is “right”. There are several good practices to refer as Amazon AWS API parameter signature (v2.0, v1.0 is insecure), Baidu API and other famous providers. Here is a sample from developer.baidu.com. The URL parameters are signed with timestamp in predefined format and key value sorted in ascending order with session_secret appended. A kind reminder is to add timestamp as mentioned common practice to ignore expired requests. This protects services from Replay and Man-In-The-Middle attacks.</p>
+<p>It is recommended to take a further step from API-key authentication to API-Key + Secret-Key authentication with a convention of <strong>Request Signature</strong>. It is hard to say which signature procedure is "right". There are several good practices to refer as Amazon AWS API parameter signature (v2.0, v1.0 is insecure), Baidu API and other famous providers. Here is a sample from developer.baidu.com. The URL parameters are signed with timestamp in predefined format and key value sorted in ascending order with session_secret appended. A kind reminder is to add timestamp as mentioned common practice to ignore expired requests. This protects services from Replay and Man-In-The-Middle attacks.</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GET /rest/2.0/passport/users/getInfo?session_key=9XNNXe66zOlSassjSKD5gry9BiN61IUEi8IpJmjBwvU07RXP0J3c4GnhZR3GKhMHa1A%3D&amp;timestamp=2011-06-21+17%3A18%3A09&amp;format=json&amp;uid=67411167&amp;sign=d24dd357a95a2579c410b3a92495f009 HTTP/1.1</span><br><span class="line">Host: openapi.baidu.com</span><br><span class="line">User-Agent: Client of Baidu Open Platform</span><br><span class="line">Accept: */*</span><br><span class="line">Accept-Encoding: gzip,deflate</span><br><span class="line">Accept-Charset: utf-8</span><br><span class="line">Connection: close</span><br></pre></td></tr></table></figure>
-<p>Here is code sample from AWS on how to sign requests to AWS API.<br><a target="_blank" rel="noopener" href="http://docs.aws.amazon.com/general/latest/gr/sigv4-signed-request-examples.html?shortFooter=true">http://docs.aws.amazon.com/general/latest/gr/sigv4-signed-request-examples.html?shortFooter=true</a></p>
+<p>Here is code sample from AWS on how to sign requests to AWS API. <a target="_blank" rel="noopener" href="http://docs.aws.amazon.com/general/latest/gr/sigv4-signed-request-examples.html?shortFooter=true">http://docs.aws.amazon.com/general/latest/gr/sigv4-signed-request-examples.html?shortFooter=true</a></p>
 <ul>
 <li>CircleCI API runs on HTTPs, but not with signed request.</li>
 <li>Travis-CI takes token from HTTP auth header also.</li>
@@ -424,7 +423,7 @@
 <p>Take below example from CircleCI API doc, cancel here is regarded as a resource like command queue. Travis-CI has similar interface <code>/job/&#123;job.id&#125;/cancel</code>. Here job.cancel will accept a resouce of command with POST.</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">POST: /project/:vcs-type/:username/:project/:build_num/cancel</span><br><span class="line">Cancels the build, returns a summary of the build.</span><br></pre></td></tr></table></figure>
 <p><strong>✓ Verbs (Methods) correctly utilized</strong></p>
-<p>An example from Travis-CI API doc about ‘PATCH’ method to update properties:</p>
+<p>An example from Travis-CI API doc about 'PATCH' method to update properties:</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">PATCH</span><br><span class="line">/repo/&#123;repository.id&#125;/setting/&#123;setting.name&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>CRUD: Post, Get, Put/Patch, Delete</li>
@@ -439,36 +438,47 @@
 <p><strong>✓ Status Code</strong></p>
 <p>As mentioned in section 1.4, status codes are expected to be compliant to HTTP convention.</p>
 <p><strong>✓ Error Handling</strong></p>
-<p>RESTful service returns verbose error information in Payloads, e.g. <code>&#123;error: &quot;XXX&quot;&#125;</code></p>
+<p>RESTful service returns verbose error information in Payloads, e.g. <code>&#123;error: "XXX"&#125;</code></p>
 <ul>
-<li><p>Travis-CI error message example:</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  	<span class="attr">&quot;@type&quot;</span>:  <span class="string">&quot;home&quot;</span>,</span><br><span class="line"> 	<span class="attr">&quot;@href&quot;</span>:  <span class="string">&quot;/&quot;</span>,</span><br><span class="line">  	<span class="attr">&quot;errors&quot;</span>: &#123;</span><br><span class="line">   		<span class="attr">&quot;login_required&quot;</span>: &#123;</span><br><span class="line">      	<span class="attr">&quot;status&quot;</span>:                <span class="number">403</span>,</span><br><span class="line">      	<span class="attr">&quot;default_message&quot;</span>:       <span class="string">&quot;login required&quot;</span>,</span><br><span class="line">      	<span class="attr">&quot;additional_attributes&quot;</span>: [ ]</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">&quot;method_not_allowed&quot;</span>: &#123;</span><br><span class="line">      	<span class="attr">&quot;status&quot;</span>:                <span class="number">405</span>,</span><br><span class="line">      	<span class="attr">&quot;default_message&quot;</span>:       <span class="string">&quot;method not allowed&quot;</span>,</span><br><span class="line">      	<span class="attr">&quot;additional_attributes&quot;</span>: [ ]</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">&quot;not_found&quot;</span>:&#123;</span><br><span class="line">      	<span class="attr">&quot;status&quot;</span>: <span class="number">404</span>,</span><br><span class="line">      	<span class="attr">&quot;default_message&quot;</span>: <span class="string">&quot;resource not found (or insufficient access)&quot;</span>,</span><br><span class="line">      	<span class="attr">&quot;additional_attributes&quot;</span>: [</span><br><span class="line">        	<span class="string">&quot;resource_type&quot;</span></span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<li>Travis-CI error message example:</li>
 </ul>
+<p><figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  	<span class="attr">&quot;@type&quot;</span>:  <span class="string">&quot;home&quot;</span>,</span><br><span class="line"> 	<span class="attr">&quot;@href&quot;</span>:  <span class="string">&quot;/&quot;</span>,</span><br><span class="line">  	<span class="attr">&quot;errors&quot;</span>: &#123;</span><br><span class="line">   		<span class="attr">&quot;login_required&quot;</span>: &#123;</span><br><span class="line">      	<span class="attr">&quot;status&quot;</span>:                <span class="number">403</span>,</span><br><span class="line">      	<span class="attr">&quot;default_message&quot;</span>:       <span class="string">&quot;login required&quot;</span>,</span><br><span class="line">      	<span class="attr">&quot;additional_attributes&quot;</span>: [ ]</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">&quot;method_not_allowed&quot;</span>: &#123;</span><br><span class="line">      	<span class="attr">&quot;status&quot;</span>:                <span class="number">405</span>,</span><br><span class="line">      	<span class="attr">&quot;default_message&quot;</span>:       <span class="string">&quot;method not allowed&quot;</span>,</span><br><span class="line">      	<span class="attr">&quot;additional_attributes&quot;</span>: [ ]</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">&quot;not_found&quot;</span>:&#123;</span><br><span class="line">      	<span class="attr">&quot;status&quot;</span>: <span class="number">404</span>,</span><br><span class="line">      	<span class="attr">&quot;default_message&quot;</span>: <span class="string">&quot;resource not found (or insufficient access)&quot;</span>,</span><br><span class="line">      	<span class="attr">&quot;additional_attributes&quot;</span>: [</span><br><span class="line">        	<span class="string">&quot;resource_type&quot;</span></span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p><strong>✓ Return Result compliancy</strong></p>
 <ul>
 <li>A set or an obj.</li>
-<li>Sub resources for relations: </li>
+<li>Sub resources for relations:</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GET /cars/711/drivers/ Returns a list of drivers for car 711</span><br><span class="line">GET /cars/711/drivers/4 Returns driver #4 for car 711</span><br></pre></td></tr></table></figure>
 <p><strong>✓ Hypermedia context</strong></p>
 <p>Provides Hyperlink driven APIs as manual exploring with the services.</p>
 <p><strong>✓ Allowing Overriding Methods</strong></p>
 <p>Use <code>X-HTTP-Method-Override</code> in cases some proxies only supports POST and GET.</p>
-<h2 id="3-Test-the-RESTful-Service"><a href="#3-Test-the-RESTful-Service" class="headerlink" title="3 Test the RESTful Service"></a>3 Test the RESTful Service</h2><p>(TODO)</p>
-<h2 id="4-DevOps-on-RESTful-Service"><a href="#4-DevOps-on-RESTful-Service" class="headerlink" title="4 DevOps on RESTful Service"></a>4 DevOps on RESTful Service</h2><h3 id="Dashboard-on-Delivery-Pipeline"><a href="#Dashboard-on-Delivery-Pipeline" class="headerlink" title="Dashboard on Delivery Pipeline"></a>Dashboard on Delivery Pipeline</h3><h3 id="Dashboard-on-E2E-RESTful-Status"><a href="#Dashboard-on-E2E-RESTful-Status" class="headerlink" title="Dashboard on E2E RESTful Status"></a>Dashboard on E2E RESTful Status</h3><p>(TODO)</p>
-<h2 id="5-References"><a href="#5-References" class="headerlink" title="5 References"></a>5 References</h2><p><a target="_blank" rel="noopener" href="https://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm" title="Architectural Styles and the Design of Network-based Software Architectures">Roy Thomas Fielding Phd Dessertation</a></p>
+<h2 id="test-the-restful-service">3 Test the RESTful Service</h2>
+<p>(TODO)</p>
+<h2 id="devops-on-restful-service">4 DevOps on RESTful Service</h2>
+<h3 id="dashboard-on-delivery-pipeline">Dashboard on Delivery Pipeline</h3>
+<h3 id="dashboard-on-e2e-restful-status">Dashboard on E2E RESTful Status</h3>
+<p>(TODO)</p>
+<h2 id="references">5 References</h2>
+<p><a target="_blank" rel="noopener" href="https://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm" title="Architectural Styles and the Design of Network-based Software Architectures">Roy Thomas Fielding Phd Dessertation</a></p>
 <p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Representational_state_transfer" title="RESTful Wiki">Wikipedia RESTful Term</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.crummy.com/">Leonard Richardson Personal Site</a><br><a target="_blank" rel="noopener" href="https://blog.mwaysolutions.com/2014/06/05/10-best-practices-for-better-restful-api/">10 Best Practices for better RESTful</a></p>
-<p><a target="_blank" rel="noopener" href="http://restcookbook.com/">REST Cookbook</a><br><a target="_blank" rel="noopener" href="https://www.businessinsider.com.au/mobile-web-vs-app-usage-statistics-2014-4" title="mobile web vs app">mobile web vs app</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.crummy.com/">Leonard Richardson Personal Site</a> <a target="_blank" rel="noopener" href="https://blog.mwaysolutions.com/2014/06/05/10-best-practices-for-better-restful-api/">10 Best Practices for better RESTful</a></p>
+<p><a target="_blank" rel="noopener" href="http://restcookbook.com/">REST Cookbook</a> <a target="_blank" rel="noopener" href="https://www.businessinsider.com.au/mobile-web-vs-app-usage-statistics-2014-4" title="mobile web vs app">mobile web vs app</a></p>
 <p><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/for-GET/http-decision-diagram/master/httpdd.png">HTTP Status Code Decision Diagram in High Resolution</a></p>
 <p><a target="_blank" rel="noopener" href="https://circleci.com/docs/api/v1-reference/">Circle CI API v1.1</a></p>
 <p><a target="_blank" rel="noopener" href="https://docs.travis-ci.com/api">Travis CI API</a></p>
 <p><a target="_blank" rel="noopener" href="https://wiki.jenkins-ci.org/display/JENKINS/Remote+access+API">Jenkins Remote API</a></p>
 <p><a target="_blank" rel="noopener" href="http://broadcast.oreilly.com/2009/12/principles-for-standardized-rest-authentication.html">Principles for Standardized RESTful Authentication</a></p>
 <p><a target="_blank" rel="noopener" href="http://docs.aws.amazon.com/general/latest/gr/signing_aws_api_requests.html">Signing AWS Request</a></p>
-<h2 id="6-Change-Logs"><a href="#6-Change-Logs" class="headerlink" title="6 Change Logs"></a>6 Change Logs</h2><p>Jun 02, 2019: Fix image links and update HTTP status code section.<br>May 29, 2017: Add security check point examples.<br>May 27, 2017: Minor change, updated pictures.<br>May 23, 2017: Updated HTTP methods and Status Code overview.<br>May 20, 2017: Initial the draft.</p>
-<h2 id="7-Terms-and-Notes"><a href="#7-Terms-and-Notes" class="headerlink" title="7 Terms and Notes"></a>7 Terms and Notes</h2><p>[^URI]: URI - The Uniform Resource Identifier has two forms: URN and URL. URN maps resources by unique names and URL locates resources with unique locations. </p>
+<h2 id="change-logs">6 Change Logs</h2>
+<p>Jun 02, 2019: Fix image links and update HTTP status code section. May 29, 2017: Add security check point examples. May 27, 2017: Minor change, updated pictures. May 23, 2017: Updated HTTP methods and Status Code overview. May 20, 2017: Initial the draft.</p>
+<h2 id="terms-and-notes">7 Terms and Notes</h2>
+<section class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p>URI - The Uniform Resource Identifier has two forms: URN and URL. URN maps resources by unique names and URL locates resources with unique locations.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
 
     </div>
 
@@ -570,7 +580,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-RESTful-Style-Design"><span class="nav-number">1.</span> <span class="nav-text">1 RESTful Style Design</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-RESTful-Maturity-Model-and-the-Background"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 RESTful Maturity Model and the Background</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Level-0-Just-one-URI-as-XML-RPC"><span class="nav-number">1.1.1.</span> <span class="nav-text">Level 0: Just one URI, as XML-RPC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Level-1-Multiple-URI-but-one-method"><span class="nav-number">1.1.2.</span> <span class="nav-text">Level 1: Multiple URI but one method</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Level-2-Multiple-URI-Multiple-method"><span class="nav-number">1.1.3.</span> <span class="nav-text">Level 2: Multiple URI, Multiple method</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Level-3-Hypermedia-as-Application-Engine-%E2%80%93-HATEOAS"><span class="nav-number">1.1.4.</span> <span class="nav-text">Level 3: Hypermedia as Application Engine – HATEOAS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Brief-History"><span class="nav-number">1.1.5.</span> <span class="nav-text">Brief History</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-Applications"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 Applications</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-Verbs-in-HTTP"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 Verbs in HTTP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-1-Safety-and-Idempotence"><span class="nav-number">1.3.1.</span> <span class="nav-text">1.3.1 Safety and Idempotence</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-2-Summary-of-HTTP-Methods"><span class="nav-number">1.3.2.</span> <span class="nav-text">1.3.2 Summary of HTTP Methods</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-HTTP-Status-Code"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 HTTP Status Code</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Testing-RESTful-APIs"><span class="nav-number">2.</span> <span class="nav-text">2 Testing RESTful APIs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Test-the-RESTful-Service"><span class="nav-number">3.</span> <span class="nav-text">3 Test the RESTful Service</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-DevOps-on-RESTful-Service"><span class="nav-number">4.</span> <span class="nav-text">4 DevOps on RESTful Service</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dashboard-on-Delivery-Pipeline"><span class="nav-number">4.1.</span> <span class="nav-text">Dashboard on Delivery Pipeline</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dashboard-on-E2E-RESTful-Status"><span class="nav-number">4.2.</span> <span class="nav-text">Dashboard on E2E RESTful Status</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-References"><span class="nav-number">5.</span> <span class="nav-text">5 References</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Change-Logs"><span class="nav-number">6.</span> <span class="nav-text">6 Change Logs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-Terms-and-Notes"><span class="nav-number">7.</span> <span class="nav-text">7 Terms and Notes</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#restful-style-design"><span class="nav-number">1.</span> <span class="nav-text">1 RESTful Style Design</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#restful-maturity-model-and-the-background"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 RESTful Maturity Model and the Background</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#level-0-just-one-uri-as-xml-rpc"><span class="nav-number">1.1.1.</span> <span class="nav-text">Level 0: Just one URI, as XML-RPC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#level-1-multiple-uri-but-one-method"><span class="nav-number">1.1.2.</span> <span class="nav-text">Level 1: Multiple URI but one method</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#level-2-multiple-uri-multiple-method"><span class="nav-number">1.1.3.</span> <span class="nav-text">Level 2: Multiple URI, Multiple method</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#level-3-hypermedia-as-application-engine----hateoas"><span class="nav-number">1.1.4.</span> <span class="nav-text">Level 3: Hypermedia as Application Engine -- HATEOAS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#brief-history"><span class="nav-number">1.1.5.</span> <span class="nav-text">Brief History</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#applications"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 Applications</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#verbs-in-http"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 Verbs in HTTP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#safety-and-idempotence"><span class="nav-number">1.3.1.</span> <span class="nav-text">1.3.1 Safety and Idempotence</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#summary-of-http-methods"><span class="nav-number">1.3.2.</span> <span class="nav-text">1.3.2 Summary of HTTP Methods</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#http-status-code"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 HTTP Status Code</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#testing-restful-apis"><span class="nav-number">2.</span> <span class="nav-text">2 Testing RESTful APIs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#test-the-restful-service"><span class="nav-number">3.</span> <span class="nav-text">3 Test the RESTful Service</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#devops-on-restful-service"><span class="nav-number">4.</span> <span class="nav-text">4 DevOps on RESTful Service</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#dashboard-on-delivery-pipeline"><span class="nav-number">4.1.</span> <span class="nav-text">Dashboard on Delivery Pipeline</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dashboard-on-e2e-restful-status"><span class="nav-number">4.2.</span> <span class="nav-text">Dashboard on E2E RESTful Status</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#references"><span class="nav-number">5.</span> <span class="nav-text">5 References</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#change-logs"><span class="nav-number">6.</span> <span class="nav-text">6 Change Logs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#terms-and-notes"><span class="nav-number">7.</span> <span class="nav-text">7 Terms and Notes</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -706,6 +716,59 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

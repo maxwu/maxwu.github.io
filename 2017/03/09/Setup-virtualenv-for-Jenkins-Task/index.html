@@ -29,7 +29,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://i.imgur.com/7uPOevZm.png">
 <meta property="article:published_time" content="2017-03-09T03:53:53.000Z">
-<meta property="article:modified_time" content="2021-10-24T22:03:14.507Z">
+<meta property="article:modified_time" content="2017-03-09T03:53:53.000Z">
 <meta property="article:author" content="Max Wu">
 <meta property="article:tag" content="CI">
 <meta property="article:tag" content="Jenkins">
@@ -198,13 +198,6 @@
 
               <time title="Created: 2017-03-09 16:53:53" itemprop="dateCreated datePublished" datetime="2017-03-09T16:53:53+13:00">2017-03-09</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-10-25 11:03:14" itemprop="dateModified" datetime="2021-10-25T11:03:14+13:00">2021-10-25</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -231,26 +224,27 @@
 
       
         <p>When setting up CI for python projects, virtualenv could help to separate the test/deployment environment. This post will provide a template for Jenkins to use virtualenv for Jenkins tasks with <a target="_blank" rel="noopener" href="http://jenkins.maxwu.me/job/ci-stat/">Jenkins example</a>.</p>
-<p><img src="https://i.imgur.com/7uPOevZm.png" alt="ci-stat screenshot"><br><span id="more"></span></p>
-<h3 id="Common-Test-Script-Template"><a href="#Common-Test-Script-Template" class="headerlink" title="Common Test Script Template"></a>Common Test Script Template</h3><p>Here is the script I used on Jenkins</p>
+<p><img src="https://i.imgur.com/7uPOevZm.png" alt="ci-stat screenshot" /> <span id="more"></span></p>
+<h3 id="common-test-script-template">Common Test Script Template</h3>
+<p>Here is the script I used on Jenkins</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env bash</span></span><br><span class="line"><span class="comment">########################</span></span><br><span class="line"><span class="comment"># Step 1: Setup virtualenv</span></span><br><span class="line"><span class="comment"># This step is only for Jenkins. Travis and CircleCI will ignore this step.</span></span><br><span class="line"><span class="comment">########################</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ -n <span class="string">&quot;<span class="variable">$&#123;WORKSPACE:+1&#125;</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">    <span class="comment"># Path to virtualenv cmd installed by pip</span></span><br><span class="line">    <span class="comment"># /usr/local/bin/virtualenv</span></span><br><span class="line">    PATH=<span class="variable">$WORKSPACE</span>/venv/bin:/usr/<span class="built_in">local</span>/bin:<span class="variable">$PATH</span></span><br><span class="line">    <span class="keyword">if</span> [ ! -d <span class="string">&quot;venv&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">            virtualenv venv</span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">    . venv/bin/activate</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="comment"># Alternatively, $TRAVIS_REPO_SLUG could be utilized here to provide name.</span></span><br><span class="line">    <span class="built_in">export</span> JOB_NAME=<span class="string">&quot;ci-stat&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">pip install -r requirements.txt -r <span class="built_in">test</span>/test_requirements.txt --cache-dir /tmp/<span class="variable">$JOB_NAME</span></span><br><span class="line"></span><br><span class="line"><span class="comment">########################</span></span><br><span class="line"><span class="comment"># Step 2: Execute Test</span></span><br><span class="line"><span class="comment">########################</span></span><br><span class="line">nosetests --with-xunit --all-modules --traverse-namespace --with-xcoverage --cover-package=me.maxwu --cover-inclusive --logging-level=INFO --debug=me.maxwu -s -v --xunit-file ci-stat_nose_xunit.xml --cover-html ./<span class="built_in">test</span></span><br><span class="line"></span><br><span class="line"><span class="comment">########################</span></span><br><span class="line"><span class="comment"># Step 3: PyLint</span></span><br><span class="line"><span class="comment">########################</span></span><br><span class="line"><span class="built_in">cd</span> src</span><br><span class="line">pylint -f parseable -d I0011,R0801 me.maxwu | tee ../pylint.out</span><br><span class="line"><span class="built_in">cd</span> ..</span><br><span class="line"><span class="comment">#EOF</span></span><br></pre></td></tr></table></figure>
 <p>There are two requirements files in my repo: requirements.txt and test/test_requirements.txt. The later one defines the prerequisites for test using as told by name and location. Special attention is recommended to take for nose, coverage, pylint and codecov (if using travis).</p>
-<p>The test_requirements.txt has below contents. </p>
+<p>The test_requirements.txt has below contents.</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">nose&gt;=1.3.7</span><br><span class="line">nosexcover&gt;=1.0.11</span><br><span class="line">pylint&gt;=1.6.5</span><br><span class="line">coverage&gt;=4.3.4</span><br><span class="line"># codecov for post-build Travis CI step.</span><br><span class="line">codecov==2.0.5</span><br></pre></td></tr></table></figure>
-<h3 id="Configure-Jenkins-with-above-test"><a href="#Configure-Jenkins-with-above-test" class="headerlink" title="Configure Jenkins with above test"></a>Configure Jenkins with above test</h3><h4 id="Build-Steps"><a href="#Build-Steps" class="headerlink" title="Build Steps"></a>Build Steps</h4><p>To utilize above bash script, we can add one shell execution step on Jenkins task management portal. </p>
+<h3 id="configure-jenkins-with-above-test">Configure Jenkins with above test</h3>
+<h4 id="build-steps">Build Steps</h4>
+<p>To utilize above bash script, we can add one shell execution step on Jenkins task management portal.</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">bash -x <span class="built_in">test</span>/nosetests_ci-stat.sh</span><br></pre></td></tr></table></figure>
-<p>Sometimes the build-step is divided to several steps including virtualenv, nose test, and, lint scoring. Explicit “shell exeuction” steps with Jenkins make the logic clear to maintain and reuse.</p>
+<p>Sometimes the build-step is divided to several steps including virtualenv, nose test, and, lint scoring. Explicit "shell exeuction" steps with Jenkins make the logic clear to maintain and reuse.</p>
 <p>Some other times, the test is based on PyPi package and virtualenv could offer a separate environment to install real packages for test using.</p>
-<h4 id="Environmental-Variables"><a href="#Environmental-Variables" class="headerlink" title="Environmental Variables"></a>Environmental Variables</h4><p>It is a critical security concern to protect environmental variables if there is configuration items applied through them. For example, I have local config.yaml file to specify my Travis and Circle CI API token, but this config.yaml is in gitignore file. To read such secrets, I configure Jenkins secret as in menu “<strong>Build Environment -&gt; Binding</strong>“. For environmental variables on Travis, it has protection not to show plain text contents in logs so which is secured automatically. </p>
-<h4 id="Post-Build-Steps"><a href="#Post-Build-Steps" class="headerlink" title="Post Build Steps"></a>Post Build Steps</h4><p>Three popular but fundamental plugins will be introduced:</p>
-<pre><code>- JUnit Test Result Publishment.
-- Violation Report: The lint scan results. 
-- Cobertura Coverage Report: the coverage data (for given Python package). 
-</code></pre><h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><ul>
-<li><p><a target="_blank" rel="noopener" href="http://jenkins.maxwu.me/job/ci-stat/">http://jenkins.maxwu.me/job/ci-stat/</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="http://iamnearlythere.com/jenkins-python-virtualenv/">http://iamnearlythere.com/jenkins-python-virtualenv/</a></p>
-</li>
+<h4 id="environmental-variables">Environmental Variables</h4>
+<p>It is a critical security concern to protect environmental variables if there is configuration items applied through them. For example, I have local config.yaml file to specify my Travis and Circle CI API token, but this config.yaml is in gitignore file. To read such secrets, I configure Jenkins secret as in menu "<strong>Build Environment -&gt; Binding</strong>". For environmental variables on Travis, it has protection not to show plain text contents in logs so which is secured automatically.</p>
+<h4 id="post-build-steps">Post Build Steps</h4>
+<p>Three popular but fundamental plugins will be introduced: - JUnit Test Result Publishment. - Violation Report: The lint scan results. - Cobertura Coverage Report: the coverage data (for given Python package).</p>
+<h3 id="references">References</h3>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="http://jenkins.maxwu.me/job/ci-stat/">http://jenkins.maxwu.me/job/ci-stat/</a></p></li>
+<li><p><a target="_blank" rel="noopener" href="http://iamnearlythere.com/jenkins-python-virtualenv/">http://iamnearlythere.com/jenkins-python-virtualenv/</a></p></li>
 </ul>
 
     </div>
@@ -356,7 +350,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Common-Test-Script-Template"><span class="nav-number">1.</span> <span class="nav-text">Common Test Script Template</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Configure-Jenkins-with-above-test"><span class="nav-number">2.</span> <span class="nav-text">Configure Jenkins with above test</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Build-Steps"><span class="nav-number">2.1.</span> <span class="nav-text">Build Steps</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Environmental-Variables"><span class="nav-number">2.2.</span> <span class="nav-text">Environmental Variables</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Post-Build-Steps"><span class="nav-number">2.3.</span> <span class="nav-text">Post Build Steps</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#References"><span class="nav-number">3.</span> <span class="nav-text">References</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#common-test-script-template"><span class="nav-number">1.</span> <span class="nav-text">Common Test Script Template</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#configure-jenkins-with-above-test"><span class="nav-number">2.</span> <span class="nav-text">Configure Jenkins with above test</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#build-steps"><span class="nav-number">2.1.</span> <span class="nav-text">Build Steps</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#environmental-variables"><span class="nav-number">2.2.</span> <span class="nav-text">Environmental Variables</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#post-build-steps"><span class="nav-number">2.3.</span> <span class="nav-text">Post Build Steps</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#references"><span class="nav-number">3.</span> <span class="nav-text">References</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -492,6 +486,59 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

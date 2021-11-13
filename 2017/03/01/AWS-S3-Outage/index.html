@@ -29,7 +29,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://oei21r8n1.bkt.clouddn.com/travis_s3_outage.png?imageView/2/w/300/q/100">
 <meta property="article:published_time" content="2017-03-01T00:33:05.000Z">
-<meta property="article:modified_time" content="2021-10-24T22:03:14.503Z">
+<meta property="article:modified_time" content="2017-03-01T00:33:05.000Z">
 <meta property="article:author" content="Max Wu">
 <meta property="article:tag" content="AWS">
 <meta property="article:tag" content="S3">
@@ -196,13 +196,6 @@
 
               <time title="Created: 2017-03-01 13:33:05" itemprop="dateCreated datePublished" datetime="2017-03-01T13:33:05+13:00">2017-03-01</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-10-25 11:03:14" itemprop="dateModified" datetime="2021-10-25T11:03:14+13:00">2021-10-25</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -224,15 +217,21 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>Encountered an <strong>AWS S3 Outage</strong> today on <strong>Travis CI</strong>. The broadcasting message shew that some apps providers have nothing to do but just pray or twitter and expect AWS to recover the issuing region S3 service (the most failures were from <strong>North Virginia Regnion</strong>, US-East, the following number -1 depends on accounts). Quora even has core stack out so content is not accessible for a while. As a content provider, we hope at least the authentication and reading on hot/warm data shall be maintained with appropertiate techniques as staticizing and CDN, hybrid mode for warm/hot data, et. The fact is cruel. On the other hand, which brings us back to <strong>Netflix Simian Army</strong> and most people are sure Netflix will not be impacted based on the chaos weather test from public reports. </p>
-<p>Since S3 is a storage service, moreover, it is also a base to support many other famous AWS services. Which could explain why the AWS monitoring system was still presenting a green light at first couple of hours. It is weird to build WatchDog on top of the system under watch. However, it happened. </p>
-<p><img src="http://oei21r8n1.bkt.clouddn.com/travis_s3_outage.png?imageView/2/w/300/q/100" alt="Travis Error Message on My Project"></p>
-<p>This post will share some thoughts on AWS outage.<br><span id="more"></span></p>
-<h3 id="A-look-at-Travis-CI"><a href="#A-look-at-Travis-CI" class="headerlink" title="A look at Travis CI"></a>A look at Travis CI</h3><p>It failed to query build and test logs from cloud for a while in the morning. It seemed only US-East region was impacted. My public resume and logboks on US-West works fine till now. However, most developers will see US-East1 outage but we shall keep it in mind that the number X in US-EastX is up to different user accounts. Which means, US-East1 for some developer is US-East2 for some other developers. This mapping table will not change for one specified developer account.</p>
+        <p>Encountered an <strong>AWS S3 Outage</strong> today on <strong>Travis CI</strong>. The broadcasting message shew that some apps providers have nothing to do but just pray or twitter and expect AWS to recover the issuing region S3 service (the most failures were from <strong>North Virginia Regnion</strong>, US-East, the following number -1 depends on accounts). Quora even has core stack out so content is not accessible for a while. As a content provider, we hope at least the authentication and reading on hot/warm data shall be maintained with appropertiate techniques as staticizing and CDN, hybrid mode for warm/hot data, et. The fact is cruel. On the other hand, which brings us back to <strong>Netflix Simian Army</strong> and most people are sure Netflix will not be impacted based on the chaos weather test from public reports.</p>
+<p>Since S3 is a storage service, moreover, it is also a base to support many other famous AWS services. Which could explain why the AWS monitoring system was still presenting a green light at first couple of hours. It is weird to build WatchDog on top of the system under watch. However, it happened.</p>
+<figure>
+<img src="http://oei21r8n1.bkt.clouddn.com/travis_s3_outage.png?imageView/2/w/300/q/100" alt="Travis Error Message on My Project" /><figcaption aria-hidden="true">Travis Error Message on My Project</figcaption>
+</figure>
+<p>This post will share some thoughts on AWS outage. <span id="more"></span></p>
+<h3 id="a-look-at-travis-ci">A look at Travis CI</h3>
+<p>It failed to query build and test logs from cloud for a while in the morning. It seemed only US-East region was impacted. My public resume and logboks on US-West works fine till now. However, most developers will see US-East1 outage but we shall keep it in mind that the number X in US-EastX is up to different user accounts. Which means, US-East1 for some developer is US-East2 for some other developers. This mapping table will not change for one specified developer account.</p>
 <p>Detail information could be found at <a target="_blank" rel="noopener" href="https://www.traviscistatus.com/incidents/hmwq9yy5dh9d">Travis broadcast update</a></p>
-<h3 id="Thoughts-on-AWS-issue-Outage"><a href="#Thoughts-on-AWS-issue-Outage" class="headerlink" title="Thoughts on AWS issue (Outage)"></a>Thoughts on AWS issue (Outage)</h3><h4 id="Keep-Core-Stack-Alive"><a href="#Keep-Core-Stack-Alive" class="headerlink" title="Keep Core Stack Alive"></a>Keep Core Stack Alive</h4><p>The core stack of authentication, basic view, dashboard, et. shall be alive at severe disaster. It is an element of service no matter what kind of techniques and serving bandwidth is. For a content provider, the cache of CDN shall be closely monitored.</p>
+<h3 id="thoughts-on-aws-issue-outage">Thoughts on AWS issue (Outage)</h3>
+<h4 id="keep-core-stack-alive">Keep Core Stack Alive</h4>
+<p>The core stack of authentication, basic view, dashboard, et. shall be alive at severe disaster. It is an element of service no matter what kind of techniques and serving bandwidth is. For a content provider, the cache of CDN shall be closely monitored.</p>
 <p>If a vertical module is identified as core-stack, it shall be a separate service. Even I could not write on quora, could not search or see the recommended streamlines, I still want to see a portal showing a primitive channel to access the contents.</p>
-<h4 id="Staticize-Core-UX-part"><a href="#Staticize-Core-UX-part" class="headerlink" title="Staticize Core UX part"></a>Staticize Core UX part</h4><p>As mentioned in above section, the core UX part as user login authentication, dashboard presenting (even there could be red alert in chart), hot/warm data reading are better be cached on static channel as CDN. I don’t have work experience on internet company so this section is just by best imaging. Since front-end development model is sophisticated and strong enough, we could try to make resources as static as possible. Below are techniques we can grasp at first sight:</p>
+<h4 id="staticize-core-ux-part">Staticize Core UX part</h4>
+<p>As mentioned in above section, the core UX part as user login authentication, dashboard presenting (even there could be red alert in chart), hot/warm data reading are better be cached on static channel as CDN. I don't have work experience on internet company so this section is just by best imaging. Since front-end development model is sophisticated and strong enough, we could try to make resources as static as possible. Below are techniques we can grasp at first sight:</p>
 <ul>
 <li><em>Memcache</em> and <em>Redis</em> with DB;</li>
 <li><em>Squid</em> or <em>Nginx (with plugin)</em> cache;</li>
@@ -241,16 +240,20 @@
 </ul>
 <p>More consideration includes traditional concerns around cache design patterns on caching, CAP vs. latency.</p>
 <p>In some cases, we can design an alternative UX to alternatively activate in cases the dynamic solution failure/outage is detected.</p>
-<p>This can provide end users and operation stakeholders a straight view that our service is still up but some part is under recovery. </p>
-<h4 id="Error-Handling"><a href="#Error-Handling" class="headerlink" title="Error Handling"></a>Error Handling</h4><p>Since core stack is separated, the error from infrastructure shall be captured and handled in an approperiate way. Which could porivde an information page, a short message, or, just a pager call to operation staff but avoid collapsing the whole application service like some of the famous applications we saw during the accident.</p>
-<p>In short, it is to localize errors as much as possible. </p>
-<h4 id="Learn-from-Simian-Army"><a href="#Learn-from-Simian-Army" class="headerlink" title="Learn from Simian Army"></a>Learn from Simian Army</h4><p>Simian Army, <a target="_blank" rel="noopener" href="http://techblog.netflix.com/2011/07/netflix-simian-army.html">Netflix Paper</a>, is the means to create realistic chaos withing stage system when actual infrastructure is still working fine. For example, “Chaos Gorilla” is the tool to let Dev and Ops test the mitigation-plan when AWS cloud service is out. </p>
-<p>It will randomly change host file on your application so product team could test and live with disasters from infrastructure. With the first hand “realistic” data, a self-healing or graceful recovery could be designed and integrated. </p>
+<p>This can provide end users and operation stakeholders a straight view that our service is still up but some part is under recovery.</p>
+<h4 id="error-handling">Error Handling</h4>
+<p>Since core stack is separated, the error from infrastructure shall be captured and handled in an approperiate way. Which could porivde an information page, a short message, or, just a pager call to operation staff but avoid collapsing the whole application service like some of the famous applications we saw during the accident.</p>
+<p>In short, it is to localize errors as much as possible.</p>
+<h4 id="learn-from-simian-army">Learn from Simian Army</h4>
+<p>Simian Army, <a target="_blank" rel="noopener" href="http://techblog.netflix.com/2011/07/netflix-simian-army.html">Netflix Paper</a>, is the means to create realistic chaos withing stage system when actual infrastructure is still working fine. For example, "Chaos Gorilla" is the tool to let Dev and Ops test the mitigation-plan when AWS cloud service is out.</p>
+<p>It will randomly change host file on your application so product team could test and live with disasters from infrastructure. With the first hand "realistic" data, a self-healing or graceful recovery could be designed and integrated.</p>
 <p>The paper was drafted year 2011 and it is still worthy reading every time when we see a batch of internet services are down when there is an AWS flu.</p>
-<p>Live with Murphy’s law, live with test. </p>
-<h4 id="Portability-of-Apps"><a href="#Portability-of-Apps" class="headerlink" title="Portability of Apps"></a>Portability of Apps</h4><p>In other words, as mentioned in an interview on CloudFormation topic, the first thing we need to consider about CloudFormation technical stack is portability: if it supports to migrate your service to another provider to create an either stand-by cloud deployment or a fast grown plan-b. I would rather prefer to construct an ORM style internal stack to work as cloudformat to keep an open interface in cases. And there shall be a designed and open to provide interfaced “DataFormat” to keep warm data duplicated.</p>
-<h4 id="Own-the-system-from-mindset"><a href="#Own-the-system-from-mindset" class="headerlink" title="Own the system from mindset"></a>Own the system from mindset</h4><p>The system is rent but design principle shall include AWS infrastructure as on premise thinking. The AWS services you utilitized will be part of your system, not just a rental from mindset. The SDLC shall still cover it from architecture phase.</p>
-<p>As applications are being migrated from business line to end-user line, from BS/CS to cloud, from cadenced CI to CD even DevOps, the overall architecture and systematic thinking as a whole system on premises mind is not popular any more. I remember the days in Lucent Technologies to write and review system specifications for a security feature to support series of following candidate features. We drafted thoughts, made prototype to test, verifying with modelling tools and took the system in a whole view top to bottom and state by state within the layer. </p>
+<p>Live with Murphy's law, live with test.</p>
+<h4 id="portability-of-apps">Portability of Apps</h4>
+<p>In other words, as mentioned in an interview on CloudFormation topic, the first thing we need to consider about CloudFormation technical stack is portability: if it supports to migrate your service to another provider to create an either stand-by cloud deployment or a fast grown plan-b. I would rather prefer to construct an ORM style internal stack to work as cloudformat to keep an open interface in cases. And there shall be a designed and open to provide interfaced "DataFormat" to keep warm data duplicated.</p>
+<h4 id="own-the-system-from-mindset">Own the system from mindset</h4>
+<p>The system is rent but design principle shall include AWS infrastructure as on premise thinking. The AWS services you utilitized will be part of your system, not just a rental from mindset. The SDLC shall still cover it from architecture phase.</p>
+<p>As applications are being migrated from business line to end-user line, from BS/CS to cloud, from cadenced CI to CD even DevOps, the overall architecture and systematic thinking as a whole system on premises mind is not popular any more. I remember the days in Lucent Technologies to write and review system specifications for a security feature to support series of following candidate features. We drafted thoughts, made prototype to test, verifying with modelling tools and took the system in a whole view top to bottom and state by state within the layer.</p>
 <p>2017-03-02, Max, added Simian Army section.</p>
 
     </div>
@@ -354,7 +357,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#A-look-at-Travis-CI"><span class="nav-number">1.</span> <span class="nav-text">A look at Travis CI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Thoughts-on-AWS-issue-Outage"><span class="nav-number">2.</span> <span class="nav-text">Thoughts on AWS issue (Outage)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Keep-Core-Stack-Alive"><span class="nav-number">2.1.</span> <span class="nav-text">Keep Core Stack Alive</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Staticize-Core-UX-part"><span class="nav-number">2.2.</span> <span class="nav-text">Staticize Core UX part</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Error-Handling"><span class="nav-number">2.3.</span> <span class="nav-text">Error Handling</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Learn-from-Simian-Army"><span class="nav-number">2.4.</span> <span class="nav-text">Learn from Simian Army</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Portability-of-Apps"><span class="nav-number">2.5.</span> <span class="nav-text">Portability of Apps</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Own-the-system-from-mindset"><span class="nav-number">2.6.</span> <span class="nav-text">Own the system from mindset</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#a-look-at-travis-ci"><span class="nav-number">1.</span> <span class="nav-text">A look at Travis CI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#thoughts-on-aws-issue-outage"><span class="nav-number">2.</span> <span class="nav-text">Thoughts on AWS issue (Outage)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#keep-core-stack-alive"><span class="nav-number">2.1.</span> <span class="nav-text">Keep Core Stack Alive</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#staticize-core-ux-part"><span class="nav-number">2.2.</span> <span class="nav-text">Staticize Core UX part</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#error-handling"><span class="nav-number">2.3.</span> <span class="nav-text">Error Handling</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#learn-from-simian-army"><span class="nav-number">2.4.</span> <span class="nav-text">Learn from Simian Army</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#portability-of-apps"><span class="nav-number">2.5.</span> <span class="nav-text">Portability of Apps</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#own-the-system-from-mindset"><span class="nav-number">2.6.</span> <span class="nav-text">Own the system from mindset</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -490,6 +493,59 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

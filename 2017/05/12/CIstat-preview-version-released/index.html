@@ -32,7 +32,7 @@
 <meta property="og:image" content="https://i.imgur.com/vUhu4B9m.png">
 <meta property="og:image" content="https://i.imgur.com/R2NmQMjm.png">
 <meta property="article:published_time" content="2017-05-11T13:28:22.000Z">
-<meta property="article:modified_time" content="2021-10-24T22:03:14.504Z">
+<meta property="article:modified_time" content="2017-05-11T13:28:22.000Z">
 <meta property="article:author" content="Max Wu">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="RESTful">
@@ -199,13 +199,6 @@
 
               <time title="Created: 2017-05-12 01:28:22" itemprop="dateCreated datePublished" datetime="2017-05-12T01:28:22+12:00">2017-05-12</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-10-25 11:03:14" itemprop="dateModified" datetime="2021-10-25T11:03:14+13:00">2021-10-25</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -232,34 +225,47 @@
 
       
         <p><a target="_blank" rel="noopener" href="https://github.com/maxwu/cistat">CIstat</a> is a Python package supporting to fetch, analyze and present automation test data from common CI services as CircleCI, <em>Travis</em>, <em>Bamboo</em> and <em>Jenkins</em> (preview version has implemented CircleCI to verify the idea)</p>
-<p><img src="https://i.imgur.com/gtm74Prm.png" alt="CIstat_preview"></p>
+<figure>
+<img src="https://i.imgur.com/gtm74Prm.png" alt="CIstat_preview" /><figcaption aria-hidden="true">CIstat_preview</figcaption>
+</figure>
 <span id="more"></span>
-<h1 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h1><p>CIstat with preview version could be installed with pip CVS interface from github directly.</p>
+<h1 id="installation">Installation</h1>
+<p>CIstat with preview version could be installed with pip CVS interface from github directly.</p>
 <p>Install cistat Pypi dist with <strong>dev</strong> branch latest code from Github:</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pip install https://github.com/maxwu/cistat/archive/dev.zip</span><br></pre></td></tr></table></figure>
 <p>Install cistat from <strong>master</strong> (release) branch on Github:</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pip install https://github.com/maxwu/cistat/archive/master.zip</span><br></pre></td></tr></table></figure>
-<h1 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h1><h2 id="Sample-Charts"><a href="#Sample-Charts" class="headerlink" title="Sample Charts"></a>Sample Charts</h2><p><strong>Pie Chart</strong></p>
+<h1 id="usage">Usage</h1>
+<h2 id="sample-charts">Sample Charts</h2>
+<p><strong>Pie Chart</strong></p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">report.get_class_rpt().plot_piechart_casenum(project, <span class="string">&quot;Case Num per Class&quot;</span>)</span><br></pre></td></tr></table></figure>
 <p>The Pie Chart for case numbers per class level is:</p>
-<p><img src="https://i.imgur.com/vlPfImUm.png" alt="Pie Chart on Case Number per Class"></p>
+<figure>
+<img src="https://i.imgur.com/vlPfImUm.png" alt="Pie Chart on Case Number per Class" /><figcaption aria-hidden="true">Pie Chart on Case Number per Class</figcaption>
+</figure>
 <p><strong>Bar Chart</strong></p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">report.plot_barchart_rate(project, <span class="string">&quot;Pass Rate per case&quot;</span>)</span><br></pre></td></tr></table></figure>
 <p>The Bar Chart of Pass Rate for cistat project is:</p>
-<p><img src="https://i.imgur.com/vUhu4B9m.png" alt="Bar Chart on Pass Rate"></p>
+<figure>
+<img src="https://i.imgur.com/vUhu4B9m.png" alt="Bar Chart on Pass Rate" /><figcaption aria-hidden="true">Bar Chart on Pass Rate</figcaption>
+</figure>
 <p><strong>Bubble Chart</strong></p>
 <blockquote>
 <p>The ROI chart is more considerable for nightly build result analysis in a testing project within XUnit test framework to control the resources as case, docker/cpu, feature integration.</p>
 </blockquote>
 <blockquote>
-<p>In the sample height of bubble represents the pass rate and the size of bubble shows the test efforts (Currently it is simply the case number; It will be updated to a formula on test time and case number).<br>The lower the bubble positions, the bigger it shall grow to get more resource and invest to float up to 1.0 the stable status.</p>
+<p>In the sample height of bubble represents the pass rate and the size of bubble shows the test efforts (Currently it is simply the case number; It will be updated to a formula on test time and case number). The lower the bubble positions, the bigger it shall grow to get more resource and invest to float up to 1.0 the stable status.</p>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">report.get_class_rpt().plot_scatter_roi(project, <span class="string">&quot;Test ROI per Class&quot;</span>)</span><br></pre></td></tr></table></figure>
 <p>The Bubble Chart to present case ROI per class as below:</p>
-<p><img src="https://i.imgur.com/R2NmQMjm.png" alt="Bubble Chart on Test ROI"></p>
-<h2 id="Console-Entry-Point"><a href="#Console-Entry-Point" class="headerlink" title="Console Entry Point"></a>Console Entry Point</h2><p>Quick step to run above sample: <code>cistat-cli</code>. Since circleci.com has throttling limit on RESTful API, it is recommended to configure an API-Key in environmental variable or local config.yaml.</p>
+<figure>
+<img src="https://i.imgur.com/R2NmQMjm.png" alt="Bubble Chart on Test ROI" /><figcaption aria-hidden="true">Bubble Chart on Test ROI</figcaption>
+</figure>
+<h2 id="console-entry-point">Console Entry Point</h2>
+<p>Quick step to run above sample: <code>cistat-cli</code>. Since circleci.com has throttling limit on RESTful API, it is recommended to configure an API-Key in environmental variable or local config.yaml.</p>
 <p>This console command is installed with Pypi dist. <code>cistat-cli</code> is the console entry point planted by PIP installer setup.py.</p>
-<h2 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h2><p>Configuration item preference order is:</p>
+<h2 id="configuration">Configuration</h2>
+<p>Configuration item preference order is:</p>
 <p><code>Cli Options &gt;&gt; Environment Variables &gt;&gt; Local Config.yaml</code></p>
 <p>Configuration items:</p>
 <ul>
@@ -268,13 +274,18 @@
 <blockquote>
 <p>To test string length with shell, <code>printf $STR | wc -c</code></p>
 </blockquote>
-<h1 id="Design"><a href="#Design" class="headerlink" title="Design"></a>Design</h1><h2 id="Data-Models"><a href="#Data-Models" class="headerlink" title="Data Models"></a>Data Models</h2><p>Now CIstat has implemented XUnit model. Which is a widely used test report XML format. CIstat wrappered it with full functional Python type with +, +=, getter/setter with [key] and len() to simplify the further applications. </p>
+<h1 id="design">Design</h1>
+<h2 id="data-models">Data Models</h2>
+<p>Now CIstat has implemented XUnit model. Which is a widely used test report XML format. CIstat wrappered it with full functional Python type with +, +=, getter/setter with [key] and len() to simplify the further applications.</p>
 <p>As a practice to prepare for future Cloud related statD thoughts (as DataDog service), XUnit is firstly picked up as XUnit has counter, scalar and ratio types of data. These data in various types can be accumulated or aggregated with +, += and speficied with [] operator.</p>
 <p>The future step on data model is to expand to white-box parts as Lint scores and code coverage.</p>
-<h2 id="Requests"><a href="#Requests" class="headerlink" title="Requests"></a>Requests</h2><p>So far only circleci RESTful interfaces are supported. TravisCI and Jenkins are on following step while the preview version is under more tests. </p>
-<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><p>[1] The README document with samples, <a target="_blank" rel="noopener" href="https://github.com/maxwu/cistat">https://github.com/maxwu/cistat</a></p>
+<h2 id="requests">Requests</h2>
+<p>So far only circleci RESTful interfaces are supported. TravisCI and Jenkins are on following step while the preview version is under more tests.</p>
+<h1 id="references">References</h1>
+<p>[1] The README document with samples, <a target="_blank" rel="noopener" href="https://github.com/maxwu/cistat">https://github.com/maxwu/cistat</a></p>
 <p>[2] My Gitbook chapter about Pip installation from Github, <a target="_blank" rel="noopener" href="https://maxwu.gitbooks.io/python-tips/content/pip-supports-installation-from-github.html">https://maxwu.gitbooks.io/python-tips/content/pip-supports-installation-from-github.html</a></p>
-<h1 id="Change-Logs"><a href="#Change-Logs" class="headerlink" title="Change Logs"></a>Change Logs</h1><p>May 10, 2017: Init post.</p>
+<h1 id="change-logs">Change Logs</h1>
+<p>May 10, 2017: Init post.</p>
 
     </div>
 
@@ -377,7 +388,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Installation"><span class="nav-number">1.</span> <span class="nav-text">Installation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Usage"><span class="nav-number">2.</span> <span class="nav-text">Usage</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Sample-Charts"><span class="nav-number">2.1.</span> <span class="nav-text">Sample Charts</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Console-Entry-Point"><span class="nav-number">2.2.</span> <span class="nav-text">Console Entry Point</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Configuration"><span class="nav-number">2.3.</span> <span class="nav-text">Configuration</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Design"><span class="nav-number">3.</span> <span class="nav-text">Design</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-Models"><span class="nav-number">3.1.</span> <span class="nav-text">Data Models</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Requests"><span class="nav-number">3.2.</span> <span class="nav-text">Requests</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#References"><span class="nav-number">4.</span> <span class="nav-text">References</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Change-Logs"><span class="nav-number">5.</span> <span class="nav-text">Change Logs</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#installation"><span class="nav-number">1.</span> <span class="nav-text">Installation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#usage"><span class="nav-number">2.</span> <span class="nav-text">Usage</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#sample-charts"><span class="nav-number">2.1.</span> <span class="nav-text">Sample Charts</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#console-entry-point"><span class="nav-number">2.2.</span> <span class="nav-text">Console Entry Point</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#configuration"><span class="nav-number">2.3.</span> <span class="nav-text">Configuration</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#design"><span class="nav-number">3.</span> <span class="nav-text">Design</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#data-models"><span class="nav-number">3.1.</span> <span class="nav-text">Data Models</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#requests"><span class="nav-number">3.2.</span> <span class="nav-text">Requests</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#references"><span class="nav-number">4.</span> <span class="nav-text">References</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#change-logs"><span class="nav-number">5.</span> <span class="nav-text">Change Logs</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -513,6 +524,59 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://i.imgur.com/udh5Z4J.png">
 <meta property="og:image" content="https://i.imgur.com/zKGH3q2.png">
 <meta property="article:published_time" content="2017-02-21T09:39:39.000Z">
-<meta property="article:modified_time" content="2021-10-24T22:03:14.506Z">
+<meta property="article:modified_time" content="2017-02-21T09:39:39.000Z">
 <meta property="article:author" content="Max Wu">
 <meta property="article:tag" content="Ubuntu">
 <meta property="article:tag" content="Jenkins">
@@ -201,13 +201,6 @@
 
               <time title="Created: 2017-02-21 22:39:39" itemprop="dateCreated datePublished" datetime="2017-02-21T22:39:39+13:00">2017-02-21</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-10-25 11:03:14" itemprop="dateModified" datetime="2021-10-25T11:03:14+13:00">2021-10-25</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -234,65 +227,73 @@
 
       
         <p>What a lovely day it has been in Wellington. Finally there comes the summer! And I also have a lovely day to successfully make stable test results on 32bit Ubuntu Linux with Chromium Browser, latest ChromeDriver and new Selenium java 3.1.0!</p>
-<p><img src="https://i.imgur.com/wvm7R9Y.png" alt="Jenkins on bandwagon"></p>
+<figure>
+<img src="https://i.imgur.com/wvm7R9Y.png" alt="Jenkins on bandwagon" /><figcaption aria-hidden="true">Jenkins on bandwagon</figcaption>
+</figure>
 <p><a target="_blank" rel="noopener" href="http://jenkins.maxwu.me/job/Cucumber_Jvm_Selenium_Toy/">http://jenkins.maxwu.me/job/Cucumber_Jvm_Selenium_Toy/</a></p>
 <span id="more"></span>
-<p>By the way, the last issue is fixed after a lovely walk from Petone seaview trail~ This site was originated as a pure technical sharing place but I hope I can make an exception to share the photo from Petone beach. Good weather sweeps away the raining feelings on another disappointing call.  </p>
-<h2 id="Upgrade-to-Selenium-3-1-0"><a href="#Upgrade-to-Selenium-3-1-0" class="headerlink" title="Upgrade to Selenium 3.1.0"></a>Upgrade to Selenium 3.1.0</h2><p>After upgrading from selenium-java 3.0.1 to 3.1.0 (Feb 2017 recently released), there reported a method resolving issue on wait.until() in below code block.</p>
+<p>By the way, the last issue is fixed after a lovely walk from Petone seaview trail~ This site was originated as a pure technical sharing place but I hope I can make an exception to share the photo from Petone beach. Good weather sweeps away the raining feelings on another disappointing call.</p>
+<h2 id="upgrade-to-selenium-3.1.0">Upgrade to Selenium 3.1.0</h2>
+<p>After upgrading from selenium-java 3.0.1 to 3.1.0 (Feb 2017 recently released), there reported a method resolving issue on wait.until() in below code block.</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">By byDiv = By.cssSelector(<span class="string">&quot;div#resultStats&quot;</span>);</span><br><span class="line">WebDriverWait wait = <span class="keyword">new</span> WebDriverWait(dr, <span class="number">10</span>);</span><br><span class="line">wait.until(ExpectedConditions.visibilityOfElementLocated(byDiv));</span><br></pre></td></tr></table></figure>
 <p>The solution is to manually add missing dependency on google guava library. Update pom.xml in maven to adapt this dependency will resolve it.</p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.google.guava<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>guava<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">version</span>&gt;</span>21.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p><a target="_blank" rel="noopener" href="https://github.com/maxwu/cucumber-java-toy/issues/6">Github issue link</a></p>
-<h2 id="Chrome-on-32bit-Linux"><a href="#Chrome-on-32bit-Linux" class="headerlink" title="Chrome on 32bit Linux"></a>Chrome on 32bit Linux</h2><p>Since the installation and setting up on MBP is smoothy within 1 hour, there was an underestimation on making it happen with 32bit Linux. Which finally absorbed two half-days in the afternoon. To make things easy, I freshed the VPS with Ubuntu 14.04 and deleted the origina CentOS first. So SS service is terminated, which will be restored next week.</p>
+<h2 id="chrome-on-32bit-linux">Chrome on 32bit Linux</h2>
+<p>Since the installation and setting up on MBP is smoothy within 1 hour, there was an underestimation on making it happen with 32bit Linux. Which finally absorbed two half-days in the afternoon. To make things easy, I freshed the VPS with Ubuntu 14.04 and deleted the origina CentOS first. So SS service is terminated, which will be restored next week.</p>
 <ul>
-<li>Google didn’t support 32bit Linux from Feb 2016. The latest version archived on internet is <code>48.0.2564.116-1_i386</code>.</li>
+<li>Google didn't support 32bit Linux from Feb 2016. The latest version archived on internet is <code>48.0.2564.116-1_i386</code>.</li>
 <li>But ChromeDriver requests a higher browser version if picking up latest version (2.27) with stability fixes.</li>
 <li>My VPS is on bandwagon with a low price plan (&lt;10USD per year) lasted for couple of years. It offers 512Mb memory and 32bit Celeron CPU.</li>
 </ul>
 <p>Solution:</p>
 <ul>
-<li><p>Install chromium instead of chrome-browser. Chromium is an open source cummunity maintained lively version as an alternative to official Google Chrome. It supports 32bit Linux distribution. </p>
-</li>
+<li><p>Install chromium instead of chrome-browser. Chromium is an open source cummunity maintained lively version as an alternative to official Google Chrome. It supports 32bit Linux distribution.</p></li>
 <li><p>Special tips:</p>
 <ul>
-<li><p>With Ubuntu defaul source list, the latest version is <code>Chromium 53.0.2785.14</code>. Which is still not the latest binary.</p>
-</li>
-<li><p>Update with below source, the latest chromium-browser version is <code>Chromium 55.0.2883</code>.</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo add-apt-repository ppa:saiarcot895/chromium-dev </span><br><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Specify chromium binary to browser driver. The absolute path to chromium-browser executable is for my Ubuntu 14 with installation on ppa channel. You may replace with your own path to chromium.</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">options = <span class="keyword">new</span> ChromeOptions();</span><br><span class="line"><span class="comment">//..</span></span><br><span class="line">options.setBinary(<span class="keyword">new</span> File(<span class="string">&quot;/usr/bin/chromium-browser&quot;</span>));</span><br><span class="line"><span class="comment">//..</span></span><br><span class="line">WebDriver driver = <span class="keyword">new</span> ChromeDriver(options);</span><br></pre></td></tr></table></figure>
-</li>
+<li><p>With Ubuntu defaul source list, the latest version is <code>Chromium 53.0.2785.14</code>. Which is still not the latest binary.</p></li>
+<li><p>Update with below source, the latest chromium-browser version is <code>Chromium 55.0.2883</code>.</p></li>
 </ul>
-</li>
+<p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo add-apt-repository ppa:saiarcot895/chromium-dev </span><br><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>Specify chromium binary to browser driver. The absolute path to chromium-browser executable is for my Ubuntu 14 with installation on ppa channel. You may replace with your own path to chromium.</li>
 </ul>
-<h2 id="Chrome-tap-crash"><a href="#Chrome-tap-crash" class="headerlink" title="Chrome tap crash"></a>Chrome tap crash</h2><p>The chrome tap crash happens on 32bit Ubuntu 14 Linux.</p>
+<p><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">options = <span class="keyword">new</span> ChromeOptions();</span><br><span class="line"><span class="comment">//..</span></span><br><span class="line">options.setBinary(<span class="keyword">new</span> File(<span class="string">&quot;/usr/bin/chromium-browser&quot;</span>));</span><br><span class="line"><span class="comment">//..</span></span><br><span class="line">WebDriver driver = <span class="keyword">new</span> ChromeDriver(options);</span><br></pre></td></tr></table></figure></p></li>
+</ul>
+<h2 id="chrome-tap-crash">Chrome tap crash</h2>
+<p>The chrome tap crash happens on 32bit Ubuntu 14 Linux.</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Failure in before hook:TemperatureConverterPageStepDef.setUp(Scenario)</span><br><span class="line">Message: org.openqa.selenium.NoSuchSessionException: no such session</span><br><span class="line">  (Driver info: chromedriver=2.21.371459 (36d3d07f660ff2bc1bf28a75d1cdabed0983e7c4),platform=Linux 2.6.32-042stab120.18 x86) (WARNING: The server did not provide any stacktrace information)</span><br><span class="line">Command duration or timeout: 14 milliseconds</span><br><span class="line">Build info: version: &#x27;3.0.1&#x27;, revision: &#x27;1969d75&#x27;, time: &#x27;2016-10-18 09:49:13 -0700&#x27;</span><br><span class="line">System info: host: &#x27;maxwu&#x27;, ip: &#x27;104.224.136.48&#x27;, os.name: &#x27;Linux&#x27;, os.arch: &#x27;i386&#x27;, os.version: &#x27;2.6.32-042stab120.18&#x27;, java.version: &#x27;1.8.0_121&#x27;</span><br><span class="line">Driver info: org.openqa.selenium.chrome.ChromeDriver</span><br><span class="line">Capabilities [&#123;message=session not created exception</span><br><span class="line">from tab crashed</span><br><span class="line">  (Session info: chrome=48.0.2564.116)</span><br><span class="line">  (Driver info: chromedriver=2.21.371459 (36d3d07f660ff2bc1bf28a75d1cdabed0983e7c4),platform=Linux 2.6.32-042stab120.18 x86), platform=ANY&#125;]</span><br><span class="line">Session ID: 55d40b642a275ba583eb6ee9e6d53d31</span><br><span class="line">	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)</span><br></pre></td></tr></table></figure>
 <p>This issue is severer after upgrading ChromeDriver to 2.22+ versions. There are some suspicious clues but none is confirmed. Finally after performing a series of branches tests and analysis, the solution is to move <code>driver.manage().window().maximize();</code> to chrome start options as below.</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">options = <span class="keyword">new</span> ChromeOptions();</span><br><span class="line"><span class="comment">// To fix browser crash issue</span></span><br><span class="line">options.addArguments(<span class="string">&quot;--start-maximized&quot;</span>);</span><br><span class="line">ChromeDriverManager.getInstance().setup();</span><br><span class="line">WebDriver driver = (<span class="keyword">null</span>==options)? <span class="keyword">new</span> ChromeDriver(): <span class="keyword">new</span> ChromeDriver(options);</span><br></pre></td></tr></table></figure>
 <p><a target="_blank" rel="noopener" href="https://github.com/maxwu/cucumber-java-toy/issues/7">Github Issue Link</a></p>
-<h2 id="Chrome-Browser-Hanging-up"><a href="#Chrome-Browser-Hanging-up" class="headerlink" title="Chrome Browser Hanging-up"></a>Chrome Browser Hanging-up</h2><p>Browser hanging-up randomly happens more frequently than other stability issues and it is the actual high runner among others. The frequency shows <code>Private Jenkins &gt; Travis-CI &gt;&gt; Circle-CI</code>. CircleCI is much better stable comparing to Travis-CI on chrome-browser web testing. </p>
-<p>On private Jenkins we could read the log that browser hanging-up for a long time. On travis-CI, if the building execution has no output in 10 minutes, the docker monitor will shut down the task and lable a failure (terminated) on records. </p>
+<h2 id="chrome-browser-hanging-up">Chrome Browser Hanging-up</h2>
+<p>Browser hanging-up randomly happens more frequently than other stability issues and it is the actual high runner among others. The frequency shows <code>Private Jenkins &gt; Travis-CI &gt;&gt; Circle-CI</code>. CircleCI is much better stable comparing to Travis-CI on chrome-browser web testing.</p>
+<p>On private Jenkins we could read the log that browser hanging-up for a long time. On travis-CI, if the building execution has no output in 10 minutes, the docker monitor will shut down the task and lable a failure (terminated) on records.</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">org.openqa.selenium.TimeoutException: timeout: cannot determine loading status</span><br><span class="line">from timeout: Timed out receiving message from renderer: -600.008</span><br><span class="line">  (Session info: chrome=55.0.2883.11)</span><br><span class="line">  (Driver info: chromedriver=2.25.426927 (d0803376130bda68eb594d02ebaca4609e3f899e),platform=Linux 2.6.32-042stab120.18 x86) (WARNING: The server did not provide any stacktrace information)</span><br><span class="line">Command duration or timeout: 900.74 seconds</span><br><span class="line">Build info: version: &#x27;3.1.0&#x27;, revision: &#x27;b94c902&#x27;, time: &#x27;2017-02-16 12:21:31 -0800&#x27;</span><br><span class="line">System info: host: &#x27;jenkins&#x27;, ip: &#x27;104.224.136.48&#x27;, os.name: &#x27;Linux&#x27;, os.arch: &#x27;i386&#x27;, os.version: &#x27;2.6.32-042stab120.18&#x27;, java.version: &#x27;1.8.0_121&#x27;</span><br><span class="line">Driver info: org.openqa.selenium.chrome.ChromeDriver</span><br><span class="line">Capabilities [&#123;applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome=&#123;chromedriverVersion=2.25.426927 (d0803376130bda68eb594d02ebaca4609e3f899e), userDataDir=/tmp/.org.chromium.Chromium.auFTt4&#125;, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=55.0.2883.11, platform=LINUX, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true&#125;]</span><br><span class="line">Session ID: 64463c793b65a1f95383edd756abda17</span><br></pre></td></tr></table></figure>
-<p>There are multiple possible triggers to cause a stuck, loading some plugin, flash content streaming, waiting for some default AD scripts, DNS prefetching (TTL), security check on plugins, … Here the working solution plan just mitigate as many as it can and it brings the CI back to healthy status. Once there is a new unstable element being introduced, the recommendation is to do a preliminary check if the action or configuration can be done by Options object instead of any direction action through ChromeDriver.</p>
+<p>There are multiple possible triggers to cause a stuck, loading some plugin, flash content streaming, waiting for some default AD scripts, DNS prefetching (TTL), security check on plugins, ... Here the working solution plan just mitigate as many as it can and it brings the CI back to healthy status. Once there is a new unstable element being introduced, the recommendation is to do a preliminary check if the action or configuration can be done by Options object instead of any direction action through ChromeDriver.</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">options = <span class="keyword">new</span> ChromeOptions();</span><br><span class="line"><span class="comment">// ..</span></span><br><span class="line"><span class="comment">// To fix browser hanging-up issue</span></span><br><span class="line">options.addArguments(<span class="string">&quot;--dns-prefetch-disable&quot;</span>);</span><br><span class="line">options.addArguments(<span class="string">&quot;--always-authorize-plugins&quot;</span>);</span><br><span class="line">ChromeDriverManager.getInstance().setup();</span><br><span class="line">WebDriver driver = <span class="keyword">new</span> ChromeDriver(options);</span><br></pre></td></tr></table></figure>
 <p><a target="_blank" rel="noopener" href="https://github.com/maxwu/cucumber-java-toy/issues/8">This Issue Link</a></p>
 <p>TODO: fetch statistic data with new lib <a target="_blank" rel="noopener" href="https://github.com/maxwu/ci-stat">ci-stat</a></p>
-<h2 id="Embedded-Status-Badge-from-Jenkins"><a href="#Embedded-Status-Badge-from-Jenkins" class="headerlink" title="Embedded Status Badge from Jenkins"></a>Embedded Status Badge from Jenkins</h2><p>This step is simple. From the Jenkins console, install embedded jenkins status and place the links into README.md on github master branch. The status badge in third line of below snapshot is Jenkins status icon from the private jenkins on <a target="_blank" rel="noopener" href="http://jenkins.maxwu.me">http://jenkins.maxwu.me</a></p>
-<p><img src="https://i.imgur.com/udh5Z4J.png" alt="Jenkins Status Badge"></p>
-<h2 id="Setup-xvfb-for-Jenkins"><a href="#Setup-xvfb-for-Jenkins" class="headerlink" title="Setup xvfb for Jenkins"></a>Setup xvfb for Jenkins</h2><p>Either vncserver or xvfb works here to initialize the x-window display for browser. If headless browsers are utilized, this step is not necessary. </p>
+<h2 id="embedded-status-badge-from-jenkins">Embedded Status Badge from Jenkins</h2>
+<p>This step is simple. From the Jenkins console, install embedded jenkins status and place the links into README.md on github master branch. The status badge in third line of below snapshot is Jenkins status icon from the private jenkins on <a target="_blank" rel="noopener" href="http://jenkins.maxwu.me">http://jenkins.maxwu.me</a></p>
+<figure>
+<img src="https://i.imgur.com/udh5Z4J.png" alt="Jenkins Status Badge" /><figcaption aria-hidden="true">Jenkins Status Badge</figcaption>
+</figure>
+<h2 id="setup-xvfb-for-jenkins">Setup xvfb for Jenkins</h2>
+<p>Either vncserver or xvfb works here to initialize the x-window display for browser. If headless browsers are utilized, this step is not necessary.</p>
 <p>Install the xvfb plugin for Jenkins. There is a special hint:</p>
 <ul>
-<li><p>xvfb needs at least a manual configuration step on Jenkins before working. This step will create the necessary configuration records for Jenkins to start before each CI task and end after it.</p>
-</li>
-<li><p>The menu path is <code>Manage Jenkins -&gt; Global Tool Configuration -&gt; XvFb</code>, not on Jenkins Configuration.  </p>
-</li>
+<li><p>xvfb needs at least a manual configuration step on Jenkins before working. This step will create the necessary configuration records for Jenkins to start before each CI task and end after it.</p></li>
+<li><p>The menu path is <code>Manage Jenkins -&gt; Global Tool Configuration -&gt; XvFb</code>, not on Jenkins Configuration.</p></li>
 </ul>
 <p><em>Notes: Recent Firefox and Chrome offers headless mode. Which is faster and XWin display or xvfb is no longer needed. Firefox starts to support headless mode from version 56 on Mac. Current stable version on Mac is v55 but beta version is 56b. New developer version is based on v57.</em></p>
-<h2 id="Jenkins-on-Mac"><a href="#Jenkins-on-Mac" class="headerlink" title="Jenkins on Mac"></a>Jenkins on Mac</h2><p>It is convenient to install Jenkins on Mac. <code>brew install jenkins</code> will install and setup Jenkins quickly. The jenkins was installed as a service with brew. </p>
+<h2 id="jenkins-on-mac">Jenkins on Mac</h2>
+<p>It is convenient to install Jenkins on Mac. <code>brew install jenkins</code> will install and setup Jenkins quickly. The jenkins was installed as a service with brew.</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&gt;brew services start jenkins</span><br><span class="line">&gt;brew services stop jenkins</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/zKGH3q2.png" alt="Jenkins on MacBookPro"></p>
-<p>Other setup actions as coverage status with </p>
+<figure>
+<img src="https://i.imgur.com/zKGH3q2.png" alt="Jenkins on MacBookPro" /><figcaption aria-hidden="true">Jenkins on MacBookPro</figcaption>
+</figure>
+<p>Other setup actions as coverage status with</p>
 <p><em>Updated Feb 23, 2017</em></p>
 <p><em>Drafted Feb 21, 2017</em></p>
 
@@ -400,7 +401,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Upgrade-to-Selenium-3-1-0"><span class="nav-number">1.</span> <span class="nav-text">Upgrade to Selenium 3.1.0</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chrome-on-32bit-Linux"><span class="nav-number">2.</span> <span class="nav-text">Chrome on 32bit Linux</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chrome-tap-crash"><span class="nav-number">3.</span> <span class="nav-text">Chrome tap crash</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chrome-Browser-Hanging-up"><span class="nav-number">4.</span> <span class="nav-text">Chrome Browser Hanging-up</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Embedded-Status-Badge-from-Jenkins"><span class="nav-number">5.</span> <span class="nav-text">Embedded Status Badge from Jenkins</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Setup-xvfb-for-Jenkins"><span class="nav-number">6.</span> <span class="nav-text">Setup xvfb for Jenkins</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Jenkins-on-Mac"><span class="nav-number">7.</span> <span class="nav-text">Jenkins on Mac</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#upgrade-to-selenium-3.1.0"><span class="nav-number">1.</span> <span class="nav-text">Upgrade to Selenium 3.1.0</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chrome-on-32bit-linux"><span class="nav-number">2.</span> <span class="nav-text">Chrome on 32bit Linux</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chrome-tap-crash"><span class="nav-number">3.</span> <span class="nav-text">Chrome tap crash</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chrome-browser-hanging-up"><span class="nav-number">4.</span> <span class="nav-text">Chrome Browser Hanging-up</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#embedded-status-badge-from-jenkins"><span class="nav-number">5.</span> <span class="nav-text">Embedded Status Badge from Jenkins</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#setup-xvfb-for-jenkins"><span class="nav-number">6.</span> <span class="nav-text">Setup xvfb for Jenkins</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jenkins-on-mac"><span class="nav-number">7.</span> <span class="nav-text">Jenkins on Mac</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -536,6 +537,59 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

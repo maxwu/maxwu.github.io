@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"maxwu.me","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Problem DescriptionAfter a few weeks sorting up and working with Python3 on my Mac Book Pro, the brew update failed to update and reported an error of aws command not found. &gt; brew updateaws codec">
+  <meta name="description" content="Problem Description After a few weeks sorting up and working with Python3 on my Mac Book Pro, the brew update failed to update and reported an error of aws command not found. &gt; brew updateaws code">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Fix home brew updating failure">
 <meta property="og:url" content="http://maxwu.me/2019/08/17/Fix-home-brew-updating-failure/index.html">
 <meta property="og:site_name" content="+U Maxout!">
-<meta property="og:description" content="Problem DescriptionAfter a few weeks sorting up and working with Python3 on my Mac Book Pro, the brew update failed to update and reported an error of aws command not found. &gt; brew updateaws codec">
+<meta property="og:description" content="Problem Description After a few weeks sorting up and working with Python3 on my Mac Book Pro, the brew update failed to update and reported an error of aws command not found. &gt; brew updateaws code">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2019-08-17T11:21:51.000Z">
-<meta property="article:modified_time" content="2021-10-24T22:03:14.505Z">
+<meta property="article:modified_time" content="2019-08-17T11:21:51.000Z">
 <meta property="article:author" content="Max Wu">
 <meta property="article:tag" content="Mac">
 <meta property="article:tag" content="Brew">
@@ -193,13 +193,6 @@
 
               <time title="Created: 2019-08-17 23:21:51" itemprop="dateCreated datePublished" datetime="2019-08-17T23:21:51+12:00">2019-08-17</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-10-25 11:03:14" itemprop="dateModified" datetime="2021-10-25T11:03:14+13:00">2021-10-25</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -222,11 +215,12 @@
 
       
         <span id="more"></span>
-<h2 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h2><p>After a few weeks sorting up and working with Python3 on my Mac Book Pro, the brew update failed to update and reported an error of aws command not found.</p>
+<h2 id="problem-description">Problem Description</h2>
+<p>After a few weeks sorting up and working with Python3 on my Mac Book Pro, the brew update failed to update and reported an error of aws command not found.</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; brew update</span><br><span class="line">aws codecommit credential-helper $@ get: aws: command not found</span><br><span class="line">fatal: could not read Username for &#x27;https://github.com/Homebrew/homebrew-boneyard&#x27;: terminal prompts disabled</span><br><span class="line"></span><br><span class="line">^Cerror: https://github.com/caskroom/homebrew-cask did not send all necessary objects</span><br></pre></td></tr></table></figure>
-<h2 id="Resolution"><a href="#Resolution" class="headerlink" title="Resolution"></a>Resolution</h2><p>The solution is straight through. Since aws cli is not found, it is a missed step in migrating Mac development environment from Python2 to Python3 – the corresponding aws cli is not installed well to Python3. </p>
-<p>My python environment is managed via PyEnv. When a new python version is installed, the upstream depeendencies are not maintained via requirement.txt so it needs a manual step to re-enable awscli.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt;pip3 install awscli --upgrade</span><br></pre></td></tr></table></figure>
+<h2 id="resolution">Resolution</h2>
+<p>The solution is straight through. Since aws cli is not found, it is a missed step in migrating Mac development environment from Python2 to Python3 -- the corresponding aws cli is not installed well to Python3.</p>
+<p>My python environment is managed via PyEnv. When a new python version is installed, the upstream depeendencies are not maintained via requirement.txt so it needs a manual step to re-enable awscli.   <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt;pip3 install awscli --upgrade</span><br></pre></td></tr></table></figure></p>
 
     </div>
 
@@ -328,7 +322,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-Description"><span class="nav-number">1.</span> <span class="nav-text">Problem Description</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Resolution"><span class="nav-number">2.</span> <span class="nav-text">Resolution</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#problem-description"><span class="nav-number">1.</span> <span class="nav-text">Problem Description</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#resolution"><span class="nav-number">2.</span> <span class="nav-text">Resolution</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -464,6 +458,59 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

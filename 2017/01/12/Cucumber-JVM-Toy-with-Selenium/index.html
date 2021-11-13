@@ -29,7 +29,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://i.imgur.com/dLIWEREm.png">
 <meta property="article:published_time" content="2017-01-11T11:56:14.000Z">
-<meta property="article:modified_time" content="2021-10-24T22:03:14.505Z">
+<meta property="article:modified_time" content="2017-01-11T11:56:14.000Z">
 <meta property="article:author" content="Max Wu">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="Selenium">
@@ -197,13 +197,6 @@
 
               <time title="Created: 2017-01-12 00:56:14" itemprop="dateCreated datePublished" datetime="2017-01-12T00:56:14+13:00">2017-01-12</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-10-25 11:03:14" itemprop="dateModified" datetime="2021-10-25T11:03:14+13:00">2021-10-25</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -228,21 +221,21 @@
         <p>A toy project with full practice refreshment about Cucumber-JVM, Maven, Selenium and Page Factory Pattern implemented PageObject.</p>
 <p>元旦后利用晚上时间启动一个练手项目,包含从Java Page Factory Pattern on Selenium 到Cucumber+JUnit的基于Maven构建.在做两年Python的自动化测试和开发后看看Java需要重新熟悉速度如何,加上Cucumber这种BDD的新概念能否很快落实理解到可以独立Debug的程度.在此期间遇到的一些有趣Tips也会记录下来.</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/maxwu/cucumber-java-toy">Github Link</a></p>
-<p><img src="https://i.imgur.com/dLIWEREm.png" alt="Github Project Page"></p>
+<figure>
+<img src="https://i.imgur.com/dLIWEREm.png" alt="Github Project Page" /><figcaption aria-hidden="true">Github Project Page</figcaption>
+</figure>
 <span id="more"></span>
-<p>In addition, this toy project also introduced Travis as CI plugin, codecov as coverage plugin, circle-ci (in progress). </p>
-<p>Github友好的CI工具包括Travis-CI和codecov也部署在项目上.目前circleci还有一些问题. </p>
+<p>In addition, this toy project also introduced Travis as CI plugin, codecov as coverage plugin, circle-ci (in progress).</p>
+<p>Github友好的CI工具包括Travis-CI和codecov也部署在项目上.目前circleci还有一些问题.</p>
 <p>[Updated Jan 11]: 当执行到某个Scenario或Scenario Outline的实例时,该Scenario会在每个Class上都运行一次.而很多教程或书籍上都在@Before时创建测试环境/对象,在@After时候注销环境/对象(例如quit Selenium Web Driver).根据这些网上流行的例子来学习的同行显然会遇到两个问题:</p>
 <pre><code>- 测试环境多次创建,增加了无意义的运行损耗;
-- 冗余代码来检测各种注销条件,bad smell of Race Condition.
-</code></pre><p>[Updated Jan 13]: Work around is available now.</p>
+- 冗余代码来检测各种注销条件,bad smell of Race Condition.</code></pre>
+<p>[Updated Jan 13]: Work around is available now.</p>
 <ul>
-<li><p>采用PageObject支持Cucumber-JVM测试,其PageObject的调用不必要放到@Before内,而是可以置于@Given条件内. @Before内放置的内容会被不需要测试当前Scenario的Class调用(因为Cucumber会在每次Scenario launch时运行每一个Test Class的@Before.也就是调用Object Factory去Reflect出每个class instance再按照顺序Loop all hooks for each scenario.run() as a test suite concept).</p>
-</li>
-<li><p>选择Latest webdriver和Selenium-3.0.1, Chrome的版本需要升级&gt;=v52.  </p>
-</li>
+<li><p>采用PageObject支持Cucumber-JVM测试,其PageObject的调用不必要放到@Before内,而是可以置于@Given条件内. <span class="citation" data-cites="Before内放置的内容会被不需要测试当前Scenario的Class调用">@Before内放置的内容会被不需要测试当前Scenario的Class调用</span>(因为Cucumber会在每次Scenario launch时运行每一个Test Class的@Before.也就是调用Object Factory去Reflect出每个class instance再按照顺序Loop all hooks for each scenario.run() as a test suite concept).</p></li>
+<li><p>选择Latest webdriver和Selenium-3.0.1, Chrome的版本需要升级&gt;=v52.</p></li>
 </ul>
-<p>这里先把札记MD放到Gitbook share出来.<br><a target="_blank" rel="noopener" href="https://www.gitbook.com/book/maxwu/cucumber-java-toy/details">Gitbook Link</a></p>
+<p>这里先把札记MD放到Gitbook share出来. <a target="_blank" rel="noopener" href="https://www.gitbook.com/book/maxwu/cucumber-java-toy/details">Gitbook Link</a></p>
 <p>[以上] [EOF]</p>
 
     </div>
@@ -482,6 +475,59 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"maxwu.me","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Happened to read a game from LinkedIn. An recruiter published a series words of ‘0’ and ‘1’ on my LinkedIn timeline. Which brought me back to the funny time struggling with huge logs from a large numb">
+  <meta name="description" content="Happened to read a game from LinkedIn. An recruiter published a series words of &#39;0&#39; and &#39;1&#39; on my LinkedIn timeline. Which brought me back to the funny time struggling with huge logs from a large numb">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Share a Shell Toy with Buddies">
 <meta property="og:url" content="http://maxwu.me/2017/04/15/Share-a-Shell-Toy-with-Buddies/index.html">
 <meta property="og:site_name" content="+U Maxout!">
-<meta property="og:description" content="Happened to read a game from LinkedIn. An recruiter published a series words of ‘0’ and ‘1’ on my LinkedIn timeline. Which brought me back to the funny time struggling with huge logs from a large numb">
+<meta property="og:description" content="Happened to read a game from LinkedIn. An recruiter published a series words of &#39;0&#39; and &#39;1&#39; on my LinkedIn timeline. Which brought me back to the funny time struggling with huge logs from a large numb">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2017-04-15T10:09:02.000Z">
-<meta property="article:modified_time" content="2021-10-24T22:03:14.508Z">
+<meta property="article:modified_time" content="2017-04-15T10:09:02.000Z">
 <meta property="article:author" content="Max Wu">
 <meta property="article:tag" content="Cli">
 <meta property="article:tag" content="Shell">
@@ -193,13 +193,6 @@
 
               <time title="Created: 2017-04-15 22:09:02" itemprop="dateCreated datePublished" datetime="2017-04-15T22:09:02+12:00">2017-04-15</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-10-25 11:03:14" itemprop="dateModified" datetime="2021-10-25T11:03:14+13:00">2021-10-25</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -225,39 +218,39 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>Happened to read a game from LinkedIn. An recruiter published a series words of ‘0’ and ‘1’ on my LinkedIn timeline. Which brought me back to the funny time struggling with huge logs from a large number of embedded cards. Can’t wait to decode with shell :_)<br><span id="more"></span></p>
-<h1 id="Problem-Recitation"><a href="#Problem-Recitation" class="headerlink" title="Problem Recitation"></a>Problem Recitation</h1><p>Here is the original <a target="_blank" rel="noopener" href="https://www.linkedin.com/feed/update/urn:li:activity:6257861978069565441/">post</a>. The contents are as below:</p>
+        <p>Happened to read a game from LinkedIn. An recruiter published a series words of '0' and '1' on my LinkedIn timeline. Which brought me back to the funny time struggling with huge logs from a large number of embedded cards. Can't wait to decode with shell :_) <span id="more"></span></p>
+<h1 id="problem-recitation">Problem Recitation</h1>
+<p>Here is the original <a target="_blank" rel="noopener" href="https://www.linkedin.com/feed/update/urn:li:activity:6257861978069565441/">post</a>. The contents are as below:</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">01001101 01111001 00100000 01100101 01101101 01100001 01101001 01101100 00100000 01101001 01110011 00100000 01101100 01110011 01110100 01100101 01110110 01100101 01101110 01000000 01110110 01101101 01110111 01100001 01110010 01100101 00101110 01100011 01101111 01101101</span><br></pre></td></tr></table></figure>
-<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><p>The problem could be quickly solved with programming language for sure. Perl will be my preference and I’d attach a Perl version in this article as well. </p>
-<p>However, as a fan of shell cli, I will share the thoughts to resolve in shell cli. Let’s save it to a text file, e.g. “<strong>original.txt</strong>“. A traditional style of cli one-time quick parsing is to build a pipeline. Each time we focus on one thing only and communicate with pipe as mentioned on <Art of Unix Programming>. </p>
-<p>With command “<strong>which</strong>“, <strong>manpage</strong> and experience, we can find MacOS offers traditional Unix executables as “<strong>bc</strong>“ (actually an interpreter) and “<strong>xxd</strong>“ which can satisfy common Hex and ASC works.</p>
-<p>The high level design in mind is:<br>(1) Data Regularization and split data to datum items<br>(2) For each data item:<br>(2.1) Translate (0|1) binary string to Hex<br>(2.2) Translate Hex back to ASC<br>(3) Streamline result datum item back to sentence</p>
-<p><strong><em>Note 1</em></strong>:</p>
-<blockquote>
-<p>The current post is to describe the thoughts with best memory. Well which does not suggest ones to formly take the tedious steps in real life. In practice, it shall happen just in couple of minutes. The model lives in mind on most of the on-hand tasklet. Using shell, we can keep our focus on the original logical problem and just pay a very limited bandwidth of our mind to finish the side path. The most valuable thing in daily life is concentration. If using Python or IPython will be faster and costs less bandwidth, go and get it without loosing focus on the original problem to solve. </p>
-</blockquote>
-<p><strong><em>Note 2</em></strong>:</p>
-<blockquote>
-<p>A simple example of Map-Reduce is to count books in an library. We split to each shelf and count books on the specific shelf – Map. When all have finished, we add numbers in sum – Reduce.</p>
-</blockquote>
-<h1 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h1><h2 id="Step-1-data-regularization"><a href="#Step-1-data-regularization" class="headerlink" title="Step 1: data regularization"></a>Step 1: data regularization</h2><p>Using command “<strong>tr</strong>“ to replace space with “CR” is a common step to split task for further processing per line with transient processes. Typically we consider a “<strong>Map</strong>“ step at first.</p>
-<h2 id="Step-2-Process-each-datum"><a href="#Step-2-Process-each-datum" class="headerlink" title="Step 2: Process each datum"></a>Step 2: Process each datum</h2><h3 id="Translate-0-1-string-to-Hex"><a href="#Translate-0-1-string-to-Hex" class="headerlink" title="Translate 0|1 string to Hex"></a>Translate 0|1 string to Hex</h3><p>For each string representing binary value with (0|1)+, it could be translated to Hex with <strong>bc</strong> command. </p>
+<h1 id="solution">Solution</h1>
+<p>The problem could be quickly solved with programming language for sure. Perl will be my preference and I'd attach a Perl version in this article as well.</p>
+<p>However, as a fan of shell cli, I will share the thoughts to resolve in shell cli. Let's save it to a text file, e.g. "<strong>original.txt</strong>". A traditional style of cli one-time quick parsing is to build a pipeline. Each time we focus on one thing only and communicate with pipe as mentioned on <Art of Unix Programming>.</p>
+<p>With command "<strong>which</strong>", <strong>manpage</strong> and experience, we can find MacOS offers traditional Unix executables as "<strong>bc</strong>" (actually an interpreter) and "<strong>xxd</strong>" which can satisfy common Hex and ASC works.</p>
+<p>The high level design in mind is: (1) Data Regularization and split data to datum items (2) For each data item: (2.1) Translate (0|1) binary string to Hex (2.2) Translate Hex back to ASC (3) Streamline result datum item back to sentence</p>
+<p><strong><em>Note 1</em></strong>: &gt;The current post is to describe the thoughts with best memory. Well which does not suggest ones to formly take the tedious steps in real life. In practice, it shall happen just in couple of minutes. The model lives in mind on most of the on-hand tasklet. Using shell, we can keep our focus on the original logical problem and just pay a very limited bandwidth of our mind to finish the side path. The most valuable thing in daily life is concentration. If using Python or IPython will be faster and costs less bandwidth, go and get it without loosing focus on the original problem to solve.</p>
+<p><strong><em>Note 2</em></strong>: &gt;A simple example of Map-Reduce is to count books in an library. We split to each shelf and count books on the specific shelf -- Map. When all have finished, we add numbers in sum -- Reduce.</p>
+<h1 id="implementation">Implementation</h1>
+<h2 id="step-1-data-regularization">Step 1: data regularization</h2>
+<p>Using command "<strong>tr</strong>" to replace space with "CR" is a common step to split task for further processing per line with transient processes. Typically we consider a "<strong>Map</strong>" step at first.</p>
+<h2 id="step-2-process-each-datum">Step 2: Process each datum</h2>
+<h3 id="translate-01-string-to-hex">Translate 0|1 string to Hex</h3>
+<p>For each string representing binary value with (0|1)+, it could be translated to Hex with <strong>bc</strong> command.</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"><span class="built_in">echo</span> <span class="string">&quot;obase=16; ibase=2; 01001101&quot;</span>| bc</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">4D</span></span><br></pre></td></tr></table></figure>
 <p>Here obase and ibase are keywords as inputs to <strong>bc</strong> interpreter to identify the base number of input and output.</p>
-<p><strong><em>Note 3</em></strong>:</p>
-<blockquote>
-<p><strong>bc</strong>, (Basic Calculator) is much more powerful than a base number translator. It is an interpreter for calculation tasks. And here we also have other choice. The philosophy is to just pick up what we are familiar and save focus on real problem.</p>
-</blockquote>
-<h3 id="Translate-Hex-to-ASC"><a href="#Translate-Hex-to-ASC" class="headerlink" title="Translate Hex to ASC"></a>Translate Hex to ASC</h3><p>This step is also traditional. <strong>xxd</strong> command is usually picked up to dump hex or reverse hex to text.</p>
+<p><strong><em>Note 3</em></strong>: &gt;<strong>bc</strong>, (Basic Calculator) is much more powerful than a base number translator. It is an interpreter for calculation tasks. And here we also have other choice. The philosophy is to just pick up what we are familiar and save focus on real problem.</p>
+<h3 id="translate-hex-to-asc">Translate Hex to ASC</h3>
+<p>This step is also traditional. <strong>xxd</strong> command is usually picked up to dump hex or reverse hex to text.</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"><span class="built_in">echo</span> <span class="string">&quot;4D&quot;</span>| xxd -r -p</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">M</span></span><br></pre></td></tr></table></figure>
 <p>There are alternatives as od, hexdump to complete this step.</p>
-<h2 id="Step-3-The-Final-Command"><a href="#Step-3-The-Final-Command" class="headerlink" title="Step 3: The Final Command"></a>Step 3: The Final Command</h2><p>Since we don’t add CR into pipe bytes, there is no specific “<strong>Reduce</strong>“ step to take care. The bytes will be processed in a streamline:<br>8 bytes of ‘0|1’ are extracted by CR<br>-&gt; 8 bytes of ‘0|1’ are translated to two bytes of a Hex value -&gt; the 2 bytes Hex value is translated to one ASC byte<br>-&gt; Untill stdin closed.</p>
+<h2 id="step-3-the-final-command">Step 3: The Final Command</h2>
+<p>Since we don't add CR into pipe bytes, there is no specific "<strong>Reduce</strong>" step to take care. The bytes will be processed in a streamline: 8 bytes of '0|1' are extracted by CR -&gt; 8 bytes of '0|1' are translated to two bytes of a Hex value -&gt; the 2 bytes Hex value is translated to one ASC byte -&gt; Untill stdin closed.</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"><span class="keyword">for</span> x <span class="keyword">in</span> $(cat original.txt|tr <span class="string">&#x27; &#x27;</span> <span class="string">&quot;\n&quot;</span>); <span class="keyword">do</span> <span class="built_in">echo</span> <span class="string">&quot;obase=16; ibase=2; <span class="variable">$x</span>&quot;</span>| bc| xxd -r -p; <span class="keyword">done</span></span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">My email is lsteven@vmware.com</span></span><br></pre></td></tr></table></figure>
-<h1 id="Alternatives"><a href="#Alternatives" class="headerlink" title="Alternatives"></a>Alternatives</h1><p>The perl one-line-cli version. Cheers on powerful text processing engine.</p>
+<h1 id="alternatives">Alternatives</h1>
+<p>The perl one-line-cli version. Cheers on powerful text processing engine.</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">cat original.txt |perl -lape <span class="string">&#x27;$_=pack&quot;(B8)*&quot;,@F&#x27;</span></span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">My email is lsteven@vmware.com</span></span><br></pre></td></tr></table></figure>
 <p>Have fun!</p>
 <p><strong>Change Logs</strong></p>
-<p>2017-04-15 |  Init the post to share a shell toy.</p>
+<p>2017-04-15 | Init the post to share a shell toy.</p>
 
     </div>
 
@@ -359,7 +352,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Problem-Recitation"><span class="nav-number">1.</span> <span class="nav-text">Problem Recitation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Solution"><span class="nav-number">2.</span> <span class="nav-text">Solution</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Implementation"><span class="nav-number">3.</span> <span class="nav-text">Implementation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Step-1-data-regularization"><span class="nav-number">3.1.</span> <span class="nav-text">Step 1: data regularization</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step-2-Process-each-datum"><span class="nav-number">3.2.</span> <span class="nav-text">Step 2: Process each datum</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Translate-0-1-string-to-Hex"><span class="nav-number">3.2.1.</span> <span class="nav-text">Translate 0|1 string to Hex</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Translate-Hex-to-ASC"><span class="nav-number">3.2.2.</span> <span class="nav-text">Translate Hex to ASC</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step-3-The-Final-Command"><span class="nav-number">3.3.</span> <span class="nav-text">Step 3: The Final Command</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Alternatives"><span class="nav-number">4.</span> <span class="nav-text">Alternatives</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#problem-recitation"><span class="nav-number">1.</span> <span class="nav-text">Problem Recitation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#solution"><span class="nav-number">2.</span> <span class="nav-text">Solution</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#implementation"><span class="nav-number">3.</span> <span class="nav-text">Implementation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#step-1-data-regularization"><span class="nav-number">3.1.</span> <span class="nav-text">Step 1: data regularization</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step-2-process-each-datum"><span class="nav-number">3.2.</span> <span class="nav-text">Step 2: Process each datum</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#translate-01-string-to-hex"><span class="nav-number">3.2.1.</span> <span class="nav-text">Translate 0|1 string to Hex</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#translate-hex-to-asc"><span class="nav-number">3.2.2.</span> <span class="nav-text">Translate Hex to ASC</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#step-3-the-final-command"><span class="nav-number">3.3.</span> <span class="nav-text">Step 3: The Final Command</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#alternatives"><span class="nav-number">4.</span> <span class="nav-text">Alternatives</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -495,6 +488,59 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

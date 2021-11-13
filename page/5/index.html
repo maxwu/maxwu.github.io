@@ -187,13 +187,6 @@
 
               <time title="Created: 2017-01-21 17:36:27" itemprop="dateCreated datePublished" datetime="2017-01-21T17:36:27+13:00">2017-01-21</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-10-25 11:03:14" itemprop="dateModified" datetime="2021-10-25T11:03:14+13:00">2021-10-25</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -219,30 +212,35 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="About-PageObjects"><a href="#About-PageObjects" class="headerlink" title="About PageObjects"></a>About PageObjects</h1><p><img src="http://www.seleniumhq.org/images/selenium-logo.png" class="img-left" /> The “<strong>PageObjects</strong>“ are introduced mainly to avoid duplicated codes in test and simplify the maintenance works as well. PageObject just models the WebUI under test and represent the state transition among UI(page) activities.</p>
-<p><a target="_blank" rel="noopener" href="https://www.seleniumhq.org/docs/06_test_design_considerations.jsp">PageObjects and Page Factory Pattern</a> are terms from Selenium documents. The concepts of PageObject and (w/ or w/o) Page Factory are also derived from general OOD. It could be regarded as a much simplified ORM or a simple DAO if we regard test cases as data, test scenario pattern as DB tables. So the methodology can apply to other tests besides web. </p>
+          <h1 id="about-pageobjects">About PageObjects</h1>
+<p><img src="http://www.seleniumhq.org/images/selenium-logo.png" class="img-left" /> The "<strong>PageObjects</strong>" are introduced mainly to avoid duplicated codes in test and simplify the maintenance works as well. PageObject just models the WebUI under test and represent the state transition among UI(page) activities.</p>
+<p><a target="_blank" rel="noopener" href="https://www.seleniumhq.org/docs/06_test_design_considerations.jsp">PageObjects and Page Factory Pattern</a> are terms from Selenium documents. The concepts of PageObject and (w/ or w/o) Page Factory are also derived from general OOD. It could be regarded as a much simplified ORM or a simple DAO if we regard test cases as data, test scenario pattern as DB tables. So the methodology can apply to other tests besides web.</p>
 <ul>
 <li>PageObject is a pattern of design</li>
 <li>Selenium Java package provides a basic support on lazy init. However, it is still a wheel to build for specific test area.</li>
 </ul>
 <p>A rough mapping could describe the concept easilier:</p>
 <table>
+<colgroup>
+<col style="width: 47%" />
+<col style="width: 52%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Traditional App Dev terms</th>
 <th>Web Automation Test Concepts</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><strong>DB drivers</strong> like mysql-connector</td>
 <td><strong>Web Drivers</strong> (take JSON call and get results from browser process)</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>DB Abstract</strong> as JDBC</td>
 <td><strong>Selenium 2</strong>(it bridge the API to JSON calls)</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>ORM</strong> as peewee or SQLAlchemy to ensure DB agnostic</td>
 <td><strong>PageObject</strong> provides agnostic on selectors and page details</td>
 </tr>
@@ -250,33 +248,38 @@
 </table>
 <p>Based on project experiences, PageObjects offers below three functions to automation:</p>
 <table>
+<colgroup>
+<col style="width: 49%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Traditional App Dev terms</th>
 <th>Selenium PageObject Sections</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><strong>DB Table Structure</strong> as create, alter operations</td>
-<td><strong>Web Elements Encapsulation</strong> as lazy init, multiple selectors, and, retries </td>
+<td><strong>Web Elements Encapsulation</strong> as lazy init, multiple selectors, and, retries</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>Select/View</strong> A snapshot of state</td>
 <td><strong>Pages</strong> define the states of sceanrio</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>Transaction Procedure</strong></td>
 <td><strong>Functional methods</strong> provides interaction on pages, some of them triggers state transition, either return a new object of page or change the internal states</td>
 </tr>
 </tbody>
 </table>
-<p>It can be utilized to design test suppport classes for  database, CLI (especially tree view cli), interactive shell and desktop applications. The key is to design abstract objects to represent the internal relationships between states and adjunct methods to fetch/operate the POI(points of interests, I borrowed this concept from MapSys design). </p>
-<p>Therefore, the <strong>PageObjects here formed a layer to separate test logics and supporting objects</strong>. When people are drafting tests, we don’t need to switch to OOD part to spend time “thinking” about how to implement it and finally find out we forget the original motivation or target to do. This makes a concentration.</p>
-<h2 id="PageObjects-Pattern-or-Bot-Style-Test"><a href="#PageObjects-Pattern-or-Bot-Style-Test" class="headerlink" title="PageObjects Pattern or Bot Style Test?"></a>PageObjects Pattern or Bot Style Test?</h2><blockquote>
-<p>it’s not always a pattern that teams feel comfortable following.</p>
+<p>It can be utilized to design test suppport classes for database, CLI (especially tree view cli), interactive shell and desktop applications. The key is to design abstract objects to represent the internal relationships between states and adjunct methods to fetch/operate the POI(points of interests, I borrowed this concept from MapSys design).</p>
+<p>Therefore, the <strong>PageObjects here formed a layer to separate test logics and supporting objects</strong>. When people are drafting tests, we don't need to switch to OOD part to spend time "thinking" about how to implement it and finally find out we forget the original motivation or target to do. This makes a concentration.</p>
+<h2 id="pageobjects-pattern-or-bot-style-test">PageObjects Pattern or Bot Style Test?</h2>
+<blockquote>
+<p>it's not always a pattern that teams feel comfortable following.</p>
 </blockquote>
-<p>Alternatively there is <strong>Bot Style</strong> in test and test automation. Following PageObjects style, one turns to draw a state transition map on paper or in mind, no matter it is automation or manual test.  For Bot Stylte, the test is designed against action steps (user scenarios). It is not to see which style is “better” in a quick glance. Here I am trying to provide some tips on finding the correct technique within the project characters and constrains. Usualy no matter in manual or automation, Bot Style is the first technique to utilize at beginning to get more domain knowledge while doing sanity test. <strong>Bot Style focus on the encapsulation of interactive actions</strong> so it is consistent to the test description on test plan or user manual.<br>
+<p>Alternatively there is <strong>Bot Style</strong> in test and test automation. Following PageObjects style, one turns to draw a state transition map on paper or in mind, no matter it is automation or manual test. For Bot Stylte, the test is designed against action steps (user scenarios). It is not to see which style is "better" in a quick glance. Here I am trying to provide some tips on finding the correct technique within the project characters and constrains. Usualy no matter in manual or automation, Bot Style is the first technique to utilize at beginning to get more domain knowledge while doing sanity test. <strong>Bot Style focus on the encapsulation of interactive actions</strong> so it is consistent to the test description on test plan or user manual.
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2017/01/21/Tips-on-Selenium-PageObject-Design/#more" rel="contents">
@@ -329,13 +332,6 @@
 
               <time title="Created: 2017-01-13 11:37:10" itemprop="dateCreated datePublished" datetime="2017-01-13T11:37:10+13:00">2017-01-13</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-10-25 11:03:14" itemprop="dateModified" datetime="2021-10-25T11:03:14+13:00">2021-10-25</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -358,10 +354,13 @@
 
       
           <p>Cheers! Toy project baselined to v1.2 and all pending issues resolved.</p>
-<p><img src="https://i.imgur.com/HrS3TO8m.png" alt="https://github.com/maxwu/cucumber-java-toy"></p>
+<figure>
+<img src="https://i.imgur.com/HrS3TO8m.png" alt="https://github.com/maxwu/cucumber-java-toy" /><figcaption aria-hidden="true">https://github.com/maxwu/cucumber-java-toy</figcaption>
+</figure>
 <p><a target="_blank" rel="noopener" href="https://github.com/maxwu/cucumber-java-toy">Github Link</a></p>
-<h1 id="Brief"><a href="#Brief" class="headerlink" title="Brief"></a>Brief</h1><p>The target of this demo project is to show and refresh a general approach of BDD and experience the Gherkin specs as a communication tool on story definition and how to map it to JUnit case scope. It started on Monday from scratch and baselined Friday morning on schedule. Crtitial issues resolved were recorded on Github issue board, too. I recorded hints and tips in the readme markdown page. Here is a paper of note about the thoughts captured during the fast adaption phase.</p>
-<p>There is another <a href="http://maxwu.me/2017/01/21/Tips-on-Selenium-PageObject-Design/">post</a> about tips on PageObject design in web testing. This post is on general practice with Gherkin spec and JUnit.<br>
+<h1 id="brief">Brief</h1>
+<p>The target of this demo project is to show and refresh a general approach of BDD and experience the Gherkin specs as a communication tool on story definition and how to map it to JUnit case scope. It started on Monday from scratch and baselined Friday morning on schedule. Crtitial issues resolved were recorded on Github issue board, too. I recorded hints and tips in the readme markdown page. Here is a paper of note about the thoughts captured during the fast adaption phase.</p>
+<p>There is another <a href="http://maxwu.me/2017/01/21/Tips-on-Selenium-PageObject-Design/">post</a> about tips on PageObject design in web testing. This post is on general practice with Gherkin spec and JUnit.
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2017/01/13/Cucumber-JVM-Selenium-JUnit-Toy-Project-baselined-to-v1-2/#more" rel="contents">
@@ -414,13 +413,6 @@
 
               <time title="Created: 2017-01-12 00:56:14" itemprop="dateCreated datePublished" datetime="2017-01-12T00:56:14+13:00">2017-01-12</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-10-25 11:03:14" itemprop="dateModified" datetime="2021-10-25T11:03:14+13:00">2021-10-25</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -445,7 +437,9 @@
           <p>A toy project with full practice refreshment about Cucumber-JVM, Maven, Selenium and Page Factory Pattern implemented PageObject.</p>
 <p>元旦后利用晚上时间启动一个练手项目,包含从Java Page Factory Pattern on Selenium 到Cucumber+JUnit的基于Maven构建.在做两年Python的自动化测试和开发后看看Java需要重新熟悉速度如何,加上Cucumber这种BDD的新概念能否很快落实理解到可以独立Debug的程度.在此期间遇到的一些有趣Tips也会记录下来.</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/maxwu/cucumber-java-toy">Github Link</a></p>
-<p><img src="https://i.imgur.com/dLIWEREm.png" alt="Github Project Page"></p>
+<figure>
+<img src="https://i.imgur.com/dLIWEREm.png" alt="Github Project Page" /><figcaption aria-hidden="true">Github Project Page</figcaption>
+</figure>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2017/01/12/Cucumber-JVM-Toy-with-Selenium/#more" rel="contents">
@@ -498,13 +492,6 @@
 
               <time title="Created: 2017-01-11 13:25:18" itemprop="dateCreated datePublished" datetime="2017-01-11T13:25:18+13:00">2017-01-11</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-10-25 11:03:14" itemprop="dateModified" datetime="2021-10-25T11:03:14+13:00">2021-10-25</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -531,9 +518,9 @@
 
       
           <blockquote>
-<p>April 25, 2017: The same defect is found on Air New Zealand Career Board. With a quick study, the resources point to a company named <strong>“Snaphire”</strong> (resource name is com.snaphire.wicket.*). It seems the typo is with common template by Snaphire for both the two NZ government web sites. </p>
+<p>April 25, 2017: The same defect is found on Air New Zealand Career Board. With a quick study, the resources point to a company named <strong>"Snaphire"</strong> (resource name is com.snaphire.wicket.*). It seems the typo is with common template by Snaphire for both the two NZ government web sites.</p>
 </blockquote>
-<p>This post is about human interface defect instead of codes or automation as usual. Couple of real world defects are discovered on web services with local business. It might be an indicator of demand on QA engineering, both automation and manual test. At least of a pattern is discovered, for example typo, it is easy to code the pattern of spelling check and word similarity calculation with basic NLP in Python or Java.<br>
+<p>This post is about human interface defect instead of codes or automation as usual. Couple of real world defects are discovered on web services with local business. It might be an indicator of demand on QA engineering, both automation and manual test. At least of a pattern is discovered, for example typo, it is easy to code the pattern of spelling check and word similarity calculation with basic NLP in Python or Java.
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2017/01/11/Issues-with-parliament-govt-nz-website-human-interface/#more" rel="contents">
@@ -586,13 +573,6 @@
 
               <time title="Created: 2017-01-10 15:24:05" itemprop="dateCreated datePublished" datetime="2017-01-10T15:24:05+13:00">2017-01-10</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-10-25 11:03:14" itemprop="dateModified" datetime="2021-10-25T11:03:14+13:00">2021-10-25</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -618,9 +598,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>When I was querying nearby Gym on snapfitness website, it targeted to an HTTP 404 page. As an automation test analyst, I wrote a letter to the webmaster with analysis pointing to backend RESTful API defect and hope it will help :_) </p>
+          <p>When I was querying nearby Gym on snapfitness website, it targeted to an HTTP 404 page. As an automation test analyst, I wrote a letter to the webmaster with analysis pointing to backend RESTful API defect and hope it will help :_)</p>
 <p>Note that this defect only happens with <a target="_blank" rel="noopener" href="https://www.snapfitness.com/">snapfitness.com</a>, another domain <a target="_blank" rel="noopener" href="https://www.snapfitness247.co.nz/">snapfitness247.con.nz</a>is still working fine to return correct JSON data on POST Web API call (thru postman).</p>
-<p><img src="http://oei21r8n1.bkt.clouddn.com/SnapFitness-404.png?imageView/2/w/300/q/100" class="img-left" /><br>
+<p><img src="http://oei21r8n1.bkt.clouddn.com/SnapFitness-404.png?imageView/2/w/300/q/100" class="img-left" /><br />
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2017/01/10/Issue-in-RESTful-API-on-fitness-website-map-query-leading-to-404-page/#more" rel="contents">
@@ -673,13 +653,6 @@
 
               <time title="Created: 2017-01-08 22:17:31" itemprop="dateCreated datePublished" datetime="2017-01-08T22:17:31+13:00">2017-01-08</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-10-25 11:03:14" itemprop="dateModified" datetime="2021-10-25T11:03:14+13:00">2021-10-25</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -705,7 +678,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>A scenario which is in sunny day for a while but turns to rainy day in another while or another day. This scenario is also called blinking story/test. A more formal term, occassional failure. They all refer to this kind of issue. </p>
+          <p>A scenario which is in sunny day for a while but turns to rainy day in another while or another day. This scenario is also called blinking story/test. A more formal term, occassional failure. They all refer to this kind of issue.</p>
 <p>It is quite important to resolve blinking scenarios because the issue is destorying the trust in automation. Without a full trust on automation, CI and further migration is still a dream.</p>
 <p>Here are several hints to resolve flickering/blinking/Occassional-failing stories:</p>
 <ul>
@@ -713,7 +686,7 @@
 <li>Leakage of resource, fd, memory, defragmented buddy pool, combined ID space, et;</li>
 <li>Race condition, it is more difficult to find and usually lead to a hidden problem in products;</li>
 </ul>
-<p>Yes, we are talking about the three dimensions again. <strong>Logic</strong>(scope/concept/recognition), <strong>Space</strong> (leak/id/dirty/init/clean/oversize) and <strong>Time</strong> (racing/history/cache/lifetime/frequency/multithreading) are still the three friends for software engineers to think about in typical tough moment. </p>
+<p>Yes, we are talking about the three dimensions again. <strong>Logic</strong>(scope/concept/recognition), <strong>Space</strong> (leak/id/dirty/init/clean/oversize) and <strong>Time</strong> (racing/history/cache/lifetime/frequency/multithreading) are still the three friends for software engineers to think about in typical tough moment.</p>
 <p>Good luck, testers.</p>
 <p>[EOF]</p>
 
@@ -761,13 +734,6 @@
 
               <time title="Created: 2017-01-08 11:24:47" itemprop="dateCreated datePublished" datetime="2017-01-08T11:24:47+13:00">2017-01-08</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-10-25 11:03:14" itemprop="dateModified" datetime="2021-10-25T11:03:14+13:00">2021-10-25</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -789,8 +755,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><em>“我的征途是星辰大海”–《银河英雄传》</em></p>
-<p>刚刚过去的假期读罢&lt;北京折叠&gt;.其实类似的反乌托邦题材并不罕见,然而数天后仍然能感觉到作者在字里行间中透出的压抑下的无力和自嘲 – 本贴长期更新,记录访问Internet和从Internet访问世界上最大的局域网科学方法和最佳实践.<br>
+          <p><em>"我的征途是星辰大海"--《银河英雄传》</em></p>
+<p>刚刚过去的假期读罢<北京折叠>.其实类似的反乌托邦题材并不罕见,然而数天后仍然能感觉到作者在字里行间中透出的压抑下的无力和自嘲 -- 本贴长期更新,记录访问Internet和从Internet访问世界上最大的局域网科学方法和最佳实践.
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2017/01/08/Available-Shadow-Socks/#more" rel="contents">
@@ -843,13 +809,6 @@
 
               <time title="Created: 2017-01-07 22:57:04" itemprop="dateCreated datePublished" datetime="2017-01-07T22:57:04+13:00">2017-01-07</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-10-25 11:03:14" itemprop="dateModified" datetime="2021-10-25T11:03:14+13:00">2021-10-25</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -872,19 +831,13 @@
 
       
           <p>It is a corrigendum on AWS official online documents in mainly for the translated documents in Chinese language. The list was firstly collected when I was quickly searching for some information during AWS studying but found the information was obsoleted. Would keep it updated and maintained lively.</p>
-<ol>
-<li><p>RDS DB size threshold is wrong in Chinese version;</p>
-</li>
-<li><p>Days between two certificate tests one candidate shall spend; The number is incorrect according to global AWS policy;</p>
-</li>
-<li><p>Private IP is only returned after stop and “restart”.<br><a target="_blank" rel="noopener" href="https://aws.amazon.com/ec2/faqs/">https://aws.amazon.com/ec2/faqs/</a> </p>
-</li>
-<li><p>The bottom part, the words shall be “&lt;5MB”<br><a target="_blank" rel="noopener" href="http://docs.aws.amazon.com/AmazonS3/latest/dev/qfacts.html">http://docs.aws.amazon.com/AmazonS3/latest/dev/qfacts.html</a></p>
-</li>
-<li><p>“评估逻辑”—&gt;”求值逻辑” This a better translation on term.<br><a target="_blank" rel="noopener" href="http://docs.aws.amazon.com/zh_cn/sns/latest/dg/AccessPolicyLanguage_EvaluationLogic.html">http://docs.aws.amazon.com/zh_cn/sns/latest/dg/AccessPolicyLanguage_EvaluationLogic.html</a></p>
-</li>
-<li><p>S3 Doc translation:将VisibilityTimeout设置为0秒不会导致将消息移动到死信 队列。”=&gt; “设置为0秒则消息不会移动到死信队列”<br><a target="_blank" rel="noopener" href="http://docs.aws.amazon.com/zh_cn/AWSSimpleQueueService/latest/SQSDeveloperGuide/AboutVT.html?shortFooter=true">http://docs.aws.amazon.com/zh_cn/AWSSimpleQueueService/latest/SQSDeveloperGuide/AboutVT.html?shortFooter=true</a>  “</p>
-</li>
+<ol type="1">
+<li><p>RDS DB size threshold is wrong in Chinese version;</p></li>
+<li><p>Days between two certificate tests one candidate shall spend; The number is incorrect according to global AWS policy;</p></li>
+<li><p>Private IP is only returned after stop and “restart”. https://aws.amazon.com/ec2/faqs/</p></li>
+<li><p>The bottom part, the words shall be "&lt;5MB" http://docs.aws.amazon.com/AmazonS3/latest/dev/qfacts.html</p></li>
+<li><p>“评估逻辑”—&gt;”求值逻辑” This a better translation on term. http://docs.aws.amazon.com/zh_cn/sns/latest/dg/AccessPolicyLanguage_EvaluationLogic.html</p></li>
+<li><p>S3 Doc translation:将VisibilityTimeout设置为0秒不会导致将消息移动到死信 队列。”=&gt; “设置为0秒则消息不会移动到死信队列" http://docs.aws.amazon.com/zh_cn/AWSSimpleQueueService/latest/SQSDeveloperGuide/AboutVT.html?shortFooter=true "</p></li>
 </ol>
 <p>[EOF]</p>
 
@@ -932,13 +885,6 @@
 
               <time title="Created: 2017-01-07 10:51:03" itemprop="dateCreated datePublished" datetime="2017-01-07T10:51:03+13:00">2017-01-07</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-10-25 11:03:14" itemprop="dateModified" datetime="2021-10-25T11:03:14+13:00">2021-10-25</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -960,9 +906,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="追加–AWS-Developer-Associate"><a href="#追加–AWS-Developer-Associate" class="headerlink" title="追加–AWS Developer Associate"></a>追加–AWS Developer Associate</h2><p>在去年(2016)10月考过SAA(Solution Architect Associate)后发现原来考试的顺序并非→_→最优. Developer的Certificate最简单,其次Sys-Admin,而SAA反而在入门级里面有一些难度.应当感谢一下南京考点的涂老师,在距离飞新西兰只有不到两周的时间很顺利的订上了时间段.</p>
+          <h2 id="追加--aws-developer-associate">追加--AWS Developer Associate</h2>
+<p>在去年(2016)10月考过SAA(Solution Architect Associate)后发现原来考试的顺序并非→_→最优. Developer的Certificate最简单,其次Sys-Admin,而SAA反而在入门级里面有一些难度.应当感谢一下南京考点的涂老师,在距离飞新西兰只有不到两周的时间很顺利的订上了时间段.</p>
 <p>现在有很多回忆已经不太清晰了,当时的感觉就是CDA比SAA要容易的多,大约有一半左右内容或知识点重复覆盖.有些个别的场景就要stand in my shoes,从提问者的角度来思考哪个方案更合理. 既然网速和上次一样仍然比较慢,可以采取的策略就是也不用理会题目上打得星标记号.时间总是双倍的够,所以做一遍然后再从头到尾都看一遍即可.多上网找找讲座可以赚考试券补贴20USD,拿来兑一次模拟考培养战力,推荐上微信搜云果儿.云果公司在深圳,服务很快速,微信或者淘宝上付款后考试卷两天内就可以发到邮箱或微信.拿到考试券就可以去官网上Redeem.虽然是Developer的认证,对开发这部分几乎没有什么涉及,所以平时Practice的Lambda, serverless等对这个考试本身没有直接帮助.但是如果能够很好的理解dev/ops框架,这个考试基本上不会有难度.</p>
-<p><img src="http://oei21r8n1.bkt.clouddn.com/AWS-CDA-Score.png?imageView/2/w/400/q/100" class="img-left" /> </p>
+<p><img src="http://oei21r8n1.bkt.clouddn.com/AWS-CDA-Score.png?imageView/2/w/400/q/100" class="img-left" /></p>
 <p><img src="http://oei21r8n1.bkt.clouddn.com/AWS-CDA-Cert.png?imageView/2/w/400/q/100" class="img-left" /></p>
 
       
@@ -1009,13 +956,6 @@
 
               <time title="Created: 2016-12-09 10:27:48" itemprop="dateCreated datePublished" datetime="2016-12-09T10:27:48+13:00">2016-12-09</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-10-25 11:03:14" itemprop="dateModified" datetime="2021-10-25T11:03:14+13:00">2021-10-25</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -1037,23 +977,25 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="Seeking-a-Software-Job-in-Wellington-Region"><a href="#Seeking-a-Software-Job-in-Wellington-Region" class="headerlink" title="Seeking a Software Job in Wellington Region"></a>Seeking a Software Job in Wellington Region</h1><p>LinkedIn and Github links are available on this blog left navigation bar.</p>
+          <h1 id="seeking-a-software-job-in-wellington-region">Seeking a Software Job in Wellington Region</h1>
+<p>LinkedIn and Github links are available on this blog left navigation bar.</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="http://www.maxwu.me">http://www.maxwu.me</a></li>
-<li><a target="_blank" rel="noopener" href="http://stackoverflow.com/story/maxwu">http://stackoverflow.com/story/maxwu</a></li>
-<li><a target="_blank" rel="noopener" href="http://stackoverflow.com/cv/maxwu">http://stackoverflow.com/cv/maxwu</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/maxwu">https://github.com/maxwu</a> </li>
+<li>http://www.maxwu.me</li>
+<li>http://stackoverflow.com/story/maxwu</li>
+<li>http://stackoverflow.com/cv/maxwu</li>
+<li>https://github.com/maxwu</li>
 </ul>
-<h1 id="Brief-Introduction"><a href="#Brief-Introduction" class="headerlink" title="Brief Introduction"></a>Brief Introduction</h1><p>Max is a software engineer in automation test area with development background, especially on Linux platform.</p>
-<p>As an automation test engineer, I have worked with Cucumber-JVM + JUnit + Selenium in Java and Robot Framework + Selenium + customized keyword lib in Python.<br>In those projects, I participated System Integration Test and Third Party Acceptance Test over several interfaces as CLI, Web Driver, RESTful and proprietary device protocols. As for Web testing, I have designed Page Objects and also Bot Style automation libraries to support the different test strategies. I also got Java programming and SQL experiences from the previous development work on security message gateway products. I set up the first Jenkins node to support building CI infrastructure for our team. The automation test cluster was built with vSphere environment. Meanwhile, my personal open source projects are migrated to Travis and Circle with Maven and JUnit. I keep the self-learning on test theories, programming skills and AWS technologies in off hours.</p>
+<h1 id="brief-introduction">Brief Introduction</h1>
+<p>Max is a software engineer in automation test area with development background, especially on Linux platform.</p>
+<p>As an automation test engineer, I have worked with Cucumber-JVM + JUnit + Selenium in Java and Robot Framework + Selenium + customized keyword lib in Python.In those projects, I participated System Integration Test and Third Party Acceptance Test over several interfaces as CLI, Web Driver, RESTful and proprietary device protocols. As for Web testing, I have designed Page Objects and also Bot Style automation libraries to support the different test strategies. I also got Java programming and SQL experiences from the previous development work on security message gateway products. I set up the first Jenkins node to support building CI infrastructure for our team. The automation test cluster was built with vSphere environment. Meanwhile, my personal open source projects are migrated to Travis and Circle with Maven and JUnit. I keep the self-learning on test theories, programming skills and AWS technologies in off hours.</p>
 <p>In summary, I would like to highlight three points: the hands on skills on test automation, proven fast learning record and strong problem resolving ability.</p>
-<h1 id="Resume"><a href="#Resume" class="headerlink" title="Resume"></a>Resume</h1><ul>
-<li><p>Automation Test: <a target="_blank" rel="noopener" href="http://resume.maxwu.me/">http://resume.maxwu.me/</a></p>
-</li>
-<li><p>Developer/DevOps: <a target="_blank" rel="noopener" href="http://cv.maxwu.me/">http://cv.maxwu.me/</a></p>
-</li>
+<h1 id="resume">Resume</h1>
+<ul>
+<li><p>Automation Test: <a target="_blank" rel="noopener" href="http://resume.maxwu.me/">http://resume.maxwu.me/</a></p></li>
+<li><p>Developer/DevOps: <a target="_blank" rel="noopener" href="http://cv.maxwu.me/">http://cv.maxwu.me/</a></p></li>
 </ul>
-<h1 id="Lessons"><a href="#Lessons" class="headerlink" title="Lessons"></a>Lessons</h1><ul>
+<h1 id="lessons">Lessons</h1>
+<ul>
 <li>The remarkable number.</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ⓑ maxwu  16:53  ~  4WLG  find ./ -name &quot;*.docx&quot; |grep -i ps |wc -l</span><br><span class="line">      88</span><br><span class="line">ⓑ maxwu  16:54  ~  4WLG</span><br></pre></td></tr></table></figure>
@@ -1265,6 +1207,59 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

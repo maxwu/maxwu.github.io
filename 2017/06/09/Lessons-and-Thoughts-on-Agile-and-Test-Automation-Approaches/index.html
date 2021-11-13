@@ -35,7 +35,7 @@
 <meta property="og:image" content="https://i.imgur.com/jawzSgFm.png">
 <meta property="og:image" content="http://www.avsforum.com/forum/imagehosting/31795589cbcbb28a21.jpg">
 <meta property="article:published_time" content="2017-06-09T04:45:23.000Z">
-<meta property="article:modified_time" content="2021-10-24T22:03:14.507Z">
+<meta property="article:modified_time" content="2017-06-09T04:45:23.000Z">
 <meta property="article:author" content="Max Wu">
 <meta property="article:tag" content="Agile">
 <meta property="article:tag" content="Test Automation">
@@ -201,13 +201,6 @@
 
               <time title="Created: 2017-06-09 16:45:23" itemprop="dateCreated datePublished" datetime="2017-06-09T16:45:23+12:00">2017-06-09</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-10-25 11:03:14" itemprop="dateModified" datetime="2021-10-25T11:03:14+13:00">2021-10-25</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -233,87 +226,81 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><a target="_blank" rel="noopener" href="https://imgur.com/c30BjQG"><img src="https://i.imgur.com/c30BjQGm.png" alt="Lake Zixia"></a></p>
+        <p><a target="_blank" rel="noopener" href="https://imgur.com/c30BjQG"><img src="https://i.imgur.com/c30BjQGm.png" alt="Lake Zixia" /></a></p>
 <blockquote>
-<p>The picture was taken for Zixia (Purple Light) Lake in famous Mt. Zijin of Nanjing (Nanking) city by my previous colleague. When we talk about migration to agile and automation test, it is rather to create a harmony with history assets and moderm methodology like to vitalize traditional building in morden metropolis with inner high-tech structural works, rather than a revolution on exteriority.<br><span id="more"></span></p>
+<p>The picture was taken for Zixia (Purple Light) Lake in famous Mt. Zijin of Nanjing (Nanking) city by my previous colleague. When we talk about migration to agile and automation test, it is rather to create a harmony with history assets and moderm methodology like to vitalize traditional building in morden metropolis with inner high-tech structural works, rather than a revolution on exteriority. <span id="more"></span></p>
 </blockquote>
-<p>($\color{blue}{Lively\ Updating}$) This post is based on the original Chinese blog articles and most parts are rewritten. I would keep on retrospectives and update it with new ideas periodically.</p>
-<h2 id="Brief"><a href="#Brief" class="headerlink" title="Brief"></a>Brief</h2><p>A better title could be “Myths in Test Automation – a view from engineer”. However, not to scare readers, we just keep it lively maintained as issue list with contourmeasures and thoughts.</p>
-<h2 id="4-versions-of-engineering-team-with-in-testing"><a href="#4-versions-of-engineering-team-with-in-testing" class="headerlink" title="4 versions of engineering team with/in testing"></a>4 versions of engineering team with/in testing</h2><p><strong>Version 1: Streamline Workers in Testing</strong></p>
+<p>(<span class="math inline">\(\color{blue}{Lively\ Updating}\)</span>) This post is based on the original Chinese blog articles and most parts are rewritten. I would keep on retrospectives and update it with new ideas periodically.</p>
+<h2 id="brief">Brief</h2>
+<p>A better title could be "Myths in Test Automation -- a view from engineer". However, not to scare readers, we just keep it lively maintained as issue list with contourmeasures and thoughts.</p>
+<h2 id="versions-of-engineering-team-within-testing">4 versions of engineering team with/in testing</h2>
+<p><strong>Version 1: Streamline Workers in Testing</strong></p>
 <p><strong>Version 2: Agile Testing</strong></p>
 <p><strong>Version 3: Role changed from tester to QA</strong></p>
 <p><strong>Version 4: Full Stack Testing Team</strong></p>
 <p>Here Full Stack is a term to reflect an end-to-end view from QA perspective rather than just testing.</p>
-<h2 id="Where-we-are-–-The-shape-of-test-automation"><a href="#Where-we-are-–-The-shape-of-test-automation" class="headerlink" title="Where we are – The shape of test automation"></a>Where we are – The shape of test automation</h2><p>At first, this section describes from a high level view on how to reinforce test automation. </p>
-<h3 id="Test-Pyramid-–-Ideal-Agile-Testing"><a href="#Test-Pyramid-–-Ideal-Agile-Testing" class="headerlink" title="Test Pyramid – Ideal Agile Testing"></a>Test Pyramid – Ideal Agile Testing</h3><p>The chart of Pyramid model is from <a target="_blank" rel="noopener" href="https://martinfowler.com/bliki/TestPyramid.html">Martin Fowler</a>. Test Pyramid is from <a target="_blank" rel="noopener" href="http://www.mountaingoatsoftware.com/">Mkie Cohn</a>. </p>
-<blockquote>
-<p>The test pyramid is a concept developed by Mike Cohn, described in his book Succeeding with Agile. Its essential point is that you should have many more low-level unit tests than high level end-to-end tests running through a GUI.</p>
-</blockquote>
-<div><a target="_blank" rel="noopener" href="https://martinfowler.com/bliki/TestPyramid.html" id="richardson_restful_maturity_mdel" align=left><br>     <img src="https://martinfowler.com/bliki/images/testPyramid/test-pyramid.png"  width=240><br></a><br><a target="_blank" rel="noopener" href="https://watirmelon.blog/2012/01/31/introducing-the-software-testing-ice-cream-cone/" id="richardson_restful_maturity_mdel" align=center><br>     <img src="https://watirmelon.files.wordpress.com/2012/01/idealautomatedtestingpyramid.png"  width=240><br></a><br></div>
-
-<p>Like bringing data as close to code as possible, the test shall be as close to code as possible. The distance of data and code increases the cost to warm data and rotate memory pages with cache line. The distance between test and code, in both space and time dimensions, could be regarded as a sign of cost of organization focus switch. </p>
-<p><a target="_blank" rel="noopener" href="https://watirmelon.blog/2012/01/31/introducing-the-software-testing-ice-cream-cone/">Alister Scott</a> added manual test on top of the pyramid. </p>
+<h2 id="where-we-are----the-shape-of-test-automation">Where we are -- The shape of test automation</h2>
+<p>At first, this section describes from a high level view on how to reinforce test automation.</p>
+<h3 id="test-pyramid----ideal-agile-testing">Test Pyramid -- Ideal Agile Testing</h3>
+The chart of Pyramid model is from <a target="_blank" rel="noopener" href="https://martinfowler.com/bliki/TestPyramid.html">Martin Fowler</a>. Test Pyramid is from <a target="_blank" rel="noopener" href="http://www.mountaingoatsoftware.com/">Mkie Cohn</a>. &gt; The test pyramid is a concept developed by Mike Cohn, described in his book Succeeding with Agile. Its essential point is that you should have many more low-level unit tests than high level end-to-end tests running through a GUI. &gt;
+<div>
+<p><a target="_blank" rel="noopener" href="https://martinfowler.com/bliki/TestPyramid.html" id="richardson_restful_maturity_mdel" align=left> <img src="https://martinfowler.com/bliki/images/testPyramid/test-pyramid.png"  width=240> </a> <a target="_blank" rel="noopener" href="https://watirmelon.blog/2012/01/31/introducing-the-software-testing-ice-cream-cone/" id="richardson_restful_maturity_mdel" align=center> <img src="https://watirmelon.files.wordpress.com/2012/01/idealautomatedtestingpyramid.png"  width=240> </a></p>
+</div>
+<p>Like bringing data as close to code as possible, the test shall be as close to code as possible. The distance of data and code increases the cost to warm data and rotate memory pages with cache line. The distance between test and code, in both space and time dimensions, could be regarded as a sign of cost of organization focus switch.</p>
+<p><a target="_blank" rel="noopener" href="https://watirmelon.blog/2012/01/31/introducing-the-software-testing-ice-cream-cone/">Alister Scott</a> added manual test on top of the pyramid.</p>
 <ul>
-<li><p>Fast iteration does not offer testing team a long time to perform more manual tests and the automated CI/CD becomes the fundamentals of agile to shorten the feedback cycle towards an autonomous learning organization. Even though, there are spaces for manual scenario based testing and exploring as an indispensable part of Agile Development cycle. It is true that the manual test sessions are a bit further to codes and extend a feedback cycle, but it is important to inspect from user scenario view and utilze human initiatives to qualify the software crafts and process.</p>
-</li>
-<li><p>Another take-away is the ability of test works to be <strong>reused</strong>. The lower it shows in above chart, the better adaptability it could have. </p>
-<ul>
-<li><p>UT is closest to code and will be maintained with code changes together with CI protection. The gap is counted by minutes. With <strong>Lava Light</strong> and CI, UT is consistent with code within 20min for most cases.</p>
-</li>
-<li><p>API and component interfaces have a middle level re-useability. Most of the test works are stable by a well reganized design style. If there are issues that APIs change frequently according to busniess, it is a smell of Architecture Refactor. The original design does not expect the busniess evolution model.</p>
-</li>
-<li><p>For UI layer and manual scenario tests, it is costing to maintain through releases because there are presentation of business and expected to change accordingly. With technologies like Page Object and a good automation framework, the costs could be mitigated sometimes. </p>
-</li>
+<li><p>Fast iteration does not offer testing team a long time to perform more manual tests and the automated CI/CD becomes the fundamentals of agile to shorten the feedback cycle towards an autonomous learning organization. Even though, there are spaces for manual scenario based testing and exploring as an indispensable part of Agile Development cycle. It is true that the manual test sessions are a bit further to codes and extend a feedback cycle, but it is important to inspect from user scenario view and utilze human initiatives to qualify the software crafts and process.</p></li>
+<li><p>Another take-away is the ability of test works to be <strong>reused</strong>. The lower it shows in above chart, the better adaptability it could have.</p></li>
+<li><p>UT is closest to code and will be maintained with code changes together with CI protection. The gap is counted by minutes. With <strong>Lava Light</strong> and CI, UT is consistent with code within 20min for most cases.</p></li>
+<li><p>API and component interfaces have a middle level re-useability. Most of the test works are stable by a well reganized design style. If there are issues that APIs change frequently according to busniess, it is a smell of Architecture Refactor. The original design does not expect the busniess evolution model.</p></li>
+<li><p>For UI layer and manual scenario tests, it is costing to maintain through releases because there are presentation of business and expected to change accordingly. With technologies like Page Object and a good automation framework, the costs could be mitigated sometimes.</p></li>
 </ul>
-</li>
-</ul>
-<h3 id="Icecream-Cone-Anti-Pattern-–-The-Reality"><a href="#Icecream-Cone-Anti-Pattern-–-The-Reality" class="headerlink" title="Icecream Cone Anti-Pattern – The Reality"></a>Icecream Cone Anti-Pattern – The Reality</h3><p><a target="_blank" rel="noopener" href="https://watirmelon.blog/2012/01/31/introducing-the-software-testing-ice-cream-cone/">Alister Scott</a> also pointed an <strong>“Icecream Cone Anti-Pattern”</strong> to describe the reality of testing industry.  </p>
-<p><a target="_blank" rel="noopener" href="https://watirmelon.blog/2012/01/31/introducing-the-software-testing-ice-cream-cone/" id="richardson_restful_maturity_mdel" align=left><br>     <img src="https://watirmelon.files.wordpress.com/2012/01/softwaretestingicecreamconeantipattern.png"  width=220><br></a></p>
-<p>Where the organizations have history assets or in an intermedium position to grow skilled engineers in testing, the most evident activities are still manual tests. </p>
-<p>One possible reason is with culture building, as <strong><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Conway%27s_law">Conway’s Law</a></strong> points out, the organization way of evaluating co-workers will come out with the output of software processes. If engineers work in an atmosphere that the bug numbers are a key to evaluate themselves, the manual test, with its time and resource consumption will be an asset, or, a debt, of the orgnazation. </p>
-<p>Another possible reason is also on culture that developers don’t have enough encourage or time to protect works with Unit Test. On the contrast, writing unit tests will influence developers to think about how peers are using that part of code and the structure will be designed to adapt a better decoupling philosophy and a better testability (the level of how the program is friendly to test, and then friendly to refactor).</p>
-<h3 id="Cupcake-Anti-Pattern-–-Reality-of-Agile-Testing"><a href="#Cupcake-Anti-Pattern-–-Reality-of-Agile-Testing" class="headerlink" title="Cupcake Anti-Pattern – Reality of Agile Testing"></a>Cupcake Anti-Pattern – Reality of Agile Testing</h3><p>Software Testing <strong>Cupcafe Anti-Pattern</strong> is a model by <a target="_blank" rel="noopener" href="https://www.thoughtworks.com/profiles/fabio-pereira">Fabio Pereira, Thoughworks</a> to describe what agile turns out to be in most organizations.</p>
-<p><a target="_blank" rel="noopener" href="https://www.thoughtworks.com/insights/blog/introducing-software-testing-cupcake-anti-pattern" align=left><br>     <img src="https://insights-images.thoughtworks.com/fabiocupcakenew1_0_04444aff9e8be210d16a68f29a20fe7a.png"  width=300><br></a></p>
-<p>The most siganificant take-away from this model is the isolation smell. It works partially as a mini-waterfall model that groups of team members make duplicated coverage. It usually happens when there is a separate automation testing team and an existing asset of “manual” test group to keep current business running.</p>
-<h3 id="Rugby-Model-–-Time-to-propose-a-theory-to-experiment"><a href="#Rugby-Model-–-Time-to-propose-a-theory-to-experiment" class="headerlink" title="Rugby Model – Time to propose a theory to experiment"></a>Rugby Model – Time to propose a theory to experiment</h3><p><a target="_blank" rel="noopener" href="https://imgur.com/jawzSgF"><img src="https://i.imgur.com/jawzSgFm.png" alt="Rugby Test Model"></a></p>
+<h3 id="icecream-cone-anti-pattern----the-reality">Icecream Cone Anti-Pattern -- The Reality</h3>
+<p><a target="_blank" rel="noopener" href="https://watirmelon.blog/2012/01/31/introducing-the-software-testing-ice-cream-cone/">Alister Scott</a> also pointed an <strong>"Icecream Cone Anti-Pattern"</strong> to describe the reality of testing industry.</p>
+<p><a target="_blank" rel="noopener" href="https://watirmelon.blog/2012/01/31/introducing-the-software-testing-ice-cream-cone/" id="richardson_restful_maturity_mdel" align=left> <img src="https://watirmelon.files.wordpress.com/2012/01/softwaretestingicecreamconeantipattern.png"  width=220> </a></p>
+<p>Where the organizations have history assets or in an intermedium position to grow skilled engineers in testing, the most evident activities are still manual tests.</p>
+<p>One possible reason is with culture building, as <strong><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Conway%27s_law">Conway's Law</a></strong> points out, the organization way of evaluating co-workers will come out with the output of software processes. If engineers work in an atmosphere that the bug numbers are a key to evaluate themselves, the manual test, with its time and resource consumption will be an asset, or, a debt, of the orgnazation.</p>
+<p>Another possible reason is also on culture that developers don't have enough encourage or time to protect works with Unit Test. On the contrast, writing unit tests will influence developers to think about how peers are using that part of code and the structure will be designed to adapt a better decoupling philosophy and a better testability (the level of how the program is friendly to test, and then friendly to refactor).</p>
+<h3 id="cupcake-anti-pattern----reality-of-agile-testing">Cupcake Anti-Pattern -- Reality of Agile Testing</h3>
+<p>Software Testing <strong>Cupcafe Anti-Pattern</strong> is a model by <a target="_blank" rel="noopener" href="https://www.thoughtworks.com/profiles/fabio-pereira">Fabio Pereira, Thoughworks</a> to describe what agile turns out to be in most organizations.</p>
+<p><a target="_blank" rel="noopener" href="https://www.thoughtworks.com/insights/blog/introducing-software-testing-cupcake-anti-pattern" align=left> <img src="https://insights-images.thoughtworks.com/fabiocupcakenew1_0_04444aff9e8be210d16a68f29a20fe7a.png"  width=300> </a></p>
+<p>The most siganificant take-away from this model is the isolation smell. It works partially as a mini-waterfall model that groups of team members make duplicated coverage. It usually happens when there is a separate automation testing team and an existing asset of "manual" test group to keep current business running.</p>
+<h3 id="rugby-model----time-to-propose-a-theory-to-experiment">Rugby Model -- Time to propose a theory to experiment</h3>
+<p><a target="_blank" rel="noopener" href="https://imgur.com/jawzSgF"><img src="https://i.imgur.com/jawzSgFm.png" alt="Rugby Test Model" /></a></p>
 <p>Focus on the middle layer instead of Unit Test. During the Agile Migration, pay most attention on API testing. For example, RESTful API testing can be extended to scenario test and create conditions and checkpoints for sceanrio level inspection. The RESTful API level automation testing can also provide a primary data analysis on which part is the most urgent section to protect with Unit Test.</p>
 <p>It is not a fresh new concept. The term <a target="_blank" rel="noopener" href="https://martinfowler.com/bliki/SubcutaneousTest.html">Subcutaneous Test</a> covers the similar way on a pseudo end-to-end test but avoid the UI complexity (complexity is usually a singal of heavy design and indicator of high risk on test maintenance).</p>
-<h2 id="Thoughts-on-common-practice-issues-in-Automation-Test"><a href="#Thoughts-on-common-practice-issues-in-Automation-Test" class="headerlink" title="Thoughts on common practice issues in Automation Test"></a>Thoughts on common practice issues in Automation Test</h2><h3 id="Tools-matter-–-Yes"><a href="#Tools-matter-–-Yes" class="headerlink" title="Tools matter – Yes"></a>Tools matter – Yes</h3><p>Tools are not only tools in a transverse movement, but also a way of cultrual idea exchange and influence on way of works.</p>
-<p><img src="http://www.avsforum.com/forum/imagehosting/31795589cbcbb28a21.jpg" alt=""></p>
-<p>SW Dev Frameworks are tools and ROR almost defined the practice standard for a narrowed scope of RESTful. Without JUnit, XUnit, the basic Unit Test concepts would NOT become as popular as they are now. Without <strong>120 fps</strong> technology, movie “Billy Lynn’s Halftime Walk” could hardly bring audience the experience on what <strong>Ang Lee</strong> is exactly designed. A home-made toolkit or customized automation framework is a way to influence crew, too.</p>
-<p>It is an effecient way to communicate with whole team on objectives, process, learning topics. As an old saying in Lucent, tools are ways to train people by supporting ourselves. </p>
-<h3 id="Mixed-Coding-and-Test-Skills-–-Yes"><a href="#Mixed-Coding-and-Test-Skills-–-Yes" class="headerlink" title="Mixed Coding and Test Skills – Yes"></a>Mixed Coding and Test Skills – Yes</h3><p>This topic is still debating upon situations. This is the mostly heard challenge when quite a number of organizations do “SWOT” analysis towards test automation. However, the observation is that interruption matters more. Below is based on the close observation and discussions with test professionals.</p>
-<p>When I am doing a manual test to GA a SW release sometimes, I don’t expect an out-of-observation-scope interruption to system which drive me have to start over. It costs energy for human beings to concentrate for a while no matter what we are doing. Testing is somehow a lonely work without in-time feedbacks as in games. To predict the logic branches and weak points consume more than it looks like.</p>
+<h2 id="thoughts-on-common-practice-issues-in-automation-test">Thoughts on common practice issues in Automation Test</h2>
+<h3 id="tools-matter----yes">Tools matter -- Yes</h3>
+<p>Tools are not only tools in a transverse movement, but also a way of cultrual idea exchange and influence on way of works.</p>
+<p><img src="http://www.avsforum.com/forum/imagehosting/31795589cbcbb28a21.jpg" /></p>
+<p>SW Dev Frameworks are tools and ROR almost defined the practice standard for a narrowed scope of RESTful. Without JUnit, XUnit, the basic Unit Test concepts would NOT become as popular as they are now. Without <strong>120 fps</strong> technology, movie "Billy Lynn's Halftime Walk" could hardly bring audience the experience on what <strong>Ang Lee</strong> is exactly designed. A home-made toolkit or customized automation framework is a way to influence crew, too.</p>
+<p>It is an effecient way to communicate with whole team on objectives, process, learning topics. As an old saying in Lucent, tools are ways to train people by supporting ourselves.</p>
+<h3 id="mixed-coding-and-test-skills----yes">Mixed Coding and Test Skills -- Yes</h3>
+<p>This topic is still debating upon situations. This is the mostly heard challenge when quite a number of organizations do "SWOT" analysis towards test automation. However, the observation is that interruption matters more. Below is based on the close observation and discussions with test professionals.</p>
+<p>When I am doing a manual test to GA a SW release sometimes, I don't expect an out-of-observation-scope interruption to system which drive me have to start over. It costs energy for human beings to concentrate for a while no matter what we are doing. Testing is somehow a lonely work without in-time feedbacks as in games. To predict the logic branches and weak points consume more than it looks like.</p>
 <p>On the other side, coding skills are still inevitably critical to implement a stably reproducable test smoothly. Programming language expertise is vital not only on exploring and implementing tests, but also to form a predictable but effective ways to design the tests. Relationship between factors in space, time and logics are expected natrual to engineers in automaiton test role. Therefore, the tests, CI and CD can provide confidence to joint agile team. I keep an average of 1.5 issues discovered per working day in first two weeks of manual testing phase. The credit gives to development experiences. Which helps me to think in a systematic structure and perform test in well organized space as a journey with several dimensions.</p>
-<p>This way, we say that <strong>testing is the way to use techniques to mitigate uncertaincy</strong>. </p>
-<h3 id="Tree-vs-Forest-–-Both"><a href="#Tree-vs-Forest-–-Both" class="headerlink" title="Tree vs. Forest – Both"></a>Tree vs. Forest – Both</h3><p>As a software engineer, I do have happy jouneys with occassional automation test in early years. Which are also called one time tools. The utilities were created to resolve a certain type of testings in such situations:</p>
+<p>This way, we say that <strong>testing is the way to use techniques to mitigate uncertaincy</strong>.</p>
+<h3 id="tree-vs.-forest----both">Tree vs. Forest -- Both</h3>
+<p>As a software engineer, I do have happy jouneys with occassional automation test in early years. Which are also called one time tools. The utilities were created to resolve a certain type of testings in such situations:</p>
 <ul>
-<li><p>Some tests are not able to complete manually. Constrains on space and time might be not easily to satisfy with manual actions.</p>
+<li>Some tests are not able to complete manually. Constrains on space and time might be not easily to satisfy with manual actions.
 <ul>
-<li><p>One example is burst Wi-Fi connection and disconnection to a home gateway. </p>
-<p>  When I first realized an issue was with memory fragmentation, the test case in my mind is to call volunteers from my team together with all Android tablets, mobiles, laptops we can borrow and carry to lab and make a series of burst join/quit. It is true and I really did it once .I still keep the photo that a group of people are doing Wi-Fi connecting test together, for memory, for the sweats and cheers). </p>
-<p>  But after we reproduced the issue and successfully match the symptom as filed team suffered, it was not feasible to stay with the so called crowd action to qualify the patch-up component integration. Therefore an urgent request of tool to stably reproduce this issue is created. An one time tool could turn the unknown uncertaincy to known uncertaincy and release efforts.</p>
-</li>
-</ul>
-</li>
-</ul>
+<li><p>One example is burst Wi-Fi connection and disconnection to a home gateway.</p>
+<p>When I first realized an issue was with memory fragmentation, the test case in my mind is to call volunteers from my team together with all Android tablets, mobiles, laptops we can borrow and carry to lab and make a series of burst join/quit. It is true and I really did it once .I still keep the photo that a group of people are doing Wi-Fi connecting test together, for memory, for the sweats and cheers).</p>
+<p>But after we reproduced the issue and successfully match the symptom as filed team suffered, it was not feasible to stay with the so called crowd action to qualify the patch-up component integration. Therefore an urgent request of tool to stably reproduce this issue is created. An one time tool could turn the unknown uncertaincy to known uncertaincy and release efforts.</p></li>
+</ul></li>
+<li>Some test case request special skill to reproduce.
 <ul>
-<li><p>Some test case request special skill to reproduce.</p>
-<ul>
-<li>It is like that some piano songs can only play with computer because the pace is too quick human fingers can hardly move this way.<ul>
-<li>An example is a race condition with home gateway GUI, TR69 management interface. It exhausts patience to reproduce it and record every execution sequences to table. Some of the pattern is sophisticated and ambiguous if we only tell from the text description. </li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>To explore more during the test. </p>
+<li>It is like that some piano songs can only play with computer because the pace is too quick human fingers can hardly move this way.</li>
+<li>An example is a race condition with home gateway GUI, TR69 management interface. It exhausts patience to reproduce it and record every execution sequences to table. Some of the pattern is sophisticated and ambiguous if we only tell from the text description.</li>
+</ul></li>
+<li>To explore more during the test.
 <ul>
 <li>Tools like JBroFuzz provides precompiled fuzzers to offer randomization for different purpose. If the exploring is only on the space dimension of data feeding, as changing from a ascii-lower set to base64 set, or explore SQL-injection set for MySQL DB, it is time to introduce one time tools.</li>
 <li>Knowing there is an issue, but not sure how big the impacted scope is, or, what exact the trigger threshold is.</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<p>One-time automation test is like trees. This is an utilization of tools to achieve above expectations. It is happy and cheerful. However, this is not the same concept of test automation.   </p>
+<p>One-time automation test is like trees. This is an utilization of tools to achieve above expectations. It is happy and cheerful. However, this is not the same concept of test automation.</p>
 <p>[Pub-2, 2019-05-19]: Update the image links]</p>
 <p>[Pub-1, 2017-06-09]: Since most parts are rewritten or revised, the release date of this post is changed to recent day]</p>
 <p>[draft-2, 2017-06-02]: Add agile test models, bring up Rugby model]</p>
@@ -423,7 +410,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Brief"><span class="nav-number">1.</span> <span class="nav-text">Brief</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-versions-of-engineering-team-with-in-testing"><span class="nav-number">2.</span> <span class="nav-text">4 versions of engineering team with&#x2F;in testing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Where-we-are-%E2%80%93-The-shape-of-test-automation"><span class="nav-number">3.</span> <span class="nav-text">Where we are – The shape of test automation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Test-Pyramid-%E2%80%93-Ideal-Agile-Testing"><span class="nav-number">3.1.</span> <span class="nav-text">Test Pyramid – Ideal Agile Testing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Icecream-Cone-Anti-Pattern-%E2%80%93-The-Reality"><span class="nav-number">3.2.</span> <span class="nav-text">Icecream Cone Anti-Pattern – The Reality</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cupcake-Anti-Pattern-%E2%80%93-Reality-of-Agile-Testing"><span class="nav-number">3.3.</span> <span class="nav-text">Cupcake Anti-Pattern – Reality of Agile Testing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rugby-Model-%E2%80%93-Time-to-propose-a-theory-to-experiment"><span class="nav-number">3.4.</span> <span class="nav-text">Rugby Model – Time to propose a theory to experiment</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Thoughts-on-common-practice-issues-in-Automation-Test"><span class="nav-number">4.</span> <span class="nav-text">Thoughts on common practice issues in Automation Test</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Tools-matter-%E2%80%93-Yes"><span class="nav-number">4.1.</span> <span class="nav-text">Tools matter – Yes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mixed-Coding-and-Test-Skills-%E2%80%93-Yes"><span class="nav-number">4.2.</span> <span class="nav-text">Mixed Coding and Test Skills – Yes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tree-vs-Forest-%E2%80%93-Both"><span class="nav-number">4.3.</span> <span class="nav-text">Tree vs. Forest – Both</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#brief"><span class="nav-number">1.</span> <span class="nav-text">Brief</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#versions-of-engineering-team-within-testing"><span class="nav-number">2.</span> <span class="nav-text">4 versions of engineering team with&#x2F;in testing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#where-we-are----the-shape-of-test-automation"><span class="nav-number">3.</span> <span class="nav-text">Where we are -- The shape of test automation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#test-pyramid----ideal-agile-testing"><span class="nav-number">3.1.</span> <span class="nav-text">Test Pyramid -- Ideal Agile Testing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#icecream-cone-anti-pattern----the-reality"><span class="nav-number">3.2.</span> <span class="nav-text">Icecream Cone Anti-Pattern -- The Reality</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cupcake-anti-pattern----reality-of-agile-testing"><span class="nav-number">3.3.</span> <span class="nav-text">Cupcake Anti-Pattern -- Reality of Agile Testing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rugby-model----time-to-propose-a-theory-to-experiment"><span class="nav-number">3.4.</span> <span class="nav-text">Rugby Model -- Time to propose a theory to experiment</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#thoughts-on-common-practice-issues-in-automation-test"><span class="nav-number">4.</span> <span class="nav-text">Thoughts on common practice issues in Automation Test</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#tools-matter----yes"><span class="nav-number">4.1.</span> <span class="nav-text">Tools matter -- Yes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mixed-coding-and-test-skills----yes"><span class="nav-number">4.2.</span> <span class="nav-text">Mixed Coding and Test Skills -- Yes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tree-vs.-forest----both"><span class="nav-number">4.3.</span> <span class="nav-text">Tree vs. Forest -- Both</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -559,6 +546,59 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

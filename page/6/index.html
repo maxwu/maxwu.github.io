@@ -187,13 +187,6 @@
 
               <time title="Created: 2016-10-30 14:07:55" itemprop="dateCreated datePublished" datetime="2016-10-30T14:07:55+13:00">2016-10-30</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-10-25 11:03:14" itemprop="dateModified" datetime="2021-10-25T11:03:14+13:00">2021-10-25</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -215,7 +208,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="先完成一个小目标–AWS-Architect-Associate"><a href="#先完成一个小目标–AWS-Architect-Associate" class="headerlink" title="先完成一个小目标–AWS Architect Associate"></a>先完成一个小目标–AWS Architect Associate</h2><p><img src="http://oei21r8n1.bkt.clouddn.com/AWS_Office_20160923_135324.jpg?imageView/2/w/400/q/100" alt="AWS-Office"><br>
+          <h2 id="先完成一个小目标--aws-architect-associate">先完成一个小目标--AWS Architect Associate</h2>
+<p><img src="http://oei21r8n1.bkt.clouddn.com/AWS_Office_20160923_135324.jpg?imageView/2/w/400/q/100" alt="AWS-Office" />
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2016/10/30/get-aws-saa-on-monday/#more" rel="contents">
@@ -268,13 +262,6 @@
 
               <time title="Created: 2016-10-03 16:15:14" itemprop="dateCreated datePublished" datetime="2016-10-03T16:15:14+13:00">2016-10-03</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-10-25 11:03:14" itemprop="dateModified" datetime="2021-10-25T11:03:14+13:00">2021-10-25</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -296,7 +283,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="解决Mac上git命令失去响应步骤"><a href="#解决Mac上git命令失去响应步骤" class="headerlink" title="解决Mac上git命令失去响应步骤"></a>解决Mac上git命令失去响应步骤</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew uninstall git</span><br><span class="line">brew uninstall curl</span><br><span class="line">brew install curl --with-openssl</span><br><span class="line">brew install git —with-brewed-curl —with-brewed-openssl</span><br></pre></td></tr></table></figure>
+          <h2 id="解决mac上git命令失去响应步骤">解决Mac上git命令失去响应步骤</h2>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew uninstall git</span><br><span class="line">brew uninstall curl</span><br><span class="line">brew install curl --with-openssl</span><br><span class="line">brew install git —with-brewed-curl —with-brewed-openssl</span><br></pre></td></tr></table></figure>
 <p>SS梯子可以参照proxychains-ng应用到cli.</p>
 
       
@@ -343,13 +331,6 @@
 
               <time title="Created: 2016-10-02 17:16:15" itemprop="dateCreated datePublished" datetime="2016-10-02T17:16:15+13:00">2016-10-02</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-10-25 11:03:14" itemprop="dateModified" datetime="2021-10-25T11:03:14+13:00">2021-10-25</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -371,7 +352,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Dropme"><a href="#Dropme" class="headerlink" title="Dropme"></a>Dropme</h2><blockquote>
+          <h2 id="dropme">Dropme</h2>
+<blockquote>
 <p>回归hexo,测试页面.</p>
 </blockquote>
 <p>English posts will be published on this site.</p>
@@ -581,6 +563,59 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

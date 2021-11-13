@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://i.imgur.com/gtm74Prm.png">
 <meta property="og:image" content="https://i.imgur.com/YHyhOJ7t.png">
 <meta property="article:published_time" content="2019-06-09T09:42:34.000Z">
-<meta property="article:modified_time" content="2021-10-24T22:03:14.506Z">
+<meta property="article:modified_time" content="2019-06-09T09:42:34.000Z">
 <meta property="article:author" content="Max Wu">
 <meta property="article:tag" content="Istanbul">
 <meta property="article:tag" content="Coverage">
@@ -197,13 +197,6 @@
 
               <time title="Created: 2019-06-09 21:42:34" itemprop="dateCreated datePublished" datetime="2019-06-09T21:42:34+12:00">2019-06-09</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-10-25 11:03:14" itemprop="dateModified" datetime="2021-10-25T11:03:14+13:00">2021-10-25</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -231,40 +224,37 @@
       
         <p>For new app or repos with a close to ideal level code coverage, the populor code coverage solution on coverage metrics threshold check would be efficient. However, to maintain a legacy or low coverage level repo, it is not eonough to just check coverage percentage on metrics. This post described an idea to check coverage json diff with istanbul-diff on node.js repos.</p>
 <span id="more"></span>
-<h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><p>Usually in Jenkins Pipeline or SAAS DevOps infrastructure, the code coverage check is implemented with <code>Cobertura</code> or cloud service <code>Coverage</code>. </p>
+<h2 id="problem">Problem</h2>
+<p>Usually in Jenkins Pipeline or SAAS DevOps infrastructure, the code coverage check is implemented with <code>Cobertura</code> or cloud service <code>Coverage</code>.</p>
 <p>As described in previous posts, here are samples of <code>Coverage</code> service and on-premise <code>Cobertura</code>.</p>
-<p><a target="_blank" rel="noopener" href="https://i.imgur.com/gtm74Pr.png"><img src="https://i.imgur.com/gtm74Prm.png" alt="Coverage"></a><br><a target="_blank" rel="noopener" href="https://i.imgur.com/YHyhOJ7.png"><img src="https://i.imgur.com/YHyhOJ7t.png" alt="Cobertura"></a></p>
-<p>The coverage check is implemented with metrics and thresholds, in other wors, the score of code coverage on current baseline. This won’t be a problem when the repo has an ideal coverage leve. </p>
-<p>For example, if the threshold is set to 95% on lines, functions and branches thress metrics, when the change breaks the threshold, the coverage check will fail. </p>
-<p>On an legacy repo, this would potentially be a problem with a low coverage level. For an example, if the repo has 45% overall lines coverage. On one of the feature branch, the code change lower down some source code coverage by accidently introduced a wrong condition in Jest. But the feature branch aslo introduced a batch of new source and keep 100% on these new added source filed. Therefore, it is possible to see an increase in <code>Total Coverage</code>. And due to a lower level of <code>Cobertura</code> threshold on existing code, this cannot be discovered by the coverage check at all. The feature branch can be merged to master branch with successful coverage endorsement. </p>
-<p>Above is a real case in coverage overall check with one of my projects. </p>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>Since the project mentioned above is a node.js front-end app, the coverage measurement is implemented with Jest coverage. Underneath the jest framework, <a target="_blank" rel="noopener" href="https://istanbul.js.org"><code>istanbul</code></a> is the code coverage lib. This triggered me to seek a way to compare the coverage result files from the source branch to target branch.</p>
-<p>The solution could rely on JsonDiff lib to compare the coverage between two branches and fail when there is any nodes on source tree has decrease on coverage unless the leave nodes (file-line, function, branch path) are removed from source branch. </p>
+<p><a target="_blank" rel="noopener" href="https://i.imgur.com/gtm74Pr.png"><img src="https://i.imgur.com/gtm74Prm.png" alt="Coverage" /></a> <a target="_blank" rel="noopener" href="https://i.imgur.com/YHyhOJ7.png"><img src="https://i.imgur.com/YHyhOJ7t.png" alt="Cobertura" /></a></p>
+<p>The coverage check is implemented with metrics and thresholds, in other wors, the score of code coverage on current baseline. This won't be a problem when the repo has an ideal coverage leve.</p>
+<p>For example, if the threshold is set to 95% on lines, functions and branches thress metrics, when the change breaks the threshold, the coverage check will fail.</p>
+<p>On an legacy repo, this would potentially be a problem with a low coverage level. For an example, if the repo has 45% overall lines coverage. On one of the feature branch, the code change lower down some source code coverage by accidently introduced a wrong condition in Jest. But the feature branch aslo introduced a batch of new source and keep 100% on these new added source filed. Therefore, it is possible to see an increase in <code>Total Coverage</code>. And due to a lower level of <code>Cobertura</code> threshold on existing code, this cannot be discovered by the coverage check at all. The feature branch can be merged to master branch with successful coverage endorsement.</p>
+<p>Above is a real case in coverage overall check with one of my projects.</p>
+<h2 id="solution">Solution</h2>
+<p>Since the project mentioned above is a node.js front-end app, the coverage measurement is implemented with Jest coverage. Underneath the jest framework, <a target="_blank" rel="noopener" href="https://istanbul.js.org"><code>istanbul</code></a> is the code coverage lib. This triggered me to seek a way to compare the coverage result files from the source branch to target branch.</p>
+<p>The solution could rely on JsonDiff lib to compare the coverage between two branches and fail when there is any nodes on source tree has decrease on coverage unless the leave nodes (file-line, function, branch path) are removed from source branch.</p>
 <p>Here the term <code>leave node</code> depends on which coverage metrics are selected. It could be one or more from lines, functions and branches. The three coverage metrics are supported by istanbul.</p>
 <ul>
-<li><p>The first condition can be satisfied by applying an npm lib <a target="_blank" rel="noopener" href="https://github.com/moos/istanbul-diff"><code>istabul-diff</code></a>. Which is based on <code>jsondiffpath</code> lib to compare the increments between source coverage summary and target (existing) one.</p>
-</li>
-<li><p>The second condition would be resolved with traditional way – <code>Artifactory</code>. On Jenkins Pipeline, a goovy closure will be defined to push coverage-summary JSON to artifactory if current <code>BUILD</code> passes and it is on master branch. </p>
+<li><p>The first condition can be satisfied by applying an npm lib <a target="_blank" rel="noopener" href="https://github.com/moos/istanbul-diff"><code>istabul-diff</code></a>. Which is based on <code>jsondiffpath</code> lib to compare the increments between source coverage summary and target (existing) one.</p></li>
+<li><p>The second condition would be resolved with traditional way -- <code>Artifactory</code>. On Jenkins Pipeline, a goovy closure will be defined to push coverage-summary JSON to artifactory if current <code>BUILD</code> passes and it is on master branch.</p>
 <p>So the artifactory specific PATH will only keep a latest copy of master branch coverage result (in JSON format).</p>
-<p>When Pipeline determines the build is on a feature branch, it will automatically download the master coverage summary from Artifactory and apply istanbul-diff to find if there is any loss on coverage but will accept all the positive (incremental) coverage.</p>
-</li>
-<li><p>To utilize istanbul-diff tool, istanbul reporter <code>json-summary</code> is required. By default Jest would apply parameter <code>[&quot;json&quot;, &quot;lcov&quot;, &quot;text&quot;, &quot;clover&quot;]</code> (refer to <a target="_blank" rel="noopener" href="https://jestjs.io/docs/en/configuration#coveragereporters-array-string">Jest Doc</a>)</p>
+<p>When Pipeline determines the build is on a feature branch, it will automatically download the master coverage summary from Artifactory and apply istanbul-diff to find if there is any loss on coverage but will accept all the positive (incremental) coverage.</p></li>
+<li><p>To utilize istanbul-diff tool, istanbul reporter <code>json-summary</code> is required. By default Jest would apply parameter <code>["json", "lcov", "text", "clover"]</code> (refer to <a target="_blank" rel="noopener" href="https://jestjs.io/docs/en/configuration#coveragereporters-array-string">Jest Doc</a>)</p>
 <p>So the package.json could be updated as:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  ...</span><br><span class="line">  <span class="string">&quot;jest&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;coverageReporters&quot;</span>: [</span><br><span class="line">      <span class="string">&quot;json&quot;</span>, </span><br><span class="line">      <span class="string">&quot;lcov&quot;</span>, </span><br><span class="line">      <span class="string">&quot;text&quot;</span>, </span><br><span class="line">      <span class="string">&quot;clover&quot;</span>,</span><br><span class="line">      <span class="string">&quot;json-summary&quot;</span></span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  ...</span><br><span class="line">  <span class="string">&quot;jest&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;coverageReporters&quot;</span>: [</span><br><span class="line">      <span class="string">&quot;json&quot;</span>, </span><br><span class="line">      <span class="string">&quot;lcov&quot;</span>, </span><br><span class="line">      <span class="string">&quot;text&quot;</span>, </span><br><span class="line">      <span class="string">&quot;clover&quot;</span>,</span><br><span class="line">      <span class="string">&quot;json-summary&quot;</span></span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
-<h2 id="More-topics"><a href="#More-topics" class="headerlink" title="More topics"></a>More topics</h2><p>The author just verified the idea with a rough react sample but haven’t tested the solution with prototype on pipeline yet. Here are actions to fulfill and confirm:</p>
+<h2 id="more-topics">More topics</h2>
+<p>The author just verified the idea with a rough react sample but haven't tested the solution with prototype on pipeline yet. Here are actions to fulfill and confirm:</p>
 <ul>
-<li><p>Implement the solution above in an POC branch on pipeline definition file.</p>
-</li>
-<li><p>Take special care to verify when leave nodes are removed, istanbul-diff could accept it not as a failure.</p>
-</li>
-<li><p>When multiple metrics are specified, e.g. both lines and functions, any loss of coverage in one of more of the metrics will fail the final return code.</p>
-</li>
-<li><p>A PR submitted to fix typo in istanbul-diff README Markdown doc, <a target="_blank" rel="noopener" href="https://github.com/moos/istanbul-diff/pull/3">https://github.com/moos/istanbul-diff/pull/3</a> </p>
-</li>
+<li><p>Implement the solution above in an POC branch on pipeline definition file.</p></li>
+<li><p>Take special care to verify when leave nodes are removed, istanbul-diff could accept it not as a failure.</p></li>
+<li><p>When multiple metrics are specified, e.g. both lines and functions, any loss of coverage in one of more of the metrics will fail the final return code.</p></li>
+<li><p>A PR submitted to fix typo in istanbul-diff README Markdown doc, https://github.com/moos/istanbul-diff/pull/3</p></li>
 </ul>
-<h2 id="Change-Log"><a href="#Change-Log" class="headerlink" title="Change Log"></a>Change Log</h2><p>Jun 09, 2019: Initial and roughly tested with sample node.js repo. </p>
+<h2 id="change-log">Change Log</h2>
+<p>Jun 09, 2019: Initial and roughly tested with sample node.js repo.</p>
 
     </div>
 
@@ -367,7 +357,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem"><span class="nav-number">1.</span> <span class="nav-text">Problem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution"><span class="nav-number">2.</span> <span class="nav-text">Solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#More-topics"><span class="nav-number">3.</span> <span class="nav-text">More topics</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Change-Log"><span class="nav-number">4.</span> <span class="nav-text">Change Log</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#problem"><span class="nav-number">1.</span> <span class="nav-text">Problem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#solution"><span class="nav-number">2.</span> <span class="nav-text">Solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#more-topics"><span class="nav-number">3.</span> <span class="nav-text">More topics</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#change-log"><span class="nav-number">4.</span> <span class="nav-text">Change Log</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -503,6 +493,59 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

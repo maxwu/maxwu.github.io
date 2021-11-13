@@ -28,7 +28,7 @@
 <meta property="og:description" content="Locust is a Python lib for performance test. Here is a first dip with locust with sample codes.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2017-03-05T12:30:29.000Z">
-<meta property="article:modified_time" content="2021-10-24T22:03:14.503Z">
+<meta property="article:modified_time" content="2017-03-05T12:30:29.000Z">
 <meta property="article:author" content="Max Wu">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="Locust">
@@ -194,13 +194,6 @@
 
               <time title="Created: 2017-03-06 01:30:29" itemprop="dateCreated datePublished" datetime="2017-03-06T01:30:29+13:00">2017-03-06</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-10-25 11:03:14" itemprop="dateModified" datetime="2021-10-25T11:03:14+13:00">2021-10-25</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -226,12 +219,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>Locust is a Python lib for performance test. Here is a first dip with locust with sample codes.<br><span id="more"></span></p>
-<h3 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ⓑ&gt;pip install locust pyzmq</span><br></pre></td></tr></table></figure>
-<h3 id="The-Sample-Case"><a href="#The-Sample-Case" class="headerlink" title="The Sample Case"></a>The Sample Case</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">ⓑ&gt;cat http_bare_visit.py</span><br><span class="line"><span class="keyword">from</span> locust <span class="keyword">import</span> HttpLocust, TaskSet, task</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserBehavior</span>(<span class="params">TaskSet</span>):</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @task(<span class="params"><span class="number">1</span></span>)</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">bare_visit</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.client.get(<span class="string">&quot;/&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WebsiteUser</span>(<span class="params">HttpLocust</span>):</span></span><br><span class="line">    task_set = UserBehavior</span><br><span class="line">    min_wait = <span class="number">3000</span></span><br><span class="line">    max_wait = <span class="number">6000</span></span><br><span class="line"> ⓑ&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="Run-A-Performance-Test"><a href="#Run-A-Performance-Test" class="headerlink" title="Run A Performance Test"></a>Run A Performance Test</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ⓑ&gt;locust -f ./http_bare_visit.py  --host=http://jenkins.maxwu.me</span><br><span class="line">[2017-03-06 01:23:44,842] MaxWudeMacBook-Pro.local/INFO/locust.main: Starting web monitor at *:8089</span><br><span class="line">[2017-03-06 01:23:44,842] MaxWudeMacBook-Pro.local/INFO/locust.main: Starting Locust 0.7.5</span><br><span class="line">[2017-03-06 01:24:24,914] MaxWudeMacBook-Pro.local/INFO/locust.runners: Hatching and swarming 10 clients at the rate 1 clients/s...</span><br><span class="line">[2017-03-06 01:24:34,939] MaxWudeMacBook-Pro.local/INFO/locust.runners: All locusts hatched: WebsiteUser: 10</span><br></pre></td></tr></table></figure>
-<p>Open browser on <a target="_blank" rel="noopener" href="http://localhost:8089">http://localhost:8089</a> and configure the simulation size and hatch rate. When the test execution starts, the GUI will provides statistic data.</p>
-<p>Press Ctrl-C on terminal to stop the runner process. The data report is available on terminal console, too. </p>
+        <p>Locust is a Python lib for performance test. Here is a first dip with locust with sample codes. <span id="more"></span></p>
+<h3 id="installation">Installation</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ⓑ&gt;pip install locust pyzmq</span><br></pre></td></tr></table></figure>
+<h3 id="the-sample-case">The Sample Case</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">ⓑ&gt;cat http_bare_visit.py</span><br><span class="line"><span class="keyword">from</span> locust <span class="keyword">import</span> HttpLocust, TaskSet, task</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserBehavior</span>(<span class="params">TaskSet</span>):</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @task(<span class="params"><span class="number">1</span></span>)</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">bare_visit</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.client.get(<span class="string">&quot;/&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WebsiteUser</span>(<span class="params">HttpLocust</span>):</span></span><br><span class="line">    task_set = UserBehavior</span><br><span class="line">    min_wait = <span class="number">3000</span></span><br><span class="line">    max_wait = <span class="number">6000</span></span><br><span class="line"> ⓑ&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="run-a-performance-test">Run A Performance Test</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ⓑ&gt;locust -f ./http_bare_visit.py  --host=http://jenkins.maxwu.me</span><br><span class="line">[2017-03-06 01:23:44,842] MaxWudeMacBook-Pro.local/INFO/locust.main: Starting web monitor at *:8089</span><br><span class="line">[2017-03-06 01:23:44,842] MaxWudeMacBook-Pro.local/INFO/locust.main: Starting Locust 0.7.5</span><br><span class="line">[2017-03-06 01:24:24,914] MaxWudeMacBook-Pro.local/INFO/locust.runners: Hatching and swarming 10 clients at the rate 1 clients/s...</span><br><span class="line">[2017-03-06 01:24:34,939] MaxWudeMacBook-Pro.local/INFO/locust.runners: All locusts hatched: WebsiteUser: 10</span><br></pre></td></tr></table></figure>
+<p>Open browser on http://localhost:8089 and configure the simulation size and hatch rate. When the test execution starts, the GUI will provides statistic data.</p>
+<p>Press Ctrl-C on terminal to stop the runner process. The data report is available on terminal console, too.</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[2017-03-06 01:29:10,073] MaxWudeMacBook-Pro.local/ERROR/stderr: KeyboardInterrupt</span><br><span class="line">[2017-03-06 01:29:10,074] MaxWudeMacBook-Pro.local/INFO/locust.main: Shutting down (<span class="built_in">exit</span> code 0), <span class="built_in">bye</span>.</span><br><span class="line"> Name                                                          <span class="comment"># reqs      # fails     Avg     Min     Max  |  Median   req/s</span></span><br><span class="line">--------------------------------------------------------------------------------------------------------------------------------------------</span><br><span class="line"> GET /                                                            106     1(0.93%)     346     179     501  |     350    2.00</span><br><span class="line">--------------------------------------------------------------------------------------------------------------------------------------------</span><br><span class="line"> Total                                                            106     1(0.94%)                                       2.00</span><br><span class="line"></span><br><span class="line">Percentage of the requests completed within given <span class="built_in">times</span></span><br><span class="line"> Name                                                           <span class="comment"># reqs    50%    66%    75%    80%    90%    95%    98%    99%   100%</span></span><br><span class="line">--------------------------------------------------------------------------------------------------------------------------------------------</span><br><span class="line"> GET /                                                             106    350    350    360    360    390    400    440    500    501</span><br><span class="line">--------------------------------------------------------------------------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">Error report</span><br><span class="line"> <span class="comment"># occurences       Error</span></span><br><span class="line">--------------------------------------------------------------------------------------------------------------------------------------------</span><br><span class="line"> 1                  GET /: <span class="string">&quot;ConnectionError(ProtocolError(&#x27;Connection aborted.&#x27;, error(54, &#x27;Connection reset by peer&#x27;)),)&quot;</span></span><br><span class="line">--------------------------------------------------------------------------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"> ⓑ&gt;</span><br></pre></td></tr></table></figure>
 <p>[EOF]</p>
 
@@ -336,7 +332,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Installation"><span class="nav-number">1.</span> <span class="nav-text">Installation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Sample-Case"><span class="nav-number">2.</span> <span class="nav-text">The Sample Case</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-A-Performance-Test"><span class="nav-number">3.</span> <span class="nav-text">Run A Performance Test</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#installation"><span class="nav-number">1.</span> <span class="nav-text">Installation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#the-sample-case"><span class="nav-number">2.</span> <span class="nav-text">The Sample Case</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#run-a-performance-test"><span class="nav-number">3.</span> <span class="nav-text">Run A Performance Test</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -472,6 +468,59 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
