@@ -417,6 +417,13 @@
   </url>
   
   <url>
+    <loc>https://www.maxwu.me/tags/Java/</loc>
+    <lastmod>2021-11-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.maxwu.me/tags/CI/</loc>
     <lastmod>2021-11-14</lastmod>
     <changefreq>daily</changefreq>
@@ -432,13 +439,6 @@
   
   <url>
     <loc>https://www.maxwu.me/tags/Jenkins/</loc>
-    <lastmod>2021-11-14</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.maxwu.me/tags/Java/</loc>
     <lastmod>2021-11-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -501,6 +501,20 @@
   </url>
   
   <url>
+    <loc>https://www.maxwu.me/tags/SAP/</loc>
+    <lastmod>2021-11-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.maxwu.me/tags/DOP/</loc>
+    <lastmod>2021-11-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.maxwu.me/tags/ab/</loc>
     <lastmod>2021-11-14</lastmod>
     <changefreq>daily</changefreq>
@@ -515,14 +529,7 @@
   </url>
   
   <url>
-    <loc>https://www.maxwu.me/tags/SAP/</loc>
-    <lastmod>2021-11-14</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.maxwu.me/tags/DOP/</loc>
+    <loc>https://www.maxwu.me/tags/Shadowsocks/</loc>
     <lastmod>2021-11-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -543,7 +550,14 @@
   </url>
   
   <url>
-    <loc>https://www.maxwu.me/tags/Shadowsocks/</loc>
+    <loc>https://www.maxwu.me/tags/Performance-Testing/</loc>
+    <lastmod>2021-11-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.maxwu.me/tags/Stressing-Testing/</loc>
     <lastmod>2021-11-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -558,20 +572,6 @@
   
   <url>
     <loc>https://www.maxwu.me/tags/CircleCI/</loc>
-    <lastmod>2021-11-14</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.maxwu.me/tags/Performance-Testing/</loc>
-    <lastmod>2021-11-14</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.maxwu.me/tags/Stressing-Testing/</loc>
     <lastmod>2021-11-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -711,6 +711,13 @@
   </url>
   
   <url>
+    <loc>https://www.maxwu.me/tags/git/</loc>
+    <lastmod>2021-11-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.maxwu.me/tags/iterm2/</loc>
     <lastmod>2021-11-14</lastmod>
     <changefreq>daily</changefreq>
@@ -726,13 +733,6 @@
   
   <url>
     <loc>https://www.maxwu.me/tags/imgcat/</loc>
-    <lastmod>2021-11-14</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.maxwu.me/tags/git/</loc>
     <lastmod>2021-11-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -788,20 +788,6 @@
   </url>
   
   <url>
-    <loc>https://www.maxwu.me/tags/Agile/</loc>
-    <lastmod>2021-11-14</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.maxwu.me/tags/Test-Automation/</loc>
-    <lastmod>2021-11-14</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.maxwu.me/tags/32bit/</loc>
     <lastmod>2021-11-14</lastmod>
     <changefreq>daily</changefreq>
@@ -823,6 +809,20 @@
   </url>
   
   <url>
+    <loc>https://www.maxwu.me/tags/Agile/</loc>
+    <lastmod>2021-11-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.maxwu.me/tags/Test-Automation/</loc>
+    <lastmod>2021-11-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.maxwu.me/tags/Data-Science/</loc>
     <lastmod>2021-11-14</lastmod>
     <changefreq>daily</changefreq>
@@ -831,6 +831,13 @@
   
   <url>
     <loc>https://www.maxwu.me/tags/unittest/</loc>
+    <lastmod>2021-11-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.maxwu.me/tags/DFS/</loc>
     <lastmod>2021-11-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -852,13 +859,6 @@
   
   <url>
     <loc>https://www.maxwu.me/tags/Chrome/</loc>
-    <lastmod>2021-11-14</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.maxwu.me/tags/DFS/</loc>
     <lastmod>2021-11-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -893,20 +893,6 @@
   </url>
   
   <url>
-    <loc>https://www.maxwu.me/tags/SoapUI/</loc>
-    <lastmod>2021-11-14</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.maxwu.me/tags/CLI/</loc>
-    <lastmod>2021-11-14</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.maxwu.me/tags/Machine-Learning/</loc>
     <lastmod>2021-11-14</lastmod>
     <changefreq>daily</changefreq>
@@ -922,6 +908,20 @@
   
   <url>
     <loc>https://www.maxwu.me/tags/Stanford/</loc>
+    <lastmod>2021-11-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.maxwu.me/tags/SoapUI/</loc>
+    <lastmod>2021-11-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.maxwu.me/tags/CLI/</loc>
     <lastmod>2021-11-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1147,6 +1147,13 @@
   </url>
   
   <url>
+    <loc>https://www.maxwu.me/categories/Programming/</loc>
+    <lastmod>2021-11-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.maxwu.me/categories/Automation-Test/</loc>
     <lastmod>2021-11-14</lastmod>
     <changefreq>daily</changefreq>
@@ -1154,7 +1161,7 @@
   </url>
   
   <url>
-    <loc>https://www.maxwu.me/categories/Programming/</loc>
+    <loc>https://www.maxwu.me/categories/Programming/Java/</loc>
     <lastmod>2021-11-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1168,14 +1175,14 @@
   </url>
   
   <url>
-    <loc>https://www.maxwu.me/categories/Automation-Test/Performance-Test/</loc>
+    <loc>https://www.maxwu.me/categories/Automation-Test/CI/</loc>
     <lastmod>2021-11-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.maxwu.me/categories/Automation-Test/CI/</loc>
+    <loc>https://www.maxwu.me/categories/Automation-Test/Performance-Test/</loc>
     <lastmod>2021-11-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1189,7 +1196,7 @@
   </url>
   
   <url>
-    <loc>https://www.maxwu.me/categories/Programming/Java/</loc>
+    <loc>https://www.maxwu.me/categories/Programming/Python/</loc>
     <lastmod>2021-11-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1239,13 +1246,6 @@
   
   <url>
     <loc>https://www.maxwu.me/categories/Programming/Shell/</loc>
-    <lastmod>2021-11-14</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.maxwu.me/categories/Programming/Python/</loc>
     <lastmod>2021-11-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
