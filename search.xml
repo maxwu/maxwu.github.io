@@ -4,6 +4,180 @@
   
     
     <entry>
+      <title>Build k8s apps running both in and out of Cluster</title>
+      <link href="/2021/10/20/Build-k8s-apps-running-both-in-and-out-of-Cluster/"/>
+      <url>/2021/10/20/Build-k8s-apps-running-both-in-and-out-of-Cluster/</url>
+      
+        <content type="html"><![CDATA[<p><img src="https://i.imgur.com/FFtL6Fhm.png" title="Docker Helm Kubernetes" /></p><p>When building k8s apps, e.g. a reverse proxy to route APIs in given business domain, helm chart is a convenient choice to build and ship the apps. Sometimes if it's a prototype, your teammates or yourself would think of running it in local for quick verification in local cluster or a better debug way. This post described the tips to build an app running both in and out of the cluster</p><span id="more"></span><h2 id="problem-description">Problem Description</h2><p>In short, the app is expected to run in local for debug and quick demo using but it shall also be delivered in helm chart and deployed in realistic environment for a further step prototype with downstream services.</p><h2 id="clientset-configuration">ClientSet Configuration</h2><p>In my practice, the kube client is usually a ClientSet with CRD schemed and for convenience we could keep the k8s core scheme client together with CRD clientset as below. The kube client could be simply declared in the app sub package and injected from <code>main.go</code>.</p><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> KubeClientSet <span class="keyword">struct</span> &#123;</span><br><span class="line">  <span class="comment">// Your CRD schemed clientset</span></span><br><span class="line">Client    *cltv1.V1Client</span><br><span class="line">  <span class="comment">// K8s clientset</span></span><br><span class="line">K8sClient *kubernetes.Clientset</span><br><span class="line">  <span class="comment">// Host is extraced from K8sClient for service URL building</span></span><br><span class="line">Host      <span class="keyword">string</span></span><br><span class="line">InCluster <span class="keyword">bool</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>Then in the <code>NewKubeClient()</code> when the clientset is initialized, the host name is filled to adapt in and out of cluster cases. Where the flag <code>InCluster</code> could be resolved as <code>os.Getenv("KUBERNETES_SERVICE_HOST") != ""</code>. If an app is running in kubernetes cluster container and it's not intended to prevented to visit the cluster host API, the <code>KUBERNETES_SERVICE_HOST</code> shouldn't be empty.</p><p>Another reminder is k8s runtime pkg also defines <code>kubeconfig</code> CLI flag, so readers could use <code>flag.Lookup()</code> to check it first. <figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">GetKubeConfig</span><span class="params">()</span> <span class="title">string</span></span> &#123;</span><br><span class="line"><span class="keyword">var</span> kubeconfig <span class="keyword">string</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> !InCluster() &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//Running out of cluster</span></span><br><span class="line">homeDir, _ := os.UserHomeDir()</span><br><span class="line">defaultKc := homeDir + <span class="string">&quot;/.kube/config&quot;</span></span><br><span class="line"><span class="comment">// k8s-sig runtime also defines kubeconfig flag. It might be removed in later version.</span></span><br><span class="line">kcFlag := flag.Lookup(<span class="string">&quot;kubeconfig&quot;</span>)</span><br><span class="line"><span class="keyword">if</span> kcFlag == <span class="literal">nil</span> &#123;</span><br><span class="line">flag.StringVar(&amp;kubeconfig, <span class="string">&quot;kubeconfig&quot;</span>, defaultKc, <span class="string">&quot;path to Kubernetes config file&quot;</span>)</span><br><span class="line">kcFlag = flag.Lookup(<span class="string">&quot;kubeconfig&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line">flag.Parse()</span><br><span class="line">kubeconfig = kcFlag.Value.String()</span><br><span class="line"><span class="keyword">if</span> kubeconfig == <span class="string">&quot;&quot;</span> &#123;</span><br><span class="line">kubeconfig = defaultKc</span><br><span class="line">&#125;</span><br><span class="line">log.Printf(<span class="string">&quot;Loading kubeconfig from %s&quot;</span>, kubeconfig)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">log.Printf(<span class="string">&quot;Running in cluster..&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> kubeconfig</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>At last, the <code>NewKubeClient()</code> shall check if it's running out of cluster, fill the <code>Host</code> field with the kube-proxy URL, e.g. <code>localhost:8888</code> if the kube-proxy for local test is <code>kubectl proxy --port=8888</code>. Otherwise, set the <code>Host</code> to its <code>kubeconfig.Host</code>.</p><h2 id="service-url-building">Service URL Building</h2><p>When a targeted service is located with namespace and service name, the URL could be built for in and out of cluster cases.</p><p>If it's running in cluster, the URL to a service is <code>&lt;svc_name&gt; + "." + &lt;svc_ns&gt; + ".svc." + CORE_DNS_HOST</code>. The coreDNS host usually is <code>cluster.local</code> but it's up to cluster configuration.</p><p>Otherwise, if it's running out of cluster and connecting to cluster API via kube-proxy, the URL is <code>Host + "/api/v1/namespaces/" + &lt;svc_ns&gt; + "/services/" + &lt;svc_name&gt; + "&lt;:port_name&gt;/proxy"</code>. <code>HOST</code> is the host value resolved in <code>NewKubeClient()</code> method.</p><p>The tricky point is the <code>&lt;:port_name&gt;</code>. If targeted port of the service is a named port, the port name is required.</p><h2 id="deployment-and-running">Deployment and Running</h2><p>Assume the RBAC is configured well, the k8s app is able to run out of cluster or be packaged up in a helm chart to be deployed in a cluster. To run it out of cluster for a quick demo, users need to launch kube-proxy first to expose the service from its running node.</p><h2 id="change-log">Change Log</h2><p>Oct, 2021: Initial post draft.</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Programming </category>
+          
+          <category> Golang </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Kubernetes </tag>
+            
+            <tag> Golang </tag>
+            
+            <tag> ClientSet </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Golang empty []byte serialized to nil not []</title>
+      <link href="/2021/10/02/Golang-empty-byte-serialized-to-nil-not/"/>
+      <url>/2021/10/02/Golang-empty-byte-serialized-to-nil-not/</url>
+      
+        <content type="html"><![CDATA[<p>Slices and arrays are differnet in golang serialization details. An uninitialized slice will be encoded to JSON/YAML "null" value instead of "[]".</p><p>(TBC)</p><span id="more"></span><h2 id="change-log">Change Log</h2><p>Nov, 2021: Initial post draft.</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Programming </category>
+          
+          <category> Golang </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Golang </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Build Declarative APIs</title>
+      <link href="/2021/08/11/Build-Declarative-APIs/"/>
+      <url>/2021/08/11/Build-Declarative-APIs/</url>
+      
+        <content type="html"><![CDATA[<p><img src="https://i.imgur.com/SB7st1gl.png" title="Declarative Interface" /></p><p>Declarative APIs or declarative models are popular in k8s cloud native apps. This post shares the experience and thoughts on learning and building a declarative interface prototype.</p><span id="more"></span><h2 id="concept-model-for-declarative-interfaces">Concept Model for Declarative Interfaces</h2><p>A declarative interface, usually compared to imperative interface, includes a concept model of:</p><ul><li>A northbound API to accept desired states</li><li>One or more southbound providers to implement the low level functions<ul><li>The app could carry a default provider in most of cases</li><li>The provider would reconcile the states against object runtime states by:<ul><li>Calculate the state difference, usually in top to bottom or state tree model</li><li>Generate requests to reconcile the targeted objects<ul><li>It's up the system dependencies but the experience is to reconcile one step at a time</li><li>If there are still more steps to go, complete current reconciliation step and requeue the request</li><li>Take care of low level requirements on the generated downstream requests<ul><li>Auth-n and auth-z with tenancies</li><li>Rate-limit with tenancies and cloud service provider</li><li>Charging or order management and traceabilities</li><li>Payload formats</li><li>Related east-west interactions, e.g. provider dependencies</li></ul></li></ul></li></ul></li></ul></li></ul><p>A typical example is the Terraform provider design.</p><p>(TBC)</p><h2 id="provider-design">Provider Design</h2><p>(TBC)</p><h2 id="change-log">Change Log</h2><p>Mar15, 2017: Initial post draft.</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Cloud </category>
+          
+          <category> Declarative API </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Kubernetes </tag>
+            
+            <tag> Declarative Model </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Acquired Oracle Cloud Infrastructure 2020 Certified Architect Associate Cert</title>
+      <link href="/2021/05/10/Acquired-Oracle-Cloud-Infrastructure-2020-Certified-Architect-Associate-Cert/"/>
+      <url>/2021/05/10/Acquired-Oracle-Cloud-Infrastructure-2020-Certified-Architect-Associate-Cert/</url>
+      
+        <content type="html"><![CDATA[<p><img src="https://i.imgur.com/PomqC9wm.png" title="OCI Architect Associate Cert Link" /></p><p>OCI (Oracle Cloud Infrastructure) launched free learning and certifcate exam promotion in 2021. I took the exam on May 10, 2021 and acquired the score 89% at the firs attempt. A <a href="https://www.credly.com/badges/aa7fb3e1-0e2c-41f2-b4ad-a3c862bf6265">OCI Certificate Badge</a> will be available within couple of steps in a following email when you knocked the cert exam - usually within 2 working days. Here are some tips shared with readers.</p><span id="more"></span><ul><li><p>Due to pandemic, learners can choose to take the exam at home. I registered with Pearson and took the exam with pearson apps on my MacBook. A kind reminder to to run the PC scan prior to exam date to find if there is any violations - candidates need to remove the violated apps to keep a compliant environment. Also it's suggested to tidy up the room for your exam. Personally I will suggest to temporarily move all books, screens, and all things with printed letters out of room and it's better to give yourself a couple of days to get used to it.</p></li><li><p>The exam style is similar to AWS cert exam. However, the weight among the exam guideline mentioned areas are not described with percentage. Some of the topics are not available to practice with OCI free tier account. It's not required to practice them but if it's possible, getting some credit to play around will be helpful.</p></li><li><p>The last chapter of Oracle University free training offers a sample exam. It's suggested to use the sample exam to get familiar with the multiple-choice exam style and pace. The author suggests readers to keep 1 min for 1 problem and reminder yourself don't spend much time on a single problem.</p></li><li><p>Security is a significant feature and a saling point of OCI. Readers are suggested to take special care on the availability, integrity and confidentiality, e.g. DDoS attack prevention and SSL certificate configurations.</p></li></ul><p>(TBC)</p><p>PS: The promotion of free cert exam is extended to end of year. Hopefully learner around the world could make a better use of time in pandemic while WFH(work-from-home).</p><h2 id="change-log">Change Log</h2><p>May10, 2021: Took OCI Architect Associate Cert Exam and acquired the cert</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Cloud </category>
+          
+          <category> OCI </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Cloud </tag>
+            
+            <tag> Certificate </tag>
+            
+            <tag> OCI </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>2020, The Silent Year</title>
+      <link href="/2021/05/01/2020-The-Silent-Year/"/>
+      <url>/2021/05/01/2020-The-Silent-Year/</url>
+      
+        <content type="html"><![CDATA[<p><img src="https://i.imgur.com/PNmam0sl.jpg" title="Otaki Kite Festival" /></p><blockquote><p>The picture was taken on Otaki Kite Festival 2020. The little penguin, teddy bear and other little buddies are driving the virus(played by a puffer fish kite) out of the their home land. 2 months later, the country-wide lock-down is announced.</p></blockquote><p>April 2020 to April 2021, the silent year.</p><span id="more"></span><p>I started new job as Senior Cloud Native Developer to develop and maintain the devops pipelines and stand cloud stacks for global internal partners from Dec 2019. The first season was full of fun. We spent a happy holiday back to Nanjing, visited relatives and friends, enjoyed the Shanghai Disney tour. I walked through the pipelines, rehearsalled small innovation, developed tools to streamline the stack standing works and glad to see the team liked it - on the united objective to speed up cloud stack delivery. I also flied to Sydney for an on-site training.</p><p><img src="https://i.imgur.com/M5wPmDUm.jpg" title="Lockdown in Yard Tree House" /></p><blockquote><p>Revised 6 months later</p></blockquote><p>The covid-19 suddenly changed many things. We stayed home together to fight the pandemic. We placed orders online - I still remember in the first few weeks the countdown delivery slots were only available on Mon and Wed certain time, it became fully booked quickly. We struggled to learn how do do home schooling - which was hard for young kids to focus on zoon screen and read interested information from the unfamiliar atomsphere of anxiety. I confess I didn't realize human beings have such a strong adaptability to get ourselves used to new life pattern quietly.</p><p>One of the facts is there is no blog update from April 2020 to April 2021. We were not always locked down - actually in most of time there were no realistic restrictions to domestic activities. Material shortage was resolved in 2-3 months. I had the chance to design and implemnet the orchestration core python package and it worked beyond expectations. Then I joined another project where my initiatives were implemented to equip a data-model to Etcd data and off-load the network-flow applications. As long as working from home, I could see a high productivity. In life balance, we spent a lovely Christmas holiday in Hawksbay. I read a list of books via eReader on Python, Golang, k8s, walked thru blogcasts like blockchain and history topics. I even learned how to build mobile apps with React-Native and built new toys with my own firebase account. During the phase, I created an online group of badminton - it has 50+ local members now and we play games each Sat. However, there were also many things happened which we could only absorb by ourselves with family supports. Our behavior patterns are changed, slowly and unnoticeably in the background.</p><p>But when I take a retrospective, I could feel lackness of participation. It's not straightly related to productivity or innovation - it's an engagement with buddies in multiple dimensions, local community, technical meetups, friends and family. When we reduce face-to-face social activities, the online activities are also impacted. In facts I have a better productivity in work and self-studies but less chance to summarize the progressed topics. The action plan is straight - looking around and reaching out to people.</p><p>I draft a short list of topics and start to take periodical time to have a look around, summarize and share the thoughts and feelings. Buddies know I've taken systemtical badminton training for a while, yes - badminton for sure is one of them. I will share the lessons and experiences in movement correction, footworks, power stroke, jump smash and how to do self-training in yard. Large size event is still restricted - for example the Cloud Native Summit NZ has been postponed - but small get-gether within a few people is still okay for the time being - there are plenty of chances to join local associate catch-ups and local golang, cloud, rust workshops.</p><p>The list includes below topics and targeted to 50% coverage in 12 months * Python Programming Tips: generic data model, borg pattern, commander pattern * Golang Programming Topics: k8s operator programming, CRD object model, declarative API design, k8s ingress management * Devops Topics: migrating apps in helm chart, charts for DevOps, open application model * Badminton Topics: Footworks, Power Stroke, Smash Practice Points, attack patterns in mixed double games * (Pending): Sharing the stories in India and US travels of early years * (Pending): Wellington attractive locations, Local technical communities</p><p>Hi 2021, a late greeting 🤝</p><h2 id="change-log">Change Log</h2><p>Nov21, 2021: Re-post the image and re-deploy with updated hexo config. May01, 2021: Initial post draft.</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Writing </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Covid19 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Borg Pattern in Python Programming</title>
+      <link href="/2021/04/19/Borg-Pattern-in-Python-Programming/"/>
+      <url>/2021/04/19/Borg-Pattern-in-Python-Programming/</url>
+      
+        <content type="html"><![CDATA[<p><img src="https://i.imgur.com/cWIpOi8s.png" title="Borg" /></p><p>"Borg" are a hive-mind collective - Star Trek. The term describes a pattern of shared information among multiple instances :_)</p><p>In most cases of app state sharing, the design really cares about a set of states can be share among components not whether it's one single object in runtime. Python Borg Pattern is easier and flexible to create shared states for other packages to access and use. It's helpful in configuration management, global IDs or session reusing.</p><span id="more"></span><p>(TBD)</p><h2 id="references">References</h2><ul><li><a href="https://www.oreilly.com/library/view/python-cookbook/0596001673/ch05s23.html">Oreilly Python Cookboo</a></li></ul><h2 id="change-log">Change Log</h2><p>Apr19, 2017: Initial post draft.</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Programming </category>
+          
+          <category> Python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Python </tag>
+            
+            <tag> Borg </tag>
+            
+            <tag> Shared State </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Using Multi-Stage Build to Reduce Docker Image Size</title>
       <link href="/2019/11/24/Using-Multi-Stage-Build-to-Reduce-Docker-Image-Size/"/>
       <url>/2019/11/24/Using-Multi-Stage-Build-to-Reduce-Docker-Image-Size/</url>
@@ -13,7 +187,7 @@
       
       <categories>
           
-          <category> DevOps </category>
+          <category> Cloud </category>
           
           <category> Docker </category>
           
@@ -22,9 +196,9 @@
       
         <tags>
             
-            <tag> Docker </tag>
-            
             <tag> Cloud </tag>
+            
+            <tag> Docker </tag>
             
         </tags>
       
@@ -37,12 +211,12 @@
       <link href="/2019/11/11/Still-On-the-Way-to-Cloud/"/>
       <url>/2019/11/11/Still-On-the-Way-to-Cloud/</url>
       
-        <content type="html"><![CDATA[<p>It is the last quarter of 2019. A large number of organizations already deployed docker containerized applications in production environment and usually the services are orchestrated with kubernetes or Openshift. As the well known saying, just moving applications to cloud doesn't mean clouding, we are still in the middle of way to cloud. This post is also a retrospective on the issues discovered this year on migrating traditional technical stacks to cloud.</p><p>(WIP)</p><figure><img src="https://i.imgur.com/zApN0Gsm.jpg" alt="Docker_Kube" /><figcaption aria-hidden="true">Docker_Kube</figcaption></figure><span id="more"></span><h2 id="typical-issues-on-sensitivity-of-container-environment">1 Typical issues on sensitivity of container environment</h2><h3 id="dotnet-core-2.1-pod-restarted-on-oom-killer">1.1 Dotnet core 2.1 Pod restarted on OOM Killer</h3><p>This was the first issue I spent a big effort this year to realize that popular technical stacks were still not ready to adapt themselves to container environment. Typically if a managed system reads the mount point <code>/proc/self/mountinfo</code> as on regular Linux platform but not the <code>/proc/self/cgroup</code>, the memory limits are not observable from the memory management.</p><p>The github link is https://github.com/dotnet/coreclr/issues/13489. The fix includes https://github.com/dotnet/coreclr/pull/13488 and https://github.com/dotnet/coreclr/pull/15297 to check cgroup resource limits and expose docker processor counts to CLR environments.</p><p>The phenomenon was dotnet core pod restarted more than 200 times per day and openshift monitor portal showed <code>OOM Killer</code> in event description. It was lukcy the production environment deployed with replica number 4 so fintech service was not interrupted. To debug this issue, an image of LLDB on dotnet core was created to detect threading model and high memory blocks (https://maxwu.me/2019/04/15/Debug-dotnet-core-with-LLDB-on-RHEL-Image/). Per my observation, the high runners are Newtonsoft JSON entities because lots of memory were consumed by dotnet string buffers.</p><h3 id="jenkins-pipeline-ran-out-of-memory">1.2 Jenkins Pipeline ran out of memory</h3><p>This issue is actually a JVM configuration problem. It was dicovered when Jenkins pod ran slowly in one day and Jenkins pod was observed to restart within 72hr everytime. Our Pipeline was a typical Jenkins groovy Pipeline and it communicated to two kinds of slaves: (1) the dynamical jenkins slave created on demand, which were based on different slave images with required technical stack; (2) windows slaves for specific tasks which could only complete by Windows nodes for time being.</p><p>(TBC)</p><h3 id="cypress-failed-to-launch-xvfb-in-docker-container">1.3 Cypress failed to launch XVFB in docker container</h3><p>Cypress is the in browser javascript UI test framework I picked for team last year (2018) when migrated from host based Selenium to Pipeline.</p><p>(TBC)</p><h2 id="typical-issues-on-container-orchestration">2 Typical issues on container orchestration</h2><h3 id="orchestrating-cypress-tests-in-map-reduce-model-on-kube-cloud">2.1 Orchestrating Cypress tests in Map-Reduce model on kube cloud</h3><h3 id="rolling-out-springboot-pod-generated-alert-flooding-on-splunk">2.2 Rolling out springboot pod generated alert flooding on splunk</h3><h2 id="retrospective">3 Retrospective</h2><h2 id="change-log">Change Log</h2><p>Nov 12, 2019: Initial post with intro part and the outline.</p>]]></content>
+        <content type="html"><![CDATA[<p>It is the last quarter of 2019. A large number of organizations already deployed docker containerized applications in production environment and usually the services are orchestrated with kubernetes or Openshift. As the well known saying, just moving applications to cloud doesn't mean clouding, we are still in the middle of way to cloud. This post is also a retrospective on the issues discovered this year on migrating traditional technical stacks to cloud.</p><p>(WIP)</p><figure><img src="https://i.imgur.com/zApN0Gsm.jpg" alt="Docker_Kube" /><figcaption aria-hidden="true">Docker_Kube</figcaption></figure><span id="more"></span><h2 id="typical-issues-on-sensitivity-of-container-environment">1 Typical issues on sensitivity of container environment</h2><h3 id="dotnet-core-2.1-pod-restarted-on-oom-killer">1.1 Dotnet core 2.1 Pod restarted on OOM Killer</h3><p>This was the first issue I spent a big effort this year to realize that popular technical stacks were still not ready to adapt themselves to container environment. Typically if a managed system reads the mount point <code>/proc/self/mountinfo</code> as on regular Linux platform but not the <code>/proc/self/cgroup</code>, the memory limits are not observable from the memory management.</p><p>The github link is https://github.com/dotnet/coreclr/issues/13489. The fix includes https://github.com/dotnet/coreclr/pull/13488 and https://github.com/dotnet/coreclr/pull/15297 to check cgroup resource limits and expose docker processor counts to CLR environments.</p><p>The phenomenon was dotnet core pod restarted more than 200 times per day and openshift monitor portal showed <code>OOM Killer</code> in event description. It was lukcy the production environment deployed with replica number 4 so fintech service was not interrupted. To debug this issue, an image of LLDB on dotnet core was created to detect threading model and high memory blocks (https://maxwu.me/2019/04/15/Debug-dotnet-core-with-LLDB-on-RHEL-Image/). Per my observation, the high runners are Newtonsoft JSON entities because lots of memory were consumed by dotnet string buffers.</p><h3 id="jenkins-pipeline-ran-out-of-memory">1.2 Jenkins Pipeline ran out of memory</h3><p>This issue is actually a JVM configuration problem. It was dicovered when Jenkins pod ran slowly in one day and Jenkins pod was observed to restart within 72hr everytime. Our Pipeline was a typical Jenkins groovy Pipeline and it communicated to two kinds of slaves: (1) the dynamical jenkins slave created on demand, which were based on different slave images with required technical stack; (2) windows slaves for specific tasks which could only complete by Windows nodes for time being.</p><p>(TBC)</p><h3 id="cypress-failed-to-launch-xvfb-in-docker-container">1.3 Cypress failed to launch XVFB in docker container</h3><p>Cypress is the in browser javascript UI test framework I picked for team last year (2018) when migrated from host based Selenium to Pipeline.</p><p>(TBC)</p><h3 id="golang-routine-gomaxprocs-issue-in-container-environment">1.4 Golang Routine GOMAXPROCS Issue in Container Environment</h3><p>Go developers could use <code>runtime.GOMAXPROCS()</code> to set the threads limit of go runtime (number of P of MPGmodel) or read it when setting value is <code>0</code>. From golang v1.5 the default value is the core number of CPU. However, when running in a container, the go runtime still read the core numbers from host, not the container resource limit.</p><p>There is a workaround from Uber <code>automaxprocs</code> lib. By <code>import _ "go.uber.org/automaxprocs"</code>, the <code>automaxprocs</code> lib initializer will read the core number from container <code>cgroup</code> limit and set the <code>GOMAXPROCS</code> automatically.</p><p>(TBC)</p><h2 id="typical-issues-on-container-orchestration">2 Typical issues on container orchestration</h2><h3 id="orchestrating-cypress-tests-in-map-reduce-model-on-kube-cloud">2.1 Orchestrating Cypress tests in Map-Reduce model on kube cloud</h3><h3 id="rolling-out-springboot-pod-generated-alert-flooding-on-splunk">2.2 Rolling out springboot pod generated alert flooding on splunk</h3><h2 id="retrospective">3 Retrospective</h2><h2 id="change-log">Change Log</h2><p>May 01, 2021: Add golang routing burst issue Nov 12, 2019: Initial post with intro part and the outline.</p>]]></content>
       
       
       <categories>
           
-          <category> DevOps </category>
+          <category> Cloud </category>
           
           <category> Docker </category>
           
@@ -51,11 +225,11 @@
       
         <tags>
             
+            <tag> Cloud </tag>
+            
             <tag> Docker </tag>
             
             <tag> Openshift </tag>
-            
-            <tag> Cloud </tag>
             
         </tags>
       
@@ -68,7 +242,7 @@
       <link href="/2019/09/28/A-Bite-Of-Springboot/"/>
       <url>/2019/09/28/A-Bite-Of-Springboot/</url>
       
-        <content type="html"><![CDATA[<p>The journey to migrate dotnet experiences to springboot and build a demo app from scratch, deploy it to kubernetes with explanation on technical points and the cloud native practice notes.</p><span id="more"></span><h2 id="backgounds">Backgounds</h2><p>As a pythonist on system level, I built several my experience with Java Web Frameworks are mostly on structs MVC as an UI backend to interact with JQuery to present the status and management from message security gateway products. However, according to the reality of circumstance, framework seems much more impressive than computer science and ways of thoughts.</p><p>It's the time to take a bite on Springboot and see what's inside.</p><h2 id="environment">1 Environment</h2><p>In brief, Jetbrain IntelliJ community version on Mac. I used to program Python on PyCharm and IntelliJ shares similar features on Java IDE.</p><p>Java toolchain will be organized in Gradle. Maven is an alternative which I used in previous test automation tools. However, gradle is graceful and brief.</p><p>Eventually the service will be wrapped in kubernetes pod but it is not the first step.</p><h2 id="create-a-new-springboot-app">2 Create A New Springboot App</h2><p>Springboot web site offers <code>curl</code> interface to generate a demo project to start from. Visit https://start.spring.io on cli tool curl will show the manual on how to generate springboot scaffold.</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">curl https://start.spring.io</span><br><span class="line"># The response shows a manual page with below samples.</span><br><span class="line">Examples:</span><br><span class="line"></span><br><span class="line">To create a default demo.zip:</span><br><span class="line">$ curl https://start.spring.io/starter.zip -o demo.zip</span><br><span class="line"></span><br><span class="line">To create a web project using Java 11:</span><br><span class="line">$ curl https://start.spring.io/starter.zip -d dependencies=web \\</span><br><span class="line">-d javaVersion=11 -o demo.zip</span><br><span class="line"></span><br><span class="line">To create a web/data-jpa gradle project unpacked:</span><br><span class="line">$ curl https://start.spring.io/starter.tgz -d dependencies=web,data-jpa \\</span><br><span class="line">   -d type=gradle-project -d baseDir=my-dir | tar -xzvf -</span><br><span class="line"></span><br><span class="line">To generate a Maven POM with war packaging:</span><br><span class="line">$ curl https://start.spring.io/pom.xml -d packaging=war -o pom.xml</span><br></pre></td></tr></table></figure><p>I chose a demo web project using Java 8. Which means, a wrapped dependency of <code>spring-boot-starter-web</code>. Springboo will interrepte it to real dependencies.</p><p><code>curl https://start.spring.io/starter.zip -d dependencies=web -d javaVersion=8 -d type=gradle-project -o demo.zip</code></p><p>Alternatively, open IntelliJ menu to "New Project" will also provide options to visit <code>start.spring.io</code> within the IDE UI to create project scaffold.</p><h2 id="launch-springboot-demo">3 Launch Springboot Demo</h2><p>When importing the scaffold project to IntelliJ, a run configuration with main class on the <code>DemoApplication</code> , where the annotation <code>@SpringBootApplication</code> is applied, will be created. Run the configuration "DemoApplication" will launch Springboo web app in couple of seconds. However, visiting <code>localhost:8080</code> will still return an error page since there is nothing to respond.</p><p>For the gradle configured project, the IntelliJ would spend a bit while to download gradle dependencies.</p><p>A simple controller class is added to respond string content to path <code>/</code>. Thanks to IntelliJ, the annotations are auto-completed. Key points here are "GetMapping" annotation to specify the path of <code>/</code> and "RespenseBody" annotation t</p><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.demo;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ResponseBody;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/&quot;)</span></span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">home</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Home&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>Like <code>npm run</code> but more verbose than the node.js cmd, luanch <code>./gradlew tasks</code> or directly run <code>gradle tasks</code> in root folder of project would print out a task list which can be run by gradle plugin. If it is the first time running <code>gradle</code>, the gradle daemon shall be luanched and basic environment/dependencies checks would be performed first.</p><p><code>gradlew</code> and <code>gradle.bat</code> are artifacts generated by <code>gradle warpper</code> task which empower environments with gradle preinstalled to run gradle toolchain commands.</p><p>After updating the above controller class, run <code>gradle bootRun</code> would also run the springboot application to server <code>localhost:8080</code>. In the browser, the simple content "Home" is fetched and rendered.</p><h2 id="build-docker-image-for-springboot-app">4 Build Docker Image for Springboot App</h2><p>As usual there are multiple ways to build docker images as first step to containerize the app. Thanks to the gradle community <code>com.palantir.docker</code> plugin is picked up in this demo project.</p><p>The gradle pluin could be applied in build.script DSL or plugin DSL. This experiment applies the plugin DSL and build docker image with Dockerfile rather than docker plugin DSL to reuse author's existing Dockerfile experiences for now.</p><h3 id="add-plugin">4.1 Add Plugin</h3><p>Insert this plugin reference to build.gradle <code>id 'com.palantir.docker' version '0.22.1'</code>.</p><h3 id="introduce-docker-task">4.2 Introduce <code>docker</code> Task</h3><p>The task is defined as below:</p><figure class="highlight gradle"><table><tr><td class="code"><pre><span class="line">docker &#123;</span><br><span class="line">dependsOn build</span><br><span class="line">name <span class="string">&quot;$&#123;project.group&#125;/$&#123;bootJar.baseName&#125;&quot;</span></span><br><span class="line">files bootJar.archivePath</span><br><span class="line">buildArgs([<span class="string">&#x27;JAR_FILE&#x27;</span>: <span class="string">&quot;$&#123;bootJar.archiveName&#125;&quot;</span>])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="create-the-dockerfile">4.3 Create the Dockerfile</h3><p>To keep the image slim, alpine jdk8 image is picked as base image.</p><figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> openjdk:<span class="number">8</span>-jdk-alpine</span><br><span class="line"><span class="keyword">VOLUME</span><span class="bash"> /tmp</span></span><br><span class="line"><span class="keyword">ARG</span> JAR_FILE</span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> <span class="variable">$&#123;JAR_FILE&#125;</span> app.jar</span></span><br><span class="line"><span class="keyword">ENTRYPOINT</span><span class="bash"> [<span class="string">&quot;java&quot;</span>,<span class="string">&quot;-Djava.security.egd=file:/dev/./urandom&quot;</span>,<span class="string">&quot;-jar&quot;</span>,<span class="string">&quot;/app.jar&quot;</span>]</span></span><br></pre></td></tr></table></figure><h3 id="launch-container-locally">4.4 Launch Container Locally</h3><p>With above Dockerfile and the <code>docker</code> task inserted to gradle.build script, run <code>gradle docker</code> would (re)build the app image with dependencies. Quickly test the docker image by launching it locally, <code>docker run -p 8080:8080 -t com.example/demo</code>. Then open browser on URL <code>http://localhost:8080/</code> the same contents are responded "Home".</p><h2 id="deploy-to-kubernetes">5 Deploy to Kubernetes</h2><p>(To be continued)</p><h2 id="change-log">Change Log</h2><p>Sep 22, 2019: Configuration and start a new springboot app. Sep 28, 2019:</p>]]></content>
+        <content type="html"><![CDATA[<p>The journey to migrate dotnet experiences to springboot and build a demo app from scratch, deploy it to kubernetes with explanation on technical points and the cloud native practice notes.</p><span id="more"></span><h2 id="background">Background</h2><p>As a pythonist on system level, I built several my experience with Java Web Frameworks are mostly on structs MVC as an UI backend to interact with JQuery to present the status and management from message security gateway products. However, according to the reality of circumstance, framework seems much more impressive than computer science and ways of thoughts.</p><p>It's the time to take a bite on Springboot and see what's inside.</p><h2 id="environment">1 Environment</h2><p>In brief, Jetbrain IntelliJ community version on Mac. I used to program Python on PyCharm and IntelliJ shares similar features on Java IDE.</p><p>Java toolchain will be organized in Gradle. Maven is an alternative which I used in previous test automation tools. However, gradle is graceful and brief.</p><p>Eventually the service will be wrapped in kubernetes pod but it is not the first step.</p><h2 id="create-a-new-springboot-app">2 Create A New Springboot App</h2><p>Springboot web site offers <code>curl</code> interface to generate a demo project to start from. Visit https://start.spring.io on cli tool curl will show the manual on how to generate springboot scaffold.</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">curl https://start.spring.io</span><br><span class="line"># The response shows a manual page with below samples.</span><br><span class="line">Examples:</span><br><span class="line"></span><br><span class="line">To create a default demo.zip:</span><br><span class="line">$ curl https://start.spring.io/starter.zip -o demo.zip</span><br><span class="line"></span><br><span class="line">To create a web project using Java 11:</span><br><span class="line">$ curl https://start.spring.io/starter.zip -d dependencies=web \\</span><br><span class="line">-d javaVersion=11 -o demo.zip</span><br><span class="line"></span><br><span class="line">To create a web/data-jpa gradle project unpacked:</span><br><span class="line">$ curl https://start.spring.io/starter.tgz -d dependencies=web,data-jpa \\</span><br><span class="line">   -d type=gradle-project -d baseDir=my-dir | tar -xzvf -</span><br><span class="line"></span><br><span class="line">To generate a Maven POM with war packaging:</span><br><span class="line">$ curl https://start.spring.io/pom.xml -d packaging=war -o pom.xml</span><br></pre></td></tr></table></figure><p>I chose a demo web project using Java 8. Which means, a wrapped dependency of <code>spring-boot-starter-web</code>. Springboo will interrepte it to real dependencies.</p><p><code>curl https://start.spring.io/starter.zip -d dependencies=web -d javaVersion=8 -d type=gradle-project -o demo.zip</code></p><p>Alternatively, open IntelliJ menu to "New Project" will also provide options to visit <code>start.spring.io</code> within the IDE UI to create project scaffold.</p><h2 id="launch-springboot-demo">3 Launch Springboot Demo</h2><p>When importing the scaffold project to IntelliJ, a run configuration with main class on the <code>DemoApplication</code> , where the annotation <code>@SpringBootApplication</code> is applied, will be created. Run the configuration "DemoApplication" will launch Springboo web app in couple of seconds. However, visiting <code>localhost:8080</code> will still return an error page since there is nothing to respond.</p><p>For the gradle configured project, the IntelliJ would spend a bit while to download gradle dependencies.</p><p>A simple controller class is added to respond string content to path <code>/</code>. Thanks to IntelliJ, the annotations are auto-completed. Key points here are "GetMapping" annotation to specify the path of <code>/</code> and "RespenseBody" annotation t</p><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.demo;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ResponseBody;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/&quot;)</span></span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">home</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Home&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>Like <code>npm run</code> but more verbose than the node.js cmd, luanch <code>./gradlew tasks</code> or directly run <code>gradle tasks</code> in root folder of project would print out a task list which can be run by gradle plugin. If it is the first time running <code>gradle</code>, the gradle daemon shall be luanched and basic environment/dependencies checks would be performed first.</p><p><code>gradlew</code> and <code>gradle.bat</code> are artifacts generated by <code>gradle warpper</code> task which empower environments with gradle preinstalled to run gradle toolchain commands.</p><p>After updating the above controller class, run <code>gradle bootRun</code> would also run the springboot application to server <code>localhost:8080</code>. In the browser, the simple content "Home" is fetched and rendered.</p><h2 id="build-docker-image-for-springboot-app">4 Build Docker Image for Springboot App</h2><p>As usual there are multiple ways to build docker images as first step to containerize the app. Thanks to the gradle community <code>com.palantir.docker</code> plugin is picked up in this demo project.</p><p>The gradle pluin could be applied in build.script DSL or plugin DSL. This experiment applies the plugin DSL and build docker image with Dockerfile rather than docker plugin DSL to reuse author's existing Dockerfile experiences for now.</p><h3 id="add-plugin">4.1 Add Plugin</h3><p>Insert this plugin reference to build.gradle <code>id 'com.palantir.docker' version '0.22.1'</code>.</p><h3 id="introduce-docker-task">4.2 Introduce <code>docker</code> Task</h3><p>The task is defined as below:</p><figure class="highlight gradle"><table><tr><td class="code"><pre><span class="line">docker &#123;</span><br><span class="line">dependsOn build</span><br><span class="line">name <span class="string">&quot;$&#123;project.group&#125;/$&#123;bootJar.baseName&#125;&quot;</span></span><br><span class="line">files bootJar.archivePath</span><br><span class="line">buildArgs([<span class="string">&#x27;JAR_FILE&#x27;</span>: <span class="string">&quot;$&#123;bootJar.archiveName&#125;&quot;</span>])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="create-the-dockerfile">4.3 Create the Dockerfile</h3><p>To keep the image slim, alpine jdk8 image is picked as base image.</p><figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> openjdk:<span class="number">8</span>-jdk-alpine</span><br><span class="line"><span class="keyword">VOLUME</span><span class="bash"> /tmp</span></span><br><span class="line"><span class="keyword">ARG</span> JAR_FILE</span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> <span class="variable">$&#123;JAR_FILE&#125;</span> app.jar</span></span><br><span class="line"><span class="keyword">ENTRYPOINT</span><span class="bash"> [<span class="string">&quot;java&quot;</span>,<span class="string">&quot;-Djava.security.egd=file:/dev/./urandom&quot;</span>,<span class="string">&quot;-jar&quot;</span>,<span class="string">&quot;/app.jar&quot;</span>]</span></span><br></pre></td></tr></table></figure><h3 id="launch-container-locally">4.4 Launch Container Locally</h3><p>With above Dockerfile and the <code>docker</code> task inserted to gradle.build script, run <code>gradle docker</code> would (re)build the app image with dependencies. Quickly test the docker image by launching it locally, <code>docker run -p 8080:8080 -t com.example/demo</code>. Then open browser on URL <code>http://localhost:8080/</code> the same contents are responded "Home".</p><h2 id="deploy-to-kubernetes">5 Deploy to Kubernetes</h2><p>(To be continued)</p><h2 id="change-log">Change Log</h2><p>Sep 22, 2019: Configuration and start a new springboot app. Sep 28, 2019:</p>]]></content>
       
       
       <categories>
@@ -227,7 +401,7 @@
       
       <categories>
           
-          <category> DevOps </category>
+          <category> Cloud </category>
           
           <category> Docker </category>
           
@@ -257,6 +431,8 @@
       
       
       <categories>
+          
+          <category> Cloud </category>
           
           <category> AWS </category>
           
@@ -527,7 +703,7 @@
       
       <categories>
           
-          <category> Automation Test </category>
+          <category> Programming </category>
           
           <category> RESTful </category>
           
@@ -816,6 +992,8 @@
       
       <categories>
           
+          <category> Cloud </category>
+          
           <category> AWS </category>
           
       </categories>
@@ -1045,7 +1223,7 @@
       
       <categories>
           
-          <category> DevOps </category>
+          <category> Cloud </category>
           
           <category> Docker </category>
           
@@ -1074,6 +1252,8 @@
       
       <categories>
           
+          <category> Cloud </category>
+          
           <category> AWS </category>
           
       </categories>
@@ -1084,8 +1264,6 @@
             <tag> AWS </tag>
             
             <tag> Ansible </tag>
-            
-            <tag> Awsacs </tag>
             
         </tags>
       
@@ -1098,12 +1276,12 @@
       <link href="/2017/01/28/change-default-Docker-Quickstart-Terminal-for-Mac/"/>
       <url>/2017/01/28/change-default-Docker-Quickstart-Terminal-for-Mac/</url>
       
-        <content type="html"><![CDATA[<p>For some reason I'd change Docker Quickstart Terminal to Mac default Terminal instead of iTem. But it failed at first tries, even by uninstalling docker from Mac system. <span id="more"></span></p><p>Searching such config file by name "default_terminal", there is a text file to record this option. Removing this file and relaunch docker, or, just edit it directly will close this issue.</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"> ⓑ maxwu  16:32  ~  devel  circleci-stat   master  sudo find / -name default_terminal</span><br><span class="line">Password:</span><br><span class="line">find: /dev/fd/3: Not a directory</span><br><span class="line">find: /dev/fd/4: Not a directory</span><br><span class="line">/Users/maxwu/Library/Application Support/DockerToolbox/default_terminal</span><br><span class="line"> ⓑ maxwu  16:34  ~  devel  circleci-stat   master  vim /Users/maxwu/Library/Application\ Support/DockerToolbox/default_terminal</span><br><span class="line"> ⓑ maxwu  16:35  ~  devel  circleci-stat   master </span><br></pre></td></tr></table></figure>]]></content>
+        <content type="html"><![CDATA[<p>For some reason I'd change Docker Quickstart Terminal to Mac default Terminal instead of iTem. But it failed at first tries, even by uninstalling docker from Mac system.</p><span id="more"></span><p>Searching such config file by name "default_terminal", there is a text file to record this option. Removing this file and relaunch docker, or, just edit it directly will close this issue.</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"> ⓑ maxwu  16:32  ~  devel  circleci-stat   master  sudo find / -name default_terminal</span><br><span class="line">Password:</span><br><span class="line">find: /dev/fd/3: Not a directory</span><br><span class="line">find: /dev/fd/4: Not a directory</span><br><span class="line">/Users/maxwu/Library/Application Support/DockerToolbox/default_terminal</span><br><span class="line"> ⓑ maxwu  16:34  ~  devel  circleci-stat   master  vim /Users/maxwu/Library/Application\ Support/DockerToolbox/default_terminal</span><br><span class="line"> ⓑ maxwu  16:35  ~  devel  circleci-stat   master </span><br></pre></td></tr></table></figure>]]></content>
       
       
       <categories>
           
-          <category> DevOps </category>
+          <category> Cloud </category>
           
           <category> Docker </category>
           
@@ -1161,7 +1339,7 @@
           
           <category> Automation Test </category>
           
-          <category> JUnit </category>
+          <category> CI </category>
           
       </categories>
       
@@ -1192,7 +1370,7 @@
           
           <category> Automation Test </category>
           
-          <category> JUnit </category>
+          <category> CI </category>
           
       </categories>
       
@@ -1421,14 +1599,16 @@
     
     
     <entry>
-      <title>Corrigendum for AWS Chinese learners</title>
-      <link href="/2017/01/07/Corrigendum-for-AWS-Chinese-learners/"/>
-      <url>/2017/01/07/Corrigendum-for-AWS-Chinese-learners/</url>
+      <title>Corrigendum for AWS Chinese Learners</title>
+      <link href="/2017/01/07/Corrigendum-for-AWS-Chinese-Learners/"/>
+      <url>/2017/01/07/Corrigendum-for-AWS-Chinese-Learners/</url>
       
         <content type="html"><![CDATA[<p>It is a corrigendum on AWS official online documents in mainly for the translated documents in Chinese language. The list was firstly collected when I was quickly searching for some information during AWS studying but found the information was obsoleted. Would keep it updated and maintained lively.</p><ol type="1"><li><p>RDS DB size threshold is wrong in Chinese version;</p></li><li><p>Days between two certificate tests one candidate shall spend; The number is incorrect according to global AWS policy;</p></li><li><p>Private IP is only returned after stop and “restart”. https://aws.amazon.com/ec2/faqs/</p></li><li><p>The bottom part, the words shall be "&lt;5MB" http://docs.aws.amazon.com/AmazonS3/latest/dev/qfacts.html</p></li><li><p>“评估逻辑”—&gt;”求值逻辑” This a better translation on term. http://docs.aws.amazon.com/zh_cn/sns/latest/dg/AccessPolicyLanguage_EvaluationLogic.html</p></li><li><p>S3 Doc translation:将VisibilityTimeout设置为0秒不会导致将消息移动到死信 队列。”=&gt; “设置为0秒则消息不会移动到死信队列" http://docs.aws.amazon.com/zh_cn/AWSSimpleQueueService/latest/SQSDeveloperGuide/AboutVT.html?shortFooter=true "</p></li></ol><p>[EOF]</p>]]></content>
       
       
       <categories>
+          
+          <category> Cloud </category>
           
           <category> AWS </category>
           
@@ -1438,8 +1618,6 @@
         <tags>
             
             <tag> AWS </tag>
-            
-            <tag> Tips </tag>
             
         </tags>
       
@@ -1456,6 +1634,8 @@
       
       
       <categories>
+          
+          <category> Cloud </category>
           
           <category> AWS </category>
           
@@ -1510,6 +1690,8 @@
       
       
       <categories>
+          
+          <category> Cloud </category>
           
           <category> AWS </category>
           
