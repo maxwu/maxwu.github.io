@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 5.4.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar-2021.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar-2021.pngg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar-2021.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar-2021.png">
   <link rel="mask-icon" href="/images/avatar-2021.png" color="#222">
 
@@ -295,8 +295,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>Slices and arrays are differnet in golang serialization details. An uninitialized slice will be encoded to JSON/YAML "null" value instead of "[]".</p>
-<p>(TBC)</p>
+          <p>Slices and arrays are differnet in golang serialization details. An uninitialized slice will be marshalled to JSON "null" value instead of "[]".</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/10/02/Golang-empty-byte-serialized-to-nil-not/#more" rel="contents">
@@ -1031,7 +1030,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">110</span>
+        <span class="site-state-item-count">109</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
