@@ -230,13 +230,21 @@
 <h2 id="concept-model-for-declarative-interfaces">Concept Model for Declarative Interfaces</h2>
 <p>A declarative interface, usually compared to imperative interface, includes a concept model of:</p>
 <ul>
-<li>A northbound API to accept desired states</li>
-<li>One or more southbound providers to implement the low level functions
+<li><strong>Northbound</strong>:
 <ul>
-<li>The app could carry a default provider in most of cases</li>
-<li>The provider would reconcile the states against object runtime states by:
+<li>A scheme or DSL to describe desired state of system</li>
+<li>From users' view, it's the state being requested to declarative API, not the ways to do it</li>
+<li>Usually the request is processed in an async way, e.g. ordering way</li>
+</ul></li>
+<li><strong>Southbound</strong>
 <ul>
-<li>Calculate the state difference, usually in top to bottom or state tree model</li>
+<li>One or more southbound providers in backend</li>
+<li>The app could carry a default provider in most of cases, e.g. to call a traditional RESTful API in backend</li>
+<li>The provider would reconcile the in scope object states towards desired states by:
+<ul>
+<li>Calculate the state diff, usually in top to bottom or state tree model</li>
+<li>The processing could be distributed and usually in async with workers</li>
+<li>Once the calculated diff is empty, stop reconciliation</li>
 <li>Generate requests to reconcile the targeted objects
 <ul>
 <li>It's up the system dependencies but the experience is to reconcile one step at a time</li>
@@ -253,9 +261,13 @@
 </ul></li>
 </ul></li>
 </ul>
-<p>A typical example is the Terraform provider design.</p>
-<p>(TBC)</p>
+<p>A typical example is the Terraform with providers.</p>
 <h2 id="provider-design">Provider Design</h2>
+<p>(TBC)</p>
+<h2 id="open-questions">Open Questions</h2>
+<ul>
+<li>Examples to describe huge dataset movement or replication in declarative API?</li>
+</ul>
 <p>(TBC)</p>
 <h2 id="change-log">Change Log</h2>
 <p>Mar15, 2017: Initial post draft.</p>
@@ -360,7 +372,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#concept-model-for-declarative-interfaces"><span class="nav-number">1.</span> <span class="nav-text">Concept Model for Declarative Interfaces</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#provider-design"><span class="nav-number">2.</span> <span class="nav-text">Provider Design</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#change-log"><span class="nav-number">3.</span> <span class="nav-text">Change Log</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#concept-model-for-declarative-interfaces"><span class="nav-number">1.</span> <span class="nav-text">Concept Model for Declarative Interfaces</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#provider-design"><span class="nav-number">2.</span> <span class="nav-text">Provider Design</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#open-questions"><span class="nav-number">3.</span> <span class="nav-text">Open Questions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#change-log"><span class="nav-number">4.</span> <span class="nav-text">Change Log</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
