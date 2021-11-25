@@ -227,8 +227,9 @@
         <p><img src="https://i.imgur.com/SB7st1gl.png" title="Declarative Interface" /></p>
 <p>Declarative APIs or declarative models are popular in k8s cloud native apps. This post shares the experience and thoughts on learning and building a declarative interface prototype.</p>
 <span id="more"></span>
-<h2 id="concept-model-for-declarative-interfaces">Concept Model for Declarative Interfaces</h2>
-<p>A declarative interface, usually compared to imperative interface, includes a concept model of:</p>
+<h2 id="declarative-model">Declarative Model</h2>
+<p>A declarative software model, usually compared to imperative interface, includes a concept model of northbound scheme or DSL which describes a desired state of system and a southbound provider as a controller of async reconciliations.</p>
+<h3 id="model-overview">Model Overview</h3>
 <ul>
 <li><strong>Northbound</strong>:
 <ul>
@@ -262,6 +263,19 @@
 </ul></li>
 </ul>
 <p>A typical example is the Terraform with providers.</p>
+<h3 id="benifits-or-problems-to-resolve">Benifits or Problems To Resolve</h3>
+<ul>
+<li>Reduce Human Error</li>
+</ul>
+<p>Reports show around 1/5 outage incidents occur because of human error. In an imperative model, users need to consider each detail API request, version, phased validation and usually programmatically manage the intermediate states in sequence or async ways. From another point of view, the user end implements a work-flow implicitly. It increases the chances to introduce human errors due to the conflicts between humanity and complexity.</p>
+<ul>
+<li>Better and Earlier Validation</li>
+</ul>
+<p>(TBC)</p>
+<ul>
+<li>Hide the Technical Details</li>
+</ul>
+<p>With declarative interface, users don't deal with number of versions for all the APIs. There could still be version of scheme, which is an universal version or grouped versions in a relatively simpler way. The backend services could evolve without user end impacts.</p>
 <h2 id="provider-design">Provider Design</h2>
 <p>(TBC)</p>
 <h2 id="open-questions">Open Questions</h2>
@@ -270,7 +284,7 @@
 </ul>
 <p>(TBC)</p>
 <h2 id="change-log">Change Log</h2>
-<p>Mar15, 2017: Initial post draft.</p>
+<p>Nov24, 2021: Continue drafting the model overview section. Mar15, 2021: Initial post draft.</p>
 
     </div>
 
@@ -372,7 +386,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#concept-model-for-declarative-interfaces"><span class="nav-number">1.</span> <span class="nav-text">Concept Model for Declarative Interfaces</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#provider-design"><span class="nav-number">2.</span> <span class="nav-text">Provider Design</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#open-questions"><span class="nav-number">3.</span> <span class="nav-text">Open Questions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#change-log"><span class="nav-number">4.</span> <span class="nav-text">Change Log</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#declarative-model"><span class="nav-number">1.</span> <span class="nav-text">Declarative Model</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#model-overview"><span class="nav-number">1.1.</span> <span class="nav-text">Model Overview</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#benifits-or-problems-to-resolve"><span class="nav-number">1.2.</span> <span class="nav-text">Benifits or Problems To Resolve</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#provider-design"><span class="nav-number">2.</span> <span class="nav-text">Provider Design</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#open-questions"><span class="nav-number">3.</span> <span class="nav-text">Open Questions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#change-log"><span class="nav-number">4.</span> <span class="nav-text">Change Log</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
