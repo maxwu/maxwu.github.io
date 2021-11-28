@@ -10,6 +10,16 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar-2021.png">
   <link rel="mask-icon" href="/images/avatar-2021.png" color="#222">
 
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-89976940-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-89976940-1');
+</script>
+
 <link rel="stylesheet" href="/css/main.css">
 
 
@@ -17,18 +27,18 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"www.maxwu.me","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"www.maxwu.me","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="+U Maxout!">
-<meta property="og:url" content="https://www.maxwu.me/tags/shell/index.html">
+<meta property="og:url" content="https://www.maxwu.me/tags/Shell/index.html">
 <meta property="og:site_name" content="+U Maxout!">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="Max Wu">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://www.maxwu.me/tags/shell/">
+<link rel="canonical" href="https://www.maxwu.me/tags/Shell/">
 
 
 <script id="page-configurations">
@@ -41,8 +51,17 @@
   };
 </script>
 
-  <title>Tag: shell | +U Maxout!</title>
+  <title>Tag: Shell | +U Maxout!</title>
   
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-89976940-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-89976940-1');
+      }
+    </script>
 
 
 
@@ -103,6 +122,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -142,11 +162,38 @@
     <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
     </header>
@@ -168,7 +215,7 @@
   <div class="post-block">
     <div class="posts-collapse">
       <div class="collection-title">
-        <h2 class="collection-header">shell
+        <h2 class="collection-header">Shell
           <small>Tag</small>
         </h2>
       </div>
@@ -183,15 +230,15 @@
 
       <div class="post-meta">
         <time itemprop="dateCreated"
-              datetime="2017-09-28T01:53:18+13:00"
-              content="2017-09-28">
-          09-28
+              datetime="2017-04-15T22:09:02+12:00"
+              content="2017-04-15">
+          04-15
         </time>
       </div>
 
       <div class="post-title">
-          <a class="post-title-link" href="/2017/09/28/Greeting-Shell-script-with-Picture-show-and-Weathre-Forecast/" itemprop="url">
-            <span itemprop="name">Greeting Shell script with Picture show and Weathre Forecast</span>
+          <a class="post-title-link" href="/2017/04/15/Share-a-Shell-Toy-with-Buddies/" itemprop="url">
+            <span itemprop="name">Share a Shell Toy with Buddies</span>
           </a>
       </div>
 
@@ -377,6 +424,8 @@
 
 
 
+  
+<script src="/js/local-search.js"></script>
 
 
 
@@ -386,6 +435,21 @@
 
 
 
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
 
 
   
@@ -446,6 +510,24 @@
     
 
   
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://maxwu.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+
+
+
+</body>
+</html>
+ner('load', loadCount, false);
+</script>
 
 
 
