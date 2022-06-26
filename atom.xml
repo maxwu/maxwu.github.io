@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.maxwu.me/"/>
-  <updated>2021-10-19T11:00:00.000Z</updated>
+  <updated>2022-06-22T10:51:31.000Z</updated>
   <id>https://www.maxwu.me/</id>
   
   <author>
@@ -15,6 +15,68 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Handle List Type Terraform Outputs with Terraform Controller</title>
+    <link href="https://www.maxwu.me/2022/06/22/Handle-List-Type-Terraform-Outputs-with-Terraform-Controller/"/>
+    <id>https://www.maxwu.me/2022/06/22/Handle-List-Type-Terraform-Outputs-with-Terraform-Controller/</id>
+    <published>2022-06-22T10:51:31.000Z</published>
+    <updated>2022-06-22T10:51:31.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="https://github.com/kubevela/kubevela">KubeVela</a> is widelyused to build Control Plane of a Multiple-Tenancy Cloud platform. Itsterraform k8s operator component [Terraform Controller](https://github.com/kubevela/terraform-controller) provides thecapabilities to manage cloud resources with HCL manifest and it fetchesback the terraform outputs back to CRDs' status for higher layer k8soperators to further reconcile the states. This post shares thefix/enhancement to handle list typed terraform outputs with kubevelaterraform controller.</p><span id="more"></span><h2 id="problem-statement">Problem Statement</h2><p>(TBC) &gt; The issue was discovered Feb, 2022. However I haven'tstarted to summarize the experiences or updated the current blog for a 5months due to the covid waves. Hopefully it's not too late to pick it upin the last month of 1st half year.</p><h2 id="proposed-solution">Proposed Solution</h2><h2 id="test-and-looking-ahead">Test and Looking Ahead</h2><h2 id="change-log">Change Log</h2><p>22 Jun, 2022: Initial post draft.</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;a href=&quot;https://github.com/kubevela/kubevela&quot;&gt;KubeVela&lt;/a&gt; is widely
+used to build Control Plane of a Multiple-Tenancy Cloud platform. Its
+terraform k8s operator component [Terraform Controller]
+(https://github.com/kubevela/terraform-controller) provides the
+capabilities to manage cloud resources with HCL manifest and it fetches
+back the terraform outputs back to CRDs&#39; status for higher layer k8s
+operators to further reconcile the states. This post shares the
+fix/enhancement to handle list typed terraform outputs with kubevela
+terraform controller.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Cloud" scheme="https://www.maxwu.me/categories/Cloud/"/>
+    
+      <category term="Operator" scheme="https://www.maxwu.me/categories/Cloud/Operator/"/>
+    
+    
+      <category term="Operator" scheme="https://www.maxwu.me/tags/Operator/"/>
+    
+      <category term="Terraform" scheme="https://www.maxwu.me/tags/Terraform/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Wrap up a Vue frontend into Golang Web Service</title>
+    <link href="https://www.maxwu.me/2022/01/09/Wrap-up-a-Vue-frontend-into-Golang-Web-Service/"/>
+    <id>https://www.maxwu.me/2022/01/09/Wrap-up-a-Vue-frontend-into-Golang-Web-Service/</id>
+    <published>2022-01-09T01:06:59.000Z</published>
+    <updated>2022-01-09T01:06:59.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="https://imgur.com/Gqldzu2"><imgsrc="https://i.imgur.com/Gqldzu2m.png"alt="Deeplearning-ai-cert-tensorflow-intro" /></a></p><span id="more"></span><h2 id="ch1">Ch1</h2><h2 id="change-log">Change Log</h2><p>Jan09, 2022: Initial post draft.</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;a href=&quot;https://imgur.com/Gqldzu2&quot;&gt;&lt;img
+src=&quot;https://i.imgur.com/Gqldzu2m.png&quot;
+alt=&quot;Deeplearning-ai-cert-tensorflow-intro&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Programming" scheme="https://www.maxwu.me/categories/Programming/"/>
+    
+      <category term="Golang" scheme="https://www.maxwu.me/categories/Programming/Golang/"/>
+    
+    
+      <category term="Golang" scheme="https://www.maxwu.me/tags/Golang/"/>
+    
+      <category term="Vue" scheme="https://www.maxwu.me/tags/Vue/"/>
+    
+  </entry>
   
   <entry>
     <title>Build k8s apps running both in and out of Cluster</title>
@@ -507,65 +569,6 @@
       <category term="Python" scheme="https://www.maxwu.me/tags/Python/"/>
     
       <category term="Anaconda" scheme="https://www.maxwu.me/tags/Anaconda/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Stanford A-NG Machine Learning Certificate Achieved</title>
-    <link href="https://www.maxwu.me/2017/11/12/Stanford-A-NG-Machine-Learning-Certificate-Achieved/"/>
-    <id>https://www.maxwu.me/2017/11/12/Stanford-A-NG-Machine-Learning-Certificate-Achieved/</id>
-    <published>2017-11-12T09:37:15.000Z</published>
-    <updated>2017-11-12T09:37:15.000Z</updated>
-    
-    <content type="html"><![CDATA[<span id="more"></span><p>Completed the first machine learning course and achieved the certificate on coursera!</p><p>Rather than warming up mathematics and scripting with new toy of octave(and matlab), it was an experience to enhance time management :_)</p><figure><img src="https://i.imgur.com/6WmFoUsm.png" alt="Stanford-Andrew-Ng-ML-Course-Cert" /><figcaption aria-hidden="true">Stanford-Andrew-Ng-ML-Course-Cert</figcaption></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;span id=&quot;more&quot;&gt;&lt;/span&gt;
-&lt;p&gt;Completed the first machine learning course and achieved the certificate on coursera!&lt;/p&gt;
-&lt;p&gt;Rather than warming 
-      
-    
-    </summary>
-    
-      <category term="Machine Learning" scheme="https://www.maxwu.me/categories/Machine-Learning/"/>
-    
-    
-      <category term="Machine Learning" scheme="https://www.maxwu.me/tags/Machine-Learning/"/>
-    
-      <category term="Andrew-Ng" scheme="https://www.maxwu.me/tags/Andrew-Ng/"/>
-    
-      <category term="Stanford" scheme="https://www.maxwu.me/tags/Stanford/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Greeting Shell script with Picture show and Weathre Forecast</title>
-    <link href="https://www.maxwu.me/2017/09/28/Greeting-Shell-script-with-Picture-show-and-Weathre-Forecast/"/>
-    <id>https://www.maxwu.me/2017/09/28/Greeting-Shell-script-with-Picture-show-and-Weathre-Forecast/</id>
-    <published>2017-09-27T12:53:18.000Z</published>
-    <updated>2017-09-27T12:53:18.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>"<strong>iterm2 greeting with weather and image</strong>" is a short shell made for bash_profil invoke to weather forecast based on GeoIP, a quote of greeting, and, show a random picture from given folder.</p><span id="more"></span><h2 id="introduction">Introduction</h2><p>It is created to make use of Friday evening and show my daughter's random picture each time a terminal window is created. After a quick family demo show, I added cli arguments support the next day ㋡</p><h2 id="features">Features</h2><p><a href="https://i.imgur.com/VR53tEE.png"><img src="https://i.imgur.com/VR53tEEm.png" alt="greeting" /></a></p><ul><li>Show randmo picture from folder.<ul><li>It follows iTerm2 (on Mac) imgcat extended protocols.</li><li>Picture will be resized to given width in cols or 40 by default</li><li>Picture folder is specified or defaulted to ~/Pictures.</li></ul></li><li>Fetch weathre forecast from wttr.in.</li><li>Adjust format according to current terminal window width.</li></ul><p>Github Link: <a href="https://github.com/maxwu/iterm2_greeting_with_weather_img">https://github.com/maxwu/iterm2_greeting_with_weather_img</a></p><h2 id="change-log">Change Log</h2><p>May28, 2017: Initial post.</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&quot;&lt;strong&gt;iterm2 greeting with weather and image&lt;/strong&gt;&quot; is a short shell made for bash_profil invoke to weather forecast based on GeoIP, a quote of greeting, and, show a random picture from given folder.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Programming" scheme="https://www.maxwu.me/categories/Programming/"/>
-    
-      <category term="Shell" scheme="https://www.maxwu.me/categories/Programming/Shell/"/>
-    
-    
-      <category term="iterm2" scheme="https://www.maxwu.me/tags/iterm2/"/>
-    
-      <category term="shell" scheme="https://www.maxwu.me/tags/shell/"/>
-    
-      <category term="imgcat" scheme="https://www.maxwu.me/tags/imgcat/"/>
     
   </entry>
   
